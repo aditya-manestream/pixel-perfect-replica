@@ -51,7 +51,7 @@ const PhilosophySection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="flex justify-center mb-2"
+          className="flex justify-center mb-6"
         >
           <img 
             src={ardoriLogo} 
@@ -59,18 +59,6 @@ const PhilosophySection = () => {
             className="w-[100px] h-auto lg:w-[120px]"
           />
         </motion.div>
-        
-        {/* Brand Name */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="font-display text-[36px] lg:text-[48px] tracking-[0.12em] mb-6"
-          style={{ color: "#F5F3F0" }}
-        >
-          ARDORI
-        </motion.p>
         
         {/* Gold Divider */}
         <motion.div
