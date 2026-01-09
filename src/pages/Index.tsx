@@ -10,6 +10,7 @@ import WatchShopSection from "@/components/WatchShopSection";
 import UnboxingSection from "@/components/UnboxingSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import InstagramSection from "@/components/InstagramSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -55,6 +56,9 @@ const Index = () => {
 
       {/* Instagram Section */}
       <InstagramSection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

@@ -1,0 +1,201 @@
+import { useState } from "react";
+import { Instagram, Facebook, Mail } from "lucide-react";
+
+const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle subscription logic
+    setEmail("");
+  };
+
+  return (
+    <footer style={{ backgroundColor: "#2C2420" }}>
+      {/* Main Footer Content */}
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-16 pt-16 lg:pt-20 pb-12 lg:pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16">
+          {/* Brand Column */}
+          <div className="lg:col-span-1">
+            <h2
+              className="font-serif text-[28px] lg:text-[32px] font-normal mb-6"
+              style={{ color: "#E8E4DF" }}
+            >
+              Ardori
+            </h2>
+            <p
+              className="font-serif text-[14px] lg:text-[15px] font-light leading-[1.8] mb-8"
+              style={{ color: "#9A958F" }}
+            >
+              Handcrafted luxury handbags inspired by India's flora and fauna.
+              Ethically made with vegetable-tanned leather by skilled artisans
+              who preserve generations of craftsmanship.
+            </p>
+
+            {/* Social Icons */}
+            <div className="flex gap-5">
+              <a
+                href="#"
+                className="transition-all duration-300 hover:brightness-125"
+                style={{ color: "#9A958F" }}
+                aria-label="Instagram"
+              >
+                <Instagram size={20} strokeWidth={1.2} />
+              </a>
+              <a
+                href="#"
+                className="transition-all duration-300 hover:brightness-125"
+                style={{ color: "#9A958F" }}
+                aria-label="Facebook"
+              >
+                <Facebook size={20} strokeWidth={1.2} />
+              </a>
+              <a
+                href="#"
+                className="transition-all duration-300 hover:brightness-125"
+                style={{ color: "#9A958F" }}
+                aria-label="Email"
+              >
+                <Mail size={20} strokeWidth={1.2} />
+              </a>
+            </div>
+          </div>
+
+          {/* Explore Column */}
+          <div className="lg:col-span-1">
+            <h3
+              className="font-sans text-[11px] lg:text-[12px] tracking-[0.25em] uppercase mb-6"
+              style={{ color: "#C9A86C" }}
+            >
+              EXPLORE
+            </h3>
+            <ul className="flex flex-col gap-4">
+              {["Shop All", "Our Story", "Journal", "Handbag Care", "Contact"].map(
+                (link) => (
+                  <li key={link}>
+                    <a
+                      href="#"
+                      className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                      style={{ color: "#9A958F", opacity: 0.85 }}
+                    >
+                      {link}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+
+          {/* Assistance Column - Two Sub-columns */}
+          <div className="lg:col-span-2">
+            <h3
+              className="font-sans text-[11px] lg:text-[12px] tracking-[0.25em] uppercase mb-6"
+              style={{ color: "#C9A86C" }}
+            >
+              ASSISTANCE
+            </h3>
+            <div className="grid grid-cols-2 gap-x-10 gap-y-4">
+              <ul className="flex flex-col gap-4">
+                {[
+                  "Shipping & Delivery",
+                  "Return & Exchange",
+                  "Privacy Policy",
+                  "Terms of Service",
+                ].map((link) => (
+                  <li key={link}>
+                    <a
+                      href="#"
+                      className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                      style={{ color: "#9A958F", opacity: 0.85 }}
+                    >
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <ul className="flex flex-col gap-4">
+                {["Warranty Policy", "FAQs", "Track Your Order"].map((link) => (
+                  <li key={link}>
+                    <a
+                      href="#"
+                      className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                      style={{ color: "#9A958F", opacity: 0.85 }}
+                    >
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div
+        className="max-w-[1400px] mx-auto px-6 lg:px-16"
+      >
+        <div
+          className="w-full h-px"
+          style={{ backgroundColor: "#4A4540" }}
+        />
+      </div>
+
+      {/* Lower Footer - Newsletter & Copyright */}
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-16 py-10 lg:py-14">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+          {/* Newsletter */}
+          <div className="max-w-[420px]">
+            <h4
+              className="font-serif text-[16px] lg:text-[18px] font-normal italic mb-3"
+              style={{ color: "#E8E4DF" }}
+            >
+              Join our newsletter
+            </h4>
+            <p
+              className="font-serif text-[13px] lg:text-[14px] font-light mb-6"
+              style={{ color: "#7A7570" }}
+            >
+              Subscribe for exclusive access to new launches, events and archive
+              sales.
+            </p>
+
+            <form onSubmit={handleSubscribe} className="flex items-center gap-4">
+              <div className="flex-1 relative">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email Address"
+                  className="w-full bg-transparent border-0 border-b pb-2 font-serif text-[14px] placeholder:font-serif focus:outline-none transition-all duration-300 focus:border-[#7A7570]"
+                  style={{
+                    color: "#9A958F",
+                    borderColor: "#4A4540",
+                  }}
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase transition-opacity duration-300 hover:opacity-100"
+                style={{ color: "#E8E4DF", opacity: 0.9 }}
+              >
+                SUBSCRIBE
+              </button>
+            </form>
+          </div>
+
+          {/* Copyright */}
+          <p
+            className="font-sans text-[11px] lg:text-[12px] tracking-[0.1em] uppercase"
+            style={{ color: "#5A5550" }}
+          >
+            © 2025 ARDORI INDIA
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
