@@ -4,6 +4,7 @@ import PhilosophySection from "@/components/PhilosophySection";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
 import CuratedSection from "@/components/CuratedSection";
 import ValuesSection from "@/components/ValuesSection";
+import CraftSection from "@/components/CraftSection";
 
 const Index = () => {
   return (
@@ -31,6 +32,9 @@ const Index = () => {
 
       {/* Our Values Section */}
       <ValuesSection />
+
+      {/* The Craft Section */}
+      <CraftSection />
     </div>
   );
 };
