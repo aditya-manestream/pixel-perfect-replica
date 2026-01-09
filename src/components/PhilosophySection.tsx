@@ -7,13 +7,14 @@ const PhilosophySection = () => {
       className="relative w-full py-20 lg:py-28 overflow-hidden"
       style={{ backgroundColor: "#1A2332" }}
     >
-      {/* Background Pattern */}
+      {/* Background Pattern - exact uploaded image */}
       <div 
-        className="absolute inset-0 opacity-[0.15]"
+        className="absolute inset-0"
         style={{
           backgroundImage: `url(${philosophyPattern})`,
           backgroundRepeat: "repeat",
-          backgroundSize: "280px 280px",
+          backgroundSize: "auto",
+          backgroundPosition: "center",
         }}
       />
       
