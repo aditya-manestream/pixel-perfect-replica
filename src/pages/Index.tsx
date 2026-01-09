@@ -1,6 +1,7 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import CategorySection from "@/components/CategorySection";
 import PhilosophySection from "@/components/PhilosophySection";
+import NewArrivalsSection from "@/components/NewArrivalsSection";
 
 const Index = () => {
   return (
@@ -19,6 +20,9 @@ const Index = () => {
 
       {/* Philosophy Section */}
       <PhilosophySection />
+
+      {/* New Arrivals Section */}
+      <NewArrivalsSection />
     </div>
   );
 };
