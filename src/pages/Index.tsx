@@ -5,6 +5,7 @@ import NewArrivalsSection from "@/components/NewArrivalsSection";
 import CuratedSection from "@/components/CuratedSection";
 import ValuesSection from "@/components/ValuesSection";
 import CraftSection from "@/components/CraftSection";
+import PromiseSection from "@/components/PromiseSection";
 
 const Index = () => {
   return (
@@ -35,6 +36,9 @@ const Index = () => {
 
       {/* The Craft Section */}
       <CraftSection />
+
+      {/* The Ardori Promise Section */}
+      <PromiseSection />
     </div>
   );
 };
