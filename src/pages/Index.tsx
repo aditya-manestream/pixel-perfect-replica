@@ -1,5 +1,6 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import CategorySection from "@/components/CategorySection";
+import PhilosophySection from "@/components/PhilosophySection";
 
 const Index = () => {
   return (
@@ -15,6 +16,9 @@ const Index = () => {
 
       {/* Category Section */}
       <CategorySection />
+
+      {/* Philosophy Section */}
+      <PhilosophySection />
     </div>
   );
 };
