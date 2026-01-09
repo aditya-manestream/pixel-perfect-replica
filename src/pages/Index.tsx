@@ -9,6 +9,7 @@ import PromiseSection from "@/components/PromiseSection";
 import WatchShopSection from "@/components/WatchShopSection";
 import UnboxingSection from "@/components/UnboxingSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import InstagramSection from "@/components/InstagramSection";
 
 const Index = () => {
   return (
@@ -51,6 +52,9 @@ const Index = () => {
 
       {/* Testimonials Section */}
       <TestimonialsSection />
+
+      {/* Instagram Section */}
+      <InstagramSection />
     </div>
   );
 };
