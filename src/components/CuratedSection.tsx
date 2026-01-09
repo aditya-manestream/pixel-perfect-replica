@@ -3,7 +3,7 @@ import curatedLeft1 from "@/assets/curated-left-1.jpg";
 import curatedLeft2 from "@/assets/curated-left-2.jpg";
 import curatedDetail from "@/assets/curated-detail.jpg";
 import curatedTote from "@/assets/curated-tote.jpg";
-import curatedPattern from "@/assets/curated-pattern.jpg";
+import curatedCornerPattern from "@/assets/curated-corner-pattern.jpg";
 
 const CuratedSection = () => {
   return (
@@ -11,13 +11,32 @@ const CuratedSection = () => {
       className="relative w-full py-20 lg:py-28 overflow-hidden"
       style={{ backgroundColor: "#F5F2ED" }}
     >
-      {/* Background Pattern */}
+      {/* Top-Right Corner Pattern */}
       <div 
-        className="absolute inset-0 opacity-40"
+        className="absolute top-0 right-0 w-[400px] lg:w-[600px] h-[300px] lg:h-[400px] pointer-events-none"
         style={{
-          backgroundImage: `url(${curatedPattern})`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "300px 300px",
+          backgroundImage: `url(${curatedCornerPattern})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "top right",
+          backgroundSize: "cover",
+          maskImage: "radial-gradient(ellipse at top right, black 0%, transparent 70%)",
+          WebkitMaskImage: "radial-gradient(ellipse at top right, black 0%, transparent 70%)",
+          opacity: 0.8,
+        }}
+      />
+
+      {/* Bottom-Left Corner Pattern */}
+      <div 
+        className="absolute bottom-0 left-0 w-[400px] lg:w-[600px] h-[300px] lg:h-[400px] pointer-events-none"
+        style={{
+          backgroundImage: `url(${curatedCornerPattern})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "bottom left",
+          backgroundSize: "cover",
+          maskImage: "radial-gradient(ellipse at bottom left, black 0%, transparent 70%)",
+          WebkitMaskImage: "radial-gradient(ellipse at bottom left, black 0%, transparent 70%)",
+          opacity: 0.8,
+          transform: "rotate(180deg)",
         }}
       />
 
