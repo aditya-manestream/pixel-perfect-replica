@@ -3,6 +3,7 @@ import CategorySection from "@/components/CategorySection";
 import PhilosophySection from "@/components/PhilosophySection";
 import NewArrivalsSection from "@/components/NewArrivalsSection";
 import CuratedSection from "@/components/CuratedSection";
+import ValuesSection from "@/components/ValuesSection";
 
 const Index = () => {
   return (
@@ -27,6 +28,9 @@ const Index = () => {
 
       {/* Curated For You Section */}
       <CuratedSection />
+
+      {/* Our Values Section */}
+      <ValuesSection />
     </div>
   );
 };
