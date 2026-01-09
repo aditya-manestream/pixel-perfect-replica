@@ -6,6 +6,7 @@ import CuratedSection from "@/components/CuratedSection";
 import ValuesSection from "@/components/ValuesSection";
 import CraftSection from "@/components/CraftSection";
 import PromiseSection from "@/components/PromiseSection";
+import WatchShopSection from "@/components/WatchShopSection";
 
 const Index = () => {
   return (
@@ -39,6 +40,9 @@ const Index = () => {
 
       {/* The Ardori Promise Section */}
       <PromiseSection />
+
+      {/* Watch & Shop Section */}
+      <WatchShopSection />
     </div>
   );
 };
