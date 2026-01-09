@@ -7,6 +7,7 @@ import ValuesSection from "@/components/ValuesSection";
 import CraftSection from "@/components/CraftSection";
 import PromiseSection from "@/components/PromiseSection";
 import WatchShopSection from "@/components/WatchShopSection";
+import UnboxingSection from "@/components/UnboxingSection";
 
 const Index = () => {
   return (
@@ -43,6 +44,9 @@ const Index = () => {
 
       {/* Watch & Shop Section */}
       <WatchShopSection />
+
+      {/* Unboxing Section */}
+      <UnboxingSection />
     </div>
   );
 };
