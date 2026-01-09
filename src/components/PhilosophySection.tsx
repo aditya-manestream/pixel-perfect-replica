@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
-
+import ardoriLogo from "@/assets/ardori-logo.png";
 const PhilosophySection = () => {
   return (
     <section 
@@ -53,47 +53,11 @@ const PhilosophySection = () => {
           viewport={{ once: true }}
           className="flex justify-center mb-2"
         >
-          <svg 
-            width="100" 
-            height="140" 
-            viewBox="0 0 100 140" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-            className="lg:w-[120px] lg:h-[165px]"
-          >
-            {/* Letter A - elegant thin strokes */}
-            <path 
-              d="M50 8 L15 132" 
-              stroke="#F5F3F0" 
-              strokeWidth="1.5" 
-              fill="none"
-              strokeLinecap="round"
-            />
-            <path 
-              d="M50 8 L85 132" 
-              stroke="#F5F3F0" 
-              strokeWidth="1.5" 
-              fill="none"
-              strokeLinecap="round"
-            />
-            {/* Crossbar with curve */}
-            <path 
-              d="M28 85 Q50 75 72 85" 
-              stroke="#F5F3F0" 
-              strokeWidth="1.5" 
-              fill="none"
-              strokeLinecap="round"
-            />
-            {/* Decorative 4-point star */}
-            <path 
-              d="M50 88 L46 98 L50 108 L54 98 Z" 
-              fill="#F5F3F0"
-            />
-            <path 
-              d="M44 98 L50 94 L56 98 L50 102 Z" 
-              fill="#F5F3F0"
-            />
-          </svg>
+          <img 
+            src={ardoriLogo} 
+            alt="ARDORI Monogram" 
+            className="w-[100px] h-auto lg:w-[120px]"
+          />
         </motion.div>
         
         {/* Brand Name */}
