@@ -17,7 +17,7 @@ const Navbar = () => {
 
   const leftLinks = [
     { label: "Shop", href: "/shop" },
-    { label: "Handbag Care", href: "#" },
+    { label: "Handbag Care", href: "/handbag-care" },
     { label: "Our Story", href: "/story" },
   ];
 
