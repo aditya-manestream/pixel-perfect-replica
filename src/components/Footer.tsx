@@ -125,13 +125,13 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/terms-of-service"
                     className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
                     style={{ color: "#9A958F", opacity: 0.85 }}
                   >
                     Terms of Service
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <ul className="flex flex-col gap-4">
