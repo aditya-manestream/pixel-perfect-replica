@@ -202,7 +202,7 @@ const termsSections = [
       <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.9" }}>
         Our products come with an 8-month workmanship warranty. See our{" "}
         <Link 
-          to="#" 
+          to="/warranty-policy" 
           className="transition-opacity hover:opacity-70"
           style={{ color: "#8B7355" }}
         >

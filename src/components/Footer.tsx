@@ -135,17 +135,33 @@ const Footer = () => {
                 </li>
               </ul>
               <ul className="flex flex-col gap-4">
-                {["Warranty Policy", "FAQs", "Track Your Order"].map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                      style={{ color: "#9A958F", opacity: 0.85 }}
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                <li>
+                  <Link
+                    to="/warranty-policy"
+                    className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                    style={{ color: "#9A958F", opacity: 0.85 }}
+                  >
+                    Warranty Policy
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                    style={{ color: "#9A958F", opacity: 0.85 }}
+                  >
+                    FAQs
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                    style={{ color: "#9A958F", opacity: 0.85 }}
+                  >
+                    Track Your Order
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
