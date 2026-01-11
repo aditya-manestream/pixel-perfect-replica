@@ -331,7 +331,7 @@ const ProductListing = () => {
           {filteredProducts.map((product) => (
             <Link
               key={product.id}
-              to="/shop"
+              to={`/product/${product.id}`}
               className="group block"
             >
               {/* Product Card */}
