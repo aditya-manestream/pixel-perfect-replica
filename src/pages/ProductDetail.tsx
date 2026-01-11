@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, Minus, Plus, Search } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import TrustBadgesSection from "@/components/TrustBadgesSection";
 import { getProductById, products } from "@/data/products";
 
 const viewLabels = ["FRONT VIEW", "BACK VIEW", "SIDE VIEW", "DETAIL VIEW", "INTERIOR VIEW", "STRAP VIEW", "ANGLE VIEW"];
@@ -465,6 +466,9 @@ const ProductDetail = () => {
           </div>
         </div>
       </main>
+
+      {/* Trust Badges Section */}
+      <TrustBadgesSection />
 
       <Footer />
     </div>

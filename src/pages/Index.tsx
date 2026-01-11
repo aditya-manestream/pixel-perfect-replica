@@ -8,7 +8,6 @@ import CuratedSection from "@/components/CuratedSection";
 import ValuesSection from "@/components/ValuesSection";
 import CraftSection from "@/components/CraftSection";
 import PromiseSection from "@/components/PromiseSection";
-import TrustBadgesSection from "@/components/TrustBadgesSection";
 import WatchShopSection from "@/components/WatchShopSection";
 import UnboxingSection from "@/components/UnboxingSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -121,9 +120,6 @@ const Index = () => {
 
       {/* The Ardori Promise Section */}
       <PromiseSection />
-
-      {/* Trust Badges Section */}
-      <TrustBadgesSection />
 
       {/* Watch & Shop Section */}
       <WatchShopSection />
