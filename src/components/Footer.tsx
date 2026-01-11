@@ -98,13 +98,13 @@ const Footer = () => {
             <div className="grid grid-cols-2 gap-x-10 gap-y-4">
               <ul className="flex flex-col gap-4">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/shipping"
                     className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
                     style={{ color: "#9A958F", opacity: 0.85 }}
                   >
-                    Shipping & Delivery
-                  </a>
+                    Shipping Information
+                  </Link>
                 </li>
                 <li>
                   <Link
