@@ -104,7 +104,7 @@ const CustomCursor = () => {
       case "bag":
         return "#C9A86C"; // Gold accent
       default:
-        return "#F5F2ED"; // Off-white/beige
+        return "#0E1513"; // Dark for contrast
     }
   };
 
