@@ -81,8 +81,8 @@ const Navbar = () => {
             </button>
 
             {/* Contact Link */}
-            <a
-              href="#"
+            <Link
+              to="/contact"
               className="font-sans text-[11px] tracking-[0.18em] uppercase transition-opacity duration-300 hover:opacity-100 font-light"
               style={{ 
                 fontFamily: "'Montserrat', sans-serif",
@@ -91,7 +91,7 @@ const Navbar = () => {
               }}
             >
               Contact
-            </a>
+            </Link>
 
             {/* Search Icon */}
             <button
