@@ -1,0 +1,316 @@
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Droplets, Sun, Package, AlertTriangle, Sparkles, Wrench, BookOpen } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import sectionPattern from "@/assets/section-pattern.jpg";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as const },
+};
+
+const careSections = [
+  {
+    icon: Sparkles,
+    title: "Daily Care",
+    intro: "Simple habits to keep your bag looking fresh every day.",
+    items: [
+      "Clean hands before handling",
+      "Avoid overloading",
+      "Empty bag regularly",
+      "Use dust bag when not in use",
+      "Keep away from direct sunlight/heat",
+    ],
+  },
+  {
+    icon: Droplets,
+    title: "Cleaning & Maintenance",
+    intro: "Proper cleaning techniques to maintain the leather's beauty.",
+    items: [
+      "Wipe gently with soft, dry cloth",
+      "For spills: blot immediately, don't rub",
+      "Use leather-specific cleaners (recommendations below)",
+      "Condition leather every 6–12 months",
+      "Avoid harsh chemicals, alcohol, or water-based cleaners",
+    ],
+  },
+  {
+    icon: Package,
+    title: "Storage Tips",
+    intro: "How to store your bag when not in use.",
+    items: [
+      "Stuff with tissue paper to maintain shape",
+      "Store in provided dust bag",
+      "Keep in cool, dry place",
+      "Avoid plastic bags (leather needs to breathe)",
+      "Store away from direct sunlight",
+    ],
+  },
+  {
+    icon: AlertTriangle,
+    title: "What to Avoid",
+    intro: "Things that can damage your leather bag.",
+    items: [
+      "Water exposure (if wet, air dry naturally)",
+      "Heat sources",
+      "Perfumes and cosmetics directly on leather",
+      "Sharp objects",
+      "Overloading beyond capacity",
+    ],
+  },
+];
+
+const HandbagCare = () => {
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
+      <Navbar />
+
+      {/* Hero Section */}
+      <section
+        className="relative py-28 lg:py-36 flex items-center justify-center overflow-hidden"
+        style={{ backgroundColor: "#2C2824" }}
+      >
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: `url(${sectionPattern})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <motion.div
+          className="relative z-10 text-center px-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          <p
+            className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-4"
+            style={{ color: "#C9A86C" }}
+          >
+            LEATHER CARE GUIDE
+          </p>
+          <h1
+            className="font-serif text-[36px] md:text-[48px] lg:text-[60px] font-normal mb-6"
+            style={{ color: "#FFFFFF" }}
+          >
+            Caring for Your Ardori
+          </h1>
+          <p
+            className="font-serif text-[16px] lg:text-[18px] font-light max-w-[500px] mx-auto"
+            style={{ color: "rgba(255,255,255,0.75)" }}
+          >
+            Keep your leather bag beautiful for years to come
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Introduction Section */}
+      <section
+        className="py-16 lg:py-24 px-6"
+        style={{ backgroundColor: "#FAF8F5" }}
+      >
+        <motion.div {...fadeInUp} className="text-center max-w-[680px] mx-auto">
+          <p
+            className="font-serif text-[15px] lg:text-[17px] font-light leading-[1.9]"
+            style={{ color: "#5A5550" }}
+          >
+            Your Ardori bag is crafted from premium natural leather that will develop 
+            character and patina over time. With proper care, it will remain your trusted 
+            companion for years. Here's how to maintain its beauty.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Care Guide Sections */}
+      <section
+        className="pb-16 lg:pb-24 px-6"
+        style={{ backgroundColor: "#FAF8F5" }}
+      >
+        <div className="max-w-[800px] mx-auto">
+          {careSections.map((section, index) => (
+            <motion.div
+              key={section.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: index * 0.05 }}
+              className="mb-14 lg:mb-18"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center border"
+                  style={{ borderColor: "#D4CFC8" }}
+                >
+                  <section.icon
+                    size={18}
+                    strokeWidth={1.2}
+                    style={{ color: "#7A7570" }}
+                  />
+                </div>
+                <h2
+                  className="font-serif text-[22px] lg:text-[26px] font-normal"
+                  style={{ color: "#2C2824" }}
+                >
+                  {section.title}
+                </h2>
+              </div>
+              <p
+                className="font-serif text-[14px] lg:text-[15px] font-light mb-5 ml-14"
+                style={{ color: "#7A7570" }}
+              >
+                {section.intro}
+              </p>
+              <ul className="ml-14 space-y-3">
+                {section.items.map((item, i) => (
+                  <li
+                    key={i}
+                    className="font-serif text-[14px] lg:text-[15px] font-light flex items-start gap-3"
+                    style={{ color: "#5A5550" }}
+                  >
+                    <span
+                      className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
+                      style={{ backgroundColor: "#C9A86C" }}
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+
+          {/* Section 5: Understanding Natural Leather - Quote Block */}
+          <motion.div
+            {...fadeInUp}
+            className="my-16 lg:my-20 p-8 lg:p-10 border-l-2"
+            style={{ backgroundColor: "#F5F2ED", borderColor: "#C9A86C" }}
+          >
+            <div className="flex items-center gap-4 mb-5">
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center border"
+                style={{ borderColor: "#D4CFC8" }}
+              >
+                <Sun size={18} strokeWidth={1.2} style={{ color: "#7A7570" }} />
+              </div>
+              <h2
+                className="font-serif text-[22px] lg:text-[26px] font-normal"
+                style={{ color: "#2C2824" }}
+              >
+                Understanding Natural Leather
+              </h2>
+            </div>
+            <p
+              className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.8] italic"
+              style={{ color: "#5A5550" }}
+            >
+              "Your leather bag is made from natural material. Small variations in grain, 
+              slight creasing, and patina development are not defects—they're characteristics 
+              that make your bag unique. As your bag ages, it develops its own personality, 
+              becoming more beautiful with time."
+            </p>
+          </motion.div>
+
+          {/* Section 6: Professional Care */}
+          <motion.div
+            {...fadeInUp}
+            className="mb-14 lg:mb-18"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center border"
+                style={{ borderColor: "#D4CFC8" }}
+              >
+                <Wrench size={18} strokeWidth={1.2} style={{ color: "#7A7570" }} />
+              </div>
+              <h2
+                className="font-serif text-[22px] lg:text-[26px] font-normal"
+                style={{ color: "#2C2824" }}
+              >
+                Professional Care
+              </h2>
+            </div>
+            <p
+              className="font-serif text-[14px] lg:text-[15px] font-light ml-14 leading-[1.8]"
+              style={{ color: "#5A5550" }}
+            >
+              For deep cleaning or repairs, contact us at{" "}
+              <a
+                href="mailto:care@ardori.com"
+                className="underline underline-offset-2 transition-opacity hover:opacity-70"
+                style={{ color: "#2C2824" }}
+              >
+                care@ardori.com
+              </a>
+              . Our artisan team can help restore your bag to its original glory.
+            </p>
+          </motion.div>
+
+          {/* Section 7: Resources & Guides */}
+          <motion.div {...fadeInUp} className="mb-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center border"
+                style={{ borderColor: "#D4CFC8" }}
+              >
+                <BookOpen size={18} strokeWidth={1.2} style={{ color: "#7A7570" }} />
+              </div>
+              <h2
+                className="font-serif text-[22px] lg:text-[26px] font-normal"
+                style={{ color: "#2C2824" }}
+              >
+                Resources & Guides
+              </h2>
+            </div>
+            <ul className="ml-14 space-y-3">
+              {[
+                { label: "Video Tutorials", href: "#" },
+                { label: "Recommended Leather Care Products", href: "#" },
+                { label: "Blog Articles on Leather Care", href: "#" },
+                { label: "External Expert Resources", href: "#" },
+              ].map((link, i) => (
+                <li key={i}>
+                  <a
+                    href={link.href}
+                    className="font-serif text-[14px] lg:text-[15px] font-light underline underline-offset-2 transition-opacity hover:opacity-70"
+                    style={{ color: "#2C2824" }}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section
+        className="py-16 lg:py-20 px-6"
+        style={{ backgroundColor: "#F5F2ED" }}
+      >
+        <motion.div {...fadeInUp} className="text-center">
+          <p
+            className="font-serif text-[18px] lg:text-[22px] font-normal mb-6"
+            style={{ color: "#2C2824" }}
+          >
+            Questions? Contact Our Customer Care Team
+          </p>
+          <Link
+            to="/contact"
+            className="inline-block font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase px-8 py-3 border transition-all duration-300 hover:bg-[#2C2824] hover:text-white"
+            style={{ color: "#2C2824", borderColor: "#2C2824" }}
+          >
+            CONTACT US
+          </Link>
+        </motion.div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default HandbagCare;
