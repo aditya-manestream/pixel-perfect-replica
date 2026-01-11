@@ -109,7 +109,7 @@ const TestimonialsSection = () => {
     >
       {/* Subtle Background Pattern */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-[0.15]"
         style={{
           backgroundImage: `url(${promisePattern})`,
           backgroundRepeat: "repeat",
