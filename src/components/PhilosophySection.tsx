@@ -9,7 +9,7 @@ const PhilosophySection = () => {
     >
       {/* Background Pattern - exact uploaded image */}
       <div 
-        className="absolute inset-0 opacity-[0.18]"
+        className="absolute inset-0 opacity-50"
         style={{
           backgroundImage: `url(${philosophyPattern})`,
           backgroundRepeat: "repeat",
