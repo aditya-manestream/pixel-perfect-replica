@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Search, ShoppingBag, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,7 +15,11 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const leftLinks = ["Shop", "Handbag Care", "Our Story"];
+  const leftLinks = [
+    { label: "Shop", href: "/shop" },
+    { label: "Handbag Care", href: "#" },
+    { label: "Our Story", href: "#" },
+  ];
 
   return (
     <nav
@@ -32,9 +37,9 @@ const Navbar = () => {
           {/* Left - Navigation Links (Desktop) */}
           <div className="hidden lg:flex items-center gap-8">
             {leftLinks.map((link) => (
-              <a
-                key={link}
-                href="#"
+              <Link
+                key={link.label}
+                to={link.href}
                 className="font-sans text-[11px] tracking-[0.18em] uppercase transition-opacity duration-300 hover:opacity-100 font-light"
                 style={{ 
                   fontFamily: "'Montserrat', sans-serif",
@@ -42,14 +47,14 @@ const Navbar = () => {
                   opacity: 0.9 
                 }}
               >
-                {link}
-              </a>
+                {link.label}
+              </Link>
             ))}
           </div>
 
           {/* Center - Logo */}
-          <a
-            href="/"
+          <Link
+            to="/"
             className="absolute left-1/2 transform -translate-x-1/2 font-serif text-xl sm:text-2xl lg:text-[26px] font-normal tracking-[0.15em] transition-opacity duration-300 hover:opacity-80"
             style={{ 
               fontFamily: "'Cormorant Garamond', serif",
@@ -58,7 +63,7 @@ const Navbar = () => {
             }}
           >
             ARDORI
-          </a>
+          </Link>
 
           {/* Right - Currency, Contact, Icons */}
           <div className="hidden lg:flex items-center gap-7">

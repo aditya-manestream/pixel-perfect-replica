@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import curatedHero from "@/assets/curated-hero.jpg";
 import curatedLeft1 from "@/assets/curated-left-1.jpg";
 import curatedLeft2 from "@/assets/curated-left-2.jpg";
@@ -114,8 +115,8 @@ const CuratedSection = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <a 
-            href="#" 
+          <Link 
+            to="/shop" 
             className="inline-block font-sans text-[12px] lg:text-[13px] tracking-[0.2em] uppercase border-b pb-1 transition-opacity hover:opacity-70"
             style={{ 
               color: "#5A5550",
@@ -123,7 +124,7 @@ const CuratedSection = () => {
             }}
           >
             EXPLORE FULL COLLECTION
-          </a>
+          </Link>
         </div>
       </div>
     </section>

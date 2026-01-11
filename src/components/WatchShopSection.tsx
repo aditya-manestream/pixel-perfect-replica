@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import shopProduct1 from "@/assets/shop-product-1.jpg";
@@ -172,8 +173,8 @@ const WatchShopSection = () => {
 
       {/* CTA */}
       <div className="text-center mt-10 lg:mt-14">
-        <a
-          href="#"
+        <Link
+          to="/shop"
           className="inline-block font-sans text-[12px] lg:text-[13px] tracking-[0.2em] uppercase border-b pb-1 transition-opacity hover:opacity-70"
           style={{
             color: "#5A5550",
@@ -181,7 +182,7 @@ const WatchShopSection = () => {
           }}
         >
           EXPLORE FULL COLLECTION
-        </a>
+        </Link>
       </div>
     </section>
   );
