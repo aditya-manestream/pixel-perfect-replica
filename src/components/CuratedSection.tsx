@@ -21,7 +21,7 @@ const CuratedSection = () => {
           backgroundSize: "cover",
           maskImage: "radial-gradient(ellipse at top right, black 0%, transparent 70%)",
           WebkitMaskImage: "radial-gradient(ellipse at top right, black 0%, transparent 70%)",
-          opacity: 0.18,
+          opacity: 0.5,
         }}
       />
 
@@ -35,7 +35,7 @@ const CuratedSection = () => {
           backgroundSize: "cover",
           maskImage: "radial-gradient(ellipse at bottom left, black 0%, transparent 70%)",
           WebkitMaskImage: "radial-gradient(ellipse at bottom left, black 0%, transparent 70%)",
-          opacity: 0.18,
+          opacity: 0.5,
           transform: "rotate(180deg)",
         }}
       />
