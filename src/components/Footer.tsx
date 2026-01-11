@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Instagram, Facebook, Mail } from "lucide-react";
 
 const Footer = () => {
@@ -96,22 +97,42 @@ const Footer = () => {
             </h3>
             <div className="grid grid-cols-2 gap-x-10 gap-y-4">
               <ul className="flex flex-col gap-4">
-                {[
-                  "Shipping & Delivery",
-                  "Return & Exchange",
-                  "Privacy Policy",
-                  "Terms of Service",
-                ].map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                      style={{ color: "#9A958F", opacity: 0.85 }}
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                <li>
+                  <a
+                    href="#"
+                    className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                    style={{ color: "#9A958F", opacity: 0.85 }}
+                  >
+                    Shipping & Delivery
+                  </a>
+                </li>
+                <li>
+                  <Link
+                    to="/returns"
+                    className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                    style={{ color: "#9A958F", opacity: 0.85 }}
+                  >
+                    Return & Exchange Policy
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                    style={{ color: "#9A958F", opacity: 0.85 }}
+                  >
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                    style={{ color: "#9A958F", opacity: 0.85 }}
+                  >
+                    Terms of Service
+                  </a>
+                </li>
               </ul>
               <ul className="flex flex-col gap-4">
                 {["Warranty Policy", "FAQs", "Track Your Order"].map((link) => (

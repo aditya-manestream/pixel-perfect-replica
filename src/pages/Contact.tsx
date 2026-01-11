@@ -60,7 +60,7 @@ const Contact = () => {
 
   const quickLinks = [
     { label: "Track Your Order", href: "#" },
-    { label: "Return & Exchange Policy", href: "#" },
+    { label: "Return & Exchange Policy", href: "/returns" },
     { label: "Shipping Information", href: "#" },
     { label: "FAQs", href: "#" },
     { label: "Handbag Care Guide", href: "/handbag-care" },
