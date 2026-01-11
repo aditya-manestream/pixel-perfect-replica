@@ -42,7 +42,7 @@ const PromiseSection = () => {
     >
       {/* Background Pattern */}
       <div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-[0.15]"
         style={{
           backgroundImage: `url(${promisePattern})`,
           backgroundRepeat: "repeat",
