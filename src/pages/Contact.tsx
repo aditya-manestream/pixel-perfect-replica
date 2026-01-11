@@ -61,7 +61,7 @@ const Contact = () => {
   const quickLinks = [
     { label: "Track Your Order", href: "#" },
     { label: "Return & Exchange Policy", href: "/returns" },
-    { label: "Shipping Information", href: "#" },
+    { label: "Shipping Information", href: "/shipping" },
     { label: "FAQs", href: "#" },
     { label: "Handbag Care Guide", href: "/handbag-care" },
   ];
