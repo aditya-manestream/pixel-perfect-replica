@@ -69,8 +69,8 @@ const PromiseSection = () => {
           </p>
         </div>
 
-        {/* Grid - 2 rows × 3 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-16 lg:gap-y-20">
+        {/* Grid - 6 columns on desktop, 3 on tablet, 2 on mobile */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 lg:gap-x-10 gap-y-12 lg:gap-y-0">
           {promises.map((promise, index) => {
             const Icon = promise.icon;
             return (
