@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Search, ShoppingBag, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [cartCount] = useState(1);
+  const { itemCount } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,13 +104,14 @@ const Navbar = () => {
             </button>
 
             {/* Cart Icon with Badge */}
-            <button
+            <Link
+              to="/cart"
               className="relative transition-opacity duration-300 hover:opacity-100"
               style={{ color: "#E8E4DF", opacity: 0.9 }}
               aria-label="Cart"
             >
               <ShoppingBag size={18} strokeWidth={1.3} />
-              {cartCount > 0 && (
+              {itemCount > 0 && (
                 <span 
                   className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-medium"
                   style={{ 
@@ -117,10 +119,10 @@ const Navbar = () => {
                     color: "#121B2D"
                   }}
                 >
-                  {cartCount}
+                  {itemCount}
                 </span>
               )}
-            </button>
+            </Link>
           </div>
 
           {/* Mobile - Icons only */}
@@ -132,13 +134,14 @@ const Navbar = () => {
             >
               <Search size={18} strokeWidth={1.3} />
             </button>
-            <button
+            <Link
+              to="/cart"
               className="relative transition-opacity duration-300 hover:opacity-100"
               style={{ color: "#E8E4DF", opacity: 0.9 }}
               aria-label="Cart"
             >
               <ShoppingBag size={18} strokeWidth={1.3} />
-              {cartCount > 0 && (
+              {itemCount > 0 && (
                 <span 
                   className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-medium"
                   style={{ 
@@ -146,10 +149,10 @@ const Navbar = () => {
                     color: "#121B2D"
                   }}
                 >
-                  {cartCount}
+                  {itemCount}
                 </span>
               )}
-            </button>
+            </Link>
           </div>
         </div>
       </div>
