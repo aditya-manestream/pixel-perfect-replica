@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import promisePattern from "@/assets/promise-pattern.jpg";
+import sectionPattern from "@/assets/section-pattern.jpg";
 
 const testimonials = [
   [
@@ -111,7 +111,7 @@ const TestimonialsSection = () => {
       <div
         className="absolute inset-0 opacity-50"
         style={{
-          backgroundImage: `url(${promisePattern})`,
+          backgroundImage: `url(${sectionPattern})`,
           backgroundRepeat: "repeat",
           backgroundSize: "400px 400px",
         }}

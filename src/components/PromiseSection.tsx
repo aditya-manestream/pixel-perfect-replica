@@ -1,5 +1,5 @@
 import { Leaf, Heart, Users, TreePine, Shield, Box } from "lucide-react";
-import promisePattern from "@/assets/promise-pattern.jpg";
+import sectionPattern from "@/assets/section-pattern.jpg";
 
 const promises = [
   {
@@ -44,7 +44,7 @@ const PromiseSection = () => {
       <div
         className="absolute inset-0 opacity-50"
         style={{
-          backgroundImage: `url(${promisePattern})`,
+          backgroundImage: `url(${sectionPattern})`,
           backgroundRepeat: "repeat",
           backgroundSize: "300px 300px",
         }}
