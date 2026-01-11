@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import Navbar from "@/components/Navbar";
 import CategorySection from "@/components/CategorySection";
@@ -69,8 +70,8 @@ const Index = () => {
               padding: "0 clamp(1rem, 4vw, 2rem)",
             }}
           >
-            <a
-              href="#"
+            <Link
+              to="/shop"
               className="w-full sm:w-auto font-sans text-[11px] sm:text-[12px] tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-90 text-center"
               style={{
                 fontFamily: "'Montserrat', sans-serif",
@@ -81,7 +82,7 @@ const Index = () => {
               }}
             >
               Shop Collection
-            </a>
+            </Link>
             <a
               href="#"
               className="w-full sm:w-auto font-sans text-[11px] sm:text-[12px] tracking-[0.2em] uppercase transition-all duration-300 hover:bg-white/10 text-center"

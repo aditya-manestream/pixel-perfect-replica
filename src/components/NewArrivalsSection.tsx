@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import productLotus1 from "@/assets/product-lotus-1.jpg";
 import productLotus2 from "@/assets/product-lotus-2.jpg";
 import productLotus3 from "@/assets/product-lotus-3.jpg";
@@ -66,8 +67,8 @@ const NewArrivalsSection = () => {
               Timeless silhouettes for the modern muse.
             </p>
           </div>
-          <a 
-            href="#" 
+          <Link 
+            to="/shop" 
             className="font-sans text-[12px] tracking-[0.15em] uppercase border-b transition-opacity hover:opacity-70 pb-1"
             style={{ 
               color: "#5A5550",
@@ -75,15 +76,16 @@ const NewArrivalsSection = () => {
             }}
           >
             VIEW ALL
-          </a>
+          </Link>
         </div>
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {products.map((product) => (
-            <div 
+            <Link 
+              to="/shop"
               key={product.id}
-              className="group cursor-pointer"
+              className="group cursor-pointer block"
             >
               {/* Card */}
               <div 
@@ -135,7 +137,7 @@ const NewArrivalsSection = () => {
                   {product.price}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
