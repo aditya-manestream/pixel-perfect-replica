@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ProductListing from "@/components/shop/ProductListing";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
 
 const Shop = () => {
@@ -55,14 +56,8 @@ const Shop = () => {
         </div>
       </section>
       
-      {/* Products section placeholder */}
-      <section className="py-20 px-6" style={{ backgroundColor: "#F5F3F0" }}>
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="font-sans text-sm tracking-widest uppercase" style={{ color: "#666" }}>
-            Products coming soon
-          </p>
-        </div>
-      </section>
+      {/* Product Listing Section */}
+      <ProductListing />
       
       <Footer />
     </div>
