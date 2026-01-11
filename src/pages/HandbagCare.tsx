@@ -4,6 +4,13 @@ import { Droplets, Sun, Package, AlertTriangle, Sparkles, Wrench, BookOpen } fro
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import sectionPattern from "@/assets/section-pattern.jpg";
+import careDaily from "@/assets/care-daily.jpg";
+import careCleaning from "@/assets/care-cleaning.jpg";
+import careStorage from "@/assets/care-storage.jpg";
+import careAvoid from "@/assets/care-avoid.jpg";
+import careLeather from "@/assets/care-leather.jpg";
+import careProfessional from "@/assets/care-professional.jpg";
+import careResources from "@/assets/care-resources.jpg";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -17,6 +24,7 @@ const careSections = [
     icon: Sparkles,
     title: "Daily Care",
     intro: "Simple habits to keep your bag looking fresh every day.",
+    image: careDaily,
     items: [
       "Clean hands before handling",
       "Avoid overloading",
@@ -29,6 +37,7 @@ const careSections = [
     icon: Droplets,
     title: "Cleaning & Maintenance",
     intro: "Proper cleaning techniques to maintain the leather's beauty.",
+    image: careCleaning,
     items: [
       "Wipe gently with soft, dry cloth",
       "For spills: blot immediately, don't rub",
@@ -41,6 +50,7 @@ const careSections = [
     icon: Package,
     title: "Storage Tips",
     intro: "How to store your bag when not in use.",
+    image: careStorage,
     items: [
       "Stuff with tissue paper to maintain shape",
       "Store in provided dust bag",
@@ -53,6 +63,7 @@ const careSections = [
     icon: AlertTriangle,
     title: "What to Avoid",
     intro: "Things that can damage your leather bag.",
+    image: careAvoid,
     items: [
       "Water exposure (if wet, air dry naturally)",
       "Heat sources",
@@ -125,163 +136,252 @@ const HandbagCare = () => {
         </motion.div>
       </section>
 
-      {/* Care Guide Sections */}
+      {/* Care Guide Sections - Alternating Layout */}
       <section
         className="pb-16 lg:pb-24 px-6"
         style={{ backgroundColor: "#FAF8F5" }}
       >
-        <div className="max-w-[800px] mx-auto">
-          {careSections.map((section, index) => (
-            <motion.div
-              key={section.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: index * 0.05 }}
-              className="mb-14 lg:mb-18"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center border"
-                  style={{ borderColor: "#D4CFC8" }}
-                >
-                  <section.icon
-                    size={18}
-                    strokeWidth={1.2}
-                    style={{ color: "#7A7570" }}
+        <div className="max-w-[1200px] mx-auto">
+          {careSections.map((section, index) => {
+            const isImageLeft = index % 2 === 1;
+            
+            return (
+              <motion.div
+                key={section.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="mb-20 lg:mb-28"
+              >
+                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${isImageLeft ? '' : ''}`}>
+                  {/* Text Content */}
+                  <div className={`${isImageLeft ? 'lg:order-2' : 'lg:order-1'} order-2`}>
+                    <div className="flex items-center gap-4 mb-5">
+                      <div
+                        className="w-12 h-12 rounded-full flex items-center justify-center border"
+                        style={{ borderColor: "#D4CFC8" }}
+                      >
+                        <section.icon
+                          size={20}
+                          strokeWidth={1.2}
+                          style={{ color: "#7A7570" }}
+                        />
+                      </div>
+                      <h2
+                        className="font-serif text-[24px] lg:text-[30px] font-normal"
+                        style={{ color: "#2C2824" }}
+                      >
+                        {section.title}
+                      </h2>
+                    </div>
+                    <p
+                      className="font-serif text-[14px] lg:text-[16px] font-light mb-6"
+                      style={{ color: "#7A7570" }}
+                    >
+                      {section.intro}
+                    </p>
+                    <ul className="space-y-3">
+                      {section.items.map((item, i) => (
+                        <li
+                          key={i}
+                          className="font-serif text-[14px] lg:text-[15px] font-light flex items-start gap-3"
+                          style={{ color: "#5A5550" }}
+                        >
+                          <span
+                            className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
+                            style={{ backgroundColor: "#C9A86C" }}
+                          />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Image */}
+                  <div className={`${isImageLeft ? 'lg:order-1' : 'lg:order-2'} order-1`}>
+                    <div className="relative overflow-hidden rounded-sm shadow-sm">
+                      <img
+                        src={section.image}
+                        alt={section.title}
+                        className="w-full h-[300px] lg:h-[420px] object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+
+          {/* Section 5: Understanding Natural Leather - 2 Column */}
+          <motion.div
+            {...fadeInUp}
+            className="mb-20 lg:mb-28"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+              {/* Image - Left */}
+              <div className="order-1">
+                <div className="relative overflow-hidden rounded-sm shadow-sm">
+                  <img
+                    src={careLeather}
+                    alt="Natural Leather Texture"
+                    className="w-full h-[300px] lg:h-[420px] object-cover"
                   />
                 </div>
-                <h2
-                  className="font-serif text-[22px] lg:text-[26px] font-normal"
-                  style={{ color: "#2C2824" }}
-                >
-                  {section.title}
-                </h2>
               </div>
-              <p
-                className="font-serif text-[14px] lg:text-[15px] font-light mb-5 ml-14"
-                style={{ color: "#7A7570" }}
-              >
-                {section.intro}
-              </p>
-              <ul className="ml-14 space-y-3">
-                {section.items.map((item, i) => (
-                  <li
-                    key={i}
-                    className="font-serif text-[14px] lg:text-[15px] font-light flex items-start gap-3"
+
+              {/* Text Content - Right */}
+              <div className="order-2">
+                <div
+                  className="p-8 lg:p-10 border-l-2"
+                  style={{ backgroundColor: "#F5F2ED", borderColor: "#C9A86C" }}
+                >
+                  <div className="flex items-center gap-4 mb-5">
+                    <div
+                      className="w-12 h-12 rounded-full flex items-center justify-center border"
+                      style={{ borderColor: "#D4CFC8" }}
+                    >
+                      <Sun size={20} strokeWidth={1.2} style={{ color: "#7A7570" }} />
+                    </div>
+                    <h2
+                      className="font-serif text-[24px] lg:text-[30px] font-normal"
+                      style={{ color: "#2C2824" }}
+                    >
+                      Understanding Natural Leather
+                    </h2>
+                  </div>
+                  <p
+                    className="font-serif text-[15px] lg:text-[17px] font-light leading-[1.9] italic"
                     style={{ color: "#5A5550" }}
                   >
-                    <span
-                      className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
-                      style={{ backgroundColor: "#C9A86C" }}
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-
-          {/* Section 5: Understanding Natural Leather - Quote Block */}
-          <motion.div
-            {...fadeInUp}
-            className="my-16 lg:my-20 p-8 lg:p-10 border-l-2"
-            style={{ backgroundColor: "#F5F2ED", borderColor: "#C9A86C" }}
-          >
-            <div className="flex items-center gap-4 mb-5">
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center border"
-                style={{ borderColor: "#D4CFC8" }}
-              >
-                <Sun size={18} strokeWidth={1.2} style={{ color: "#7A7570" }} />
+                    "Your leather bag is made from natural material. Small variations in grain, 
+                    slight creasing, and patina development are not defects—they're characteristics 
+                    that make your bag unique. As your bag ages, it develops its own personality, 
+                    becoming more beautiful with time."
+                  </p>
+                </div>
               </div>
-              <h2
-                className="font-serif text-[22px] lg:text-[26px] font-normal"
-                style={{ color: "#2C2824" }}
-              >
-                Understanding Natural Leather
-              </h2>
             </div>
-            <p
-              className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.8] italic"
-              style={{ color: "#5A5550" }}
-            >
-              "Your leather bag is made from natural material. Small variations in grain, 
-              slight creasing, and patina development are not defects—they're characteristics 
-              that make your bag unique. As your bag ages, it develops its own personality, 
-              becoming more beautiful with time."
-            </p>
           </motion.div>
 
-          {/* Section 6: Professional Care */}
+          {/* Section 6: Professional Care - 2 Column */}
           <motion.div
             {...fadeInUp}
-            className="mb-14 lg:mb-18"
+            className="mb-20 lg:mb-28"
           >
-            <div className="flex items-center gap-4 mb-4">
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center border"
-                style={{ borderColor: "#D4CFC8" }}
-              >
-                <Wrench size={18} strokeWidth={1.2} style={{ color: "#7A7570" }} />
-              </div>
-              <h2
-                className="font-serif text-[22px] lg:text-[26px] font-normal"
-                style={{ color: "#2C2824" }}
-              >
-                Professional Care
-              </h2>
-            </div>
-            <p
-              className="font-serif text-[14px] lg:text-[15px] font-light ml-14 leading-[1.8]"
-              style={{ color: "#5A5550" }}
-            >
-              For deep cleaning or repairs, contact us at{" "}
-              <a
-                href="mailto:care@ardori.com"
-                className="underline underline-offset-2 transition-opacity hover:opacity-70"
-                style={{ color: "#2C2824" }}
-              >
-                care@ardori.com
-              </a>
-              . Our artisan team can help restore your bag to its original glory.
-            </p>
-          </motion.div>
-
-          {/* Section 7: Resources & Guides */}
-          <motion.div {...fadeInUp} className="mb-8">
-            <div className="flex items-center gap-4 mb-4">
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center border"
-                style={{ borderColor: "#D4CFC8" }}
-              >
-                <BookOpen size={18} strokeWidth={1.2} style={{ color: "#7A7570" }} />
-              </div>
-              <h2
-                className="font-serif text-[22px] lg:text-[26px] font-normal"
-                style={{ color: "#2C2824" }}
-              >
-                Resources & Guides
-              </h2>
-            </div>
-            <ul className="ml-14 space-y-3">
-              {[
-                { label: "Video Tutorials", href: "#" },
-                { label: "Recommended Leather Care Products", href: "#" },
-                { label: "Blog Articles on Leather Care", href: "#" },
-                { label: "External Expert Resources", href: "#" },
-              ].map((link, i) => (
-                <li key={i}>
-                  <a
-                    href={link.href}
-                    className="font-serif text-[14px] lg:text-[15px] font-light underline underline-offset-2 transition-opacity hover:opacity-70"
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+              {/* Text Content - Left */}
+              <div className="order-2 lg:order-1">
+                <div className="flex items-center gap-4 mb-5">
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center border"
+                    style={{ borderColor: "#D4CFC8" }}
+                  >
+                    <Wrench size={20} strokeWidth={1.2} style={{ color: "#7A7570" }} />
+                  </div>
+                  <h2
+                    className="font-serif text-[24px] lg:text-[30px] font-normal"
                     style={{ color: "#2C2824" }}
                   >
-                    {link.label}
+                    Professional Care
+                  </h2>
+                </div>
+                <p
+                  className="font-serif text-[15px] lg:text-[17px] font-light leading-[1.9]"
+                  style={{ color: "#5A5550" }}
+                >
+                  For deep cleaning or repairs, contact us at{" "}
+                  <a
+                    href="mailto:care@ardori.com"
+                    className="underline underline-offset-2 transition-opacity hover:opacity-70"
+                    style={{ color: "#2C2824" }}
+                  >
+                    care@ardori.com
                   </a>
-                </li>
-              ))}
-            </ul>
+                  . Our artisan team can help restore your bag to its original glory.
+                </p>
+                <p
+                  className="font-serif text-[14px] lg:text-[15px] font-light leading-[1.8] mt-4"
+                  style={{ color: "#7A7570" }}
+                >
+                  We offer professional services including deep conditioning, stain removal, 
+                  hardware polishing, and structural repairs performed by our skilled craftspeople.
+                </p>
+              </div>
+
+              {/* Image - Right */}
+              <div className="order-1 lg:order-2">
+                <div className="relative overflow-hidden rounded-sm shadow-sm">
+                  <img
+                    src={careProfessional}
+                    alt="Professional Leather Care"
+                    className="w-full h-[300px] lg:h-[420px] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Section 7: Resources & Guides - 2 Column */}
+          <motion.div {...fadeInUp} className="mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+              {/* Image - Left */}
+              <div className="order-1">
+                <div className="relative overflow-hidden rounded-sm shadow-sm">
+                  <img
+                    src={careResources}
+                    alt="Leather Care Resources"
+                    className="w-full h-[300px] lg:h-[420px] object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Text Content - Right */}
+              <div className="order-2">
+                <div className="flex items-center gap-4 mb-5">
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center border"
+                    style={{ borderColor: "#D4CFC8" }}
+                  >
+                    <BookOpen size={20} strokeWidth={1.2} style={{ color: "#7A7570" }} />
+                  </div>
+                  <h2
+                    className="font-serif text-[24px] lg:text-[30px] font-normal"
+                    style={{ color: "#2C2824" }}
+                  >
+                    Resources & Guides
+                  </h2>
+                </div>
+                <p
+                  className="font-serif text-[14px] lg:text-[16px] font-light mb-6"
+                  style={{ color: "#7A7570" }}
+                >
+                  Explore our curated collection of guides and resources.
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    { label: "Video Tutorials", href: "#" },
+                    { label: "Recommended Leather Care Products", href: "#" },
+                    { label: "Blog Articles on Leather Care", href: "#" },
+                    { label: "External Expert Resources", href: "#" },
+                  ].map((link, i) => (
+                    <li key={i}>
+                      <a
+                        href={link.href}
+                        className="font-serif text-[14px] lg:text-[16px] font-light underline underline-offset-4 transition-opacity hover:opacity-70 flex items-center gap-2"
+                        style={{ color: "#2C2824" }}
+                      >
+                        <span
+                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: "#C9A86C" }}
+                        />
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
