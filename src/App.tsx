@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import Returns from "./pages/Returns";
 import Shipping from "./pages/Shipping";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
 import CustomCursor from "./components/CustomCursor";
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/returns" element={<Returns />} />
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
