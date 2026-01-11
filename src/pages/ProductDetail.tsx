@@ -4,6 +4,8 @@ import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, Minus, Plus, 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TrustBadgesSection from "@/components/TrustBadgesSection";
+import RelatedProducts from "@/components/product/RelatedProducts";
+import CustomerReviews from "@/components/product/CustomerReviews";
 import { getProductById, products } from "@/data/products";
 
 const viewLabels = ["FRONT VIEW", "BACK VIEW", "SIDE VIEW", "DETAIL VIEW", "INTERIOR VIEW", "STRAP VIEW", "ANGLE VIEW"];
@@ -469,6 +471,12 @@ const ProductDetail = () => {
 
       {/* Trust Badges Section */}
       <TrustBadgesSection />
+
+      {/* Related Products */}
+      <RelatedProducts currentProductId={product.id} />
+
+      {/* Customer Reviews */}
+      <CustomerReviews />
 
       <Footer />
     </div>
