@@ -11,6 +11,7 @@ import HandbagCare from "./pages/HandbagCare";
 import Contact from "./pages/Contact";
 import Returns from "./pages/Returns";
 import Shipping from "./pages/Shipping";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import CustomCursor from "./components/CustomCursor";
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/returns" element={<Returns />} />
           <Route path="/shipping" element={<Shipping />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
