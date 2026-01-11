@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Search, User, ShoppingBag } from "lucide-react";
+import { Search, ShoppingBag, ChevronDown } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [cartCount] = useState(1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,7 +14,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = ["Shop", "Collections", "Story", "Journal"];
+  const leftLinks = ["Shop", "Handbag Care", "Our Story"];
 
   return (
     <nav
@@ -26,31 +27,19 @@ const Navbar = () => {
         backgroundColor: isScrolled ? "#121B2D" : "transparent",
       }}
     >
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Left - Logo */}
-          <a
-            href="/"
-            className="font-serif text-xl sm:text-2xl lg:text-[28px] font-normal tracking-wide transition-opacity duration-300 hover:opacity-80"
-            style={{ 
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "#E8E4DF" 
-            }}
-          >
-            Ardori
-          </a>
-
-          {/* Center - Navigation Links (Desktop) */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-12">
-            {navLinks.map((link) => (
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="flex items-center justify-between h-14 lg:h-16">
+          {/* Left - Navigation Links (Desktop) */}
+          <div className="hidden lg:flex items-center gap-8">
+            {leftLinks.map((link) => (
               <a
                 key={link}
                 href="#"
-                className="font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase transition-opacity duration-300 hover:opacity-100"
+                className="font-sans text-[11px] tracking-[0.18em] uppercase transition-opacity duration-300 hover:opacity-100 font-light"
                 style={{ 
                   fontFamily: "'Montserrat', sans-serif",
                   color: "#E8E4DF",
-                  opacity: 0.85 
+                  opacity: 0.9 
                 }}
               >
                 {link}
@@ -58,28 +47,103 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right - Icons */}
-          <div className="flex items-center gap-4 sm:gap-5 lg:gap-6">
+          {/* Center - Logo */}
+          <a
+            href="/"
+            className="absolute left-1/2 transform -translate-x-1/2 font-serif text-xl sm:text-2xl lg:text-[26px] font-normal tracking-[0.15em] transition-opacity duration-300 hover:opacity-80"
+            style={{ 
+              fontFamily: "'Cormorant Garamond', serif",
+              color: "#E8E4DF",
+              letterSpacing: "0.2em"
+            }}
+          >
+            ARDORI
+          </a>
+
+          {/* Right - Currency, Contact, Icons */}
+          <div className="hidden lg:flex items-center gap-7">
+            {/* Currency Dropdown */}
+            <button
+              className="flex items-center gap-1 font-sans text-[11px] tracking-[0.18em] uppercase transition-opacity duration-300 hover:opacity-100 font-light"
+              style={{ 
+                fontFamily: "'Montserrat', sans-serif",
+                color: "#E8E4DF",
+                opacity: 0.9 
+              }}
+            >
+              INR
+              <ChevronDown size={12} strokeWidth={1.5} className="opacity-70" />
+            </button>
+
+            {/* Contact Link */}
+            <a
+              href="#"
+              className="font-sans text-[11px] tracking-[0.18em] uppercase transition-opacity duration-300 hover:opacity-100 font-light"
+              style={{ 
+                fontFamily: "'Montserrat', sans-serif",
+                color: "#E8E4DF",
+                opacity: 0.9 
+              }}
+            >
+              Contact
+            </a>
+
+            {/* Search Icon */}
             <button
               className="transition-opacity duration-300 hover:opacity-100"
-              style={{ color: "#E8E4DF", opacity: 0.85 }}
+              style={{ color: "#E8E4DF", opacity: 0.9 }}
               aria-label="Search"
             >
-              <Search size={18} strokeWidth={1.3} className="lg:w-5 lg:h-5" />
+              <Search size={18} strokeWidth={1.3} />
             </button>
+
+            {/* Cart Icon with Badge */}
             <button
-              className="transition-opacity duration-300 hover:opacity-100"
-              style={{ color: "#E8E4DF", opacity: 0.85 }}
-              aria-label="Account"
-            >
-              <User size={18} strokeWidth={1.3} className="lg:w-5 lg:h-5" />
-            </button>
-            <button
-              className="transition-opacity duration-300 hover:opacity-100"
-              style={{ color: "#E8E4DF", opacity: 0.85 }}
+              className="relative transition-opacity duration-300 hover:opacity-100"
+              style={{ color: "#E8E4DF", opacity: 0.9 }}
               aria-label="Cart"
             >
-              <ShoppingBag size={18} strokeWidth={1.3} className="lg:w-5 lg:h-5" />
+              <ShoppingBag size={18} strokeWidth={1.3} />
+              {cartCount > 0 && (
+                <span 
+                  className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-medium"
+                  style={{ 
+                    backgroundColor: "#C9A86C",
+                    color: "#121B2D"
+                  }}
+                >
+                  {cartCount}
+                </span>
+              )}
+            </button>
+          </div>
+
+          {/* Mobile - Icons only */}
+          <div className="flex lg:hidden items-center gap-4">
+            <button
+              className="transition-opacity duration-300 hover:opacity-100"
+              style={{ color: "#E8E4DF", opacity: 0.9 }}
+              aria-label="Search"
+            >
+              <Search size={18} strokeWidth={1.3} />
+            </button>
+            <button
+              className="relative transition-opacity duration-300 hover:opacity-100"
+              style={{ color: "#E8E4DF", opacity: 0.9 }}
+              aria-label="Cart"
+            >
+              <ShoppingBag size={18} strokeWidth={1.3} />
+              {cartCount > 0 && (
+                <span 
+                  className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-medium"
+                  style={{ 
+                    backgroundColor: "#C9A86C",
+                    color: "#121B2D"
+                  }}
+                >
+                  {cartCount}
+                </span>
+              )}
             </button>
           </div>
         </div>
