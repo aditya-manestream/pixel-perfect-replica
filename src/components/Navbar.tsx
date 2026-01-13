@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
-import { Search, ShoppingBag, ChevronDown } from "lucide-react";
+import { Search, ShoppingBag, ChevronDown, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -125,34 +131,130 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile - Icons only */}
-          <div className="flex lg:hidden items-center gap-4">
-            <button
-              className="transition-opacity duration-300 hover:opacity-100"
-              style={{ color: "#E8E4DF", opacity: 0.9 }}
-              aria-label="Search"
-            >
-              <Search size={18} strokeWidth={1.3} />
-            </button>
-            <Link
-              to="/cart"
-              className="relative transition-opacity duration-300 hover:opacity-100"
-              style={{ color: "#E8E4DF", opacity: 0.9 }}
-              aria-label="Cart"
-            >
-              <ShoppingBag size={18} strokeWidth={1.3} />
-              {itemCount > 0 && (
-                <span 
-                  className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-medium"
-                  style={{ 
-                    backgroundColor: "#C9A86C",
-                    color: "#121B2D"
-                  }}
+          {/* Mobile - Hamburger Menu */}
+          <div className="flex lg:hidden items-center">
+            <Sheet>
+              <SheetTrigger asChild>
+                <button
+                  className="transition-opacity duration-300 hover:opacity-100"
+                  style={{ color: "#E8E4DF", opacity: 0.9 }}
+                  aria-label="Open menu"
                 >
-                  {itemCount}
-                </span>
-              )}
-            </Link>
+                  <Menu size={22} strokeWidth={1.3} />
+                </button>
+              </SheetTrigger>
+              <SheetContent 
+                side="right" 
+                className="w-full sm:w-[320px] border-none p-0"
+                style={{ backgroundColor: "#121B2D" }}
+              >
+                <div className="flex flex-col h-full">
+                  {/* Close Button */}
+                  <div className="flex justify-end p-6">
+                    <SheetClose asChild>
+                      <button
+                        className="transition-opacity duration-200 hover:opacity-70"
+                        style={{ color: "#E8E4DF" }}
+                        aria-label="Close menu"
+                      >
+                        <X size={24} strokeWidth={1.3} />
+                      </button>
+                    </SheetClose>
+                  </div>
+
+                  {/* Main Navigation Links */}
+                  <nav className="flex flex-col px-8 py-6 gap-6">
+                    {[
+                      { label: "Shop", href: "/shop" },
+                      { label: "Handbag Care", href: "/handbag-care" },
+                      { label: "Our Story", href: "/story" },
+                      { label: "Contact", href: "/contact" },
+                    ].map((link) => (
+                      <SheetClose asChild key={link.label}>
+                        <Link
+                          to={link.href}
+                          className="font-sans text-[13px] tracking-[0.2em] uppercase transition-opacity duration-200 hover:opacity-70 font-light"
+                          style={{ 
+                            fontFamily: "'Montserrat', sans-serif",
+                            color: "#E8E4DF"
+                          }}
+                        >
+                          {link.label}
+                        </Link>
+                      </SheetClose>
+                    ))}
+                  </nav>
+
+                  {/* Divider */}
+                  <div className="mx-8 border-t" style={{ borderColor: "rgba(232, 228, 223, 0.15)" }} />
+
+                  {/* Secondary Links */}
+                  <div className="flex flex-col px-8 py-6 gap-5">
+                    {/* Search */}
+                    <SheetClose asChild>
+                      <button
+                        className="flex items-center gap-3 transition-opacity duration-200 hover:opacity-70"
+                        style={{ color: "#E8E4DF", opacity: 0.8 }}
+                        aria-label="Search"
+                      >
+                        <Search size={18} strokeWidth={1.3} />
+                        <span 
+                          className="font-sans text-[12px] tracking-[0.15em] uppercase font-light"
+                          style={{ fontFamily: "'Montserrat', sans-serif" }}
+                        >
+                          Search
+                        </span>
+                      </button>
+                    </SheetClose>
+
+                    {/* Cart */}
+                    <SheetClose asChild>
+                      <Link
+                        to="/cart"
+                        className="flex items-center gap-3 transition-opacity duration-200 hover:opacity-70"
+                        style={{ color: "#E8E4DF", opacity: 0.8 }}
+                        aria-label="Cart"
+                      >
+                        <div className="relative">
+                          <ShoppingBag size={18} strokeWidth={1.3} />
+                          {itemCount > 0 && (
+                            <span 
+                              className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-medium"
+                              style={{ 
+                                backgroundColor: "#C9A86C",
+                                color: "#121B2D"
+                              }}
+                            >
+                              {itemCount}
+                            </span>
+                          )}
+                        </div>
+                        <span 
+                          className="font-sans text-[12px] tracking-[0.15em] uppercase font-light"
+                          style={{ fontFamily: "'Montserrat', sans-serif" }}
+                        >
+                          Cart {itemCount > 0 && `(${itemCount})`}
+                        </span>
+                      </Link>
+                    </SheetClose>
+
+                    {/* Currency */}
+                    <div 
+                      className="flex items-center gap-3"
+                      style={{ color: "#E8E4DF", opacity: 0.8 }}
+                    >
+                      <span 
+                        className="font-sans text-[12px] tracking-[0.15em] uppercase font-light"
+                        style={{ fontFamily: "'Montserrat', sans-serif" }}
+                      >
+                        Currency: INR
+                      </span>
+                      <ChevronDown size={14} strokeWidth={1.5} className="opacity-60" />
+                    </div>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>

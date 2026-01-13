@@ -86,7 +86,7 @@ const allProducts = [
   },
 ];
 
-const categories = ["All", "Baguette", "Wallet", "Tote", "Minibag", "Crossbody", "Bucket", "Clutch", "Satchel"];
+const categories = ["All", "Baguette", "Wallet", "Tote", "Minibag", "Crossbody", "Clutch"];
 const priceRanges = [
   { label: "All Prices", min: 0, max: Infinity },
   { label: "Under ₹5,000", min: 0, max: 5000 },
@@ -98,7 +98,6 @@ const sortOptions = [
   { label: "Featured", value: "featured" },
   { label: "Price: Low to High", value: "price-asc" },
   { label: "Price: High to Low", value: "price-desc" },
-  { label: "Newest", value: "newest" },
 ];
 
 const ProductListing = () => {
