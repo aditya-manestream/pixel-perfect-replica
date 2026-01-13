@@ -71,19 +71,51 @@ const Footer = () => {
               EXPLORE
             </h3>
             <ul className="flex flex-col gap-4">
-              {["Shop All", "Our Story", "Journal", "Handbag Care", "Contact"].map(
-                (link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                      style={{ color: "#9A958F", opacity: 0.85 }}
-                    >
-                      {link}
-                    </a>
-                  </li>
-                )
-              )}
+              <li>
+                <Link
+                  to="/shop"
+                  className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                  style={{ color: "#9A958F", opacity: 0.85 }}
+                >
+                  Shop All
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/our-story"
+                  className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                  style={{ color: "#9A958F", opacity: 0.85 }}
+                >
+                  Our Story
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/journal"
+                  className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                  style={{ color: "#9A958F", opacity: 0.85 }}
+                >
+                  Journal
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/handbag-care"
+                  className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                  style={{ color: "#9A958F", opacity: 0.85 }}
+                >
+                  Handbag Care
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
+                  style={{ color: "#9A958F", opacity: 0.85 }}
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -145,22 +177,22 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/faqs"
                     className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
                     style={{ color: "#9A958F", opacity: 0.85 }}
                   >
                     FAQs
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/track-order"
                     className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
                     style={{ color: "#9A958F", opacity: 0.85 }}
                   >
                     Track Your Order
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

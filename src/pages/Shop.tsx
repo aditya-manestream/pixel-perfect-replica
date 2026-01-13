@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ProductListing from "@/components/shop/ProductListing";
+import ShopifyProductGrid from "@/components/shop/ShopifyProductGrid";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
 
 const Shop = () => {
@@ -56,8 +56,8 @@ const Shop = () => {
         </div>
       </section>
       
-      {/* Product Listing Section */}
-      <ProductListing />
+      {/* Shopify Product Grid */}
+      <ShopifyProductGrid />
       
       <Footer />
     </div>

@@ -83,8 +83,8 @@ const Index = () => {
             >
               Shop Collection
             </Link>
-            <a
-              href="#"
+            <Link
+              to="/our-story"
               className="w-full sm:w-auto font-sans text-[11px] sm:text-[12px] tracking-[0.2em] uppercase transition-all duration-300 hover:bg-white/10 text-center"
               style={{
                 fontFamily: "'Montserrat', sans-serif",
@@ -95,7 +95,7 @@ const Index = () => {
               }}
             >
               Our Story
-            </a>
+            </Link>
           </div>
         </div>
       </div>
