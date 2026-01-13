@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Search, ShoppingBag, ChevronDown, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useCart } from "@/contexts/CartContext";
+import { useCartStore } from "@/stores/cartStore";
 import {
   Sheet,
   SheetContent,
@@ -11,7 +11,7 @@ import {
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { itemCount } = useCart();
+  const itemCount = useCartStore((state) => state.getItemCount());
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +25,7 @@ const Navbar = () => {
   const leftLinks = [
     { label: "Shop", href: "/shop" },
     { label: "Handbag Care", href: "/handbag-care" },
-    { label: "Our Story", href: "/story" },
+    { label: "Our Story", href: "/our-story" },
   ];
 
   return (
@@ -167,7 +167,7 @@ const Navbar = () => {
                     {[
                       { label: "Shop", href: "/shop" },
                       { label: "Handbag Care", href: "/handbag-care" },
-                      { label: "Our Story", href: "/story" },
+                      { label: "Our Story", href: "/our-story" },
                       { label: "Contact", href: "/contact" },
                     ].map((link) => (
                       <SheetClose asChild key={link.label}>
