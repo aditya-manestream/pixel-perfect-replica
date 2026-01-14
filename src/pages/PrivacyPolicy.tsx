@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import sectionPattern from "@/assets/section-pattern.jpg";
+import philosophyPattern from "@/assets/philosophy-pattern.jpg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -220,56 +220,34 @@ const PrivacyPolicy = () => {
       
       {/* Hero Section */}
       <section 
-        className="relative pt-28 pb-12 md:pt-36 md:pb-16"
-        style={{
-          backgroundImage: `url(${sectionPattern})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="relative w-full min-h-[40vh] lg:min-h-[45vh] flex items-center justify-center overflow-hidden"
+        style={{ backgroundColor: "#121B2D" }}
       >
         <div 
-          className="absolute inset-0"
-          style={{ backgroundColor: "rgba(250, 248, 245, 0.94)" }}
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: `url(${philosophyPattern})`,
+            backgroundRepeat: "repeat",
+            backgroundSize: "auto",
+          }}
         />
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.1em] mb-4"
-            style={{ 
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "#1A1A1A"
-            }}
-          >
-            PRIVACY POLICY
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-[13px] uppercase tracking-[0.15em] mb-6"
-            style={{ 
-              fontFamily: "'Montserrat', sans-serif",
-              color: "#8B7355"
-            }}
-          >
-            Last updated: January 2025
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25 }}
-            className="text-lg md:text-xl font-light max-w-2xl mx-auto"
-            style={{ 
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "#4A4A4A",
-              lineHeight: "1.7"
-            }}
-          >
-            At Ardori, we value your privacy and are committed to protecting your personal information.
-          </motion.p>
-        </div>
+        
+        <motion.div 
+          className="relative z-10 text-center px-6 py-20 lg:py-24"
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+        >
+          <p className="font-sans text-[11px] lg:text-[12px] tracking-[0.4em] uppercase mb-4" style={{ color: "#C4A164" }}>
+            ✦ SUPPORT ✦
+          </p>
+          <h1 className="font-serif font-normal tracking-[0.02em] leading-[1.1] mb-4" style={{ color: "#FFFFFF", fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>
+            Privacy Policy
+          </h1>
+          <p className="font-serif text-[14px] lg:text-[16px] font-light max-w-[500px] mx-auto" style={{ color: "rgba(255, 255, 255, 0.65)" }}>
+            Your data is protected and handled responsibly.
+          </p>
+        </motion.div>
       </section>
 
       {/* Main Content */}
