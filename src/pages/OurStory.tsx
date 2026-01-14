@@ -8,7 +8,7 @@ import storyHero from "@/assets/story-hero.jpg";
 import storyFounder from "@/assets/story-founder.jpg";
 import storyCraft from "@/assets/story-craft.jpg";
 import storyLeatherTexture from "@/assets/story-leather-texture.jpg";
-import philosophyPattern from "@/assets/philosophy-pattern.jpg";
+import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 const fadeInUp = {
   initial: {
     opacity: 0,
@@ -82,14 +82,14 @@ const OurStory = () => {
 
       {/* Philosophy Banner Section (Navy) */}
       <section className="relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0" style={{
-        backgroundColor: "#2C2824"
-      }} />
-        <div className="absolute inset-0 opacity-[0.08]" style={{
-        backgroundImage: "url(\"/lovable-uploads/bc05a32b-800c-41b5-9ed1-2b89439de8de.jpg\")",
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${navyPatternBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
         <div className="relative z-10 text-center px-6">
           <motion.p {...fadeInUp} className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-10" style={{
           color: "#C9A86C"

@@ -1,5 +1,5 @@
 import { Leaf, Heart, Users, TreePine, Shield, Box } from "lucide-react";
-import sectionPattern from "@/assets/section-pattern.jpg";
+import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 
 const promises = [
   {
@@ -36,17 +36,14 @@ const promises = [
 
 const PromiseSection = () => {
   return (
-    <section
-      className="relative w-full py-20 lg:py-28 overflow-hidden"
-      style={{ backgroundColor: "#F5F2ED" }}
-    >
+    <section className="relative w-full py-20 lg:py-28 overflow-hidden">
       {/* Background Pattern */}
       <div
-        className="absolute inset-0 opacity-50"
+        className="absolute inset-0"
         style={{
-          backgroundImage: `url(${sectionPattern})`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "300px 300px",
+          backgroundImage: `url(${navyPatternBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
 
@@ -56,13 +53,13 @@ const PromiseSection = () => {
         <div className="text-center mb-16 lg:mb-20">
           <h2
             className="font-serif text-[36px] lg:text-[48px] font-normal italic mb-4"
-            style={{ color: "#2C2824" }}
+            style={{ color: "#E8E4DF" }}
           >
             The Ardori Promise
           </h2>
           <p
             className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto"
-            style={{ color: "#7A7570" }}
+            style={{ color: "rgba(232, 228, 223, 0.75)" }}
           >
             Every bag we create embodies our commitment to quality, ethics, and
             timeless design
@@ -80,23 +77,23 @@ const PromiseSection = () => {
               >
                 {/* Icon Container */}
                 <div
-                  className="w-16 h-16 lg:w-[72px] lg:h-[72px] rounded-full border flex items-center justify-center mb-5 transition-all duration-300 group-hover:border-[#7A7570]"
+                  className="w-16 h-16 lg:w-[72px] lg:h-[72px] rounded-full border flex items-center justify-center mb-5 transition-all duration-300 group-hover:border-white/50"
                   style={{
-                    borderColor: "#D0CBC5",
-                    backgroundColor: "rgba(255, 255, 255, 0.6)",
+                    borderColor: "rgba(232, 228, 223, 0.3)",
+                    backgroundColor: "rgba(255, 255, 255, 0.1)",
                   }}
                 >
                   <Icon
                     size={24}
                     strokeWidth={1.2}
-                    style={{ color: "#5A5550" }}
+                    style={{ color: "#E8E4DF" }}
                   />
                 </div>
 
                 {/* Title */}
                 <h3
                   className="font-serif text-[17px] lg:text-[19px] font-normal mb-2 transition-opacity duration-300 group-hover:opacity-100"
-                  style={{ color: "#3A3530", opacity: 0.9 }}
+                  style={{ color: "#E8E4DF", opacity: 0.95 }}
                 >
                   {promise.title}
                 </h3>
@@ -104,7 +101,7 @@ const PromiseSection = () => {
                 {/* Description */}
                 <p
                   className="font-sans text-[13px] lg:text-[14px] font-light"
-                  style={{ color: "#8A857F" }}
+                  style={{ color: "rgba(232, 228, 223, 0.7)" }}
                 >
                   {promise.description}
                 </p>

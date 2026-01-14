@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Droplets, Sun, Package, AlertTriangle, Sparkles, Wrench, BookOpen } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import sectionPattern from "@/assets/section-pattern.jpg";
+import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 import careDaily from "@/assets/care-daily.jpg";
 import careCleaning from "@/assets/care-cleaning.jpg";
 import careStorage from "@/assets/care-storage.jpg";
@@ -82,12 +82,11 @@ const HandbagCare = () => {
       {/* Hero Section */}
       <section
         className="relative py-28 lg:py-36 flex items-center justify-center overflow-hidden"
-        style={{ backgroundColor: "#2C2824" }}
       >
         <div
-          className="absolute inset-0 opacity-[0.06]"
+          className="absolute inset-0"
           style={{
-            backgroundImage: `url(${sectionPattern})`,
+            backgroundImage: `url(${navyPatternBg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
