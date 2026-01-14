@@ -206,10 +206,16 @@ const OurStory = () => {
       </section>
 
       {/* 3 Icon Values Row */}
-      <section className="py-16 lg:py-20 px-6" style={{
-      backgroundColor: "#FAF8F5"
-    }}>
-        <div className="max-w-[1000px] mx-auto">
+      <section className="relative py-16 lg:py-20 px-6 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${navyPatternBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <div className="relative z-10 max-w-[1000px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {values.map((value, index) => <motion.div key={value.title} initial={{
             opacity: 0,
@@ -224,19 +230,19 @@ const OurStory = () => {
             delay: index * 0.1
           }} className="text-center">
                 <div className="w-16 h-16 mx-auto mb-5 rounded-full flex items-center justify-center border" style={{
-              borderColor: "#D4CFC8"
+              borderColor: "rgba(232, 228, 223, 0.3)"
             }}>
                   <value.icon size={24} strokeWidth={1} style={{
-                color: "#7A7570"
+                color: "#E8E4DF"
               }} />
                 </div>
                 <h3 className="font-serif text-[16px] lg:text-[18px] font-normal mb-3" style={{
-              color: "#2C2824"
+              color: "#E8E4DF"
             }}>
                   {value.title}
                 </h3>
                 <p className="font-serif text-[13px] lg:text-[14px] font-light leading-[1.7]" style={{
-              color: "#7A7570"
+              color: "rgba(232, 228, 223, 0.75)"
             }}>
                   {value.description}
                 </p>
