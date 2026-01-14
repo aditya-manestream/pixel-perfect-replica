@@ -254,17 +254,25 @@ const Contact = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
             >
-              <h2 
-                className="text-2xl md:text-3xl font-light mb-8 tracking-wide"
+              {/* Premium Bordered Container */}
+              <div 
+                className="p-6 md:p-8 lg:p-10 rounded-sm"
                 style={{ 
-                  fontFamily: "'Cormorant Garamond', serif",
-                  color: "#1A1A1A"
+                  backgroundColor: "#FAF8F5", 
+                  border: "1px solid #E8E4DF" 
                 }}
               >
-                Send Us a Message
-              </h2>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
+                <h2 
+                  className="text-2xl md:text-3xl font-light mb-8 tracking-wide"
+                  style={{ 
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "#1A1A1A"
+                  }}
+                >
+                  Send Us a Message
+                </h2>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name */}
                 <div className="space-y-2">
                   <Label 
@@ -488,6 +496,7 @@ const Contact = () => {
                   SEND MESSAGE
                 </Button>
               </form>
+              </div>
             </motion.div>
           </div>
         </div>
