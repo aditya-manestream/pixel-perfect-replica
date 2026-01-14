@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import sectionPattern from "@/assets/section-pattern.jpg";
+import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 
 const testimonials = [
   [
@@ -103,17 +103,14 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section
-      className="relative w-full py-20 lg:py-28 overflow-hidden"
-      style={{ backgroundColor: "#FAF8F5" }}
-    >
-      {/* Subtle Background Pattern */}
+    <section className="relative w-full py-20 lg:py-28 overflow-hidden">
+      {/* Background Pattern */}
       <div
-        className="absolute inset-0 opacity-50"
+        className="absolute inset-0"
         style={{
-          backgroundImage: `url(${sectionPattern})`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "400px 400px",
+          backgroundImage: `url(${navyPatternBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
 
@@ -123,13 +120,13 @@ const TestimonialsSection = () => {
         <div className="text-center mb-14 lg:mb-20">
           <h2
             className="font-serif text-[36px] lg:text-[48px] font-normal italic mb-4"
-            style={{ color: "#2C2824" }}
+            style={{ color: "#E8E4DF" }}
           >
             Loved by Those Who Carry Ardori
           </h2>
           <p
             className="font-serif text-[15px] lg:text-[17px] font-light max-w-[500px] mx-auto"
-            style={{ color: "#7A7570" }}
+            style={{ color: "rgba(232, 228, 223, 0.75)" }}
           >
             Stories from those who have made Ardori a part of their journey
           </p>
@@ -160,7 +157,7 @@ const TestimonialsSection = () => {
                   {/* Decorative Quote Mark */}
                   <div
                     className="font-serif text-[48px] lg:text-[56px] leading-none mb-4 select-none"
-                    style={{ color: "#D5D0CA" }}
+                    style={{ color: "rgba(232, 228, 223, 0.3)" }}
                   >
                     "
                   </div>
@@ -168,7 +165,7 @@ const TestimonialsSection = () => {
                   {/* Quote */}
                   <p
                     className="font-serif text-[15px] lg:text-[17px] font-light leading-[1.8] mb-6 transition-opacity duration-300 group-hover:opacity-100"
-                    style={{ color: "#5A5550", opacity: 0.9 }}
+                    style={{ color: "rgba(232, 228, 223, 0.85)", opacity: 0.9 }}
                   >
                     {testimonial.quote}
                   </p>
@@ -176,7 +173,7 @@ const TestimonialsSection = () => {
                   {/* Name */}
                   <p
                     className="font-sans text-[13px] lg:text-[14px] tracking-[0.1em] uppercase mb-1 transition-opacity duration-300 group-hover:opacity-100"
-                    style={{ color: "#3A3530", opacity: 0.95 }}
+                    style={{ color: "#E8E4DF", opacity: 0.95 }}
                   >
                     {testimonial.name}
                   </p>
@@ -184,7 +181,7 @@ const TestimonialsSection = () => {
                   {/* Location */}
                   <p
                     className="font-sans text-[11px] lg:text-[12px] tracking-[0.05em]"
-                    style={{ color: "#9A958F" }}
+                    style={{ color: "rgba(232, 228, 223, 0.6)" }}
                   >
                     {testimonial.location}
                   </p>
@@ -206,7 +203,7 @@ const TestimonialsSection = () => {
               }}
               className="w-2 h-2 rounded-full transition-all duration-300"
               style={{
-                backgroundColor: index === activeSet ? "#7A7570" : "#D5D0CA",
+                backgroundColor: index === activeSet ? "#E8E4DF" : "rgba(232, 228, 223, 0.3)",
               }}
               aria-label={`View testimonial set ${index + 1}`}
             />
