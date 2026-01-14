@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import sectionPattern from "@/assets/section-pattern.jpg";
+import philosophyPattern from "@/assets/philosophy-pattern.jpg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -72,38 +72,60 @@ const Contact = () => {
       
       {/* Hero Section */}
       <section 
-        className="relative pt-32 pb-20 md:pt-40 md:pb-28"
+        className="relative py-24 md:py-32 lg:py-40 flex items-center justify-center"
         style={{
-          backgroundImage: `url(${sectionPattern})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          background: "linear-gradient(135deg, #1a2a3a 0%, #0d1821 50%, #1a2a3a 100%)",
         }}
       >
+        {/* Pattern Overlay */}
         <div 
           className="absolute inset-0"
-          style={{ backgroundColor: "rgba(250, 248, 245, 0.94)" }}
+          style={{
+            backgroundImage: `url(${philosophyPattern})`,
+            backgroundSize: "400px 400px",
+            backgroundPosition: "center",
+            backgroundRepeat: "repeat",
+            opacity: 0.4,
+            mixBlendMode: "overlay"
+          }}
         />
+        
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          {/* Small Label */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-xs md:text-sm tracking-[0.3em] uppercase mb-6"
+            style={{ 
+              fontFamily: "'Montserrat', sans-serif",
+              color: "#C4A164"
+            }}
+          >
+            ✦ SUPPORT ✦
+          </motion.p>
+          
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-6"
             style={{ 
               fontFamily: "'Cormorant Garamond', serif",
-              color: "#1A1A1A"
+              color: "#FFFFFF"
             }}
           >
             We're Here to Help
           </motion.h1>
+          
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl font-light"
+            className="text-lg md:text-xl font-light max-w-2xl mx-auto"
             style={{ 
               fontFamily: "'Cormorant Garamond', serif",
-              color: "#4A4A4A"
+              color: "rgba(255, 255, 255, 0.65)"
             }}
           >
             Have questions? Get in touch with our customer care team
