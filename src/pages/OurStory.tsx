@@ -168,12 +168,12 @@ const OurStory = () => {
               <div className="p-6 lg:p-8 bg-primary" style={{
               backgroundColor: "#F5F2ED"
             }}>
-                <h3 className="font-serif text-[18px] lg:text-[20px] font-normal mb-2 text-primary-foreground" style={{
+                <h3 className="font-serif text-[18px] lg:text-[20px] font-normal mb-2 text-[#b18d59]" style={{
                 color: "#2C2824"
               }}>
                   Slow Luxury
                 </h3>
-                <p className="font-serif text-[14px] font-light text-primary-foreground" style={{
+                <p className="font-serif text-[14px] font-light text-[#d9d7d3]" style={{
                 color: "#7A7570"
               }}>
                   We don't believe in mass production or synthetic elegance.
@@ -187,10 +187,10 @@ const OurStory = () => {
             delay: 0.2
           }} className="space-y-4">
               {/* Small highlight strip */}
-              <div className="px-4 py-3 text-center bg-primary text-white" style={{
+              <div className="px-4 py-3 text-center text-white bg-primary" style={{
               backgroundColor: "#F5F2ED"
             }}>
-                <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-primary-foreground" style={{
+                <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-[#b18d59]" style={{
                 color: "#7A7570"
               }}>
                   A Texture Born of Time, Expression, and Environment
