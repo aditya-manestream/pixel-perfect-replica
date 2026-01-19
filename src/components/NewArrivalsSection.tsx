@@ -1,50 +1,20 @@
 import { Link } from "react-router-dom";
-import productLotus1 from "@/assets/product-lotus-1.jpg";
-import productLotus2 from "@/assets/product-lotus-2.jpg";
-import productLotus3 from "@/assets/product-lotus-3.jpg";
-
-interface Product {
-  id: string;
-  name: string;
-  price: string;
-  image: string;
-  badges: Array<{ label: string; type: "dark" | "terracotta" }>;
-}
-
-const products: Product[] = [
-  {
-    id: "1",
-    name: "The Lotus",
-    price: "₹18,500",
-    image: productLotus1,
-    badges: [
-      { label: "NEW ARRIVAL", type: "dark" },
-      { label: "BEST SELLER", type: "terracotta" },
-    ],
-  },
-  {
-    id: "2",
-    name: "The Lotus",
-    price: "₹18,500",
-    image: productLotus2,
-    badges: [
-      { label: "NEW ARRIVAL", type: "dark" },
-      { label: "BEST SELLER", type: "terracotta" },
-    ],
-  },
-  {
-    id: "3",
-    name: "The Lotus",
-    price: "₹18,500",
-    image: productLotus3,
-    badges: [
-      { label: "NEW ARRIVAL", type: "dark" },
-      { label: "BEST SELLER", type: "terracotta" },
-    ],
-  },
-];
+import { useShopifyProducts } from "@/hooks/useShopifyProducts";
+import { isNewProduct, isBestSeller, formatPrice } from "@/lib/shopify";
 
 const NewArrivalsSection = () => {
+  const { products, loading } = useShopifyProducts();
+  
+  // Filter to only "new" tagged products (case-insensitive) and limit to 3
+  const newArrivals = products
+    .filter(p => isNewProduct(p.node))
+    .slice(0, 3);
+  
+  // Hide section if no new arrivals and not loading
+  if (!loading && newArrivals.length === 0) {
+    return null;
+  }
+
   return (
     <section 
       className="w-full py-16 lg:py-24"
@@ -81,64 +51,106 @@ const NewArrivalsSection = () => {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {products.map((product) => (
-            <Link 
-              to="/shop"
-              key={product.id}
-              className="group cursor-pointer block"
-            >
-              {/* Card */}
-              <div 
-                className="rounded-lg overflow-hidden transition-shadow duration-300 group-hover:shadow-lg"
-                style={{ 
-                  border: "1px solid #E8E4DF",
-                  backgroundColor: "#FFFFFF",
-                }}
-              >
-                {/* Image Container */}
-                <div className="relative aspect-square overflow-hidden">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  
-                  {/* Badges */}
-                  <div className="absolute top-4 left-4 flex flex-col gap-2">
-                    {product.badges.map((badge, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1.5 text-[10px] lg:text-[11px] font-sans font-medium tracking-[0.08em] uppercase"
-                        style={{
-                          backgroundColor: badge.type === "dark" ? "#2C3340" : "#9B6B5A",
-                          color: "#FFFFFF",
-                          borderRadius: "2px",
-                        }}
-                      >
-                        {badge.label}
-                      </span>
-                    ))}
-                  </div>
+          {loading ? (
+            // Loading skeletons
+            [...Array(3)].map((_, index) => (
+              <div key={index} className="animate-pulse">
+                <div 
+                  className="rounded-lg overflow-hidden"
+                  style={{ border: "1px solid #E8E4DF", backgroundColor: "#FFFFFF" }}
+                >
+                  <div className="aspect-square bg-gray-200" />
+                </div>
+                <div className="pt-4">
+                  <div className="h-5 bg-gray-200 rounded w-2/3 mb-2" />
+                  <div className="h-4 bg-gray-200 rounded w-1/3" />
                 </div>
               </div>
+            ))
+          ) : (
+            newArrivals.map((product) => {
+              const productNode = product.node;
+              const imageUrl = productNode.images.edges[0]?.node.url;
+              const imageAlt = productNode.images.edges[0]?.node.altText || productNode.title;
+              const price = formatPrice(productNode.priceRange.minVariantPrice.amount);
+              
+              // Build badges array
+              const badges: Array<{ label: string; type: "dark" | "terracotta" }> = [];
+              if (isNewProduct(productNode)) {
+                badges.push({ label: "NEW ARRIVAL", type: "dark" });
+              }
+              if (isBestSeller(productNode)) {
+                badges.push({ label: "BEST SELLER", type: "terracotta" });
+              }
 
-              {/* Product Info */}
-              <div className="pt-4">
-                <h3 
-                  className="font-serif text-[18px] lg:text-[20px] font-normal mb-1"
-                  style={{ color: "#2C2824" }}
+              return (
+                <Link 
+                  to={`/product/${productNode.handle}`}
+                  key={productNode.id}
+                  className="group cursor-pointer block"
                 >
-                  {product.name}
-                </h3>
-                <p 
-                  className="font-sans text-[15px] lg:text-[16px] font-medium"
-                  style={{ color: "#B5734D" }}
-                >
-                  {product.price}
-                </p>
-              </div>
-            </Link>
-          ))}
+                  {/* Card */}
+                  <div 
+                    className="rounded-lg overflow-hidden transition-shadow duration-300 group-hover:shadow-lg"
+                    style={{ 
+                      border: "1px solid #E8E4DF",
+                      backgroundColor: "#FFFFFF",
+                    }}
+                  >
+                    {/* Image Container */}
+                    <div className="relative aspect-square overflow-hidden">
+                      {imageUrl ? (
+                        <img 
+                          src={imageUrl} 
+                          alt={imageAlt}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                          <span className="text-gray-400 text-sm">No image</span>
+                        </div>
+                      )}
+                      
+                      {/* Badges */}
+                      {badges.length > 0 && (
+                        <div className="absolute top-4 left-4 flex flex-col gap-2">
+                          {badges.map((badge, index) => (
+                            <span
+                              key={index}
+                              className="px-3 py-1.5 text-[10px] lg:text-[11px] font-sans font-medium tracking-[0.08em] uppercase"
+                              style={{
+                                backgroundColor: badge.type === "dark" ? "#2C3340" : "#9B6B5A",
+                                color: "#FFFFFF",
+                                borderRadius: "2px",
+                              }}
+                            >
+                              {badge.label}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Product Info */}
+                  <div className="pt-4">
+                    <h3 
+                      className="font-serif text-[18px] lg:text-[20px] font-normal mb-1"
+                      style={{ color: "#2C2824" }}
+                    >
+                      {productNode.title}
+                    </h3>
+                    <p 
+                      className="font-sans text-[15px] lg:text-[16px] font-medium"
+                      style={{ color: "#B5734D" }}
+                    >
+                      {price}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })
+          )}
         </div>
       </div>
     </section>
