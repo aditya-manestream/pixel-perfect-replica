@@ -11,6 +11,7 @@ import { useShopifyProduct, useShopifyProducts } from "@/hooks/useShopifyProduct
 import { formatPrice, isNewProduct, isBestSeller, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
+import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -511,7 +512,13 @@ const ShopifyProductDetail = () => {
           {/* Promise Strip */}
           <motion.div 
             className="mt-16 lg:mt-24 py-8 px-6 lg:px-12"
-            style={{ backgroundColor: "#F8F6F3", border: "1px solid #E8E4DF" }}
+            style={{ 
+              backgroundImage: `url(${navyPatternBg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat"
+            }}
+            data-dark-section
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -521,10 +528,10 @@ const ShopifyProductDetail = () => {
               <div className="flex items-center gap-4">
                 <Truck size={24} strokeWidth={1.2} style={{ color: "#C9A86C" }} />
                 <div>
-                  <p className="font-sans text-[12px] tracking-[0.1em] uppercase" style={{ color: "#3D3530" }}>
+                  <p className="font-sans text-[12px] tracking-[0.1em] uppercase" style={{ color: "#FFFFFF" }}>
                     Free Shipping
                   </p>
-                  <p className="font-serif text-[13px] font-light" style={{ color: "#7A7570" }}>
+                  <p className="font-serif text-[13px] font-light" style={{ color: "rgba(255, 255, 255, 0.75)" }}>
                     On orders above ₹5,000
                   </p>
                 </div>
@@ -532,10 +539,10 @@ const ShopifyProductDetail = () => {
               <div className="flex items-center gap-4">
                 <Shield size={24} strokeWidth={1.2} style={{ color: "#C9A86C" }} />
                 <div>
-                  <p className="font-sans text-[12px] tracking-[0.1em] uppercase" style={{ color: "#3D3530" }}>
+                  <p className="font-sans text-[12px] tracking-[0.1em] uppercase" style={{ color: "#FFFFFF" }}>
                     8-Month Warranty
                   </p>
-                  <p className="font-serif text-[13px] font-light" style={{ color: "#7A7570" }}>
+                  <p className="font-serif text-[13px] font-light" style={{ color: "rgba(255, 255, 255, 0.75)" }}>
                     On all products
                   </p>
                 </div>
@@ -543,10 +550,10 @@ const ShopifyProductDetail = () => {
               <div className="flex items-center gap-4">
                 <RotateCcw size={24} strokeWidth={1.2} style={{ color: "#C9A86C" }} />
                 <div>
-                  <p className="font-sans text-[12px] tracking-[0.1em] uppercase" style={{ color: "#3D3530" }}>
+                  <p className="font-sans text-[12px] tracking-[0.1em] uppercase" style={{ color: "#FFFFFF" }}>
                     Easy Returns
                   </p>
-                  <p className="font-serif text-[13px] font-light" style={{ color: "#7A7570" }}>
+                  <p className="font-serif text-[13px] font-light" style={{ color: "rgba(255, 255, 255, 0.75)" }}>
                     7-day return policy
                   </p>
                 </div>
