@@ -212,57 +212,6 @@ const HandbagCare = () => {
             );
           })}
 
-          {/* Section 5: Understanding Natural Leather - 2 Column */}
-          <motion.div
-            {...fadeInUp}
-            className="mb-20 lg:mb-28"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-              {/* Image - Left */}
-              <div className="order-1">
-                <div className="relative overflow-hidden rounded-sm shadow-sm">
-                  <img
-                    src={careLeather}
-                    alt="Natural Leather Texture"
-                    className="w-full h-[300px] lg:h-[420px] object-cover"
-                  />
-                </div>
-              </div>
-
-              {/* Text Content - Right */}
-              <div className="order-2">
-                <div
-                  className="p-8 lg:p-10 border-l-2"
-                  style={{ backgroundColor: "#F5F2ED", borderColor: "#C9A86C" }}
-                >
-                  <div className="flex items-center gap-4 mb-5">
-                    <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center border"
-                      style={{ borderColor: "#D4CFC8" }}
-                    >
-                      <Sun size={20} strokeWidth={1.2} style={{ color: "#7A7570" }} />
-                    </div>
-                    <h2
-                      className="font-serif text-[24px] lg:text-[30px] font-normal"
-                      style={{ color: "#2C2824" }}
-                    >
-                      Understanding Natural Leather
-                    </h2>
-                  </div>
-                  <p
-                    className="font-serif text-[15px] lg:text-[17px] font-light leading-[1.9] italic"
-                    style={{ color: "#5A5550" }}
-                  >
-                    "Your leather bag is made from natural material. Small variations in grain, 
-                    slight creasing, and patina development are not defects—they're characteristics 
-                    that make your bag unique. As your bag ages, it develops its own personality, 
-                    becoming more beautiful with time."
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
           {/* Section 6: Professional Care - 2 Column */}
           <motion.div
             {...fadeInUp}
