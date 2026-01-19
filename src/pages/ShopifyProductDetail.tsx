@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, Minus, Plus, Search, ShoppingBag, Truck, Shield, RotateCcw } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ProductFAQ from "@/components/product/ProductFAQ";
+import ProductReviewsCompact from "@/components/product/ProductReviewsCompact";
+import RelatedProductsCarousel from "@/components/product/RelatedProductsCarousel";
 import { useShopifyProduct, useShopifyProducts } from "@/hooks/useShopifyProducts";
 import { formatPrice, isNewProduct, isBestSeller, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
@@ -550,61 +553,17 @@ const ShopifyProductDetail = () => {
               </div>
             </div>
           </motion.div>
-
-          {/* Related Products */}
-          {filteredRelated.length > 0 && (
-            <motion.div 
-              className="mt-16 lg:mt-24"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-            >
-              <h2 
-                className="font-serif text-[24px] lg:text-[28px] font-normal text-center mb-8"
-                style={{ color: "#2C2824" }}
-              >
-                You May Also Like
-              </h2>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                {filteredRelated.map((p) => {
-                  const img = p.node.images.edges[0]?.node;
-                  return (
-                    <Link 
-                      key={p.node.id} 
-                      to={`/product/${p.node.handle}`}
-                      className="group"
-                    >
-                      <div 
-                        className="aspect-[3/4] overflow-hidden mb-3"
-                        style={{ backgroundColor: "#EEEBE6" }}
-                      >
-                        {img ? (
-                          <img
-                            src={img.url}
-                            alt={img.altText || p.node.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <ShoppingBag size={32} strokeWidth={1} style={{ color: "#9A958F" }} />
-                          </div>
-                        )}
-                      </div>
-                      <h3 className="font-serif text-[15px] lg:text-[16px] font-normal mb-1" style={{ color: "#2C2824" }}>
-                        {p.node.title}
-                      </h3>
-                      <p className="font-serif text-[14px]" style={{ color: "#3D3530" }}>
-                        {formatPrice(p.node.priceRange.minVariantPrice.amount, p.node.priceRange.minVariantPrice.currencyCode)}
-                      </p>
-                    </Link>
-                  );
-                })}
-              </div>
-            </motion.div>
-          )}
         </div>
       </main>
+
+      {/* FAQ Section */}
+      <ProductFAQ />
+      
+      {/* Related Products Carousel */}
+      <RelatedProductsCarousel currentProductId={product.id} />
+      
+      {/* Customer Reviews */}
+      <ProductReviewsCompact />
 
       <Footer />
     </div>

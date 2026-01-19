@@ -265,6 +265,7 @@ const TermsOfService = () => {
       <section 
         className="relative w-full min-h-[40vh] lg:min-h-[45vh] flex items-center justify-center overflow-hidden"
         style={{ backgroundColor: "#121B2D" }}
+        data-dark-section
       >
         <div 
           className="absolute inset-0 opacity-[0.06]"

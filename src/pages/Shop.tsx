@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ShopifyProductGrid from "@/components/shop/ShopifyProductGrid";
-import philosophyPattern from "@/assets/philosophy-pattern.jpg";
+import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 
 const Shop = () => {
   return (
@@ -11,19 +11,14 @@ const Shop = () => {
       {/* Hero Section */}
       <section 
         className="relative w-full min-h-[50vh] lg:min-h-[60vh] flex items-center justify-center overflow-hidden"
-        style={{ backgroundColor: "#121B2D" }}
+        data-dark-section
+        style={{ 
+          backgroundImage: `url(${navyPatternBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
-        {/* Background Pattern */}
-        <div 
-          className="absolute inset-0 opacity-40"
-          style={{
-            backgroundImage: `url(${philosophyPattern})`,
-            backgroundRepeat: "repeat",
-            backgroundSize: "auto",
-            backgroundPosition: "center",
-          }}
-        />
-        
         {/* Content */}
         <div className="relative z-10 text-center px-6 py-24 lg:py-32">
           {/* Eyebrow Text */}
@@ -48,7 +43,7 @@ const Shop = () => {
           {/* Subheading */}
           <p
             className="font-serif text-[15px] lg:text-[18px] font-light leading-[1.7] max-w-[600px] mx-auto"
-            style={{ color: "rgba(255, 255, 255, 0.7)" }}
+            style={{ color: "rgba(255, 255, 255, 0.75)" }}
           >
             Each piece tells a story rooted in India's natural heritage — from misty
             mountains to sacred gardens.

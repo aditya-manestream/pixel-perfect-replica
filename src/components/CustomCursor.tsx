@@ -1,14 +1,65 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, useSpring } from "framer-motion";
 
 const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [cursorState, setCursorState] = useState<"default" | "hover" | "shop" | "bag">("default");
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isOnDarkBackground, setIsOnDarkBackground] = useState(false);
+  const lastPositionRef = useRef({ x: 0, y: 0 });
 
   // Smooth spring animation for cursor position
   const cursorX = useSpring(0, { stiffness: 150, damping: 20, mass: 0.5 });
   const cursorY = useSpring(0, { stiffness: 150, damping: 20, mass: 0.5 });
+
+  // Function to check if background is dark
+  const checkBackgroundColor = useCallback((x: number, y: number) => {
+    const elements = document.elementsFromPoint(x, y);
+    
+    for (const element of elements) {
+      // Check for data attribute first
+      if (element.hasAttribute('data-dark-section')) {
+        setIsOnDarkBackground(true);
+        return;
+      }
+      
+      // Check for navy pattern background or dark sections
+      const style = getComputedStyle(element);
+      const bgImage = style.backgroundImage;
+      const bgColor = style.backgroundColor;
+      
+      // Check if element has navy pattern background image
+      if (bgImage && bgImage.includes('navy-pattern')) {
+        setIsOnDarkBackground(true);
+        return;
+      }
+      
+      // Check specific class names or IDs for known dark sections
+      const classList = element.className?.toString() || '';
+      if (classList.includes('dark-section') || classList.includes('navy-section')) {
+        setIsOnDarkBackground(true);
+        return;
+      }
+      
+      // Parse background color
+      if (bgColor && bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
+        const rgb = bgColor.match(/\d+/g);
+        if (rgb && rgb.length >= 3) {
+          const r = parseInt(rgb[0]);
+          const g = parseInt(rgb[1]);
+          const b = parseInt(rgb[2]);
+          // Calculate relative luminance
+          const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+          if (luminance < 0.35) {
+            setIsOnDarkBackground(true);
+            return;
+          }
+        }
+      }
+    }
+    
+    setIsOnDarkBackground(false);
+  }, []);
 
   useEffect(() => {
     // Detect touch device
@@ -26,7 +77,11 @@ const CustomCursor = () => {
     const handleMouseMove = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
+      lastPositionRef.current = { x: e.clientX, y: e.clientY };
       setIsVisible(true);
+      
+      // Check background color with throttling
+      checkBackgroundColor(e.clientX, e.clientY);
     };
 
     const handleMouseLeave = () => setIsVisible(false);
@@ -41,7 +96,7 @@ const CustomCursor = () => {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [cursorX, cursorY, isTouchDevice]);
+  }, [cursorX, cursorY, isTouchDevice, checkBackgroundColor]);
 
   const handleElementDetection = useCallback((e: MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -98,6 +153,19 @@ const CustomCursor = () => {
   };
 
   const getCursorColor = () => {
+    // On dark backgrounds, use white/light colors
+    if (isOnDarkBackground) {
+      switch (cursorState) {
+        case "hover":
+        case "shop":
+        case "bag":
+          return "#F5F0E8"; // Warm white for accent
+        default:
+          return "#FFFFFF"; // Pure white for visibility
+      }
+    }
+    
+    // On light backgrounds, use original colors
     switch (cursorState) {
       case "hover":
       case "shop":
@@ -165,7 +233,7 @@ const CustomCursor = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             animate={{ scale: 1 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.15 }}
           >
             {/* Handbag handle */}
             <path
@@ -188,7 +256,7 @@ const CustomCursor = () => {
               width="4"
               height="3"
               rx="1"
-              fill={cursorState === "default" ? "#3A3530" : "#2C2824"}
+              fill={isOnDarkBackground ? "#1A2332" : (cursorState === "default" ? "#3A3530" : "#2C2824")}
             />
           </motion.svg>
           
@@ -201,7 +269,9 @@ const CustomCursor = () => {
               className="absolute -bottom-5 whitespace-nowrap text-[10px] font-sans tracking-wider"
               style={{ 
                 color: color,
-                textShadow: "0 1px 2px rgba(0,0,0,0.5)"
+                textShadow: isOnDarkBackground 
+                  ? "0 1px 3px rgba(0,0,0,0.8)" 
+                  : "0 1px 2px rgba(0,0,0,0.5)"
               }}
             >
               {label}
