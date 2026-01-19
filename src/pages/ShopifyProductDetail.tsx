@@ -559,8 +559,11 @@ const ShopifyProductDetail = () => {
       {/* FAQ Section */}
       <ProductFAQ />
       
-      {/* Related Products Carousel */}
-      <RelatedProductsCarousel currentProductId={product.id} />
+      {/* You May Also Like - Related Products */}
+      <RelatedProductsCarousel 
+        currentProductId={product.id} 
+        currentProductType={product.productType}
+      />
       
       {/* Customer Reviews */}
       <ProductReviewsCompact />
