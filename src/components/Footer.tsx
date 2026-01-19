@@ -12,7 +12,7 @@ const Footer = () => {
   };
 
   return (
-    <footer style={{ backgroundColor: "#18243E" }}>
+    <footer style={{ backgroundColor: "#18243E" }} data-dark-section>
       {/* Main Footer Content */}
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16 pt-16 lg:pt-20 pb-12 lg:pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16">

@@ -66,6 +66,7 @@ const Contact = () => {
       {/* Hero Section - Navy Pattern Background (Prominent) */}
       <section 
         className="relative py-24 md:py-32 lg:py-40 flex items-center justify-center overflow-hidden"
+        data-dark-section
       >
         <div 
           className="absolute inset-0"

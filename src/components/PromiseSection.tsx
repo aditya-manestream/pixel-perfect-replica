@@ -36,7 +36,7 @@ const promises = [
 
 const PromiseSection = () => {
   return (
-    <section className="relative w-full py-20 lg:py-28 overflow-hidden">
+    <section className="relative w-full py-20 lg:py-28 overflow-hidden" data-dark-section>
       {/* Background Pattern */}
       <div
         className="absolute inset-0"
