@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import philosophyPattern from "@/assets/philosophy-pattern.jpg";
+import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -26,7 +26,6 @@ const Contact = () => {
     message: ""
   });
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
-  const [newsletterEmail, setNewsletterEmail] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -52,17 +51,11 @@ const Contact = () => {
     // Handle form submission
   };
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Newsletter signup:", newsletterEmail);
-    setNewsletterEmail("");
-  };
-
   const quickLinks = [
-    { label: "Track Your Order", href: "#" },
+    { label: "Track Your Order", href: "/track-order" },
     { label: "Return & Exchange Policy", href: "/returns" },
     { label: "Shipping Information", href: "/shipping" },
-    { label: "FAQs", href: "#" },
+    { label: "FAQs", href: "/faqs" },
     { label: "Handbag Care Guide", href: "/handbag-care" },
   ];
 
@@ -70,23 +63,16 @@ const Contact = () => {
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
       <Navbar />
       
-      {/* Hero Section */}
+      {/* Hero Section - Navy Pattern Background (Prominent) */}
       <section 
-        className="relative py-24 md:py-32 lg:py-40 flex items-center justify-center"
-        style={{
-          background: "linear-gradient(135deg, #1a2a3a 0%, #0d1821 50%, #1a2a3a 100%)",
-        }}
+        className="relative py-24 md:py-32 lg:py-40 flex items-center justify-center overflow-hidden"
       >
-        {/* Pattern Overlay */}
         <div 
           className="absolute inset-0"
           style={{
-            backgroundImage: `url(${philosophyPattern})`,
-            backgroundSize: "400px 400px",
+            backgroundImage: `url(${navyPatternBg})`,
+            backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundRepeat: "repeat",
-            opacity: 0.4,
-            mixBlendMode: "overlay"
           }}
         />
         
@@ -99,7 +85,7 @@ const Contact = () => {
             className="text-xs md:text-sm tracking-[0.3em] uppercase mb-6"
             style={{ 
               fontFamily: "'Montserrat', sans-serif",
-              color: "#C4A164"
+              color: "#C9A86C"
             }}
           >
             ✦ SUPPORT ✦
@@ -125,7 +111,7 @@ const Contact = () => {
             className="text-lg md:text-xl font-light max-w-2xl mx-auto"
             style={{ 
               fontFamily: "'Cormorant Garamond', serif",
-              color: "rgba(255, 255, 255, 0.65)"
+              color: "rgba(255, 255, 255, 0.75)"
             }}
           >
             Have questions? Get in touch with our customer care team
@@ -136,7 +122,7 @@ const Contact = () => {
       {/* Main Content - Two Column Layout */}
       <section className="py-16 md:py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             
             {/* Left Column - Contact Info & Hours */}
             <motion.div
@@ -144,7 +130,7 @@ const Contact = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
-              className="space-y-12"
+              className="space-y-10"
             >
               {/* Contact Information */}
               <div>
@@ -267,9 +253,54 @@ const Contact = () => {
                   We typically respond within 48–72 hours
                 </p>
               </div>
+
+              {/* Social Media */}
+              <div>
+                <h3 
+                  className="text-xl font-light mb-6 tracking-wide"
+                  style={{ 
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "#1A1A1A"
+                  }}
+                >
+                  Connect with us
+                </h3>
+                <div className="flex items-center gap-6">
+                  <a
+                    href="https://instagram.com/ardori.official"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 transition-opacity hover:opacity-60"
+                    style={{ color: "#4A4A4A" }}
+                  >
+                    <Instagram size={20} strokeWidth={1.2} />
+                    <span 
+                      className="text-xs tracking-[0.12em] uppercase"
+                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    >
+                      Instagram
+                    </span>
+                  </a>
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 transition-opacity hover:opacity-60"
+                    style={{ color: "#4A4A4A" }}
+                  >
+                    <Facebook size={20} strokeWidth={1.2} />
+                    <span 
+                      className="text-xs tracking-[0.12em] uppercase"
+                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    >
+                      Facebook
+                    </span>
+                  </a>
+                </div>
+              </div>
             </motion.div>
 
-            {/* Right Column - Contact Form */}
+            {/* Right Column - Contact Form (Card Panel) */}
             <motion.div
               variants={fadeInUp}
               initial="hidden"
@@ -280,8 +311,9 @@ const Contact = () => {
               <div 
                 className="p-6 md:p-8 lg:p-10 rounded-sm"
                 style={{ 
-                  backgroundColor: "#FAF8F5", 
-                  border: "1px solid #E8E4DF" 
+                  backgroundColor: "#FFFFFF", 
+                  border: "1px solid #E8E4DF",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.04)"
                 }}
               >
                 <h2 
@@ -294,257 +326,287 @@ const Contact = () => {
                   Send Us a Message
                 </h2>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name */}
-                <div className="space-y-2">
-                  <Label 
-                    htmlFor="name"
-                    className="text-xs uppercase tracking-[0.15em]"
-                    style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
-                  >
-                    Name <span style={{ color: "#8B7355" }}>*</span>
-                  </Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="h-12 rounded-none border-0 border-b focus-visible:ring-0 focus-visible:border-b-2 bg-transparent"
-                    style={{ 
-                      borderColor: "#D4C5B5",
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "16px"
-                    }}
-                  />
-                </div>
-
-                {/* Email */}
-                <div className="space-y-2">
-                  <Label 
-                    htmlFor="email"
-                    className="text-xs uppercase tracking-[0.15em]"
-                    style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
-                  >
-                    Email <span style={{ color: "#8B7355" }}>*</span>
-                  </Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="h-12 rounded-none border-0 border-b focus-visible:ring-0 focus-visible:border-b-2 bg-transparent"
-                    style={{ 
-                      borderColor: "#D4C5B5",
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "16px"
-                    }}
-                  />
-                </div>
-
-                {/* Phone */}
-                <div className="space-y-2">
-                  <Label 
-                    htmlFor="phone"
-                    className="text-xs uppercase tracking-[0.15em]"
-                    style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
-                  >
-                    Phone Number
-                  </Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="h-12 rounded-none border-0 border-b focus-visible:ring-0 focus-visible:border-b-2 bg-transparent"
-                    style={{ 
-                      borderColor: "#D4C5B5",
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "16px"
-                    }}
-                  />
-                </div>
-
-                {/* Order Number */}
-                <div className="space-y-2">
-                  <Label 
-                    htmlFor="orderNumber"
-                    className="text-xs uppercase tracking-[0.15em]"
-                    style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
-                  >
-                    Order Number <span className="normal-case italic" style={{ color: "#999" }}>(if applicable)</span>
-                  </Label>
-                  <Input
-                    id="orderNumber"
-                    name="orderNumber"
-                    type="text"
-                    value={formData.orderNumber}
-                    onChange={handleInputChange}
-                    className="h-12 rounded-none border-0 border-b focus-visible:ring-0 focus-visible:border-b-2 bg-transparent"
-                    style={{ 
-                      borderColor: "#D4C5B5",
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "16px"
-                    }}
-                  />
-                </div>
-
-                {/* Subject */}
-                <div className="space-y-2">
-                  <Label 
-                    className="text-xs uppercase tracking-[0.15em]"
-                    style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
-                  >
-                    Subject / Inquiry Type <span style={{ color: "#8B7355" }}>*</span>
-                  </Label>
-                  <Select onValueChange={handleSubjectChange} required>
-                    <SelectTrigger 
-                      className="h-12 rounded-none border-0 border-b focus:ring-0 bg-transparent"
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  {/* Name */}
+                  <div className="space-y-2">
+                    <Label 
+                      htmlFor="name"
+                      className="text-xs uppercase tracking-[0.15em]"
+                      style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
+                    >
+                      Name <span style={{ color: "#8B7355" }}>*</span>
+                    </Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="h-12 rounded-none border-0 border-b focus-visible:ring-0 focus-visible:border-b-2 bg-transparent"
                       style={{ 
                         borderColor: "#D4C5B5",
                         fontFamily: "'Cormorant Garamond', serif",
                         fontSize: "16px"
                       }}
-                    >
-                      <SelectValue placeholder="Select an inquiry type" />
-                    </SelectTrigger>
-                    <SelectContent 
-                      className="rounded-none z-50"
-                      style={{ 
-                        backgroundColor: "#FAF8F5",
-                        fontFamily: "'Cormorant Garamond', serif"
-                      }}
-                    >
-                      <SelectItem value="general">General Inquiry</SelectItem>
-                      <SelectItem value="order-status">Order Status</SelectItem>
-                      <SelectItem value="product-question">Product Question</SelectItem>
-                      <SelectItem value="returns">Returns / Exchange</SelectItem>
-                      <SelectItem value="technical">Technical Issue</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Message */}
-                <div className="space-y-2">
-                  <Label 
-                    htmlFor="message"
-                    className="text-xs uppercase tracking-[0.15em]"
-                    style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
-                  >
-                    Message <span style={{ color: "#8B7355" }}>*</span>
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="rounded-none border-0 border-b focus-visible:ring-0 focus-visible:border-b-2 bg-transparent resize-none"
-                    style={{ 
-                      borderColor: "#D4C5B5",
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "16px"
-                    }}
-                  />
-                </div>
-
-                {/* Image Upload */}
-                <div className="space-y-2">
-                  <Label 
-                    className="text-xs uppercase tracking-[0.15em]"
-                    style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
-                  >
-                    Upload Image <span className="normal-case italic" style={{ color: "#999" }}>(optional, for product issues)</span>
-                  </Label>
-                  <div className="flex items-center gap-4">
-                    <label 
-                      className="flex items-center gap-2 px-4 py-2 cursor-pointer transition-opacity hover:opacity-70"
-                      style={{ 
-                        border: "1px solid #D4C5B5",
-                        fontFamily: "'Montserrat', sans-serif",
-                        fontSize: "11px",
-                        letterSpacing: "0.1em",
-                        color: "#6B6B6B"
-                      }}
-                    >
-                      <Upload size={14} strokeWidth={1.5} />
-                      Choose File
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="hidden"
-                      />
-                    </label>
-                    {uploadedImage && (
-                      <div className="flex items-center gap-2" style={{ color: "#4A4A4A" }}>
-                        <span 
-                          className="text-sm truncate max-w-[150px]"
-                          style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                        >
-                          {uploadedImage.name}
-                        </span>
-                        <button 
-                          type="button" 
-                          onClick={removeImage}
-                          className="transition-opacity hover:opacity-70"
-                        >
-                          <X size={14} strokeWidth={1.5} />
-                        </button>
-                      </div>
-                    )}
+                    />
                   </div>
-                </div>
 
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  className="w-full h-14 rounded-none mt-8 transition-all duration-300 hover:opacity-90"
-                  style={{
-                    backgroundColor: "#1A1A1A",
-                    color: "#FAF8F5",
-                    fontFamily: "'Montserrat', sans-serif",
-                    fontSize: "11px",
-                    letterSpacing: "0.2em"
-                  }}
-                >
-                  <Send size={14} strokeWidth={1.5} className="mr-2" />
-                  SEND MESSAGE
-                </Button>
-              </form>
+                  {/* Email */}
+                  <div className="space-y-2">
+                    <Label 
+                      htmlFor="email"
+                      className="text-xs uppercase tracking-[0.15em]"
+                      style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
+                    >
+                      Email <span style={{ color: "#8B7355" }}>*</span>
+                    </Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="h-12 rounded-none border-0 border-b focus-visible:ring-0 focus-visible:border-b-2 bg-transparent"
+                      style={{ 
+                        borderColor: "#D4C5B5",
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontSize: "16px"
+                      }}
+                    />
+                  </div>
+
+                  {/* Phone */}
+                  <div className="space-y-2">
+                    <Label 
+                      htmlFor="phone"
+                      className="text-xs uppercase tracking-[0.15em]"
+                      style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
+                    >
+                      Phone Number
+                    </Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="h-12 rounded-none border-0 border-b focus-visible:ring-0 focus-visible:border-b-2 bg-transparent"
+                      style={{ 
+                        borderColor: "#D4C5B5",
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontSize: "16px"
+                      }}
+                    />
+                  </div>
+
+                  {/* Order Number */}
+                  <div className="space-y-2">
+                    <Label 
+                      htmlFor="orderNumber"
+                      className="text-xs uppercase tracking-[0.15em]"
+                      style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
+                    >
+                      Order Number <span className="normal-case italic" style={{ color: "#999" }}>(if applicable)</span>
+                    </Label>
+                    <Input
+                      id="orderNumber"
+                      name="orderNumber"
+                      type="text"
+                      value={formData.orderNumber}
+                      onChange={handleInputChange}
+                      className="h-12 rounded-none border-0 border-b focus-visible:ring-0 focus-visible:border-b-2 bg-transparent"
+                      style={{ 
+                        borderColor: "#D4C5B5",
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontSize: "16px"
+                      }}
+                    />
+                  </div>
+
+                  {/* Subject */}
+                  <div className="space-y-2">
+                    <Label 
+                      className="text-xs uppercase tracking-[0.15em]"
+                      style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
+                    >
+                      Subject / Inquiry Type <span style={{ color: "#8B7355" }}>*</span>
+                    </Label>
+                    <Select onValueChange={handleSubjectChange} required>
+                      <SelectTrigger 
+                        className="h-12 rounded-none border-0 border-b focus:ring-0 bg-transparent"
+                        style={{ 
+                          borderColor: "#D4C5B5",
+                          fontFamily: "'Cormorant Garamond', serif",
+                          fontSize: "16px"
+                        }}
+                      >
+                        <SelectValue placeholder="Select an inquiry type" />
+                      </SelectTrigger>
+                      <SelectContent 
+                        className="rounded-none z-50"
+                        style={{ 
+                          backgroundColor: "#FAF8F5",
+                          fontFamily: "'Cormorant Garamond', serif"
+                        }}
+                      >
+                        <SelectItem value="general">General Inquiry</SelectItem>
+                        <SelectItem value="order-status">Order Status</SelectItem>
+                        <SelectItem value="product-question">Product Question</SelectItem>
+                        <SelectItem value="returns">Returns / Exchange</SelectItem>
+                        <SelectItem value="technical">Technical Issue</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Message */}
+                  <div className="space-y-2">
+                    <Label 
+                      htmlFor="message"
+                      className="text-xs uppercase tracking-[0.15em]"
+                      style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
+                    >
+                      Message <span style={{ color: "#8B7355" }}>*</span>
+                    </Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="rounded-none border-0 border-b focus-visible:ring-0 focus-visible:border-b-2 bg-transparent resize-none"
+                      style={{ 
+                        borderColor: "#D4C5B5",
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontSize: "16px"
+                      }}
+                    />
+                  </div>
+
+                  {/* Image Upload */}
+                  <div className="space-y-2">
+                    <Label 
+                      className="text-xs uppercase tracking-[0.15em]"
+                      style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
+                    >
+                      Upload Image <span className="normal-case italic" style={{ color: "#999" }}>(optional)</span>
+                    </Label>
+                    <div className="flex items-center gap-4">
+                      <label 
+                        className="flex items-center gap-2 px-4 py-2 cursor-pointer transition-opacity hover:opacity-70"
+                        style={{ 
+                          border: "1px solid #D4C5B5",
+                          fontFamily: "'Montserrat', sans-serif",
+                          fontSize: "11px",
+                          letterSpacing: "0.1em",
+                          color: "#6B6B6B"
+                        }}
+                      >
+                        <Upload size={14} strokeWidth={1.5} />
+                        Choose File
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          className="hidden"
+                        />
+                      </label>
+                      {uploadedImage && (
+                        <div className="flex items-center gap-2" style={{ color: "#4A4A4A" }}>
+                          <span 
+                            className="text-sm truncate max-w-[150px]"
+                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                          >
+                            {uploadedImage.name}
+                          </span>
+                          <button 
+                            type="button" 
+                            onClick={removeImage}
+                            className="transition-opacity hover:opacity-70"
+                          >
+                            <X size={14} strokeWidth={1.5} />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <Button
+                    type="submit"
+                    className="w-full h-14 rounded-none mt-6 transition-all duration-300 hover:opacity-90"
+                    style={{
+                      backgroundColor: "#1A1A1A",
+                      color: "#FAF8F5",
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontSize: "11px",
+                      letterSpacing: "0.2em"
+                    }}
+                  >
+                    <Send size={14} strokeWidth={1.5} className="mr-2" />
+                    SEND MESSAGE
+                  </Button>
+                </form>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Quick Links Section */}
+      {/* Quick Links Section - Navy Pattern Background */}
       <section 
-        className="py-16 md:py-20 px-6"
-        style={{ backgroundColor: "#F5F2EE" }}
+        className="relative py-16 md:py-20 px-6 overflow-hidden"
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${navyPatternBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
           >
+            {/* Gold Divider */}
+            <div 
+              className="w-12 h-[1px] mx-auto mb-8"
+              style={{ backgroundColor: "#C9A86C" }}
+            />
+            
+            <p
+              className="text-xs tracking-[0.3em] uppercase mb-4"
+              style={{ 
+                fontFamily: "'Montserrat', sans-serif",
+                color: "#C9A86C"
+              }}
+            >
+              ✦ QUICK LINKS ✦
+            </p>
+            
             <h2 
               className="text-2xl md:text-3xl font-light mb-10 tracking-wide"
               style={{ 
                 fontFamily: "'Cormorant Garamond', serif",
-                color: "#1A1A1A"
+                color: "#FFFFFF"
               }}
             >
               Looking for something specific?
             </h2>
+            
+            {/* Gold Divider */}
+            <div 
+              className="w-12 h-[1px] mx-auto mb-10"
+              style={{ backgroundColor: "#C9A86C" }}
+            />
+            
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {quickLinks.map((link, index) => (
                 <Link
@@ -553,132 +615,13 @@ const Contact = () => {
                   className="text-xs tracking-[0.15em] uppercase transition-opacity hover:opacity-60 py-2"
                   style={{ 
                     fontFamily: "'Montserrat', sans-serif",
-                    color: "#4A4A4A"
+                    color: "rgba(255,255,255,0.85)"
                   }}
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Social Media Section */}
-      <section className="py-16 md:py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            <h2 
-              className="text-2xl md:text-3xl font-light mb-8 tracking-wide"
-              style={{ 
-                fontFamily: "'Cormorant Garamond', serif",
-                color: "#1A1A1A"
-              }}
-            >
-              Connect with us
-            </h2>
-            <div className="flex items-center justify-center gap-8">
-              <a
-                href="https://instagram.com/ardori.official"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 transition-opacity hover:opacity-60"
-                style={{ color: "#4A4A4A" }}
-              >
-                <Instagram size={22} strokeWidth={1.2} />
-                <span 
-                  className="text-xs tracking-[0.12em] uppercase"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  Instagram
-                </span>
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 transition-opacity hover:opacity-60"
-                style={{ color: "#4A4A4A" }}
-              >
-                <Facebook size={22} strokeWidth={1.2} />
-                <span 
-                  className="text-xs tracking-[0.12em] uppercase"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  Facebook
-                </span>
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Newsletter Section */}
-      <section 
-        className="py-16 md:py-20 px-6"
-        style={{ 
-          backgroundColor: "#1A1A1A"
-        }}
-      >
-        <div className="max-w-2xl mx-auto text-center">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            <h2 
-              className="text-3xl md:text-4xl font-light mb-4 tracking-wide"
-              style={{ 
-                fontFamily: "'Cormorant Garamond', serif",
-                color: "#FAF8F5"
-              }}
-            >
-              Stay Updated.
-            </h2>
-            <p 
-              className="text-base mb-10"
-              style={{ 
-                fontFamily: "'Cormorant Garamond', serif",
-                color: "#A09A94"
-              }}
-            >
-              Get exclusive access to new launches and special offers.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                required
-                className="h-12 flex-1 rounded-none border bg-transparent focus-visible:ring-0 focus-visible:border-white"
-                style={{ 
-                  borderColor: "#4A4A4A",
-                  color: "#FAF8F5",
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "16px"
-                }}
-              />
-              <Button
-                type="submit"
-                className="h-12 px-8 rounded-none transition-opacity hover:opacity-80"
-                style={{
-                  backgroundColor: "#C9A86C",
-                  color: "#1A1A1A",
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontSize: "10px",
-                  letterSpacing: "0.2em"
-                }}
-              >
-                SUBSCRIBE
-              </Button>
-            </form>
           </motion.div>
         </div>
       </section>

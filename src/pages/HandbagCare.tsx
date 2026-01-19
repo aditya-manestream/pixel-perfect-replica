@@ -385,22 +385,49 @@ const HandbagCare = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section - Navy Pattern Background */}
       <section
-        className="py-16 lg:py-20 px-6"
-        style={{ backgroundColor: "#F5F2ED" }}
+        className="relative py-20 lg:py-28 px-6 overflow-hidden"
       >
-        <motion.div {...fadeInUp} className="text-center">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${navyPatternBg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <motion.div {...fadeInUp} className="relative z-10 text-center">
+          {/* Gold Divider */}
+          <div 
+            className="w-12 h-[1px] mx-auto mb-8"
+            style={{ backgroundColor: "#C9A86C" }}
+          />
+          
           <p
-            className="font-serif text-[18px] lg:text-[22px] font-normal mb-6"
-            style={{ color: "#2C2824" }}
+            className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-6"
+            style={{ color: "#C9A86C" }}
+          >
+            ✦ CUSTOMER CARE ✦
+          </p>
+          
+          <p
+            className="font-serif text-[22px] lg:text-[28px] font-normal mb-8"
+            style={{ color: "#FFFFFF" }}
           >
             Questions? Contact Our Customer Care Team
           </p>
+          
+          {/* Gold Divider */}
+          <div 
+            className="w-12 h-[1px] mx-auto mb-8"
+            style={{ backgroundColor: "#C9A86C" }}
+          />
+          
           <Link
             to="/contact"
-            className="inline-block font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase px-8 py-3 border transition-all duration-300 hover:bg-[#2C2824] hover:text-white"
-            style={{ color: "#2C2824", borderColor: "#2C2824" }}
+            className="inline-block font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase px-10 py-4 border transition-all duration-300 hover:bg-white/10"
+            style={{ color: "#FFFFFF", borderColor: "rgba(255,255,255,0.5)" }}
           >
             CONTACT US
           </Link>
