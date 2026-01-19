@@ -118,11 +118,11 @@ const Index = () => {
       {/* The Craft Section */}
       <CraftSection />
 
-      {/* The Ardori Promise Section */}
-      <PromiseSection />
-
       {/* Watch & Shop Section */}
       <WatchShopSection />
+
+      {/* The Ardori Promise Section */}
+      <PromiseSection />
 
       {/* Unboxing Section */}
       <UnboxingSection />
