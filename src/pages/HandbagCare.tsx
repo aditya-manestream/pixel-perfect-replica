@@ -385,9 +385,10 @@ const HandbagCare = () => {
         </div>
       </section>
 
-      {/* CTA Section - Navy Pattern Background */}
+      {/* Understanding Natural Leather - Navy Pattern Background */}
       <section
         className="relative py-20 lg:py-28 px-6 overflow-hidden"
+        data-dark-section
       >
         <div
           className="absolute inset-0"
@@ -397,37 +398,82 @@ const HandbagCare = () => {
             backgroundPosition: "center",
           }}
         />
-        <motion.div {...fadeInUp} className="relative z-10 text-center">
+        <motion.div {...fadeInUp} className="relative z-10 max-w-[700px] mx-auto text-center">
           {/* Gold Divider */}
           <div 
             className="w-12 h-[1px] mx-auto mb-8"
             style={{ backgroundColor: "#C9A86C" }}
           />
           
+          <div className="flex justify-center mb-6">
+            <div
+              className="w-14 h-14 rounded-full flex items-center justify-center border"
+              style={{ borderColor: "rgba(255,255,255,0.3)" }}
+            >
+              <Sun size={24} strokeWidth={1.2} style={{ color: "#C9A86C" }} />
+            </div>
+          </div>
+          
+          <h2
+            className="font-serif text-[24px] lg:text-[32px] font-normal mb-6"
+            style={{ color: "#FFFFFF" }}
+          >
+            Understanding Natural Leather
+          </h2>
+          
           <p
-            className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-6"
+            className="font-serif text-[15px] lg:text-[17px] font-light leading-[1.9] italic"
+            style={{ color: "rgba(255,255,255,0.8)" }}
+          >
+            "Your leather bag is made from natural material. Small variations in grain, 
+            slight creasing, and patina development are not defects—they're characteristics 
+            that make your bag unique. As your bag ages, it develops its own personality, 
+            becoming more beautiful with time."
+          </p>
+          
+          {/* Gold Divider */}
+          <div 
+            className="w-12 h-[1px] mx-auto mt-8"
+            style={{ backgroundColor: "#C9A86C" }}
+          />
+        </motion.div>
+      </section>
+
+      {/* Customer Care CTA Section - White Background */}
+      <section
+        className="py-16 lg:py-20 px-6"
+        style={{ backgroundColor: "#FDFCFA" }}
+      >
+        <motion.div 
+          {...fadeInUp} 
+          className="max-w-[600px] mx-auto text-center py-10 lg:py-12 px-8 lg:px-12"
+          style={{ 
+            backgroundColor: "#FFFFFF",
+            border: "1px solid #E8E4DF"
+          }}
+        >
+          <p
+            className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-4"
             style={{ color: "#C9A86C" }}
           >
             ✦ CUSTOMER CARE ✦
           </p>
           
           <p
-            className="font-serif text-[22px] lg:text-[28px] font-normal mb-8"
-            style={{ color: "#FFFFFF" }}
+            className="font-serif text-[20px] lg:text-[24px] font-normal mb-8"
+            style={{ color: "#2C2824" }}
           >
             Questions? Contact Our Customer Care Team
           </p>
           
-          {/* Gold Divider */}
-          <div 
-            className="w-12 h-[1px] mx-auto mb-8"
-            style={{ backgroundColor: "#C9A86C" }}
-          />
-          
           <Link
             to="/contact"
-            className="inline-block font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase px-10 py-4 border transition-all duration-300 hover:bg-white/10"
-            style={{ color: "#FFFFFF", borderColor: "rgba(255,255,255,0.5)" }}
+            className="inline-block font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase px-10 py-4 border transition-all duration-300 hover:opacity-70"
+            style={{ 
+              color: "#2C2824", 
+              borderColor: "#2C2824",
+              backgroundColor: "transparent"
+            }}
           >
             CONTACT US
           </Link>
