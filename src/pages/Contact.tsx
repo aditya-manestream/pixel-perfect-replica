@@ -320,12 +320,8 @@ const Contact = () => {
                 >
                   Follow Our Journey
                 </h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
-                  {[
-                    instagram1, instagram2, instagram3, 
-                    instagram4, curatedDetail, curatedTote,
-                    storyLeatherTexture, productLotus1, productLotus2
-                  ].map((image, index) => (
+                <div className="grid grid-cols-3 gap-2.5">
+                  {[instagram1, instagram2, instagram3].map((image, index) => (
                     <a 
                       key={index}
                       href="https://instagram.com/ardori.official" 
