@@ -91,15 +91,6 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/journal"
-                  className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                  style={{ color: "#9A958F", opacity: 0.85 }}
-                >
-                  Journal
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="/handbag-care"
                   className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
                   style={{ color: "#9A958F", opacity: 0.85 }}
