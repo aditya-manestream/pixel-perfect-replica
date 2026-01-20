@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Instagram, Facebook, Send, Upload, X } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Facebook, Send, Upload, X, Eye, ArrowRight } from "lucide-react";
+import instagram1 from "@/assets/instagram-1.jpg";
+import instagram2 from "@/assets/instagram-2.jpg";
+import instagram3 from "@/assets/instagram-3.jpg";
+import instagram4 from "@/assets/instagram-4.jpg";
+import curatedDetail from "@/assets/curated-detail.jpg";
+import curatedTote from "@/assets/curated-tote.jpg";
+import storyLeatherTexture from "@/assets/story-leather-texture.jpg";
+import productLotus1 from "@/assets/product-lotus-1.jpg";
+import productLotus2 from "@/assets/product-lotus-2.jpg";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -298,6 +307,54 @@ const Contact = () => {
                     </span>
                   </a>
                 </div>
+              </div>
+
+              {/* Instagram Gallery Grid */}
+              <div className="mt-10">
+                <h3 
+                  className="text-xl font-light mb-6 tracking-wide"
+                  style={{ 
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "#1A1A1A"
+                  }}
+                >
+                  Follow Our Journey
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
+                  {[
+                    instagram1, instagram2, instagram3, 
+                    instagram4, curatedDetail, curatedTote,
+                    storyLeatherTexture, productLotus1, productLotus2
+                  ].map((image, index) => (
+                    <a 
+                      key={index}
+                      href="https://instagram.com/ardori.official" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer block"
+                    >
+                      <img 
+                        src={image} 
+                        alt={`Instagram ${index + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <Eye size={24} className="text-white" strokeWidth={1.5} />
+                      </div>
+                    </a>
+                  ))}
+                </div>
+                <a 
+                  href="https://instagram.com/ardori.official"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-5 text-xs uppercase tracking-[0.12em] transition-opacity hover:opacity-60"
+                  style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+                >
+                  <Instagram size={16} strokeWidth={1.2} />
+                  @ardori.official
+                  <ArrowRight size={14} strokeWidth={1.2} />
+                </a>
               </div>
             </motion.div>
 
