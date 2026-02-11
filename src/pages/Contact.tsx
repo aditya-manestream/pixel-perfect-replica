@@ -546,7 +546,7 @@ const Contact = () => {
                       className="text-xs uppercase tracking-[0.15em]"
                       style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                     >
-                      Upload Image <span className="normal-case italic" style={{ color: "#999" }}>(optional)</span>
+                      Upload Image
                     </Label>
                     <div className="flex items-center gap-4">
                       <label 
