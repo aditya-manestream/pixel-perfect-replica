@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ardori — Image Requirements Sheet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: #2C2824;
+    background: #FDFCFA;
+    line-height: 1.6;
+    padding: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  @media print {
+    body { padding: 20px; font-size: 9pt; }
+    .no-print { display: none !important; }
+    table { font-size: 8pt; }
+    h1 { font-size: 22pt; }
+    h2 { font-size: 14pt; }
+    h3 { font-size: 11pt; }
+    .page-break { page-break-before: always; }
+    section { page-break-inside: avoid; }
+  }
+
+  .no-print {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: #2C2824;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  .no-print:hover { opacity: 0.85; }
+
+  /* Header */
+  .doc-header {
+    text-align: center;
+    padding: 40px 0 30px;
+    border-bottom: 2px solid #2C2824;
+    margin-bottom: 30px;
+  }
+  .doc-header .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: #2C2824;
+    margin-bottom: 8px;
+  }
+  .doc-header .subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #7A7570;
+    margin-bottom: 20px;
+  }
+  .doc-header .meta {
+    font-size: 11px;
+    color: #9A958F;
+  }
+
+  /* Section Headers */
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #2C2824;
+    margin: 40px 0 6px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #E8E4DF;
+  }
+  h2 .page-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: #C9A86C;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #3D3530;
+    margin: 24px 0 10px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 30px;
+    font-size: 11px;
+  }
+  thead th {
+    background: #2C2824;
+    color: #E8E4DF;
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 8px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 9px 8px;
+    border-bottom: 1px solid #EEEBE6;
+    vertical-align: top;
+    color: #3D3530;
+  }
+  tbody tr:nth-child(even) td {
+    background: #FAF8F5;
+  }
+  td.file { font-family: monospace; font-size: 10px; color: #7A7570; word-break: break-all; }
+  td.orient { font-weight: 500; }
+
+  /* Guidelines */
+  .guidelines {
+    background: #F5F2ED;
+    padding: 28px 32px;
+    margin: 30px 0;
+    border-left: 3px solid #C9A86C;
+  }
+  .guidelines h3 {
+    margin-top: 0;
+    color: #2C2824;
+  }
+  .guidelines ul {
+    margin: 8px 0 16px 18px;
+    color: #5A5550;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .guidelines li { margin-bottom: 2px; }
+
+  .color-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 6px;
+    border: 1px solid #D4D0CB;
+  }
+
+  .footer-note {
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid #E8E4DF;
+    margin-top: 40px;
+    font-size: 11px;
+    color: #9A958F;
+  }
+</style>
+</head>
+<body>
+
+<button class="no-print" onclick="window.print()">⬇ Save as PDF</button>
+
+<div class="doc-header">
+  <div class="brand">ARDORI</div>
+  <div class="subtitle">Photoshoot & Image Requirements Sheet</div>
+  <div class="meta">Prepared: February 2026 &nbsp;·&nbsp; Confidential — For Creative Team Only</div>
+</div>
+
+<!-- ============ HOME PAGE ============ -->
+<h2><span class="page-num">Page 1 of 7</span>Home Page <code style="font-size:12px;color:#9A958F">/</code></h2>
+
+<table>
+<thead>
+  <tr><th>#</th><th>Section</th><th>File</th><th>Purpose</th><th>Ratio</th><th>Desktop px</th><th>Mobile px</th><th>Orient.</th><th>Min Res.</th><th>Composition / Safe Margins</th></tr>
+</thead>
+<tbody>
+  <tr><td>1</td><td>Hero</td><td class="file">hero-bg.jpg</td><td>Full-screen background</td><td>16:9</td><td>1920×1080</td><td>390×844</td><td class="orient">Landscape</td><td>3840×2160</td><td>Text overlays center. Keep subjects at edges. Dark/moody tones — light text on top. Center 40% width × 50% height must be clear.</td></tr>
+  <tr><td>2</td><td>Category — Mining</td><td class="file">category-mining.jpg</td><td>Hover-reveal showcase</td><td>4:3</td><td>800×600</td><td>390×293</td><td class="orient">Landscape</td><td>1600×1200</td><td>Full product shot, clean bg. Product fills 70–80%. Consistent lighting across all 5 category images.</td></tr>
+  <tr><td>3</td><td>Category — Baguette</td><td class="file">category-baguette.jpg</td><td>Hover-reveal showcase</td><td>4:3</td><td>800×600</td><td>390×293</td><td class="orient">Landscape</td><td>1600×1200</td><td>Same as above.</td></tr>
+  <tr><td>4</td><td>Category — Tote</td><td class="file">category-tote.jpg</td><td>Hover-reveal showcase</td><td>4:3</td><td>800×600</td><td>390×293</td><td class="orient">Landscape</td><td>1600×1200</td><td>Same as above.</td></tr>
+  <tr><td>5</td><td>Category — Crossbody</td><td class="file">category-crossbody.jpg</td><td>Hover-reveal showcase</td><td>4:3</td><td>800×600</td><td>390×293</td><td class="orient">Landscape</td><td>1600×1200</td><td>Same as above.</td></tr>
+  <tr><td>6</td><td>Category — Purse</td><td class="file">category-purse.jpg</td><td>Hover-reveal showcase</td><td>4:3</td><td>800×600</td><td>390×293</td><td class="orient">Landscape</td><td>1600×1200</td><td>Same as above.</td></tr>
+  <tr><td>7</td><td>Philosophy</td><td class="file">philosophy-pattern.jpg</td><td>Repeating tile bg</td><td>1:1</td><td>Tile</td><td>Tile</td><td class="orient">Square</td><td>800×800</td><td>Seamless/tileable. Navy decorative pattern. Used at 50% opacity.</td></tr>
+  <tr><td>8</td><td>Philosophy</td><td class="file">ardori-logo.png</td><td>Brand monogram</td><td>Flex</td><td>120px wide</td><td>100px wide</td><td class="orient">Square</td><td>400×400</td><td>Transparent PNG. Crisp vector-quality edges.</td></tr>
+  <tr><td>9–12</td><td>Values — Lifestyle 1–4</td><td class="file">values-lifestyle-1…4.jpg</td><td>Auto-rotating lifestyle</td><td>3:4</td><td>440×587</td><td>390×520</td><td class="orient">Portrait</td><td>1200×1600</td><td>Model with bag in natural setting. Warm, organic tones. No text overlay. Variety in poses/settings.</td></tr>
+  <tr><td>13–16</td><td>Values — Product 1–4</td><td class="file">values-product-1…4.jpg</td><td>Auto-rotating product</td><td>3:4</td><td>440×587</td><td>390×520</td><td class="orient">Portrait</td><td>1200×1600</td><td>Clean product photography. Single bag on minimal backdrop. Consistent studio lighting.</td></tr>
+  <tr><td>17</td><td>Craft</td><td class="file">craft-video.mp4</td><td>Full-screen bg video</td><td>16:9</td><td>1920×1080</td><td>Cropped</td><td class="orient">Landscape</td><td>1920×1080</td><td>Artisan crafting leather. Slow pace. 35% dark overlay. Keep action at edges. Loop-friendly.</td></tr>
+  <tr><td>18</td><td>Curated BG</td><td class="file">curated-navy-pattern.jpg</td><td>Section background</td><td>16:9</td><td>1920×1080</td><td>390×844</td><td class="orient">Landscape</td><td>3840×2160</td><td>Navy decorative pattern. Images sit on top.</td></tr>
+  <tr><td>19</td><td>Curated — Hero</td><td class="file">curated-hero.jpg</td><td>Center editorial (largest)</td><td>2:3</td><td>320×auto</td><td>240×auto</td><td class="orient">Portrait</td><td>960×1440</td><td>Fashion editorial. Model with bag. Rich tones.</td></tr>
+  <tr><td>20–21</td><td>Curated — Left 1–2</td><td class="file">curated-left-1…2.jpg</td><td>Stacked editorial</td><td>2:3</td><td>180×auto</td><td>140×auto</td><td class="orient">Portrait</td><td>540×810</td><td>Complementary editorial shots.</td></tr>
+  <tr><td>22</td><td>Curated — Detail</td><td class="file">curated-detail.jpg</td><td>Texture close-up</td><td>3:4</td><td>130×auto</td><td>100×auto</td><td class="orient">Portrait</td><td>400×530</td><td>Extreme close-up: leather grain, stitching, or hardware.</td></tr>
+  <tr><td>23</td><td>Curated — Tote</td><td class="file">curated-tote.jpg</td><td>Product image</td><td>2:3</td><td>180×auto</td><td>140×auto</td><td class="orient">Portrait</td><td>540×810</td><td>Single product shot, clean framing.</td></tr>
+  <tr><td>24–28</td><td>Watch & Shop 1–5</td><td class="file">shop-product-1…5.jpg</td><td>Carousel product cards</td><td>5:7</td><td>260×360</td><td>200×280</td><td class="orient">Portrait</td><td>780×1080</td><td>Individual product on neutral bg. Product fills 80%. Consistent lighting.</td></tr>
+  <tr><td>29</td><td>Promise BG</td><td class="file">navy-pattern-bg.jpg</td><td>Full-width section bg</td><td>16:9</td><td>1920×1080</td><td>390×844</td><td class="orient">Landscape</td><td>3840×2160</td><td>Deep navy pattern. Most critical shared asset. Even distribution, no focal point.</td></tr>
+  <tr><td>30–33</td><td>Instagram 1–4</td><td class="file">instagram-1…4.jpg</td><td>Gallery thumbnails</td><td>5:6</td><td>250×300</td><td>200×240</td><td class="orient">Portrait</td><td>750×900</td><td>Lifestyle/product shots. Warm tones, organic feel.</td></tr>
+</tbody>
+</table>
+
+<!-- ============ SHOP PAGE ============ -->
+<div class="page-break"></div>
+<h2><span class="page-num">Page 2 of 7</span>Shop Page <code style="font-size:12px;color:#9A958F">/shop</code></h2>
+
+<table>
+<thead>
+  <tr><th>#</th><th>Section</th><th>File</th><th>Purpose</th><th>Ratio</th><th>Desktop px</th><th>Mobile px</th><th>Orient.</th><th>Min Res.</th><th>Composition / Safe Margins</th></tr>
+</thead>
+<tbody>
+  <tr><td>1</td><td>Hero</td><td class="file">navy-pattern-bg.jpg</td><td>Hero background</td><td>16:9</td><td>1920×1080</td><td>390×844</td><td class="orient">Landscape</td><td>Shared</td><td>Text overlay in center.</td></tr>
+  <tr><td>2</td><td>Product Cards</td><td class="file">Shopify-hosted</td><td>Product grid images</td><td>3:4</td><td>450×600</td><td>195×260</td><td class="orient">Portrait</td><td>1350×1800</td><td>Clean product on neutral bg. 10–15% margin. Badges overlay top-left — keep clear. Second image for hover state (alternate angle).</td></tr>
+</tbody>
+</table>
+
+<!-- ============ PRODUCT DETAIL ============ -->
+<h2><span class="page-num">Page 3 of 7</span>Product Detail Page <code style="font-size:12px;color:#9A958F">/product/:handle</code></h2>
+
+<table>
+<thead>
+  <tr><th>#</th><th>Section</th><th>File</th><th>Purpose</th><th>Ratio</th><th>Desktop px</th><th>Mobile px</th><th>Orient.</th><th>Min Res.</th><th>Composition / Safe Margins</th></tr>
+</thead>
+<tbody>
+  <tr><td>1</td><td>Main Gallery</td><td class="file">Shopify-hosted</td><td>Primary product (zoomable)</td><td>4:5</td><td>700×875</td><td>390×488</td><td class="orient">Portrait</td><td>2100×2625</td><td>Extremely sharp — 1.5× zoom on hover. Even studio lighting. 5% breathing room. Min 5–7 angles per product: front, back, side, detail, interior, strap, styled angle.</td></tr>
+  <tr><td>2</td><td>Thumbnails</td><td class="file">Shopify-hosted</td><td>Gallery thumbnails</td><td>4:5</td><td>80×100</td><td>64×80</td><td class="orient">Portrait</td><td>Auto-scaled</td><td>Same files as main gallery.</td></tr>
+  <tr><td>3</td><td>Promise Strip</td><td class="file">navy-pattern-bg.jpg</td><td>Trust badges bg</td><td>16:9</td><td>1920×auto</td><td>390×auto</td><td class="orient">Landscape</td><td>Shared</td><td>Icons only — no product images on top.</td></tr>
+  <tr><td>4</td><td>Related Products</td><td class="file">Shopify-hosted</td><td>Carousel cards</td><td>4:5</td><td>330×413</td><td>300×375</td><td class="orient">Portrait</td><td>1000×1250</td><td>Same as Shop page product cards.</td></tr>
+  <tr><td>5</td><td>Testimonials</td><td class="file">Shopify-hosted</td><td>Small circular thumbnails</td><td>1:1</td><td>96×96</td><td>80×80</td><td class="orient">Square</td><td>300×300</td><td>Rounded containers — center product to avoid clipping.</td></tr>
+</tbody>
+</table>
+
+<!-- ============ HANDBAG CARE ============ -->
+<div class="page-break"></div>
+<h2><span class="page-num">Page 4 of 7</span>Handbag Care Page <code style="font-size:12px;color:#9A958F">/handbag-care</code></h2>
+
+<table>
+<thead>
+  <tr><th>#</th><th>Section</th><th>File</th><th>Purpose</th><th>Ratio</th><th>Desktop px</th><th>Mobile px</th><th>Orient.</th><th>Min Res.</th><th>Composition / Safe Margins</th></tr>
+</thead>
+<tbody>
+  <tr><td>1</td><td>Hero</td><td class="file">navy-pattern-bg.jpg</td><td>Hero background</td><td>16:9</td><td>1920×auto</td><td>390×auto</td><td class="orient">Landscape</td><td>Shared</td><td>Text center overlay.</td></tr>
+  <tr><td>2</td><td>Daily Care</td><td class="file">care-daily.jpg</td><td>Care guide illustration</td><td>3:2</td><td>580×420</td><td>390×300</td><td class="orient">Landscape</td><td>1200×840</td><td>Lifestyle: daily bag use or care routine. Warm natural light. No text overlay.</td></tr>
+  <tr><td>3</td><td>Cleaning</td><td class="file">care-cleaning.jpg</td><td>Care guide illustration</td><td>3:2</td><td>580×420</td><td>390×300</td><td class="orient">Landscape</td><td>1200×840</td><td>Close-up of cleaning leather. Hands + soft cloth visible.</td></tr>
+  <tr><td>4</td><td>Storage</td><td class="file">care-storage.jpg</td><td>Care guide illustration</td><td>3:2</td><td>580×420</td><td>390×300</td><td class="orient">Landscape</td><td>1200×840</td><td>Bag in dust bag or on shelf. Organized, calming scene.</td></tr>
+  <tr><td>5</td><td>What to Avoid</td><td class="file">care-avoid.jpg</td><td>Care guide illustration</td><td>3:2</td><td>580×420</td><td>390×300</td><td class="orient">Landscape</td><td>1200×840</td><td>Conceptual/editorial approach showing what to avoid.</td></tr>
+  <tr><td>6</td><td>Professional Care</td><td class="file">care-professional.jpg</td><td>Care guide illustration</td><td>3:2</td><td>580×420</td><td>390×300</td><td class="orient">Landscape</td><td>1200×840</td><td>Artisan restoring/conditioning bag. Workshop setting.</td></tr>
+  <tr><td>7</td><td>Resources</td><td class="file">care-resources.jpg</td><td>Care guide illustration</td><td>3:2</td><td>580×420</td><td>390×300</td><td class="orient">Landscape</td><td>1200×840</td><td>Flat lay of care products/tools arranged aesthetically.</td></tr>
+  <tr><td>8</td><td>Leather Quote</td><td class="file">navy-pattern-bg.jpg</td><td>Quote section bg</td><td>16:9</td><td>1920×auto</td><td>390×auto</td><td class="orient">Landscape</td><td>Shared</td><td>—</td></tr>
+</tbody>
+</table>
+
+<!-- ============ OUR STORY ============ -->
+<h2><span class="page-num">Page 5 of 7</span>Our Story Page <code style="font-size:12px;color:#9A958F">/our-story</code></h2>
+
+<table>
+<thead>
+  <tr><th>#</th><th>Section</th><th>File</th><th>Purpose</th><th>Ratio</th><th>Desktop px</th><th>Mobile px</th><th>Orient.</th><th>Min Res.</th><th>Composition / Safe Margins</th></tr>
+</thead>
+<tbody>
+  <tr><td>1</td><td>Hero</td><td class="file">story-hero.jpg</td><td>Full-width hero image</td><td>16:9</td><td>1920×770</td><td>390×500</td><td class="orient">Landscape</td><td>3840×1540</td><td>40% dark overlay. Text in center. Subjects in upper/lower thirds. Craft/nature/workshop theme. Cinematic tone.</td></tr>
+  <tr><td>2</td><td>Founder</td><td class="file">story-founder.jpg</td><td>Founder portrait</td><td>5:6</td><td>200×240</td><td>200×240</td><td class="orient">Portrait</td><td>600×720</td><td>Headshot/upper-body. Warm natural light. Subject centered. Simple background.</td></tr>
+  <tr><td>3</td><td>Craft</td><td class="file">story-craft.jpg</td><td>Editorial artisan image</td><td>4:5</td><td>580×500</td><td>390×400</td><td class="orient">Portrait</td><td>1200×1000</td><td>Artisan at work — hands, tools, leather. Documentary style.</td></tr>
+  <tr><td>4</td><td>Leather Texture</td><td class="file">story-leather-texture.jpg</td><td>Full-height texture</td><td>3:4</td><td>580×600</td><td>390×500</td><td class="orient">Portrait</td><td>1200×1200</td><td>Extreme close-up of leather grain. Rich natural tones. Fill entire frame.</td></tr>
+  <tr><td>5–6</td><td>Founder / Values BG</td><td class="file">navy-pattern-bg.jpg</td><td>Section backgrounds</td><td>16:9</td><td>1920×auto</td><td>390×auto</td><td class="orient">Landscape</td><td>Shared</td><td>—</td></tr>
+</tbody>
+</table>
+
+<!-- ============ CONTACT ============ -->
+<h2><span class="page-num">Page 6 of 7</span>Contact Page <code style="font-size:12px;color:#9A958F">/contact</code></h2>
+
+<table>
+<thead>
+  <tr><th>#</th><th>Section</th><th>File</th><th>Purpose</th><th>Ratio</th><th>Desktop px</th><th>Mobile px</th><th>Orient.</th><th>Min Res.</th><th>Composition / Safe Margins</th></tr>
+</thead>
+<tbody>
+  <tr><td>1</td><td>Hero</td><td class="file">navy-pattern-bg.jpg</td><td>Hero background</td><td>16:9</td><td>1920×auto</td><td>390×auto</td><td class="orient">Landscape</td><td>Shared</td><td>—</td></tr>
+  <tr><td>2–4</td><td>Instagram Grid 1–3</td><td class="file">instagram-1…3.jpg</td><td>3×1 gallery thumbnails</td><td>1:1</td><td>170×170</td><td>115×115</td><td class="orient">Square</td><td>500×500</td><td>Displayed in square containers with hover zoom. Shared assets.</td></tr>
+</tbody>
+</table>
+
+<!-- ============ SHARED ============ -->
+<div class="page-break"></div>
+<h2><span class="page-num">Page 7 of 7</span>Shared / Global Assets</h2>
+
+<table>
+<thead>
+  <tr><th>#</th><th>Asset</th><th>File</th><th>Used On</th><th>Min Res.</th><th>Notes</th></tr>
+</thead>
+<tbody>
+  <tr><td>1</td><td>Navy Pattern BG</td><td class="file">navy-pattern-bg.jpg</td><td>Home, Shop, Product, Care, Story, Contact</td><td>3840×2160</td><td>Most critical shared asset. Deep navy, decorative. Cover sizing.</td></tr>
+  <tr><td>2</td><td>Section Pattern</td><td class="file">section-pattern.jpg</td><td>Product Detail (Trust Badges)</td><td>800×800 tile</td><td>Subtle tileable pattern at 6% opacity.</td></tr>
+  <tr><td>3</td><td>Curated Navy Pattern</td><td class="file">curated-navy-pattern.jpg</td><td>Home (Curated)</td><td>3840×2160</td><td>Cover background, similar to navy pattern.</td></tr>
+  <tr><td>4</td><td>Philosophy Pattern</td><td class="file">philosophy-pattern.jpg</td><td>Home (Philosophy)</td><td>800×800 tile</td><td>Dark decorative, seamless tile at 50% opacity.</td></tr>
+  <tr><td>5</td><td>Brand Logo</td><td class="file">ardori-logo.png</td><td>Home (Philosophy)</td><td>400×400 PNG</td><td>Transparent bg. Vector-quality.</td></tr>
+</tbody>
+</table>
+
+<!-- ============ GUIDELINES ============ -->
+<div class="page-break"></div>
+<h2 style="border-bottom: 2px solid #C9A86C;">General Photography Guidelines</h2>
+
+<div class="guidelines">
+  <h3>🎨 Lighting & Tone</h3>
+  <ul>
+    <li><strong>Warm, natural lighting</strong> for all lifestyle shots</li>
+    <li><strong>Even studio lighting</strong> for product-only shots (no harsh shadows)</li>
+    <li>Color temperature: warm neutral (5000–5500K)</li>
+    <li>Avoid cool/blue tones — the brand is earth-toned and organic</li>
+  </ul>
+</div>
+
+<div class="guidelines">
+  <h3>🎨 Brand Color Palette Reference</h3>
+  <ul>
+    <li><span class="color-swatch" style="background:#FAF8F5"></span><strong>#FAF8F5</strong> — Off-white (primary background)</li>
+    <li><span class="color-swatch" style="background:#F5F2ED"></span><strong>#F5F2ED</strong> — Warm off-white (secondary background)</li>
+    <li><span class="color-swatch" style="background:#121B2D"></span><strong>#121B2D</strong> — Deep navy</li>
+    <li><span class="color-swatch" style="background:#1A2332"></span><strong>#1A2332</strong> — Dark navy</li>
+    <li><span class="color-swatch" style="background:#C9A86C"></span><strong>#C9A86C</strong> — Gold accent</li>
+    <li><span class="color-swatch" style="background:#2C2824"></span><strong>#2C2824</strong> — Warm dark brown</li>
+  </ul>
+</div>
+
+<div class="guidelines">
+  <h3>📐 Product Photography Standards</h3>
+  <ul>
+    <li><strong>Minimum 5–7 angles per product:</strong> Front, Back, Side, Detail (stitching/hardware), Interior, Strap, Styled Angle</li>
+    <li>Product fills 70–80% of frame with consistent 10–15% breathing margin</li>
+    <li>Background: off-white to light beige (not pure white)</li>
+    <li>All product shots must work at <strong>1.5× zoom</strong> (hover-to-zoom feature)</li>
+    <li>Second alternate-angle image needed for hover state on product cards</li>
+  </ul>
+</div>
+
+<div class="guidelines">
+  <h3>🔲 Safe Margin Rules for Text Overlay Images</h3>
+  <ul>
+    <li><strong>Hero images:</strong> Keep center 40% width × 50% height clear of key subjects</li>
+    <li><strong>Section backgrounds (navy patterns):</strong> No focal subjects — even decorative distribution</li>
+    <li><strong>Care guide images:</strong> No text overlay — full creative freedom</li>
+  </ul>
+</div>
+
+<div class="guidelines">
+  <h3>📁 File Format & Delivery</h3>
+  <ul>
+    <li><strong>Photos:</strong> JPG, sRGB color profile, quality 85–90%</li>
+    <li><strong>Patterns/Logos:</strong> PNG with transparency where applicable</li>
+    <li><strong>Video:</strong> MP4, H.264, 1080p minimum, loop-friendly (seamless first/last frame)</li>
+    <li><strong>Naming convention:</strong> Use descriptive kebab-case names (e.g., <code>care-daily.jpg</code>, <code>values-lifestyle-1.jpg</code>)</li>
+  </ul>
+</div>
+
+<div class="footer-note">
+  © 2026 Ardori India &nbsp;·&nbsp; This document is confidential and intended for the creative team only.
+</div>
+
+</body>
+</html>
