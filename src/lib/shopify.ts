@@ -1,8 +1,8 @@
 // Shopify Storefront API Configuration
-const SHOPIFY_API_VERSION = '2025-07';
-const SHOPIFY_STORE_PERMANENT_DOMAIN = 'pixel-perfect-replica-l67r6.myshopify.com';
+const SHOPIFY_API_VERSION = '2025-01';
+const SHOPIFY_STORE_PERMANENT_DOMAIN = 'ardori-4.myshopify.com';
 const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
-const SHOPIFY_STOREFRONT_TOKEN = '75143fd857d71d1ac8a2a4d10908c38b';
+const SHOPIFY_STOREFRONT_TOKEN = '25cdc4fcd1db630eb76c585f1599e907';
 
 // Types
 export interface ShopifyProduct {
