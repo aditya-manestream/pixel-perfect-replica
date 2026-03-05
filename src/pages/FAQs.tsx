@@ -135,7 +135,7 @@ const FAQs = () => {
                   const isOpen = openItems[key];
                   
                   return (
-                    <div key={key} style={{ borderBottom: "1px solid #E8E4DF" }}>
+                    <div key={key} style={{ borderBottom: qIndex < category.questions.length - 1 ? "1px solid #E8E4DF" : "none" }}>
                       <button
                         onClick={() => toggleItem(key)}
                         className="w-full flex items-center justify-between py-5 text-left"
