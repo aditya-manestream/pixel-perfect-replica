@@ -90,7 +90,7 @@ const WatchShopSection = () => {
           className="font-serif text-[36px] lg:text-[48px] font-normal italic mb-4"
           style={{ color: "#2C2824" }}
         >
-          Watch & Shop
+          See it Styled
         </h2>
         <p
           className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto"
