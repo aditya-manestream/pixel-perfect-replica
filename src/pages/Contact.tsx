@@ -291,7 +291,7 @@ const Contact = () => {
                     </span>
                   </a>
                   <a
-                    href="https://facebook.com"
+                    href="https://www.facebook.com/profile.php?id=61588155480760"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 transition-opacity hover:opacity-60"
