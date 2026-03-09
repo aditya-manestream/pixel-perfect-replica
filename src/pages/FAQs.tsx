@@ -16,7 +16,7 @@ const faqs = [
     questions: [
       {
         q: "How long does shipping take?",
-        a: "We ship within 5–8 business days across India. International shipping typically takes 10–15 business days."
+        a: "We ship within 10 business days across India."
       },
       {
         q: "Do you offer free shipping?",
