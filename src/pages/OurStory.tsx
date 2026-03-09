@@ -91,25 +91,25 @@ const OurStory = () => {
             The Land. The Art. The Ardor.
           </h2>
           <p 
-            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9]" 
+            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7]" 
             style={{ color: "#7A7570" }}
           >
             India's landscapes are layered — from Himalayan blooms to tropical coasts, from desert flora to monsoon forests.
           </p>
           <p 
-            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9] mt-4" 
+            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7] mt-2" 
             style={{ color: "#7A7570" }}
           >
             Ardori reinterprets and translates this richness into design. Each silhouette draws subtle cues from the natural world — curves, symmetry, texture, movement.
           </p>
           <p 
-            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9] mt-4" 
+            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7] mt-2" 
             style={{ color: "#7A7570" }}
           >
             Our collections are released in small, capsule drops — intentional in quantity and deliberate in design.
           </p>
           <p 
-            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9] mt-4" 
+            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7] mt-2" 
             style={{ color: "#7A7570" }}
           >
             Ardori takes its name from "Ardor" — a fierce devotion to preserving the world around us while celebrating the art of the handmade.
