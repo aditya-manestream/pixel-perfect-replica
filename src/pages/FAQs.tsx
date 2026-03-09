@@ -33,7 +33,7 @@ const faqs = [
     questions: [
       {
         q: "What is your return policy?",
-        a: "We accept returns within 7 days of delivery for unused items in original packaging. Please visit our Returns page for complete details."
+        a: "We accept returns within 48 hours of delivery for unused items in original packaging. Please visit our Returns Page for complete details."
       },
       {
         q: "How do I initiate a return?",
