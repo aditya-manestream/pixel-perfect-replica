@@ -53,6 +53,11 @@ export interface ShopifyProduct {
       name: string;
       values: string[];
     }>;
+    metafields: Array<{
+      key: string;
+      value: string;
+      type: string;
+    } | null>;
   };
 }
 
