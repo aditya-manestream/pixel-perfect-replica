@@ -39,6 +39,8 @@ const Footer = () => {
                 href="https://www.instagram.com/ardoridesigns/"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="transition-all duration-300 hover:brightness-125"
+                style={{ color: "#9A958F" }}
                 aria-label="Instagram"
               >
                 <Instagram size={20} strokeWidth={1.2} />
@@ -47,6 +49,8 @@ const Footer = () => {
                 href="https://www.facebook.com/profile.php?id=61588155480760"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="transition-all duration-300 hover:brightness-125"
+                style={{ color: "#9A958F" }}
                 aria-label="Facebook"
               >
                 <Facebook size={20} strokeWidth={1.2} />
