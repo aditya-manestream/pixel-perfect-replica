@@ -124,14 +124,16 @@ const PRODUCTS_QUERY = `
               }
             }
           }
-      options {
-        name
-        values
-      }
-      metafields(identifiers: [{namespace: "custom", key: "what_fits_inside"}]) {
-        key
-        value
-        type
+          options {
+            name
+            values
+          }
+          metafields(identifiers: [{namespace: "custom", key: "what_fits_inside"}]) {
+            key
+            value
+            type
+          }
+        }
       }
     }
   }
