@@ -276,7 +276,7 @@ const Contact = () => {
                 </h3>
                 <div className="flex items-center gap-6">
                   <a
-                    href="https://instagram.com/ardori.official"
+                    href="https://www.instagram.com/ardoridesigns/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 transition-opacity hover:opacity-60"
