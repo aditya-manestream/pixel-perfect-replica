@@ -88,21 +88,31 @@ const OurStory = () => {
             className="font-serif text-[28px] md:text-[36px] lg:text-[42px] font-normal mb-8 leading-[1.3]" 
             style={{ color: "#2C2824" }}
           >
-            Rooted in Nature.
-            <br />
-            Designed for Life.
+            The Land. The Art. The Ardor.
           </h2>
           <p 
             className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9]" 
             style={{ color: "#7A7570" }}
           >
-            Ardori was born from a desire to bridge the gap between timeless luxury and ethical
-            responsibility. Our name, inspired by the concept of "Ardor"—a fierce devotion,
-            reflects our commitment to preserving nature and celebrating craftsmanship.
-            We draw our inspiration from India's diverse flora and fauna — from the gentle lotus
-            of tranquil ponds to the exotic peacock of Indian hills. These natural elements
-            influence our textures, colors, and structure, resulting in bags that feel organic yet
-            sophisticated.
+            India's landscapes are layered — from Himalayan blooms to tropical coasts, from desert flora to monsoon forests.
+          </p>
+          <p 
+            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9] mt-4" 
+            style={{ color: "#7A7570" }}
+          >
+            Ardori reinterprets and translates this richness into design. Each silhouette draws subtle cues from the natural world — curves, symmetry, texture, movement.
+          </p>
+          <p 
+            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9] mt-4" 
+            style={{ color: "#7A7570" }}
+          >
+            Our collections are released in small, capsule drops — intentional in quantity and deliberate in design.
+          </p>
+          <p 
+            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9] mt-4" 
+            style={{ color: "#7A7570" }}
+          >
+            Ardori takes its name from "Ardor" — a fierce devotion to preserving the world around us while celebrating the art of the handmade.
           </p>
         </motion.div>
       </section>
