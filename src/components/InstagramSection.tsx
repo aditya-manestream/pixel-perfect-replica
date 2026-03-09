@@ -37,7 +37,7 @@ const InstagramSection = () => {
           className="font-serif text-[28px] lg:text-[36px] font-normal italic mb-4"
           style={{ color: "#2C2824" }}
         >
-          @ardori.official
+          @ardoridesigns
         </h2>
 
         {/* Supporting text */}

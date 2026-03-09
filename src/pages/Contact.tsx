@@ -347,7 +347,7 @@ const Contact = () => {
                   style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
                 >
                   <Instagram size={16} strokeWidth={1.2} />
-                  @ardori.official
+                  @ardoridesigns
                   <ArrowRight size={14} strokeWidth={1.2} />
                 </a>
               </div>
