@@ -395,6 +395,53 @@ const ShopifyProductDetail = () => {
 
               {/* Accordion Sections */}
               <div className="space-y-0">
+                {/* What Fits Inside - from Shopify metafield */}
+                {(() => {
+                  const metafield = product.metafields?.find(m => m?.key === "what_fits_inside");
+                  if (!metafield?.value) return null;
+                  let items: string[] = [];
+                  try {
+                    const parsed = JSON.parse(metafield.value);
+                    items = Array.isArray(parsed) ? parsed : [metafield.value];
+                  } catch {
+                    items = metafield.value.split("\n").filter(Boolean);
+                  }
+                  if (items.length === 0) return null;
+                  return (
+                    <div style={{ borderBottom: "1px solid #E8E4DF" }}>
+                      <button
+                        onClick={() => toggleAccordion("fits")}
+                        className="w-full flex items-center justify-between py-5"
+                      >
+                        <h3 
+                          className="font-serif text-[18px] lg:text-[20px] font-normal"
+                          style={{ color: "#2C2824" }}
+                        >
+                          What Fits Inside
+                        </h3>
+                        {openAccordion === "fits" ? (
+                          <ChevronUp size={20} strokeWidth={1.5} style={{ color: "#3D3530" }} />
+                        ) : (
+                          <ChevronDown size={20} strokeWidth={1.5} style={{ color: "#3D3530" }} />
+                        )}
+                      </button>
+                      <div 
+                        className={`overflow-hidden transition-all duration-300 ${
+                          openAccordion === "fits" ? "max-h-96 pb-6" : "max-h-0"
+                        }`}
+                      >
+                        <ul className="space-y-2">
+                          {items.map((item, index) => (
+                            <li key={index} className="font-sans text-[13px] lg:text-[14px] leading-relaxed" style={{ color: "#5A5550" }}>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  );
+                })()}
+
                 {/* Specifications */}
                 <div style={{ borderBottom: "1px solid #E8E4DF" }}>
                   <button
@@ -505,53 +552,6 @@ const ShopifyProductDetail = () => {
                     </ul>
                   </div>
                 </div>
-
-                {/* What Fits Inside - from Shopify metafield */}
-                {(() => {
-                  const metafield = product.metafields?.find(m => m?.key === "what_fits_inside");
-                  if (!metafield?.value) return null;
-                  let items: string[] = [];
-                  try {
-                    const parsed = JSON.parse(metafield.value);
-                    items = Array.isArray(parsed) ? parsed : [metafield.value];
-                  } catch {
-                    items = metafield.value.split("\n").filter(Boolean);
-                  }
-                  if (items.length === 0) return null;
-                  return (
-                    <div style={{ borderBottom: "1px solid #E8E4DF" }}>
-                      <button
-                        onClick={() => toggleAccordion("fits")}
-                        className="w-full flex items-center justify-between py-5"
-                      >
-                        <h3 
-                          className="font-serif text-[18px] lg:text-[20px] font-normal"
-                          style={{ color: "#2C2824" }}
-                        >
-                          What Fits Inside
-                        </h3>
-                        {openAccordion === "fits" ? (
-                          <ChevronUp size={20} strokeWidth={1.5} style={{ color: "#3D3530" }} />
-                        ) : (
-                          <ChevronDown size={20} strokeWidth={1.5} style={{ color: "#3D3530" }} />
-                        )}
-                      </button>
-                      <div 
-                        className={`overflow-hidden transition-all duration-300 ${
-                          openAccordion === "fits" ? "max-h-96 pb-6" : "max-h-0"
-                        }`}
-                      >
-                        <ul className="space-y-2">
-                          {items.map((item, index) => (
-                            <li key={index} className="font-sans text-[13px] lg:text-[14px] leading-relaxed" style={{ color: "#5A5550" }}>
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  );
-                })()}
               </div>
             </motion.div>
           </div>
