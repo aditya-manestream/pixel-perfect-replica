@@ -41,8 +41,7 @@ const PhilosophySection = () => {
           className="font-serif text-[32px] lg:text-[42px] font-normal tracking-[0.08em] leading-[1.3] mb-10"
           style={{ color: "#F5F3F0" }}
         >
-          <span className="block" style={{ fontVariant: "small-caps" }}>Rooted in nature.</span>
-          <span className="block" style={{ fontVariant: "small-caps" }}>Crafted for life.</span>
+          Slow craft. Uncompromising quality.
         </motion.h2>
         
         {/* Monogram Logo */}
