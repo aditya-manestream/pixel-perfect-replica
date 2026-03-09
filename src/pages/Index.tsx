@@ -40,10 +40,7 @@ const Index = () => {
               lineHeight: 1.1,
               maxWidth: "90vw"
             }}>
-            Nature, shaped to 
-fit your grip
-            <br />
-            Enduring Craft
+            Nature, shaped to fit your grip
           </h1>
 
           {/* Subheadline */}
