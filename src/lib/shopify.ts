@@ -119,11 +119,14 @@ const PRODUCTS_QUERY = `
               }
             }
           }
-          options {
-            name
-            values
-          }
-        }
+      options {
+        name
+        values
+      }
+      metafields(identifiers: [{namespace: "custom", key: "what_fits_inside"}]) {
+        key
+        value
+        type
       }
     }
   }
@@ -177,6 +180,11 @@ const PRODUCT_BY_HANDLE_QUERY = `
       options {
         name
         values
+      }
+      metafields(identifiers: [{namespace: "custom", key: "what_fits_inside"}]) {
+        key
+        value
+        type
       }
     }
   }
