@@ -88,21 +88,31 @@ const OurStory = () => {
             className="font-serif text-[28px] md:text-[36px] lg:text-[42px] font-normal mb-8 leading-[1.3]" 
             style={{ color: "#2C2824" }}
           >
-            Rooted in Nature.
-            <br />
-            Designed for Life.
+            The Land. The Art. The Ardor.
           </h2>
           <p 
             className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9]" 
             style={{ color: "#7A7570" }}
           >
-            Ardori was born from a desire to bridge the gap between timeless luxury and ethical
-            responsibility. Our name, inspired by the concept of "Ardor"—a fierce devotion,
-            reflects our commitment to preserving nature and celebrating craftsmanship.
-            We draw our inspiration from India's diverse flora and fauna — from the gentle lotus
-            of tranquil ponds to the exotic peacock of Indian hills. These natural elements
-            influence our textures, colors, and structure, resulting in bags that feel organic yet
-            sophisticated.
+            India's landscapes are layered — from Himalayan blooms to tropical coasts, from desert flora to monsoon forests.
+          </p>
+          <p 
+            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9] mt-4" 
+            style={{ color: "#7A7570" }}
+          >
+            Ardori reinterprets and translates this richness into design. Each silhouette draws subtle cues from the natural world — curves, symmetry, texture, movement.
+          </p>
+          <p 
+            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9] mt-4" 
+            style={{ color: "#7A7570" }}
+          >
+            Our collections are released in small, capsule drops — intentional in quantity and deliberate in design.
+          </p>
+          <p 
+            className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.9] mt-4" 
+            style={{ color: "#7A7570" }}
+          >
+            Ardori takes its name from "Ardor" — a fierce devotion to preserving the world around us while celebrating the art of the handmade.
           </p>
         </motion.div>
       </section>
@@ -123,7 +133,7 @@ const OurStory = () => {
             className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-10" 
             style={{ color: "#C9A86C" }}
           >
-            THE FOUNDER
+            A NOTE FROM THE FOUNDER — EESHA
           </motion.p>
 
           <motion.div 
@@ -148,10 +158,31 @@ const OurStory = () => {
             className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto leading-[1.8]" 
             style={{ color: "rgba(255,255,255,0.8)" }}
           >
-            We believe true luxury lies in the harmony between nature and
-            craftsmanship. Each Ardori piece is a celebration of slow fashion,
-            ethically made using ancient vegetable-tanning techniques that
-            honor the environment and the hands that create them.
+            Ardori was born from my love for India's landscapes and a devotion to thoughtful design.
+          </motion.p>
+          <motion.p 
+            {...fadeInUp} 
+            transition={{ duration: 0.8, delay: 0.4 }} 
+            className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto leading-[1.8] mt-6" 
+            style={{ color: "rgba(255,255,255,0.8)" }}
+          >
+            Every bag is made in limited batches, using responsibly sourced leather that is crafted to last. We stand in quiet contrast to fast fashion through considerate creation, lending each Ardori piece an organic yet undeniably sophisticated character.
+          </motion.p>
+          <motion.p 
+            {...fadeInUp} 
+            transition={{ duration: 0.8, delay: 0.5 }} 
+            className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto leading-[1.8] mt-6" 
+            style={{ color: "rgba(255,255,255,0.8)" }}
+          >
+            This is why our leathers are strictly procured as a mindful byproduct and treated using natural, slow processes that take weeks to perfect. It requires patience, but it is the only way to create pieces that truly respect the environment, support our artisans, and grow more beautiful with the life you live.
+          </motion.p>
+          <motion.p 
+            {...fadeInUp} 
+            transition={{ duration: 0.8, delay: 0.6 }} 
+            className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto leading-[1.8] mt-6" 
+            style={{ color: "rgba(255,255,255,0.8)" }}
+          >
+            Ardori is my love letter to India, its craftsmanship and its rich nature. I hope this love translates well enough to you.
           </motion.p>
         </div>
       </section>
@@ -163,8 +194,7 @@ const OurStory = () => {
             className="font-serif text-[22px] md:text-[28px] lg:text-[32px] font-normal italic leading-[1.5] mb-8" 
             style={{ color: "#2C2824" }}
           >
-            "We believe that true luxury is a reflection of
-            the time, care, and hands that created it."
+            True luxury bridges the gap between nature's organic beauty and the uncompromising precision of the artisan's hands.
           </blockquote>
           <Link 
             to="/shop" 
