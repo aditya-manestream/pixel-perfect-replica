@@ -9,12 +9,6 @@ const UnboxingSection = () => {
           className="font-serif text-center text-[22px] md:text-[28px] lg:text-[32px] font-light italic leading-relaxed tracking-wide"
           style={{ color: "#5A5550" }}
         >
-          "True luxury is felt in the moment it is received."
-        </p>
-        <p
-          className="font-serif text-center text-[15px] md:text-[17px] lg:text-[19px] font-light leading-relaxed mt-6 max-w-[700px] mx-auto"
-          style={{ color: "#7A7570" }}
-        >
           True luxury is about making the intentional choice to step away from fleeting trends and embrace purposeful signature pieces that suit your style.
         </p>
       </div>
