@@ -186,7 +186,7 @@ const Contact = () => {
                         className="text-base"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1A1A1A" }}
                       >
-                        +91 XXXXX XXXXX
+                        TBD
                       </p>
                     </div>
                   </div>
