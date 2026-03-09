@@ -31,7 +31,7 @@ const CuratedSection = () => {
             className="font-serif text-[36px] lg:text-[48px] font-normal italic mb-4"
             style={{ color: "#F5F1E8" }}
           >
-            Curated For You
+            Curated for you
           </h2>
           <p 
             className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto"
