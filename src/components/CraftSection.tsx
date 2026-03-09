@@ -50,7 +50,11 @@ const CraftSection = () => {
             className="font-serif text-[14px] lg:text-[16px] font-light leading-[1.7] mb-10 max-w-[480px] mx-auto"
             style={{ color: "#A8B4C0" }}
           >
-            In a world of fast fashion, we choose the path of patience. Vegetable tanning is an organic method relying on natural tannins from bark and leaves. It takes up to 40 days to complete, resulting in leather that is rich in character, biodegradable, and uniquely yours.
+            Fast-fashion leather is processed using chromium and synthetic chemicals for speed and uniformity.
+            <br /><br />
+            We choose a slower path.
+            <br /><br />
+            Ardori leather is made using natural plant and bark extracts for a richer, more authentic finish. It is a traditional process that takes 40 days, making the leather biodegradable. It avoids heavy metals, reduces chemical impact, and develops a rich patina over time.
           </p>
 
           {/* Icon Bullet Points */}

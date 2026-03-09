@@ -78,10 +78,7 @@ const PhilosophySection = () => {
           className="font-serif text-[15px] lg:text-[17px] font-light leading-[1.8] mb-10 max-w-[650px] mx-auto"
           style={{ color: "#C5CCD6" }}
         >
-          We believe true luxury lies in the harmony between nature and
-          craftsmanship. Each Ardori piece is a celebration of slow fashion,
-          ethically made using ancient vegetable-tanning techniques that
-          honor the environment and the hands that create them.
+          Our leather is made from surplus cow and sheep hide. They are vegetable-tanned using plant-based extracts instead of harsh chemicals, then shaped and finished by skilled artisans. The result is leather that ages beautifully and carries natural character in every grain.
         </motion.p>
         
         {/* CTA Button */}

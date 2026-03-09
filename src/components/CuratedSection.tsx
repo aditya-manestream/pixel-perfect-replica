@@ -37,7 +37,7 @@ const CuratedSection = () => {
             className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto"
             style={{ color: "rgba(245, 241, 232, 0.8)" }}
           >
-            Discover our artisans' finest creations, each piece a celebration of heritage and luxury.
+            A thoughtful selection of Ardori pieces designed to complement everyday moments.
           </p>
         </div>
 
