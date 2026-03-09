@@ -133,7 +133,7 @@ const OurStory = () => {
             className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-10" 
             style={{ color: "#C9A86C" }}
           >
-            THE FOUNDER
+            A NOTE FROM THE FOUNDER — EESHA
           </motion.p>
 
           <motion.div 
