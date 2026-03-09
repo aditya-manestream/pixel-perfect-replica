@@ -194,8 +194,7 @@ const OurStory = () => {
             className="font-serif text-[22px] md:text-[28px] lg:text-[32px] font-normal italic leading-[1.5] mb-8" 
             style={{ color: "#2C2824" }}
           >
-            "We believe that true luxury is a reflection of
-            the time, care, and hands that created it."
+            True luxury bridges the gap between nature's organic beauty and the uncompromising precision of the artisan's hands.
           </blockquote>
           <Link 
             to="/shop" 
