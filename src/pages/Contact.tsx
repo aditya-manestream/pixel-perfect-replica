@@ -164,11 +164,11 @@ const Contact = () => {
                         Email
                       </p>
                       <a 
-                        href="mailto:ardori.work@gmail.com"
+                        href="mailto:love@ardorilabel.com"
                         className="text-base transition-opacity hover:opacity-70"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1A1A1A" }}
                       >
-                        ardori.work@gmail.com
+                        love@ardorilabel.com
                       </a>
                     </div>
                   </div>
