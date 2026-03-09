@@ -22,11 +22,11 @@ const Index = () => {
 
       {/* Hero Section */}
       <div className="relative w-full h-screen overflow-hidden">
-        <img 
+        <img
           src={heroBg}
           alt="ARDORI - Timeless Silhouettes, Enduring Craft"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+          className="absolute inset-0 w-full h-full object-cover" />
+        
         
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8">
@@ -38,10 +38,10 @@ const Index = () => {
               color: "#E8E4DF",
               fontSize: "clamp(2rem, 5vw + 1rem, 4.5rem)",
               lineHeight: 1.1,
-              maxWidth: "90vw",
-            }}
-          >
-            Timeless Silhouettes,
+              maxWidth: "90vw"
+            }}>
+            Nature, shaped to 
+fit your grip
             <br />
             Enduring Craft
           </h1>
@@ -56,20 +56,20 @@ const Index = () => {
               fontSize: "clamp(0.875rem, 1.5vw + 0.5rem, 1.25rem)",
               lineHeight: 1.6,
               marginBottom: "clamp(1.5rem, 3vw, 2.5rem)",
-              padding: "0 clamp(0.5rem, 2vw, 1rem)",
-            }}
-          >
-            Handcrafted luxury handbags inspired by India's heritage,
-            made for the modern woman.
+              padding: "0 clamp(0.5rem, 2vw, 1rem)"
+            }}>
+            
+            Handcrafted leather handbags inspired by India’s flora and fauna, made in small, intentional batches.
+
           </p>
 
           {/* Buttons - responsive: side-by-side on desktop, stacked on mobile */}
           <div
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full"
             style={{
-              padding: "0 clamp(1rem, 4vw, 2rem)",
-            }}
-          >
+              padding: "0 clamp(1rem, 4vw, 2rem)"
+            }}>
+            
             <Link
               to="/shop"
               className="w-full sm:w-auto font-sans text-[11px] sm:text-[12px] tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-90 text-center"
@@ -78,9 +78,9 @@ const Index = () => {
                 color: "#1A1A1A",
                 backgroundColor: "#E8E4DF",
                 padding: "clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem)",
-                minWidth: "180px",
-              }}
-            >
+                minWidth: "180px"
+              }}>
+              
               Shop Collection
             </Link>
             <Link
@@ -91,9 +91,9 @@ const Index = () => {
                 color: "#E8E4DF",
                 border: "1px solid rgba(232, 228, 223, 0.5)",
                 padding: "clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem)",
-                minWidth: "180px",
-              }}
-            >
+                minWidth: "180px"
+              }}>
+              
               Our Story
             </Link>
           </div>
@@ -135,8 +135,8 @@ const Index = () => {
 
       {/* Footer */}
       <Footer />
-    </div>
-  );
+    </div>);
+
 };
 
 export default Index;
