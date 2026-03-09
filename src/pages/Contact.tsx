@@ -340,7 +340,7 @@ const Contact = () => {
                   ))}
                 </div>
                 <a 
-                  href="https://instagram.com/ardori.official"
+                  href="https://www.instagram.com/ardoridesigns/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 mt-5 text-xs uppercase tracking-[0.12em] transition-opacity hover:opacity-60"
