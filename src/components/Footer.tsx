@@ -36,7 +36,9 @@ const Footer = () => {
             {/* Social Icons */}
             <div className="flex gap-5">
               <a
-                href="#"
+                href="https://www.instagram.com/ardoridesigns/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="transition-all duration-300 hover:brightness-125"
                 style={{ color: "#9A958F" }}
                 aria-label="Instagram"
@@ -44,7 +46,9 @@ const Footer = () => {
                 <Instagram size={20} strokeWidth={1.2} />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61588155480760"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="transition-all duration-300 hover:brightness-125"
                 style={{ color: "#9A958F" }}
                 aria-label="Facebook"

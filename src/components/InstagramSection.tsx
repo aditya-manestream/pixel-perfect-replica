@@ -37,7 +37,7 @@ const InstagramSection = () => {
           className="font-serif text-[28px] lg:text-[36px] font-normal italic mb-4"
           style={{ color: "#2C2824" }}
         >
-          @ardori.official
+          @ardoridesigns
         </h2>
 
         {/* Supporting text */}
@@ -89,7 +89,7 @@ const InstagramSection = () => {
       {/* CTA Button */}
       <div className="text-center px-6">
         <a
-          href="https://instagram.com/ardori.official"
+          href="https://www.instagram.com/ardoridesigns/"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase px-10 py-4 border transition-all duration-300 hover:border-[#3A3530] hover:text-[#2C2824]"

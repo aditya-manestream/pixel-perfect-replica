@@ -276,7 +276,7 @@ const Contact = () => {
                 </h3>
                 <div className="flex items-center gap-6">
                   <a
-                    href="https://instagram.com/ardori.official"
+                    href="https://www.instagram.com/ardoridesigns/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 transition-opacity hover:opacity-60"
@@ -291,7 +291,7 @@ const Contact = () => {
                     </span>
                   </a>
                   <a
-                    href="https://facebook.com"
+                    href="https://www.facebook.com/profile.php?id=61588155480760"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 transition-opacity hover:opacity-60"
@@ -323,7 +323,7 @@ const Contact = () => {
                   {[instagram1, instagram2, instagram3].map((image, index) => (
                     <a 
                       key={index}
-                      href="https://instagram.com/ardori.official" 
+                      href="https://www.instagram.com/ardoridesigns/" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer block"
@@ -340,14 +340,14 @@ const Contact = () => {
                   ))}
                 </div>
                 <a 
-                  href="https://instagram.com/ardori.official"
+                  href="https://www.instagram.com/ardoridesigns/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 mt-5 text-xs uppercase tracking-[0.12em] transition-opacity hover:opacity-60"
                   style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
                 >
                   <Instagram size={16} strokeWidth={1.2} />
-                  @ardori.official
+                  @ardoridesigns
                   <ArrowRight size={14} strokeWidth={1.2} />
                 </a>
               </div>
