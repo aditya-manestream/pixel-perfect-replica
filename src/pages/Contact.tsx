@@ -164,11 +164,11 @@ const Contact = () => {
                         Email
                       </p>
                       <a 
-                        href="mailto:ardori.work@gmail.com"
+                        href="mailto:love@ardorilabel.com"
                         className="text-base transition-opacity hover:opacity-70"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1A1A1A" }}
                       >
-                        ardori.work@gmail.com
+                        love@ardorilabel.com
                       </a>
                     </div>
                   </div>
@@ -186,7 +186,7 @@ const Contact = () => {
                         className="text-base"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1A1A1A" }}
                       >
-                        +91 XXXXX XXXXX
+                        TBD
                       </p>
                     </div>
                   </div>
@@ -204,8 +204,7 @@ const Contact = () => {
                         className="text-base"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1A1A1A" }}
                       >
-                        Mumbai, India<br />
-                        <span className="text-sm opacity-70">(Full address coming soon)</span>
+                        Mumbai, India
                       </p>
                     </div>
                   </div>
