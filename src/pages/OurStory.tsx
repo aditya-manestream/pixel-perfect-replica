@@ -158,10 +158,31 @@ const OurStory = () => {
             className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto leading-[1.8]" 
             style={{ color: "rgba(255,255,255,0.8)" }}
           >
-            We believe true luxury lies in the harmony between nature and
-            craftsmanship. Each Ardori piece is a celebration of slow fashion,
-            ethically made using ancient vegetable-tanning techniques that
-            honor the environment and the hands that create them.
+            Ardori was born from my love for India's landscapes and a devotion to thoughtful design.
+          </motion.p>
+          <motion.p 
+            {...fadeInUp} 
+            transition={{ duration: 0.8, delay: 0.4 }} 
+            className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto leading-[1.8] mt-6" 
+            style={{ color: "rgba(255,255,255,0.8)" }}
+          >
+            Every bag is made in limited batches, using responsibly sourced leather that is crafted to last. We stand in quiet contrast to fast fashion through considerate creation, lending each Ardori piece an organic yet undeniably sophisticated character.
+          </motion.p>
+          <motion.p 
+            {...fadeInUp} 
+            transition={{ duration: 0.8, delay: 0.5 }} 
+            className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto leading-[1.8] mt-6" 
+            style={{ color: "rgba(255,255,255,0.8)" }}
+          >
+            This is why our leathers are strictly procured as a mindful byproduct and treated using natural, slow processes that take weeks to perfect. It requires patience, but it is the only way to create pieces that truly respect the environment, support our artisans, and grow more beautiful with the life you live.
+          </motion.p>
+          <motion.p 
+            {...fadeInUp} 
+            transition={{ duration: 0.8, delay: 0.6 }} 
+            className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto leading-[1.8] mt-6" 
+            style={{ color: "rgba(255,255,255,0.8)" }}
+          >
+            Ardori is my love letter to India, its craftsmanship and its rich nature. I hope this love translates well enough to you.
           </motion.p>
         </div>
       </section>
