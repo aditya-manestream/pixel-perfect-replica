@@ -61,8 +61,7 @@ const PromiseSection = () => {
             className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto"
             style={{ color: "rgba(232, 228, 223, 0.75)" }}
           >
-            Every bag we create embodies our commitment to quality, ethics, and
-            timeless design
+            We are committed to high-quality materials, ethical production, and enduring design.
           </p>
         </div>
 

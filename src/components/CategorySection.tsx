@@ -38,13 +38,13 @@ const CategorySection = () => {
               className="font-serif text-[26px] lg:text-[30px] font-normal italic leading-tight"
               style={{ color: "#3D3530" }}
             >
-              Shapes inspired by nature.
+              The Collection
             </h2>
             <p 
               className="font-serif text-[15px] lg:text-[17px] font-light italic mt-1 mb-10 lg:mb-14"
               style={{ color: "#A8A096" }}
             >
-              Designed to move with you.
+              Curated to move with you
             </p>
 
             {/* Category List */}
