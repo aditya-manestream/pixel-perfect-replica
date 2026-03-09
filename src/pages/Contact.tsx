@@ -204,8 +204,7 @@ const Contact = () => {
                         className="text-base"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1A1A1A" }}
                       >
-                        Mumbai, India<br />
-                        <span className="text-sm opacity-70">(Full address coming soon)</span>
+                        Mumbai, India
                       </p>
                     </div>
                   </div>
