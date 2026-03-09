@@ -323,7 +323,7 @@ const Contact = () => {
                   {[instagram1, instagram2, instagram3].map((image, index) => (
                     <a 
                       key={index}
-                      href="https://instagram.com/ardori.official" 
+                      href="https://www.instagram.com/ardoridesigns/" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer block"
