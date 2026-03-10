@@ -241,7 +241,7 @@ const termsSections = [
           className="transition-opacity hover:opacity-70"
           style={{ color: "#8B7355" }}
         >
-          ardori.work@gmail.com
+          love@ardorilabel.com
         </a>
         .
       </p>

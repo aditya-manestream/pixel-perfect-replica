@@ -158,7 +158,7 @@ const OrderConfirmation = () => {
                 className="transition-opacity hover:opacity-70"
                 style={{ color: "#C9A86C" }}
               >
-                ardori.work@gmail.com
+                love@ardorilabel.com
               </a>
             </p>
 

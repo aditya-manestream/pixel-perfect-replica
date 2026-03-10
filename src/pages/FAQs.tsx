@@ -174,7 +174,7 @@ const FAQs = () => {
               Still have questions?
             </p>
             <a
-              href="mailto:ardori.work@gmail.com"
+              href="mailto:love@ardorilabel.com"
               className="inline-block font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-80"
               style={{
                 backgroundColor: "#2C2824",

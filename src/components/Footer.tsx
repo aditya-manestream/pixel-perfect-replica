@@ -56,7 +56,7 @@ const Footer = () => {
                 <Facebook size={20} strokeWidth={1.2} />
               </a>
               <a
-                href="#"
+                href="mailto:love@ardorilabel.com"
                 className="transition-all duration-300 hover:brightness-125"
                 style={{ color: "#9A958F" }}
                 aria-label="Email"
