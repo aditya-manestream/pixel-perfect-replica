@@ -136,8 +136,8 @@ const policySections = [
       <>
         <p className="mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.8" }}>
           Email us at{" "}
-          <a href="mailto:love@ardorilabel.com" className="transition-opacity hover:opacity-70" style={{ color: "#8B7355" }}>
-            love@ardorilabel.com
+          <a href="mailto:ardori.work@gmail.com" className="transition-opacity hover:opacity-70" style={{ color: "#8B7355" }}>
+            ardori.work@gmail.com
           </a>
           {" "}with:
         </p>
@@ -444,11 +444,11 @@ const Returns = () => {
                   >
                     Questions? Contact us at{" "}
                     <a 
-                      href="mailto:love@ardorilabel.com" 
+                      href="mailto:ardori.work@gmail.com" 
                       className="not-italic transition-opacity hover:opacity-70"
                       style={{ color: "#8B7355" }}
                     >
-                      love@ardorilabel.com
+                      ardori.work@gmail.com
                     </a>
                   </p>
                 </motion.div>

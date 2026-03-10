@@ -154,11 +154,11 @@ const OrderConfirmation = () => {
             >
               Questions about your order? Contact us at{" "}
               <a 
-                href="mailto:love@ardorilabel.com" 
+                href="mailto:ardori.work@gmail.com" 
                 className="transition-opacity hover:opacity-70"
                 style={{ color: "#C9A86C" }}
               >
-                love@ardorilabel.com
+                ardori.work@gmail.com
               </a>
             </p>
 

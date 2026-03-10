@@ -237,11 +237,11 @@ const termsSections = [
       <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.9" }}>
         For questions about these terms, contact us at{" "}
         <a 
-          href="mailto:love@ardorilabel.com" 
+          href="mailto:ardori.work@gmail.com" 
           className="transition-opacity hover:opacity-70"
           style={{ color: "#8B7355" }}
         >
-          love@ardorilabel.com
+          ardori.work@gmail.com
         </a>
         .
       </p>
