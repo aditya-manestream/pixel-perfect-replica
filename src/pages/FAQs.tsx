@@ -37,7 +37,7 @@ const faqs = [
       },
       {
         q: "How do I initiate a return?",
-        a: "Email us at ardori.work@gmail.com with your order number and reason for return. Our team will guide you through the process."
+        a: "Email us at love@ardorilabel.com with your order number and reason for return. Our team will guide you through the process."
       }
     ]
   },
