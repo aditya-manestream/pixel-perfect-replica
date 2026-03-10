@@ -240,11 +240,11 @@ const HandbagCare = () => {
                 >
                   For deep cleaning or repairs, contact us at{" "}
                   <a
-                    href="mailto:care@ardori.com"
+                    href="mailto:love@ardorilabel.com"
                     className="underline underline-offset-2 transition-opacity hover:opacity-70"
                     style={{ color: "#2C2824" }}
                   >
-                    care@ardori.com
+                    love@ardorilabel.com
                   </a>
                   . Our artisan team can help restore your bag to its original glory.
                 </p>

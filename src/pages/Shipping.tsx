@@ -395,11 +395,11 @@ const Shipping = () => {
                   >
                     Need help with your order? Contact us at{" "}
                     <a 
-                      href="mailto:ardori.work@gmail.com" 
+                      href="mailto:love@ardorilabel.com" 
                       className="not-italic transition-opacity hover:opacity-70"
                       style={{ color: "#8B7355" }}
                     >
-                      ardori.work@gmail.com
+                      love@ardorilabel.com
                     </a>
                   </p>
                 </motion.div>

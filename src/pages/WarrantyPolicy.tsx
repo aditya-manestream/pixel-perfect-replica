@@ -332,7 +332,7 @@ const WarrantyPolicy = () => {
             >
               Need help with a warranty claim?
             </h3>
-            <a href="mailto:ardori.work@gmail.com">
+            <a href="mailto:love@ardorilabel.com">
               <Button
                 className="px-10 py-6 rounded-none text-[13px] uppercase tracking-[0.2em] transition-all duration-300 hover:brightness-90"
                 style={{ 
