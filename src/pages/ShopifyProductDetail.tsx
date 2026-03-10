@@ -57,7 +57,7 @@ const ShopifyProductDetail = () => {
   if (error || !product) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
-        <Navbar />
+        <Navbar forceScrolled />
         <main className="pt-24 lg:pt-32 pb-16">
           <div className="max-w-[600px] mx-auto px-6 text-center">
             <h1 className="font-serif text-[28px] font-normal mb-4" style={{ color: "#2C2824" }}>
