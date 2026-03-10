@@ -154,7 +154,7 @@ const OrderConfirmation = () => {
             >
               Questions about your order? Contact us at{" "}
               <a 
-                href="mailto:ardori.work@gmail.com" 
+                href="mailto:love@ardorilabel.com" 
                 className="transition-opacity hover:opacity-70"
                 style={{ color: "#C9A86C" }}
               >
