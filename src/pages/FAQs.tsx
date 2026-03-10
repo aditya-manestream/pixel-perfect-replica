@@ -63,7 +63,7 @@ const faqs = [
       },
       {
         q: "How do I claim warranty?",
-        a: "Email us at ardori.work@gmail.com with your order number, photos of the issue, and a description of the problem."
+        a: "Email us at love@ardorilabel.com with your order number, photos of the issue, and a description of the problem."
       }
     ]
   }
