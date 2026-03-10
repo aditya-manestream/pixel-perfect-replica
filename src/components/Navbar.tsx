@@ -63,11 +63,11 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
           {/* Center - Logo */}
           <Link
             to="/"
-            className="absolute left-1/2 transform -translate-x-1/2 font-serif text-xl sm:text-2xl lg:text-[26px] font-normal tracking-[0.15em] transition-opacity duration-300 hover:opacity-80"
+            className="absolute left-1/2 transform -translate-x-1/2 font-serif text-xl sm:text-2xl lg:text-[26px] font-normal tracking-[0.08em] transition-opacity duration-300 hover:opacity-80"
             style={{ 
               fontFamily: "'Cormorant Garamond', serif",
               color: "#E8E4DF",
-              letterSpacing: "0.2em"
+              letterSpacing: "0.08em"
             }}
           >
             ARDORI
