@@ -19,7 +19,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <h2
-              className="font-serif text-[28px] lg:text-[32px] font-normal mb-6"
+              className="font-serif text-[28px] lg:text-[32px] font-bold mb-6"
               style={{ color: "#E8E4DF" }}
             >
               Ardori
