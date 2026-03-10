@@ -34,7 +34,7 @@ const ShopifyProductDetail = () => {
   if (loading) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
-        <Navbar forceScrolled />
+        <Navbar />
         <main className="pt-20 lg:pt-24 pb-16">
           <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
@@ -57,7 +57,7 @@ const ShopifyProductDetail = () => {
   if (error || !product) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
-        <Navbar forceScrolled />
+        <Navbar />
         <main className="pt-24 lg:pt-32 pb-16">
           <div className="max-w-[600px] mx-auto px-6 text-center">
             <h1 className="font-serif text-[28px] font-normal mb-4" style={{ color: "#2C2824" }}>
@@ -126,7 +126,7 @@ const ShopifyProductDetail = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
-      <Navbar forceScrolled />
+      <Navbar />
 
       <main className="pt-20 lg:pt-24 pb-16 lg:pb-24">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">

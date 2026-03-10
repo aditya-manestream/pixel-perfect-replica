@@ -9,9 +9,8 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 
-const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const showSolid = forceScrolled || isScrolled;
   const itemCount = useCartStore((state) => state.getItemCount());
 
   useEffect(() => {
@@ -32,12 +31,12 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
-        showSolid
+        isScrolled
           ? "backdrop-blur-sm shadow-lg"
           : "bg-transparent"
       }`}
       style={{
-        backgroundColor: showSolid ? "#121B2D" : "transparent",
+        backgroundColor: isScrolled ? "#121B2D" : "transparent",
       }}
     >
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
