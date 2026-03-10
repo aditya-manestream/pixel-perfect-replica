@@ -126,7 +126,7 @@ const ShopifyProductDetail = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
-      <Navbar />
+      <Navbar forceScrolled />
 
       <main className="pt-20 lg:pt-24 pb-16 lg:pb-24">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
