@@ -9,8 +9,9 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 
-const Navbar = () => {
+const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const showSolid = forceScrolled || isScrolled;
   const itemCount = useCartStore((state) => state.getItemCount());
 
   useEffect(() => {
