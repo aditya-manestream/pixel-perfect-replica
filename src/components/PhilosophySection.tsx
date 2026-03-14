@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
 import ardoriLogo from "@/assets/ardori-logo.png";
 const PhilosophySection = () => {
