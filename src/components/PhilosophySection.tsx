@@ -89,8 +89,8 @@ const PhilosophySection = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
         >
-          <a
-            href="#"
+          <Link
+            to="/our-story"
             className="inline-block px-8 py-3 font-sans text-[12px] tracking-[0.2em] uppercase border transition-all duration-300 hover:brightness-125 hover:contrast-110"
             style={{ 
               color: "#F5F3F0",
@@ -99,7 +99,7 @@ const PhilosophySection = () => {
             }}
           >
             Read Our Story
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
