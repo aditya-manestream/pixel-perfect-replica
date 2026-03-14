@@ -1,4 +1,5 @@
 import { Leaf, Heart, Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 import craftVideo from "@/assets/craft-video.mp4";
 
 const CraftSection = () => {
