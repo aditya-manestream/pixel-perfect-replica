@@ -1,4 +1,5 @@
 import { Leaf, Heart, Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 import craftVideo from "@/assets/craft-video.mp4";
 
 const CraftSection = () => {
@@ -101,8 +102,8 @@ const CraftSection = () => {
           </div>
 
           {/* CTA Button */}
-          <a
-            href="#"
+          <Link
+            to="/handbag-care"
             className="inline-block font-sans text-[11px] lg:text-[12px] tracking-[0.25em] uppercase px-10 py-4 border transition-all duration-300 hover:brightness-110"
             style={{ 
               color: "#FFFFFF",
@@ -111,7 +112,7 @@ const CraftSection = () => {
             }}
           >
             LEARN MORE
-          </a>
+          </Link>
         </div>
       </div>
     </section>
