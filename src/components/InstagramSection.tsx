@@ -1,15 +1,15 @@
 import { Instagram, ArrowRight } from "lucide-react";
 
-import instagramImg1 from "@/assets/instagram-1.jpg";
-import instagramImg2 from "@/assets/instagram-2.jpg";
-import instagramImg3 from "@/assets/instagram-3.jpg";
-import instagramImg4 from "@/assets/instagram-4.jpg";
+import instagramReel1 from "@/assets/instagram-reel-1.jpg";
+import instagramReel2 from "@/assets/instagram-reel-2.jpeg";
+import instagramReel3 from "@/assets/instagram-reel-3.jpg";
+import instagramReel4 from "@/assets/instagram-reel-4.jpg";
 
 const images = [
-  { id: 1, src: instagramImg1, alt: "Leather tote bag lifestyle" },
-  { id: 2, src: instagramImg2, alt: "Artisan craftsmanship" },
-  { id: 3, src: instagramImg3, alt: "Product flat lay" },
-  { id: 4, src: instagramImg4, alt: "Fashion editorial" },
+  { id: 1, src: instagramReel1, alt: "Born of earth and ardor", link: "https://www.instagram.com/p/DTvJdD6DCjj/" },
+  { id: 2, src: instagramReel2, alt: "Five Women Five Roop - Ardori celebrates all of you", link: "https://www.instagram.com/p/DUlMGHnDI38/?img_index=1" },
+  { id: 3, src: instagramReel3, alt: "Vegan leather vs animal leather", link: "https://www.instagram.com/p/DVlcC18k9pN/" },
+  { id: 4, src: instagramReel4, alt: "Noises Voices of Ardori", link: "https://www.instagram.com/p/DVtNQYEjGeh/" },
 ];
 
 const InstagramSection = () => {
@@ -20,7 +20,6 @@ const InstagramSection = () => {
     >
       {/* Header */}
       <div className="text-center mb-12 lg:mb-16 px-6">
-        {/* Eyebrow with decorative elements */}
         <div className="flex items-center justify-center gap-3 mb-4">
           <span style={{ color: "#C9A86C" }}>✦</span>
           <p
@@ -32,7 +31,6 @@ const InstagramSection = () => {
           <span style={{ color: "#C9A86C" }}>✦</span>
         </div>
 
-        {/* Handle */}
         <h2
           className="font-serif text-[28px] lg:text-[36px] font-normal italic mb-4"
           style={{ color: "#2C2824" }}
@@ -40,7 +38,6 @@ const InstagramSection = () => {
           @ardoridesigns
         </h2>
 
-        {/* Supporting text */}
         <p
           className="font-serif text-[15px] lg:text-[17px] font-light max-w-[450px] mx-auto"
           style={{ color: "#7A7570" }}
@@ -49,13 +46,16 @@ const InstagramSection = () => {
         </p>
       </div>
 
-      {/* Image Grid - Desktop: 4 columns, Mobile: horizontal scroll */}
+      {/* Image Grid */}
       <div className="mb-12 lg:mb-16">
         {/* Desktop Grid */}
         <div className="hidden md:flex justify-center gap-4 lg:gap-5 px-6">
           {images.map((image) => (
-            <div
+            <a
               key={image.id}
+              href={image.link}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group cursor-pointer overflow-hidden"
             >
               <img
@@ -63,7 +63,7 @@ const InstagramSection = () => {
                 alt={image.alt}
                 className="w-[200px] lg:w-[250px] h-[240px] lg:h-[300px] object-cover transition-all duration-400 ease-in-out group-hover:scale-[1.03] group-hover:contrast-[1.05]"
               />
-            </div>
+            </a>
           ))}
         </div>
 
@@ -71,8 +71,11 @@ const InstagramSection = () => {
         <div className="md:hidden overflow-x-auto scrollbar-hide">
           <div className="flex gap-4 px-6 w-max">
             {images.map((image) => (
-              <div
+              <a
                 key={image.id}
+                href={image.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group cursor-pointer overflow-hidden flex-shrink-0"
               >
                 <img
@@ -80,7 +83,7 @@ const InstagramSection = () => {
                   alt={image.alt}
                   className="w-[200px] h-[240px] object-cover transition-all duration-400 ease-in-out"
                 />
-              </div>
+              </a>
             ))}
           </div>
         </div>
