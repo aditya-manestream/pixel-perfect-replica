@@ -188,11 +188,11 @@ const TrackOrder = () => {
               Need help with your order?
             </p>
             <a
-              href="mailto:ardori.work@gmail.com"
+              href="mailto:love@ardorilabel.com"
               className="font-sans text-[12px] tracking-[0.05em] transition-opacity hover:opacity-70"
               style={{ color: "#C9A86C" }}
             >
-              ardori.work@gmail.com
+              love@ardorilabel.com
             </a>
           </motion.div>
         </div>

@@ -228,15 +228,15 @@ const OurStory = () => {
                   }}
                 />
                 <div className="relative z-10">
-                  <h3 
-                    className="font-serif text-[18px] lg:text-[20px] font-normal mb-2" 
-                    style={{ color: "#C9A86C" }}
+                  <h3
+                    className="font-serif text-[22px] lg:text-[26px] font-semibold mb-2"
+                    style={{ color: "#E0B978" }}
                   >
                     Slow Luxury
                   </h3>
-                  <p 
-                    className="font-serif text-[14px] font-light" 
-                    style={{ color: "rgba(255,255,255,0.8)" }}
+                  <p
+                    className="font-serif text-[15px] font-normal"
+                    style={{ color: "rgba(255,255,255,0.92)" }}
                   >
                     We don't believe in mass production or synthetic elegance.
                   </p>

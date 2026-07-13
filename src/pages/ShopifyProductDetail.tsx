@@ -465,8 +465,8 @@ const ShopifyProductDetail = () => {
                       openAccordion === "specs" ? "max-h-96 pb-6" : "max-h-0"
                     }`}
                   >
-                    <div 
-                      className="font-serif text-[14px] lg:text-[15px] font-light leading-relaxed"
+                    <div
+                      className="font-sans text-[13px] lg:text-[14px] leading-relaxed"
                       style={{ color: "#5A5550" }}
                       dangerouslySetInnerHTML={{ __html: product.descriptionHtml || product.description || "Premium quality materials and expert craftsmanship." }}
                     />

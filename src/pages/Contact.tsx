@@ -182,29 +182,32 @@ const Contact = () => {
                       >
                         WhatsApp
                       </p>
-                      <p 
-                        className="text-base"
+                      <a
+                        href="https://wa.me/919702304058"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-base transition-opacity hover:opacity-70"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1A1A1A" }}
                       >
-                        TBD
-                      </p>
+                        +91 97023 04058
+                      </a>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-4">
                     <MapPin size={20} strokeWidth={1.2} style={{ color: "#8B7355", marginTop: "2px" }} />
                     <div>
-                      <p 
+                      <p
                         className="text-xs uppercase tracking-[0.15em] mb-1"
                         style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
                       >
                         Location
                       </p>
-                      <p 
+                      <p
                         className="text-base"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1A1A1A" }}
                       >
-                        Mumbai, India
+                        Mumbai/Thane
                       </p>
                     </div>
                   </div>

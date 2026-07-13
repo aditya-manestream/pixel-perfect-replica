@@ -16,7 +16,7 @@ const sidebarLinks = [
   {
     category: "ORDER STATUS",
     links: [
-      { label: "Track Order", href: "#" },
+      { label: "Track Order", href: "/track-order" },
       { label: "Shipping Information", href: "/shipping", active: true },
     ]
   },
@@ -132,8 +132,8 @@ const shippingSections = [
     content: (
       <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.8" }}>
         If you experience any delivery issues, please contact us immediately at{" "}
-        <a href="mailto:ardori.work@gmail.com" className="transition-opacity hover:opacity-70" style={{ color: "#8B7355" }}>
-          ardori.work@gmail.com
+        <a href="mailto:love@ardorilabel.com" className="transition-opacity hover:opacity-70" style={{ color: "#8B7355" }}>
+          love@ardorilabel.com
         </a>
         {" "}with your order number.
       </p>
@@ -337,7 +337,7 @@ const Shipping = () => {
                 </p>
 
                 {/* CTA Button */}
-                <Link to="#">
+                <Link to="/track-order">
                   <Button
                     className="mb-12 px-8 py-6 rounded-none text-[13px] uppercase tracking-[0.2em] transition-all duration-300 hover:brightness-90"
                     style={{ 
@@ -395,11 +395,11 @@ const Shipping = () => {
                   >
                     Need help with your order? Contact us at{" "}
                     <a 
-                      href="mailto:ardori.work@gmail.com" 
+                      href="mailto:love@ardorilabel.com" 
                       className="not-italic transition-opacity hover:opacity-70"
                       style={{ color: "#8B7355" }}
                     >
-                      ardori.work@gmail.com
+                      love@ardorilabel.com
                     </a>
                   </p>
                 </motion.div>

@@ -240,11 +240,11 @@ const HandbagCare = () => {
                 >
                   For deep cleaning or repairs, contact us at{" "}
                   <a
-                    href="mailto:care@ardori.com"
+                    href="mailto:love@ardorilabel.com"
                     className="underline underline-offset-2 transition-opacity hover:opacity-70"
                     style={{ color: "#2C2824" }}
                   >
-                    care@ardori.com
+                    love@ardorilabel.com
                   </a>
                   . Our artisan team can help restore your bag to its original glory.
                 </p>
@@ -306,28 +306,73 @@ const HandbagCare = () => {
                 >
                   Explore our curated collection of guides and resources.
                 </p>
-                <ul className="space-y-4">
+                <div className="space-y-6">
                   {[
-                    { label: "Video Tutorials", href: "#" },
-                    { label: "Recommended Leather Care Products", href: "#" },
-                    { label: "Blog Articles on Leather Care", href: "#" },
-                    { label: "External Expert Resources", href: "#" },
-                  ].map((link, i) => (
-                    <li key={i}>
-                      <a
-                        href={link.href}
-                        className="font-serif text-[14px] lg:text-[16px] font-light underline underline-offset-4 transition-opacity hover:opacity-70 flex items-center gap-2"
-                        style={{ color: "#2C2824" }}
+                    {
+                      label: "Video Tutorials",
+                      links: [
+                        { label: "Vegetable-Tanned Leather Care", href: "https://www.youtube.com/watch?v=t7IP9NQSRt4" },
+                        { label: "Leather Care Basics", href: "https://www.youtube.com/watch?v=bHxL-VAlSfM" },
+                        { label: "Caring for Your Bag", href: "https://youtu.be/mv6okjH7TWs" },
+                        { label: "Suede Care (Quick Tips)", href: "https://youtube.com/shorts/3_nNo9bOHME" },
+                        { label: "Suede Care (Quick Tips) 2", href: "https://youtube.com/shorts/dK6aIQif2h8" },
+                      ],
+                    },
+                    {
+                      label: "Recommended Leather Care Products",
+                      links: [
+                        { label: "Leather Balm", href: "https://godbolegear.com/products/leather-balm" },
+                        { label: "Ultimate Leather Grooming Kit", href: "https://heliosindia.com/products/the-ultimate-leather-grooming-kit" },
+                        { label: "Leather Cream", href: "https://hidesign.com/products/100ml-cream-bottle-unisex-white-cream-bottle" },
+                        { label: "Nubuck & Suede Shoe Care Kit", href: "https://heliosindia.com/products/nubuck-suede-shoe-care-kit" },
+                        { label: "Suede & Leather Shoe Care", href: "https://www.birkenstock.in/products/suedeleather-shoecare-260131-0-0-u" },
+                      ],
+                    },
+                    {
+                      label: "Blog Articles on Leather Care",
+                      links: [
+                        { label: "Leather Goods and the Monsoon", href: "https://godbolegear.com/pages/leather-goods-and-the-monsoon" },
+                        { label: "Taking Care of Leather Goods", href: "https://godbolegear.com/pages/taking-care-of-leather-goods" },
+                        { label: "How to Care for Suede", href: "https://int.assemblylabel.com/pages/how-to-care-for-suede" },
+                      ],
+                    },
+                  ].map((group) => (
+                    <div key={group.label}>
+                      <p
+                        className="font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase mb-3"
+                        style={{ color: "#C9A86C" }}
                       >
-                        <span
-                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                          style={{ backgroundColor: "#C9A86C" }}
-                        />
-                        {link.label}
-                      </a>
-                    </li>
+                        {group.label}
+                      </p>
+                      <ul className="space-y-2.5">
+                        {group.links.map((link, i) => (
+                          <li key={i}>
+                            <a
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-serif text-[14px] lg:text-[15px] font-light underline underline-offset-4 transition-opacity hover:opacity-70 flex items-center gap-2"
+                              style={{ color: "#2C2824" }}
+                            >
+                              <span
+                                className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                                style={{ backgroundColor: "#C9A86C" }}
+                              />
+                              {link.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
+                </div>
+                <p
+                  className="font-serif text-[12px] lg:text-[13px] font-light italic mt-8 leading-[1.7]"
+                  style={{ color: "#9A958F" }}
+                >
+                  External resources and links are provided for educational purposes.
+                  All trademarks, videos, and content belong to their respective owners.
+                </p>
               </div>
             </div>
           </motion.div>

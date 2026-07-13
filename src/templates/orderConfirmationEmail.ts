@@ -201,8 +201,8 @@ export const generateOrderConfirmationEmail = (data: OrderEmailData): string => 
               <p style="margin: 0 0 10px; font-size: 14px; color: #6B6B6B;">
                 Questions about your order?
               </p>
-              <a href="mailto:ardori.work@gmail.com" style="color: #8B7355; text-decoration: none; font-size: 14px;">
-                ardori.work@gmail.com
+              <a href="mailto:love@ardorilabel.com" style="color: #8B7355; text-decoration: none; font-size: 14px;">
+                love@ardorilabel.com
               </a>
             </td>
           </tr>

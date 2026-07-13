@@ -6,7 +6,7 @@ import categoryCrossbody from "@/assets/category-crossbody.jpg";
 import categoryPurse from "@/assets/category-purse.jpg";
 
 const categories = [
-  { id: "mining", label: "MINING" },
+  { id: "mining", label: "MINIBAG" },
   { id: "baguette", label: "BAGUETTE" },
   { id: "tote", label: "TOTE" },
   { id: "crossbody", label: "CROSSBODY" },

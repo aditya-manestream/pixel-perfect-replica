@@ -214,14 +214,13 @@ const Footer = () => {
               className="font-serif text-[16px] lg:text-[18px] font-normal italic mb-3"
               style={{ color: "#E8E4DF" }}
             >
-              Join our newsletter
+              Get 2% off your order
             </h4>
             <p
               className="font-serif text-[13px] lg:text-[14px] font-light mb-6"
               style={{ color: "#7A7570" }}
             >
-              Subscribe for exclusive access to new launches, events and archive
-              sales.
+              Sign up with your email to receive an additional 2% off.
             </p>
 
             <form onSubmit={handleSubscribe} className="flex items-center gap-4">
@@ -244,7 +243,7 @@ const Footer = () => {
                 className="font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase transition-opacity duration-300 hover:opacity-100"
                 style={{ color: "#E8E4DF", opacity: 0.9 }}
               >
-                SUBSCRIBE
+                GET CODE
               </button>
             </form>
           </div>
