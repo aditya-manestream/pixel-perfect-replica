@@ -25,9 +25,18 @@ const Index = () => {
         <img
           src={heroBg}
           alt="ARDORI - Timeless Silhouettes, Enduring Craft"
-          className="absolute inset-0 w-full h-full object-cover" />
-        
-        
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "75% 55%" }} />
+
+        {/* Scrim so the headline stays readable regardless of what's behind it */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(10,14,20,0.45) 0%, rgba(10,14,20,0.30) 35%, rgba(10,14,20,0.45) 65%, rgba(10,14,20,0.55) 100%)",
+          }}
+        />
+
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8">
           {/* Headline with fluid typography */}

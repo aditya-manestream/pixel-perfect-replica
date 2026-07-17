@@ -279,7 +279,7 @@ const HandbagCare = () => {
                   <img
                     src={careResources}
                     alt="Leather Care Resources"
-                    className="w-full h-[300px] lg:h-[420px] object-cover"
+                    className="w-full h-[300px] lg:h-[420px] object-cover object-bottom"
                   />
                 </div>
               </div>
@@ -315,7 +315,7 @@ const HandbagCare = () => {
                         { label: "Leather Care Basics", href: "https://www.youtube.com/watch?v=bHxL-VAlSfM" },
                         { label: "Caring for Your Bag", href: "https://youtu.be/mv6okjH7TWs" },
                         { label: "Suede Care (Quick Tips)", href: "https://youtube.com/shorts/3_nNo9bOHME" },
-                        { label: "Suede Care (Quick Tips) 2", href: "https://youtube.com/shorts/dK6aIQif2h8" },
+                        { label: "More Suede Care Tips", href: "https://youtube.com/shorts/dK6aIQif2h8" },
                       ],
                     },
                     {

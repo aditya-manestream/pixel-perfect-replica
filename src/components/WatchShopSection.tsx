@@ -9,11 +9,11 @@ import shopProduct4 from "@/assets/shop-product-4.jpg";
 import shopProduct5 from "@/assets/shop-product-5.jpg";
 
 const products = [
-  { id: 0, image: shopProduct1, name: "Cognac Tote", isNew: true },
-  { id: 1, image: shopProduct2, name: "Olive Crossbody", isNew: true },
-  { id: 2, image: shopProduct3, name: "Burgundy Clutch", isNew: false },
-  { id: 3, image: shopProduct4, name: "Sage Shoulder Bag", isNew: true },
-  { id: 4, image: shopProduct5, name: "Camel Tote", isNew: true },
+  { id: 0, image: shopProduct1, name: "Cognac Tote", isNew: true, position: "20% 65%" },
+  { id: 1, image: shopProduct2, name: "Olive Crossbody", isNew: true, position: "center 60%" },
+  { id: 2, image: shopProduct3, name: "Burgundy Clutch", isNew: false, position: "center center" },
+  { id: 3, image: shopProduct4, name: "Sage Shoulder Bag", isNew: true, position: "center 78%" },
+  { id: 4, image: shopProduct5, name: "Rose Minibag", isNew: true, position: "center center" },
 ];
 
 const WatchShopSection = () => {
@@ -164,6 +164,7 @@ const WatchShopSection = () => {
                   src={product.image}
                   alt={product.name}
                   className="w-full h-[280px] lg:h-[360px] object-cover"
+                  style={{ objectPosition: product.position }}
                 />
               </div>
             </motion.div>

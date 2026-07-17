@@ -20,6 +20,8 @@ const values = [
     icon: "leaf",
     lifestyleImage: lifestyleImg1,
     productImage: productImg1,
+    lifestylePosition: "65% 75%",
+    productPosition: "center center",
   },
   {
     id: 1,
@@ -27,6 +29,8 @@ const values = [
     icon: "circle",
     lifestyleImage: lifestyleImg2,
     productImage: productImg2,
+    lifestylePosition: "30% center",
+    productPosition: "65% 45%",
   },
   {
     id: 2,
@@ -34,6 +38,8 @@ const values = [
     icon: "mountain",
     lifestyleImage: lifestyleImg3,
     productImage: productImg3,
+    lifestylePosition: "75% 80%",
+    productPosition: "center 40%",
   },
   {
     id: 3,
@@ -41,6 +47,8 @@ const values = [
     icon: "clock",
     lifestyleImage: lifestyleImg4,
     productImage: productImg4,
+    lifestylePosition: "60% 75%",
+    productPosition: "center 35%",
   },
 ];
 
@@ -170,6 +178,7 @@ const ValuesSection = () => {
                 src={activeValue.lifestyleImage}
                 alt="Lifestyle"
                 className="absolute inset-0 w-full h-full object-cover"
+                style={{ objectPosition: activeValue.lifestylePosition }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -237,6 +246,7 @@ const ValuesSection = () => {
                 src={activeValue.productImage}
                 alt="Product"
                 className="absolute inset-0 w-full h-full object-cover"
+                style={{ objectPosition: activeValue.productPosition }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}

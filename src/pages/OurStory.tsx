@@ -271,7 +271,7 @@ const OurStory = () => {
               </div>
               {/* Large leather texture image */}
               <div className="overflow-hidden">
-                <img src={storyLeatherTexture} alt="Leather texture" className="w-full h-[500px] lg:h-[600px] object-cover" />
+                <img src={storyLeatherTexture} alt="Leather texture" className="w-full h-[500px] lg:h-[600px] object-cover object-bottom" />
               </div>
             </motion.div>
           </div>

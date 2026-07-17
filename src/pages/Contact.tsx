@@ -323,18 +323,22 @@ const Contact = () => {
                   Follow Our Journey
                 </h3>
                 <div className="grid grid-cols-3 gap-2.5">
-                  {[instagram1, instagram2, instagram3].map((image, index) => (
-                    <a 
+                  {[
+                    { src: instagram1, link: "https://www.instagram.com/p/DTvJdD6DCjj/" },
+                    { src: instagram2, link: "https://www.instagram.com/p/DUlMGHnDI38/?img_index=1" },
+                    { src: instagram3, link: "https://www.instagram.com/p/DVlcC18k9pN/" },
+                  ].map((image, index) => (
+                    <a
                       key={index}
-                      href="https://www.instagram.com/ardoridesigns/" 
-                      target="_blank" 
+                      href={image.link}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="group relative aspect-square rounded-lg overflow-hidden cursor-pointer block"
                     >
-                      <img 
-                        src={image} 
+                      <img
+                        src={image.src}
                         alt={`Instagram ${index + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                         <Eye size={24} className="text-white" strokeWidth={1.5} />

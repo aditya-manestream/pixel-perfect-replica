@@ -21,6 +21,17 @@ const categoryImages: Record<string, string> = {
   purse: categoryPurse,
 };
 
+// Each source photo frames the bag differently (most are shot with a lot of
+// empty space above), so the crop has to be tuned per image or the bag gets
+// cut off by the 4:3 container.
+const categoryImagePosition: Record<string, string> = {
+  mining: "center 80%",
+  baguette: "center 60%",
+  tote: "center 20%",
+  crossbody: "center 80%",
+  purse: "center 40%",
+};
+
 const CategorySection = () => {
   const [activeCategory, setActiveCategory] = useState("mining");
 
@@ -79,6 +90,7 @@ const CategorySection = () => {
                 className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out"
                 style={{
                   opacity: category.id === activeCategory ? 1 : 0,
+                  objectPosition: categoryImagePosition[category.id],
                 }}
               />
             ))}
