@@ -44,11 +44,13 @@ const ShopifyCart = () => {
     promoMessage,
     applyPromoCode,
     removePromoCode,
-    createCheckout,
+    clearCart,
     isLoading,
   } = useCartStore();
 
+  const navigate = useNavigate();
   const [promoInput, setPromoInput] = useState("");
+  const [payLoading, setPayLoading] = useState(false);
 
   const handleApplyPromo = () => {
     if (promoInput.trim()) {
@@ -57,9 +59,70 @@ const ShopifyCart = () => {
   };
 
   const handleCheckout = async () => {
-    const checkoutUrl = await createCheckout();
-    if (checkoutUrl) {
-      window.open(checkoutUrl, '_blank');
+    const totalRupees = getTotal();
+    const amountPaise = Math.round(totalRupees * 100);
+    if (amountPaise < 100) {
+      toast({ title: "Cart total too low", description: "Minimum order is ₹1.", variant: "destructive" });
+      return;
+    }
+
+    setPayLoading(true);
+    try {
+      const ok = await loadRazorpayScript();
+      if (!ok) throw new Error("Failed to load payment gateway");
+
+      const { data, error } = await supabase.functions.invoke("create-razorpay-order", {
+        body: { amount: amountPaise, currency: "INR", receipt: `ardori_${Date.now()}` },
+      });
+      if (error || !data?.order_id) throw new Error(error?.message || "Could not create order");
+
+      const rzp = new window.Razorpay({
+        key: data.key_id,
+        amount: data.amount,
+        currency: data.currency,
+        order_id: data.order_id,
+        name: "Ardori",
+        description: `Order of ${itemCount} item(s)`,
+        theme: { color: "#121B2D" },
+        handler: async (response: any) => {
+          try {
+            const { data: verify, error: verr } = await supabase.functions.invoke(
+              "verify-razorpay-payment",
+              {
+                body: {
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                },
+              }
+            );
+            if (verr || !verify?.verified) {
+              toast({ title: "Payment verification failed", description: "Please contact support.", variant: "destructive" });
+              return;
+            }
+            toast({ title: "Payment successful", description: `Payment ID: ${verify.payment_id}` });
+            clearCart();
+            navigate("/order-confirmation", { state: { paymentId: verify.payment_id, orderId: verify.order_id } });
+          } catch (e: any) {
+            toast({ title: "Verification error", description: e.message, variant: "destructive" });
+          }
+        },
+        modal: {
+          ondismiss: () => {
+            toast({ title: "Payment cancelled" });
+          },
+        },
+      });
+
+      rzp.on("payment.failed", (resp: any) => {
+        toast({ title: "Payment failed", description: resp.error?.description || "Try again.", variant: "destructive" });
+      });
+
+      rzp.open();
+    } catch (e: any) {
+      toast({ title: "Checkout error", description: e.message, variant: "destructive" });
+    } finally {
+      setPayLoading(false);
     }
   };
 
