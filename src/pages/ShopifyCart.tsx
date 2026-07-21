@@ -469,7 +469,7 @@ const ShopifyCart = () => {
                   className="mt-4 font-sans text-[11px] text-center"
                   style={{ color: "#9A958F" }}
                 >
-                  Secure checkout powered by Shopify
+                  Secure checkout powered by Razorpay
                 </p>
               </div>
             </motion.div>
