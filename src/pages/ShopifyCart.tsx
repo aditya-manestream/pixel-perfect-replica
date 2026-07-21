@@ -1,11 +1,29 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Minus, Plus, Trash2, ArrowLeft, Tag, X, ShoppingBag } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useCartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/lib/shopify";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
+
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
+
+const loadRazorpayScript = () =>
+  new Promise<boolean>((resolve) => {
+    if (window.Razorpay) return resolve(true);
+    const s = document.createElement("script");
+    s.src = "https://checkout.razorpay.com/v1/checkout.js";
+    s.onload = () => resolve(true);
+    s.onerror = () => resolve(false);
+    document.body.appendChild(s);
+  });
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -26,11 +44,13 @@ const ShopifyCart = () => {
     promoMessage,
     applyPromoCode,
     removePromoCode,
-    createCheckout,
+    clearCart,
     isLoading,
   } = useCartStore();
 
+  const navigate = useNavigate();
   const [promoInput, setPromoInput] = useState("");
+  const [payLoading, setPayLoading] = useState(false);
 
   const handleApplyPromo = () => {
     if (promoInput.trim()) {
@@ -39,9 +59,70 @@ const ShopifyCart = () => {
   };
 
   const handleCheckout = async () => {
-    const checkoutUrl = await createCheckout();
-    if (checkoutUrl) {
-      window.open(checkoutUrl, '_blank');
+    const totalRupees = getTotal();
+    const amountPaise = Math.round(totalRupees * 100);
+    if (amountPaise < 100) {
+      toast({ title: "Cart total too low", description: "Minimum order is ₹1.", variant: "destructive" });
+      return;
+    }
+
+    setPayLoading(true);
+    try {
+      const ok = await loadRazorpayScript();
+      if (!ok) throw new Error("Failed to load payment gateway");
+
+      const { data, error } = await supabase.functions.invoke("create-razorpay-order", {
+        body: { amount: amountPaise, currency: "INR", receipt: `ardori_${Date.now()}` },
+      });
+      if (error || !data?.order_id) throw new Error(error?.message || "Could not create order");
+
+      const rzp = new window.Razorpay({
+        key: data.key_id,
+        amount: data.amount,
+        currency: data.currency,
+        order_id: data.order_id,
+        name: "Ardori",
+        description: `Order of ${itemCount} item(s)`,
+        theme: { color: "#121B2D" },
+        handler: async (response: any) => {
+          try {
+            const { data: verify, error: verr } = await supabase.functions.invoke(
+              "verify-razorpay-payment",
+              {
+                body: {
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                },
+              }
+            );
+            if (verr || !verify?.verified) {
+              toast({ title: "Payment verification failed", description: "Please contact support.", variant: "destructive" });
+              return;
+            }
+            toast({ title: "Payment successful", description: `Payment ID: ${verify.payment_id}` });
+            clearCart();
+            navigate("/order-confirmation", { state: { paymentId: verify.payment_id, orderId: verify.order_id } });
+          } catch (e: any) {
+            toast({ title: "Verification error", description: e.message, variant: "destructive" });
+          }
+        },
+        modal: {
+          ondismiss: () => {
+            toast({ title: "Payment cancelled" });
+          },
+        },
+      });
+
+      rzp.on("payment.failed", (resp: any) => {
+        toast({ title: "Payment failed", description: resp.error?.description || "Try again.", variant: "destructive" });
+      });
+
+      rzp.open();
+    } catch (e: any) {
+      toast({ title: "Checkout error", description: e.message, variant: "destructive" });
+    } finally {
+      setPayLoading(false);
     }
   };
 
@@ -363,7 +444,7 @@ const ShopifyCart = () => {
                 {/* Checkout Button */}
                 <button
                   onClick={handleCheckout}
-                  disabled={isLoading}
+                  disabled={payLoading}
                   className="w-full font-sans text-[12px] lg:text-[13px] tracking-[0.15em] uppercase transition-all hover:opacity-90 disabled:opacity-60"
                   style={{
                     backgroundColor: "#2C2824",
@@ -371,7 +452,7 @@ const ShopifyCart = () => {
                     padding: "16px 24px",
                   }}
                 >
-                  {isLoading ? "Creating Checkout..." : "Proceed to Checkout"}
+                  {payLoading ? "Processing..." : "Pay with Razorpay"}
                 </button>
 
                 {/* Free Shipping Note */}
@@ -388,7 +469,7 @@ const ShopifyCart = () => {
                   className="mt-4 font-sans text-[11px] text-center"
                   style={{ color: "#9A958F" }}
                 >
-                  Secure checkout powered by Shopify
+                  Secure checkout powered by Razorpay
                 </p>
               </div>
             </motion.div>
