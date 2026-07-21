@@ -444,7 +444,7 @@ const ShopifyCart = () => {
                 {/* Checkout Button */}
                 <button
                   onClick={handleCheckout}
-                  disabled={isLoading}
+                  disabled={payLoading}
                   className="w-full font-sans text-[12px] lg:text-[13px] tracking-[0.15em] uppercase transition-all hover:opacity-90 disabled:opacity-60"
                   style={{
                     backgroundColor: "#2C2824",
@@ -452,7 +452,7 @@ const ShopifyCart = () => {
                     padding: "16px 24px",
                   }}
                 >
-                  {isLoading ? "Creating Checkout..." : "Proceed to Checkout"}
+                  {payLoading ? "Processing..." : "Pay with Razorpay"}
                 </button>
 
                 {/* Free Shipping Note */}
