@@ -41,7 +41,7 @@ const CategorySection = () => {
       style={{ backgroundColor: "#F7F5F2" }}
     >
       <div className="max-w-[1400px] mx-auto px-8 lg:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
           {/* Left Column - Text */}
           <div className="pt-2 lg:pt-6">
             {/* Heading */}
@@ -80,8 +80,8 @@ const CategorySection = () => {
             </nav>
           </div>
 
-          {/* Right Column - Image */}
-          <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
+          {/* Right Column - Image (matches text column height) */}
+          <div className="relative w-full h-full min-h-[380px] lg:min-h-0 aspect-[4/3] lg:aspect-auto">
             {categories.map((category) => (
               <img
                 key={category.id}
@@ -96,6 +96,7 @@ const CategorySection = () => {
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );

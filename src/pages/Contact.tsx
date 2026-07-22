@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Instagram, Facebook, Send, Upload, X, Eye, ArrowRight } from "lucide-react";
-import instagram1 from "@/assets/instagram-1.jpg";
-import instagram2 from "@/assets/instagram-2.jpg";
-import instagram3 from "@/assets/instagram-3.jpg";
-import instagram4 from "@/assets/instagram-4.jpg";
+import instagram1 from "@/assets/instagram-reel-1.jpg";
+import instagram2 from "@/assets/instagram-reel-2.jpeg";
+import instagram3 from "@/assets/instagram-reel-3.jpg";
+import instagram4 from "@/assets/instagram-reel-4.jpg";
 import curatedDetail from "@/assets/curated-detail.jpg";
 import curatedTote from "@/assets/curated-tote.jpg";
 import storyLeatherTexture from "@/assets/story-leather-texture.jpg";

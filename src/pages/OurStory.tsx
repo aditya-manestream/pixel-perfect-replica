@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InstagramSection from "@/components/InstagramSection";
 import storyHero from "@/assets/story-hero.jpg";
-import storyFounder from "@/assets/story-founder.jpg";
+import storyFounder from "@/assets/founder-eesha.jpg";
 import storyCraft from "@/assets/story-craft.jpg";
 import storyLeatherTexture from "@/assets/story-leather-texture.jpg";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";

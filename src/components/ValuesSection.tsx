@@ -169,9 +169,9 @@ const ValuesSection = () => {
       style={{ backgroundColor: "#F5F2ED" }}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-stretch">
           {/* Left Image - Lifestyle */}
-          <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
+          <div className="relative w-full aspect-[3/4] lg:aspect-auto lg:h-full lg:min-h-[460px] overflow-hidden rounded-sm">
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeValue.lifestyleImage}
@@ -189,19 +189,19 @@ const ValuesSection = () => {
 
           {/* Center - Values List */}
           <div
-            className="flex flex-col items-center py-8 lg:py-12"
+            className="flex flex-col items-center py-6 lg:py-8"
             onMouseLeave={handleMouseLeave}
           >
             {/* Header */}
             <p
-              className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-10 lg:mb-14"
+              className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-8 lg:mb-10"
               style={{ color: "#7A7570" }}
             >
               OUR VALUES
             </p>
 
             {/* Values */}
-            <div className="flex flex-col items-center gap-8 lg:gap-10">
+            <div className="flex flex-col items-center gap-6 lg:gap-7">
               {values.map((value, index) => {
                 const isActive = index === activeIndex;
                 return (
@@ -213,7 +213,7 @@ const ValuesSection = () => {
                   >
                     {/* Icon Container */}
                     <div
-                      className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border flex items-center justify-center mb-3 transition-all duration-300"
+                      className="w-12 h-12 lg:w-14 lg:h-14 rounded-full border flex items-center justify-center mb-2 transition-all duration-300"
                       style={{
                         borderColor: isActive ? "#7A7570" : "#C9C5BF",
                         color: isActive ? "#4A4540" : "#A9A5A0",
@@ -239,7 +239,7 @@ const ValuesSection = () => {
           </div>
 
           {/* Right Image - Product */}
-          <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
+          <div className="relative w-full aspect-[3/4] lg:aspect-auto lg:h-full lg:min-h-[460px] overflow-hidden rounded-sm">
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeValue.productImage}
@@ -255,6 +255,7 @@ const ValuesSection = () => {
             </AnimatePresence>
           </div>
         </div>
+
       </div>
     </section>
   );
