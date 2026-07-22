@@ -171,7 +171,7 @@ const ValuesSection = () => {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-stretch">
           {/* Left Image - Lifestyle */}
-          <div className="relative w-full aspect-[3/4] lg:aspect-auto lg:h-full lg:min-h-[460px] overflow-hidden rounded-sm">
+          <div className="relative w-full aspect-[3/4] lg:aspect-auto lg:h-full lg:min-h-0 overflow-hidden rounded-sm">
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeValue.lifestyleImage}
