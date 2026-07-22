@@ -1,54 +1,62 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
-import shopProduct1 from "@/assets/shop-product-1.jpg";
-import shopProduct2 from "@/assets/shop-product-2.jpg";
-import shopProduct3 from "@/assets/shop-product-3.jpg";
-import shopProduct4 from "@/assets/shop-product-4.jpg";
-import shopProduct5 from "@/assets/shop-product-5.jpg";
-
-const products = [
-  { id: 0, image: shopProduct1, name: "Cognac Tote", isNew: true, position: "20% 65%" },
-  { id: 1, image: shopProduct2, name: "Olive Crossbody", isNew: true, position: "center 60%" },
-  { id: 2, image: shopProduct3, name: "Burgundy Clutch", isNew: false, position: "center center" },
-  { id: 3, image: shopProduct4, name: "Sage Shoulder Bag", isNew: true, position: "center 78%" },
-  { id: 4, image: shopProduct5, name: "Rose Minibag", isNew: true, position: "center center" },
-];
+import { useShopifyProducts } from "@/hooks/useShopifyProducts";
+import { isNewProduct } from "@/lib/shopify";
 
 const WatchShopSection = () => {
-  const [centerIndex, setCenterIndex] = useState(2);
+  const { products, loading } = useShopifyProducts();
+
+  const items = useMemo(
+    () =>
+      products
+        .map((p) => {
+          const node = p.node;
+          const image = node.images.edges[0]?.node.url;
+          if (!image) return null;
+          return {
+            id: node.id,
+            handle: node.handle,
+            name: node.title,
+            image,
+            alt: node.images.edges[0]?.node.altText || node.title,
+            isNew: isNewProduct(node),
+          };
+        })
+        .filter((x): x is NonNullable<typeof x> => x !== null)
+        .slice(0, 5),
+    [products]
+  );
+
+  const [centerIndex, setCenterIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
 
+  useEffect(() => {
+    if (items.length > 0) {
+      setCenterIndex(Math.floor(items.length / 2));
+    }
+  }, [items.length]);
+
   const nextProduct = useCallback(() => {
-    setCenterIndex((prev) => (prev + 1) % products.length);
-  }, []);
+    setCenterIndex((prev) => (prev + 1) % Math.max(items.length, 1));
+  }, [items.length]);
 
   const prevProduct = useCallback(() => {
-    setCenterIndex((prev) => (prev - 1 + products.length) % products.length);
-  }, []);
+    setCenterIndex((prev) => (prev - 1 + items.length) % Math.max(items.length, 1));
+  }, [items.length]);
 
   useEffect(() => {
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
-      nextProduct();
-    }, 4500);
-
+    if (isPaused || items.length < 2) return;
+    const interval = setInterval(nextProduct, 4500);
     return () => clearInterval(interval);
-  }, [isPaused, nextProduct]);
+  }, [isPaused, nextProduct, items.length]);
 
   const handleMouseEnter = (index: number) => {
-    if (index !== centerIndex) {
-      setCenterIndex(index);
-    }
+    if (index !== centerIndex) setCenterIndex(index);
     setIsPaused(true);
   };
-
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-  };
+  const handleMouseLeave = () => setIsPaused(false);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.touches[0].clientX);
@@ -57,34 +65,27 @@ const WatchShopSection = () => {
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStart === null) return;
-    
-    const touchEnd = e.changedTouches[0].clientX;
-    const diff = touchStart - touchEnd;
-
+    const diff = touchStart - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        nextProduct();
-      } else {
-        prevProduct();
-      }
+      diff > 0 ? nextProduct() : prevProduct();
     }
-    
     setTouchStart(null);
     setTimeout(() => setIsPaused(false), 3000);
   };
 
   const getPosition = (index: number) => {
     const diff = index - centerIndex;
-    const normalizedDiff = ((diff + products.length + 2) % products.length) - 2;
+    const normalizedDiff = ((diff + items.length + 2) % items.length) - 2;
     return normalizedDiff;
   };
+
+  if (!loading && items.length === 0) return null;
 
   return (
     <section
       className="w-full py-20 lg:py-28 overflow-hidden"
       style={{ backgroundColor: "#FAF8F5" }}
     >
-      {/* Header */}
       <div className="text-center mb-12 lg:mb-16 px-6">
         <h2
           className="font-serif text-[36px] lg:text-[48px] font-normal italic mb-4"
@@ -100,18 +101,16 @@ const WatchShopSection = () => {
         </p>
       </div>
 
-      {/* Carousel */}
       <div
         className="relative h-[400px] lg:h-[500px] flex items-center justify-center"
         onMouseLeave={handleMouseLeave}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        {products.map((product, index) => {
+        {items.map((product, index) => {
           const position = getPosition(index);
           const isCenter = position === 0;
           const isVisible = Math.abs(position) <= 2;
-
           if (!isVisible) return null;
 
           const xOffset = position * 280;
@@ -125,62 +124,47 @@ const WatchShopSection = () => {
           return (
             <motion.div
               key={product.id}
-              className="absolute cursor-pointer"
+              className="absolute"
               initial={false}
-              animate={{
-                x: xOffset,
-                scale,
-                opacity,
-                zIndex,
-              }}
-              transition={{
-                duration: 0.7,
-                ease: [0.4, 0, 0.2, 1],
-              }}
+              animate={{ x: xOffset, scale, opacity, zIndex }}
+              transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
               onMouseEnter={() => handleMouseEnter(index)}
-              style={{
-                boxShadow: shadow,
-              }}
+              style={{ boxShadow: shadow }}
             >
-              <div
-                className="relative w-[200px] lg:w-[260px] rounded-lg overflow-hidden"
-                style={{ backgroundColor: "#F5F2ED" }}
+              <Link
+                to={`/product/${product.handle}`}
+                className="block cursor-pointer"
+                aria-label={`View ${product.name}`}
               >
-                {/* NEW Badge */}
-                {product.isNew && (
-                  <div
-                    className="absolute top-3 left-3 z-10 px-3 py-1 text-[10px] lg:text-[11px] font-sans tracking-[0.1em] uppercase"
-                    style={{
-                      backgroundColor: "#FFFFFF",
-                      color: "#3A3530",
-                    }}
-                  >
-                    NEW
-                  </div>
-                )}
-
-                {/* Product Image */}
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-[280px] lg:h-[360px] object-cover"
-                  style={{ objectPosition: product.position }}
-                />
-              </div>
+                <div
+                  className="relative w-[200px] lg:w-[260px] rounded-lg overflow-hidden"
+                  style={{ backgroundColor: "#F5F2ED" }}
+                >
+                  {product.isNew && (
+                    <div
+                      className="absolute top-3 left-3 z-10 px-3 py-1 text-[10px] lg:text-[11px] font-sans tracking-[0.1em] uppercase"
+                      style={{ backgroundColor: "#FFFFFF", color: "#3A3530" }}
+                    >
+                      NEW
+                    </div>
+                  )}
+                  <img
+                    src={product.image}
+                    alt={product.alt}
+                    className="w-full h-[280px] lg:h-[360px] object-cover"
+                  />
+                </div>
+              </Link>
             </motion.div>
           );
         })}
       </div>
 
-      {/* CTA */}
       <div className="text-center mt-10 lg:mt-14">
         <Link
           to="/shop"
           className="inline-block font-sans text-[12px] lg:text-[13px] tracking-[0.2em] uppercase border-b pb-1 transition-opacity hover:opacity-70"
-          style={{
-            color: "#5A5550",
-            borderColor: "#5A5550",
-          }}
+          style={{ color: "#5A5550", borderColor: "#5A5550" }}
         >
           EXPLORE FULL COLLECTION
         </Link>
