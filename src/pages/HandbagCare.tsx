@@ -5,11 +5,11 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 import careDaily from "@/assets/care-daily.jpg";
-import careCleaning from "@/assets/care-cleaning.jpg";
-import careStorage from "@/assets/care-storage.jpg";
-import careAvoid from "@/assets/care-avoid.jpg";
+import careCleaning from "@/assets/story-craft.jpg";
+import careStorage from "@/assets/unboxing-packaging.jpg";
+import careAvoid from "@/assets/story-leather-texture.jpg";
 import careLeather from "@/assets/care-leather.jpg";
-import careProfessional from "@/assets/care-professional.jpg";
+import careProfessional from "@/assets/values-lifestyle-3.jpg";
 import careResources from "@/assets/care-resources.jpg";
 
 const fadeInUp = {
