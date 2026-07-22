@@ -239,7 +239,7 @@ const ValuesSection = () => {
           </div>
 
           {/* Right Image - Product */}
-          <div className="relative w-full aspect-[3/4] lg:aspect-auto lg:h-full lg:min-h-[460px] overflow-hidden rounded-sm">
+          <div className="relative w-full aspect-[3/4] lg:aspect-auto lg:h-full lg:min-h-0 overflow-hidden rounded-sm">
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeValue.productImage}
