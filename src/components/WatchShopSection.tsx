@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useShopifyProducts } from "@/hooks/useShopifyProducts";
 import { isNewProduct } from "@/lib/shopify";
+import styled1 from "@/assets/shop-product-1.jpg";
+import styled2 from "@/assets/shop-product-2.jpg";
+import styled3 from "@/assets/shop-product-3.jpg";
+import styled4 from "@/assets/shop-product-4.jpg";
+import styled5 from "@/assets/shop-product-5.jpg";
+
+const STYLED_IMAGES = [styled1, styled2, styled3, styled4, styled5];
 
 const WatchShopSection = () => {
   const { products, loading } = useShopifyProducts();
@@ -10,21 +17,18 @@ const WatchShopSection = () => {
   const items = useMemo(
     () =>
       products
-        .map((p) => {
+        .slice(0, 5)
+        .map((p, i) => {
           const node = p.node;
-          const image = node.images.edges[0]?.node.url;
-          if (!image) return null;
           return {
             id: node.id,
             handle: node.handle,
             name: node.title,
-            image,
-            alt: node.images.edges[0]?.node.altText || node.title,
+            image: STYLED_IMAGES[i],
+            alt: node.title,
             isNew: isNewProduct(node),
           };
-        })
-        .filter((x): x is NonNullable<typeof x> => x !== null)
-        .slice(0, 5),
+        }),
     [products]
   );
 
