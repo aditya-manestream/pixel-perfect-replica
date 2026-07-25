@@ -237,7 +237,8 @@ const RelatedProductsCarousel = ({
                         <img
                           src={img.url}
                           alt={img.altText || product.node.title}
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                          style={{ backgroundColor: "#F5F1EA" }}
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center">
