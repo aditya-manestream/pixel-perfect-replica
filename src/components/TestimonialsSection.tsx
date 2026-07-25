@@ -387,7 +387,10 @@ const TestimonialsSection = () => {
             >
               <TestimonialCard
                 testimonial={allTestimonials[mobileIndex]}
-                productInfo={getProductInfo(allTestimonials[mobileIndex].productHandle)}
+                productInfo={{
+                  ...getProductInfo(allTestimonials[mobileIndex].productHandle),
+                  image: testimonialImages[mobileIndex % testimonialImages.length],
+                }}
                 isMobile
               />
             </motion.div>
