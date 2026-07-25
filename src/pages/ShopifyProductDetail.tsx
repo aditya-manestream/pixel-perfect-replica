@@ -160,8 +160,9 @@ const ShopifyProductDetail = () => {
                   <img
                     src={images[currentImageIndex]?.node.url}
                     alt={images[currentImageIndex]?.node.altText || product.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300"
+                    className="absolute inset-0 w-full h-full object-contain transition-transform duration-300"
                     style={{
+                      backgroundColor: "#F5F1EA",
                       transform: isZooming ? `scale(1.5)` : "scale(1)",
                       transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
                     }}
