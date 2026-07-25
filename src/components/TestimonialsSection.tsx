@@ -355,7 +355,9 @@ const TestimonialsSection = () => {
             >
               {testimonialsData[activeSet].map((testimonial, index) => {
                 const productInfo = getProductInfo(testimonial.productHandle);
-                
+                const globalIndex = activeSet * 3 + index;
+                productInfo.image = testimonialImages[globalIndex % testimonialImages.length];
+
                 return (
                   <TestimonialCard
                     key={index}
