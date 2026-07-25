@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Search, ShoppingBag, ChevronDown, Menu, X } from "lucide-react";
+import { Search, ShoppingBag, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCartStore } from "@/stores/cartStore";
+import ardoriMark from "@/assets/ardori-a-light.png.asset.json";
 import {
   Sheet,
   SheetContent,
@@ -63,30 +64,30 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
           {/* Center - Logo */}
           <Link
             to="/"
-            className="absolute left-1/2 transform -translate-x-1/2 font-serif text-xl sm:text-2xl lg:text-[26px] font-normal tracking-[0.08em] transition-opacity duration-300 hover:opacity-80"
-            style={{ 
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "#E8E4DF",
-              letterSpacing: "0.08em"
-            }}
+            className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2 transition-opacity duration-300 hover:opacity-80"
+            aria-label="Ardori"
           >
-            ARDORI
-          </Link>
-
-          {/* Right - Currency, Contact, Icons */}
-          <div className="hidden lg:flex items-center gap-7">
-            {/* Currency Dropdown */}
-            <button
-              className="flex items-center gap-1 font-sans text-[11px] tracking-[0.18em] uppercase transition-opacity duration-300 hover:opacity-100 font-light"
-              style={{ 
-                fontFamily: "'Montserrat', sans-serif",
+            <img
+              src={ardoriMark.url}
+              alt=""
+              className="h-6 sm:h-7 lg:h-8 w-auto"
+              style={{ filter: "none" }}
+            />
+            <span
+              className="font-serif text-xl sm:text-2xl lg:text-[26px] font-normal"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
                 color: "#E8E4DF",
-                opacity: 0.9 
+                letterSpacing: "0.08em",
               }}
             >
-              INR
-              <ChevronDown size={12} strokeWidth={1.5} className="opacity-70" />
-            </button>
+              ARDORI
+            </span>
+          </Link>
+
+          {/* Right - Contact, Icons */}
+          <div className="hidden lg:flex items-center gap-7">
+
 
             {/* Contact Link */}
             <Link
@@ -209,20 +210,8 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
                       </button>
                     </SheetClose>
 
-                    {/* Currency */}
-                    <div 
-                      className="flex items-center gap-3"
-                      style={{ color: "#E8E4DF", opacity: 0.8 }}
-                    >
-                      <span 
-                        className="font-sans text-[12px] tracking-[0.15em] uppercase font-light"
-                        style={{ fontFamily: "'Montserrat', sans-serif" }}
-                      >
-                        Currency: INR
-                      </span>
-                      <ChevronDown size={14} strokeWidth={1.5} className="opacity-60" />
-                    </div>
                   </div>
+
                 </div>
               </SheetContent>
             </Sheet>

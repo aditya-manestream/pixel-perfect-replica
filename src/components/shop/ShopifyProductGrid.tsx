@@ -292,15 +292,15 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
                         <img
                           src={primaryImage.url}
                           alt={primaryImage.altText || node.title}
-                          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                          style={{ opacity: isHovered && secondaryImage ? 0 : 1 }}
+                          className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
+                          style={{ opacity: isHovered && secondaryImage ? 0 : 1, backgroundColor: "#F5F1EA" }}
                         />
                         {secondaryImage && (
                           <img
                             src={secondaryImage.url}
                             alt={secondaryImage.altText || node.title}
-                            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                            style={{ opacity: isHovered ? 1 : 0 }}
+                            className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
+                            style={{ opacity: isHovered ? 1 : 0, backgroundColor: "#F5F1EA" }}
                           />
                         )}
                       </>

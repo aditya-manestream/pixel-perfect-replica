@@ -9,7 +9,7 @@ import careCleaning from "@/assets/story-craft.jpg";
 import careStorage from "@/assets/unboxing-packaging.jpg";
 import careAvoid from "@/assets/story-leather-texture.jpg";
 import careLeather from "@/assets/care-leather.jpg";
-import careProfessional from "@/assets/values-lifestyle-3.jpg";
+import careProfessional from "@/assets/shop-product-4.jpg";
 import careResources from "@/assets/care-resources.jpg";
 
 const fadeInUp = {
@@ -204,6 +204,7 @@ const HandbagCare = () => {
                         src={section.image}
                         alt={section.title}
                         className="w-full h-[300px] lg:h-[420px] object-cover"
+                        style={{ objectPosition: "center top" }}
                       />
                     </div>
                   </div>
@@ -264,6 +265,7 @@ const HandbagCare = () => {
                     src={careProfessional}
                     alt="Professional Leather Care"
                     className="w-full h-[300px] lg:h-[420px] object-cover"
+                    style={{ objectPosition: "center top" }}
                   />
                 </div>
               </div>

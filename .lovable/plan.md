@@ -1,60 +1,64 @@
-# Homepage & site tweaks
 
-## 1. Hero text — shift left, off the model's face
+## Fixes
 
-`src/pages/Index.tsx`: change the hero overlay from centered to left-aligned on desktop. Wrap headline/subheading/CTAs in a container with `text-left`, `items-start`, `max-w-[600px]`, and left padding (`pl-[6vw] lg:pl-[8vw]`). Keep centered stack on mobile (`items-center text-center lg:items-start lg:text-left`). Buttons stay side-by-side on desktop.
+**1. Logo replacement**
+- Convert page 1 of `Ardori_Final_Logo.pdf` to a transparent PNG (2x for retina).
+- Upload via `lovable-assets`, replace the text "ARDORI" wordmark in `Navbar.tsx` and `Footer.tsx` with an `<img>` (keeps same size/spacing).
+- Also generate a small square favicon variant and replace `public/favicon.ico`.
 
-## 2. "The Collection" section — image height = text height
+**2. Cut-off product images (Kumī, Kalikā, etc.)**
+- These come from Shopify. The crop happens because product cards use `object-cover` with `object-position: center` and fixed aspect ratios.
+- Fix: change product-card image `object-position` to `center top` (or `50% 30%`) and increase aspect-ratio container so bag bottoms aren't clipped. Apply in `ShopifyProductGrid.tsx`, `RelatedProductsCarousel.tsx`, `ProductListing.tsx`, and the product detail gallery in `ShopifyProductDetail.tsx`.
+- Note: correct long-term fix is re-cropping in Shopify — this CSS change minimizes the clipping without needing new uploads.
 
-`src/components/CategorySection.tsx`: the right image uses `aspectRatio: 4/3` which is taller than the left text column. Switch to a self-sizing image column that matches the text column height:
+**3. "Loved by those who carry Ardori" thumbnails**
+- Upload the 6 attached bag photos as CDN assets.
+- Update `TestimonialsSection.tsx` fallback map so each review card's product thumbnail uses one of the 6 uploaded photos (kept in the same order), instead of pulling generic Shopify images.
 
-- Change grid to `items-stretch` (was `items-start`).
-- Replace the fixed-ratio wrapper with a flex column: `h-full` with `min-h-[420px]`, and the `<img>` uses `absolute inset-0 h-full w-full object-cover`.
-Result: the image tracks the natural height of the categories list on the left.
+**4. Our Story hero image**
+- Replace the current stock `story-hero.jpg` reference in `OurStory.tsx` with an existing real Ardori photo from the shop (e.g., a lifestyle shot from `values-lifestyle-*.jpg` or a hero crop of an actual product). No AI.
 
-## 3. "Our Values" section — balance heights
+**5. Handbag Care "What to Avoid" image**
+- Image is cropping the subject. Fix `object-position` on that specific card in `HandbagCare.tsx` so the full frame is visible, and swap to a better real photo from existing assets if needed.
 
-`src/components/ValuesSection.tsx`: currently side images are `aspect-[3/4]` (tall), center is short. Make the two side images match the center column height:
+**6. Handbag Care "Professional Care" image**
+- Replace the founder photo with a clean product-only shot from the shop assets (e.g., `shop-product-3.jpg` or a Shopify product image not heavily used elsewhere).
 
-- Change the grid to `items-stretch`.
-- Replace `aspect-[3/4]` on each image column with `relative h-full min-h-[520px]` so they fill the row height determined by the values list.
-- Tighten the center list vertical padding slightly (`py-6 lg:py-8`) so it doesn't drive an oversized row.
+**7. Remove INR button from navbar**
+- Delete the currency dropdown block (desktop lines ~76–90) and the mobile "Currency: INR" row (~212–225) in `Navbar.tsx`.
 
-## 4. "See it Styled" — real Shopify products, clickable
+**8. Branded emails — newsletter 2% off + contact form confirmation**
 
-`src/components/WatchShopSection.tsx`: replace the hard-coded 5-product array with live data from `useShopifyProducts` (same hook `NewArrivalsSection` uses). For each product:
+Setup steps:
+- Open the email domain setup dialog so you can configure `notify.ardorilabel.com` (NS records added at Hostinger). Scaffolding proceeds even while DNS verifies.
+- Run `setup_email_infra` → creates queue, tables, cron.
+- Run `scaffold_transactional_email` → creates the `send-transactional-email` edge function + templates.
+- Build 3 branded email templates (Cormorant Garamond header, navy + gold, off-white bg):
+  1. `newsletter-welcome` — subject "Your 2% off Ardori", contains generated coupon code.
+  2. `contact-confirmation` — subject "We've received your message", echoes the user's message.
+  3. `contact-admin-notify` — sent to `love@ardorilabel.com` with the form submission.
 
-- Use `product.images[0]` as the card image.
-- Wrap each card in `<Link to={`/product/${product.handle}`}>`.
-- Keep the carousel/center-focus behavior and NEW badge (drive `isNew` from the existing "new" tag helper).
-- Fallback: if fewer than 3 products load, hide the section (or render what's available).
+Backend:
+- New table `newsletter_signups (id, email, coupon_code, created_at)` with RLS (insert-only for anon, service-role read).
+- New edge function `newsletter-subscribe`: generates a coupon code like `ARDORI-XXXX`, saves signup, invokes `send-transactional-email` with `newsletter-welcome`.
+- New edge function `contact-submit`: saves contact submission (new table `contact_submissions`), sends both `contact-confirmation` to sender and `contact-admin-notify` to `love@ardorilabel.com`.
 
-## 5. Handbag Care page — remove AI-looking images, reuse real photos
+Frontend wiring:
+- `Footer.tsx` newsletter form → POST to `newsletter-subscribe`, show success toast with code.
+- `Contact.tsx` form → POST to `contact-submit`, show success toast.
 
-`src/pages/HandbagCare.tsx` currently uses `care-daily.jpg`, `care-cleaning.jpg`, `care-storage.jpg`, `care-avoid.jpg`, `care-professional.jpg`, `care-leather.jpg`, `care-resources.jpg`. Replace all seven imports with existing real-photo assets already used elsewhere on the site, e.g.:
+**Note on the 2% coupon:** the code emailed is a generated string only. Actually redeeming 2% off at Shopify checkout requires creating a matching discount in Shopify Admin (via Admin API, which needs a token you haven't provided yet). I'll surface a follow-up asking whether to (a) create a single shared code manually in Shopify that we email to everyone, or (b) integrate the Shopify Admin API to auto-create unique codes.
 
-- Daily → `curated-detail.jpg`
-- Cleaning → `story-craft.jpg`
-- Storage → `instagram-reel-2.jpeg` (bag flat-lay)
-- Avoid → `values-lifestyle-2.jpg`
-- Professional → `values-product-2.jpg`
-- Leather / Resources → `story-leather-texture.jpg`, `curated-hero.jpg`
-No new images generated. If you want a different mapping I'll adjust.
+## Order of execution
 
-## 6. Our Story — real founder photo
+1. Logo + favicon (visual, quick win).
+2. Image fixes (product cropping, Story, Handbag Care).
+3. Remove INR.
+4. Testimonials thumbnails.
+5. Email domain setup dialog → infra → templates → functions → wiring.
 
-Copy the uploaded `user-uploads://1000223166.jpg` into `src/assets/founder-eesha.jpg`, replace the `storyFounder` import in `src/pages/OurStory.tsx` with the new asset. Keep existing framing/crop styles.
+## Technical details
 
-## 7. Contact — swap Instagram thumbnails to homepage "Follow Our Journey" set
-
-`src/pages/Contact.tsx`: the 3-thumbnail grid currently uses `instagram-1/2/3.jpg`. Replace them with the same four reel thumbnails used by `InstagramSection.tsx` (`instagram-reel-1.jpg`, `instagram-reel-2.jpeg`, `instagram-reel-3.jpg`) and reuse their reel links so the two sections stay in sync.
-
-## Technical notes
-
-- No backend/schema changes.
-- Only presentation changes except (4), which swaps a static array for the existing `useShopifyProducts` hook already in the codebase.
-- No new AI-generated images. Founder image comes from the user upload; everything else is reused existing assets.
-
-## Open question
-
-Item 5: I've proposed a mapping using existing real photos. Confirm the mapping is fine, or point out which specific care photos you consider AI so I can be surgical.  - everything except first and last photo is AI
+- Files touched: `src/components/Navbar.tsx`, `Footer.tsx`, `TestimonialsSection.tsx`, `shop/ShopifyProductGrid.tsx`, `shop/ProductListing.tsx`, `product/RelatedProductsCarousel.tsx`, `src/pages/ShopifyProductDetail.tsx`, `OurStory.tsx`, `HandbagCare.tsx`, `Contact.tsx`, `index.html`, `public/favicon.ico`.
+- New: `supabase/functions/newsletter-subscribe`, `contact-submit`, plus scaffolded email infrastructure and templates.
+- New DB: `newsletter_signups`, `contact_submissions` (with GRANTs + RLS).
