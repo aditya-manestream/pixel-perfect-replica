@@ -85,20 +85,9 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
             </span>
           </Link>
 
-          {/* Right - Currency, Contact, Icons */}
+          {/* Right - Contact, Icons */}
           <div className="hidden lg:flex items-center gap-7">
-            {/* Currency Dropdown */}
-            <button
-              className="flex items-center gap-1 font-sans text-[11px] tracking-[0.18em] uppercase transition-opacity duration-300 hover:opacity-100 font-light"
-              style={{ 
-                fontFamily: "'Montserrat', sans-serif",
-                color: "#E8E4DF",
-                opacity: 0.9 
-              }}
-            >
-              INR
-              <ChevronDown size={12} strokeWidth={1.5} className="opacity-70" />
-            </button>
+
 
             {/* Contact Link */}
             <Link
