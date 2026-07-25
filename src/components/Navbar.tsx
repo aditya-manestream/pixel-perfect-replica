@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Search, ShoppingBag, ChevronDown, Menu, X } from "lucide-react";
+import { Search, ShoppingBag, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCartStore } from "@/stores/cartStore";
+import ardoriMark from "@/assets/ardori-a-light.png.asset.json";
 import {
   Sheet,
   SheetContent,
