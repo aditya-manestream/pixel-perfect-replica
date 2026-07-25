@@ -64,14 +64,25 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
           {/* Center - Logo */}
           <Link
             to="/"
-            className="absolute left-1/2 transform -translate-x-1/2 font-serif text-xl sm:text-2xl lg:text-[26px] font-normal tracking-[0.08em] transition-opacity duration-300 hover:opacity-80"
-            style={{ 
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "#E8E4DF",
-              letterSpacing: "0.08em"
-            }}
+            className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2 transition-opacity duration-300 hover:opacity-80"
+            aria-label="Ardori"
           >
-            ARDORI
+            <img
+              src={ardoriMark.url}
+              alt=""
+              className="h-6 sm:h-7 lg:h-8 w-auto"
+              style={{ filter: "none" }}
+            />
+            <span
+              className="font-serif text-xl sm:text-2xl lg:text-[26px] font-normal"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: "#E8E4DF",
+                letterSpacing: "0.08em",
+              }}
+            >
+              ARDORI
+            </span>
           </Link>
 
           {/* Right - Currency, Contact, Icons */}
