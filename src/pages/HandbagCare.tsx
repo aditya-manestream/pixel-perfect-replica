@@ -204,6 +204,7 @@ const HandbagCare = () => {
                         src={section.image}
                         alt={section.title}
                         className="w-full h-[300px] lg:h-[420px] object-cover"
+                        style={{ objectPosition: "center top" }}
                       />
                     </div>
                   </div>
