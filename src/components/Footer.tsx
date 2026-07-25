@@ -19,12 +19,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <h2
-              className="font-serif text-[28px] lg:text-[32px] font-normal mb-6"
-              style={{ color: "#E8E4DF", fontFamily: "'Cormorant Garamond', serif", letterSpacing: "0.08em" }}
-            >
-              ARDORI
-            </h2>
+            <div className="flex items-center gap-3 mb-6">
+              <img src={ardoriMark.url} alt="" className="h-9 w-auto" />
+              <h2
+                className="font-serif text-[28px] lg:text-[32px] font-normal"
+                style={{ color: "#E8E4DF", fontFamily: "'Cormorant Garamond', serif", letterSpacing: "0.08em" }}
+              >
+                ARDORI
+              </h2>
+            </div>
             <p
               className="font-serif text-[14px] lg:text-[15px] font-light leading-[1.8] mb-8"
               style={{ color: "#9A958F" }}
