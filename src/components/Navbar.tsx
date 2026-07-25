@@ -210,20 +210,8 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
                       </button>
                     </SheetClose>
 
-                    {/* Currency */}
-                    <div 
-                      className="flex items-center gap-3"
-                      style={{ color: "#E8E4DF", opacity: 0.8 }}
-                    >
-                      <span 
-                        className="font-sans text-[12px] tracking-[0.15em] uppercase font-light"
-                        style={{ fontFamily: "'Montserrat', sans-serif" }}
-                      >
-                        Currency: INR
-                      </span>
-                      <ChevronDown size={14} strokeWidth={1.5} className="opacity-60" />
-                    </div>
                   </div>
+
                 </div>
               </SheetContent>
             </Sheet>
