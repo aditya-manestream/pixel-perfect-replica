@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 import { useShopifyProducts } from "@/hooks/useShopifyProducts";
+import t1 from "@/assets/testimonial-t1.jpg.asset.json";
+import t2 from "@/assets/testimonial-t2.jpg.asset.json";
+import t3 from "@/assets/testimonial-t3.jpg.asset.json";
+import t4 from "@/assets/testimonial-t4.jpg.asset.json";
+import t5 from "@/assets/testimonial-t5.jpg.asset.json";
+import t6 from "@/assets/testimonial-t6.jpg.asset.json";
+
+const testimonialImages = [t1.url, t2.url, t3.url, t4.url, t5.url, t6.url];
 
 interface Testimonial {
   quote: string;
