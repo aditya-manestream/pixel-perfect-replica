@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Search, ShoppingBag, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCartStore } from "@/stores/cartStore";
-import ardoriMark from "@/assets/ardori-a-light.png.asset.json";
+import ardoriMark from "@/assets/ardori-mark-light.png.asset.json";
 import {
   Sheet,
   SheetContent,
@@ -64,25 +64,14 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
           {/* Center - Logo */}
           <Link
             to="/"
-            className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2 transition-opacity duration-300 hover:opacity-80"
+            className="absolute left-1/2 transform -translate-x-1/2 flex items-center transition-opacity duration-300 hover:opacity-80"
             aria-label="Ardori"
           >
             <img
               src={ardoriMark.url}
-              alt=""
-              className="h-6 sm:h-7 lg:h-8 w-auto"
-              style={{ filter: "none" }}
+              alt="Ardori"
+              className="h-8 sm:h-9 lg:h-10 w-auto"
             />
-            <span
-              className="font-serif text-xl sm:text-2xl lg:text-[26px] font-normal"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                color: "#E8E4DF",
-                letterSpacing: "0.08em",
-              }}
-            >
-              ARDORI
-            </span>
           </Link>
 
           {/* Right - Contact, Icons */}
