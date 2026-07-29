@@ -36,6 +36,8 @@ const Contact = () => {
     message: ""
   });
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  const [sending, setSending] = useState(false);
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
