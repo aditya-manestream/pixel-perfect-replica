@@ -225,6 +225,7 @@ const Footer = () => {
               <div className="flex-1 relative">
                 <input
                   type="email"
+                  aria-label="Email address for newsletter"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email Address"

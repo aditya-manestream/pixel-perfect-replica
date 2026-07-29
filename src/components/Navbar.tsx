@@ -275,6 +275,7 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
             <input
               ref={searchInputRef}
               type="search"
+              aria-label="Search products"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search for a bag…"

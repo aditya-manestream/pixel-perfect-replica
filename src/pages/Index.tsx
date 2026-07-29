@@ -30,6 +30,9 @@ const Index = () => {
           src={heroBg}
           alt="ARDORI - Timeless Silhouettes, Enduring Craft"
           decoding="async"
+          fetchPriority="high"
+          width={1920}
+          height={1280}
           className="absolute inset-0 w-full h-full object-cover object-[64%_58%] sm:object-[70%_56%] lg:object-[75%_55%]" />
 
         {/* Scrim so the headline stays readable regardless of what's behind it */}
