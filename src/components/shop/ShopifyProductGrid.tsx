@@ -294,8 +294,8 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
                           alt={primaryImage.altText || node.title}
                           loading="lazy"
                           decoding="async"
-                          className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
-                          style={{ opacity: isHovered && secondaryImage ? 0 : 1, backgroundColor: "#F5F1EA" }}
+                          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                          style={{ opacity: isHovered && secondaryImage ? 0 : 1 }}
                         />
                         {secondaryImage && (
                           <img
@@ -303,8 +303,8 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
                             alt={secondaryImage.altText || node.title}
                             loading="lazy"
                             decoding="async"
-                            className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
-                            style={{ opacity: isHovered ? 1 : 0, backgroundColor: "#F5F1EA" }}
+                            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                            style={{ opacity: isHovered ? 1 : 0 }}
                           />
                         )}
                       </>
