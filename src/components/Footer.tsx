@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Mail } from "lucide-react";
 import ardoriMark from "@/assets/ardori-mark-light.png.asset.json";
