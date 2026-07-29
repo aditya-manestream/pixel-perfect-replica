@@ -629,7 +629,8 @@ const Contact = () => {
                   {/* Submit Button */}
                   <Button
                     type="submit"
-                    className="w-full h-14 rounded-none mt-6 transition-all duration-300 hover:opacity-90"
+                    disabled={sending}
+                    className="w-full h-14 rounded-none mt-6 transition-all duration-300 hover:opacity-90 disabled:opacity-60"
                     style={{
                       backgroundColor: "#1A1A1A",
                       color: "#FAF8F5",
@@ -639,8 +640,9 @@ const Contact = () => {
                     }}
                   >
                     <Send size={14} strokeWidth={1.5} className="mr-2" />
-                    SEND MESSAGE
+                    {sending ? "SENDING…" : "SEND MESSAGE"}
                   </Button>
+
                 </form>
               </div>
             </motion.div>
