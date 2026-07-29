@@ -1,16 +1,32 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Mail } from "lucide-react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import ardoriMark from "@/assets/ardori-mark-light.png.asset.json";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
+  const [sending, setSending] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle subscription logic
-    setEmail("");
+    if (sending) return;
+    setSending(true);
+    try {
+      const { error } = await supabase.functions.invoke("newsletter-subscribe", {
+        body: { email: email.trim() },
+      });
+      if (error) throw error;
+      toast.success("Your 2% off code is on its way — check your inbox.");
+      setEmail("");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
+
 
   return (
     <footer style={{ backgroundColor: "#18243E" }} data-dark-section>
