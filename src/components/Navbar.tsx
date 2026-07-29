@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Search, ShoppingBag, Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCartStore } from "@/stores/cartStore";
 import ardoriMark from "@/assets/ardori-mark-light.png.asset.json";
 import {
@@ -14,6 +14,32 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const showSolid = forceScrolled || isScrolled;
   const itemCount = useCartStore((state) => state.getItemCount());
+
+  // Search: opens an inline overlay and hands the term to /shop?q=…
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSearchOpen) searchInputRef.current?.focus();
+  }, [isSearchOpen]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsSearchOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  const submitSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = searchTerm.trim();
+    setIsSearchOpen(false);
+    setSearchTerm("");
+    navigate(q ? `/shop?q=${encodeURIComponent(q)}` : "/shop");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,9 +119,11 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
 
             {/* Search Icon */}
             <button
+              onClick={() => setIsSearchOpen((v) => !v)}
               className="transition-opacity duration-300 hover:opacity-100"
               style={{ color: "#E8E4DF", opacity: 0.9 }}
               aria-label="Search"
+              aria-expanded={isSearchOpen}
             >
               <Search size={18} strokeWidth={1.3} />
             </button>
@@ -185,6 +213,7 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
                     {/* Search */}
                     <SheetClose asChild>
                       <button
+                        onClick={() => setIsSearchOpen(true)}
                         className="flex items-center gap-3 transition-opacity duration-200 hover:opacity-70"
                         style={{ color: "#E8E4DF", opacity: 0.8 }}
                         aria-label="Search"
@@ -228,6 +257,49 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
           </div>
         </div>
       </div>
+
+      {/* Search overlay */}
+      {isSearchOpen && (
+        <div
+          className="absolute top-full left-0 right-0 border-t"
+          style={{
+            backgroundColor: "#121B2D",
+            borderColor: "rgba(232, 228, 223, 0.15)",
+          }}
+        >
+          <form
+            onSubmit={submitSearch}
+            className="max-w-[1400px] mx-auto px-6 lg:px-12 py-4 flex items-center gap-3"
+          >
+            <Search size={18} strokeWidth={1.3} style={{ color: "#E8E4DF", opacity: 0.7 }} />
+            <input
+              ref={searchInputRef}
+              type="search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search for a bag…"
+              className="flex-1 bg-transparent outline-none font-sans text-[14px] tracking-[0.05em]"
+              style={{ color: "#F5F2ED" }}
+            />
+            <button
+              type="submit"
+              className="font-sans text-[11px] tracking-[0.2em] uppercase px-4 py-2 transition-opacity hover:opacity-80"
+              style={{ backgroundColor: "#C9A86C", color: "#121B2D" }}
+            >
+              Search
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsSearchOpen(false)}
+              aria-label="Close search"
+              className="transition-opacity hover:opacity-70"
+              style={{ color: "#E8E4DF", opacity: 0.7 }}
+            >
+              <X size={18} strokeWidth={1.3} />
+            </button>
+          </form>
+        </div>
+      )}
     </nav>
   );
 };

@@ -81,7 +81,7 @@ const HandbagCare = () => {
 
       {/* Hero Section */}
       <section
-        className="relative py-28 lg:py-36 flex items-center justify-center overflow-hidden"
+        className="relative py-16 sm:py-20 lg:py-36 flex items-center justify-center overflow-hidden"
       >
         <div
           className="absolute inset-0"
@@ -151,11 +151,11 @@ const HandbagCare = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.1 }}
-                className="mb-20 lg:mb-28"
+                className="mb-14 sm:mb-20 lg:mb-28"
               >
-                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${isImageLeft ? '' : ''}`}>
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center ${isImageLeft ? '' : ''}`}>
                   {/* Text Content */}
-                  <div className={`${isImageLeft ? 'lg:order-2' : 'lg:order-1'} order-2`}>
+                  <div className={`${isImageLeft ? 'md:order-2' : 'md:order-1'} order-2`}>
                     <div className="flex items-center gap-4 mb-5">
                       <div
                         className="w-12 h-12 rounded-full flex items-center justify-center border"
@@ -198,12 +198,12 @@ const HandbagCare = () => {
                   </div>
 
                   {/* Image */}
-                  <div className={`${isImageLeft ? 'lg:order-1' : 'lg:order-2'} order-1`}>
+                  <div className={`${isImageLeft ? 'md:order-1' : 'md:order-2'} order-1`}>
                     <div className="relative overflow-hidden rounded-sm shadow-sm">
                       <img
                         src={section.image}
                         alt={section.title}
-                        className="w-full h-[300px] lg:h-[420px] object-cover"
+                        className="w-full h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] object-cover"
                         style={{ objectPosition: "center top" }}
                       />
                     </div>
@@ -216,11 +216,11 @@ const HandbagCare = () => {
           {/* Section 6: Professional Care - 2 Column */}
           <motion.div
             {...fadeInUp}
-            className="mb-20 lg:mb-28"
+            className="mb-14 sm:mb-20 lg:mb-28"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
               {/* Text Content - Left */}
-              <div className="order-2 lg:order-1">
+              <div className="order-2 md:order-1">
                 <div className="flex items-center gap-4 mb-5">
                   <div
                     className="w-12 h-12 rounded-full flex items-center justify-center border"
@@ -259,12 +259,12 @@ const HandbagCare = () => {
               </div>
 
               {/* Image - Right */}
-              <div className="order-1 lg:order-2">
+              <div className="order-1 md:order-2">
                 <div className="relative overflow-hidden rounded-sm shadow-sm">
                   <img
                     src={careProfessional}
                     alt="Professional Leather Care"
-                    className="w-full h-[300px] lg:h-[420px] object-cover"
+                    className="w-full h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] object-cover"
                     style={{ objectPosition: "center top" }}
                   />
                 </div>
@@ -274,14 +274,14 @@ const HandbagCare = () => {
 
           {/* Section 7: Resources & Guides - 2 Column */}
           <motion.div {...fadeInUp} className="mb-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
               {/* Image - Left */}
               <div className="order-1">
                 <div className="relative overflow-hidden rounded-sm shadow-sm">
                   <img
                     src={careResources}
                     alt="Leather Care Resources"
-                    className="w-full h-[300px] lg:h-[420px] object-cover object-bottom"
+                    className="w-full h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] object-cover object-bottom"
                   />
                 </div>
               </div>

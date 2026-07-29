@@ -8,7 +8,7 @@ const faqItems = [
   },
   {
     question: "What is your return/exchange policy?",
-    answer: "We offer a 7-day return and exchange window from delivery. Items must be unused, in original packaging with all tags attached. Customised items are non-returnable."
+    answer: "We offer a 7-day return and exchange window from delivery. Items must be unused, in original packaging with all tags attached."
   },
   {
     question: "What does the warranty cover?",
@@ -17,10 +17,6 @@ const faqItems = [
   {
     question: "How should I care for my leather bag?",
     answer: "Store in the provided dust bag when not in use. Keep away from direct sunlight and water. Clean with a soft dry cloth and condition the leather every 3-6 months for best longevity."
-  },
-  {
-    question: "Do you offer monogramming or customisation?",
-    answer: "Yes, we offer hot-stamped monogramming on select products. Custom orders typically add 7-10 additional business days. Contact us for availability."
   }
 ];
 

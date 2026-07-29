@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Warm up the connections to Shopify's Storefront API and image CDN so the
+         first product/image request skips DNS + TLS setup (critical for ad landings). -->
+    <link rel="preconnect" href="https://ardori-4.myshopify.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.shopify.com" />
+
     <!-- TODO: Set the document title to the name of your application -->
     <title>Ardori</title>
     <meta name="description" content="Ardori  Handbag Collection">

@@ -10,6 +10,10 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
+// Courier tracking portal. It sends X-Frame-Options: DENY, so it cannot be
+// embedded in an iframe — we hand the customer off to it in a new tab instead.
+const TRACKING_URL = "https://3dhtf1-ma.myshopify.com";
+
 const TrackOrder = () => {
   const [orderNumber, setOrderNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -17,6 +21,7 @@ const TrackOrder = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    window.open(TRACKING_URL, "_blank", "noopener,noreferrer");
     setSubmitted(true);
   };
 
@@ -127,23 +132,39 @@ const TrackOrder = () => {
             >
               <div className="p-8 mb-8" style={{ backgroundColor: "#F8F6F3", border: "1px solid #E8E4DF" }}>
                 <p className="font-serif text-[18px] lg:text-[20px] font-normal mb-4" style={{ color: "#2C2824" }}>
-                  Order Not Found
+                  Tracking opened in a new tab
                 </p>
                 <p className="font-serif text-[14px] lg:text-[15px] font-light leading-relaxed mb-6" style={{ color: "#6A655F" }}>
-                  We couldn't find an order matching these details. Please verify your order number and email address.
+                  Enter your order number{orderNumber ? ` (${orderNumber})` : ""} on the tracking page to see live courier
+                  updates. If the tab didn't open, use the button below.
                 </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="font-sans text-[11px] lg:text-[12px] tracking-[0.15em] uppercase transition-all hover:opacity-80"
-                  style={{
-                    backgroundColor: "transparent",
-                    color: "#2C2824",
-                    border: "1px solid #2C2824",
-                    padding: "12px 24px",
-                  }}
-                >
-                  Try Again
-                </button>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <a
+                    href={TRACKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-sans text-[11px] lg:text-[12px] tracking-[0.15em] uppercase transition-all hover:opacity-90"
+                    style={{
+                      backgroundColor: "#2C2824",
+                      color: "#FFFFFF",
+                      padding: "12px 24px",
+                    }}
+                  >
+                    Open Tracking Page
+                  </a>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="font-sans text-[11px] lg:text-[12px] tracking-[0.15em] uppercase transition-all hover:opacity-80"
+                    style={{
+                      backgroundColor: "transparent",
+                      color: "#2C2824",
+                      border: "1px solid #2C2824",
+                      padding: "12px 24px",
+                    }}
+                  >
+                    Back
+                  </button>
+                </div>
               </div>
 
               {/* Order Status Example */}

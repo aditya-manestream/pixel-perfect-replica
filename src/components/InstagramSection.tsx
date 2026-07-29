@@ -61,6 +61,8 @@ const InstagramSection = () => {
               <img
                 src={image.src}
                 alt={image.alt}
+                loading="lazy"
+                decoding="async"
                 className="w-[200px] lg:w-[250px] h-[240px] lg:h-[300px] object-cover transition-all duration-400 ease-in-out group-hover:scale-[1.03] group-hover:contrast-[1.05]"
               />
             </a>
@@ -81,6 +83,8 @@ const InstagramSection = () => {
                 <img
                   src={image.src}
                   alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
                   className="w-[200px] h-[240px] object-cover transition-all duration-400 ease-in-out"
                 />
               </a>

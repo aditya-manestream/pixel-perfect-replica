@@ -8,7 +8,7 @@ import ProductFAQ from "@/components/product/ProductFAQ";
 import ProductReviewsCompact from "@/components/product/ProductReviewsCompact";
 import RelatedProductsCarousel from "@/components/product/RelatedProductsCarousel";
 import { useShopifyProduct, useShopifyProducts } from "@/hooks/useShopifyProducts";
-import { formatPrice, isNewProduct, isBestSeller, ShopifyProduct } from "@/lib/shopify";
+import { formatPrice, isNewProduct, isBestSeller, shopifyImage, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
@@ -31,6 +31,42 @@ const ShopifyProductDetail = () => {
   const [zoomPosition, setZoomPosition] = useState({ x: 50, y: 50 });
   const [openAccordion, setOpenAccordion] = useState<string | null>("specs");
 
+  // Product shots are 2:3 while the frame is wider, so showing the whole photo
+  // leaves space at its sides. Filling that space with a flat neutral reads as
+  // a pale border against the photos' pink/cream backdrops. The shots are also
+  // vignetted — their edge runs dark at the top and lighter lower down — so a
+  // single colour still seams. We therefore sample the photo's own left edge at
+  // several heights and rebuild it as a vertical gradient, which meets the
+  // image edge-to-edge with no visible join.
+  const NEUTRAL_BACKDROP = "#EEEBE6";
+  const [backdrop, setBackdrop] = useState(NEUTRAL_BACKDROP);
+
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    try {
+      const w = img.naturalWidth;
+      const h = img.naturalHeight;
+      if (!w || !h) return;
+
+      const canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+      if (!ctx) return;
+      ctx.drawImage(img, 0, 0);
+
+      const stops = [0, 0.25, 0.5, 0.75, 1].map((t) => {
+        const y = Math.min(h - 1, Math.max(0, Math.round(t * (h - 1))));
+        const [r, g, b] = ctx.getImageData(1, y, 1, 1).data;
+        return `rgb(${r}, ${g}, ${b}) ${Math.round(t * 100)}%`;
+      });
+      setBackdrop(`linear-gradient(180deg, ${stops.join(", ")})`);
+    } catch {
+      // Canvas is tainted (image served without CORS) — fall back to neutral.
+      setBackdrop(NEUTRAL_BACKDROP);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
@@ -39,7 +75,7 @@ const ShopifyProductDetail = () => {
           <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
               <div className="lg:col-span-7">
-                <div className="aspect-[4/5] animate-pulse" style={{ backgroundColor: "#EEEBE6" }} />
+                <div className="w-full h-[58vh] sm:h-[62vh] lg:h-[calc(100vh-190px)] lg:max-h-[760px] lg:min-h-[460px] animate-pulse" style={{ backgroundColor: "#EEEBE6" }} />
               </div>
               <div className="lg:col-span-5 space-y-4">
                 <div className="h-6 w-1/4 animate-pulse" style={{ backgroundColor: "#EEEBE6" }} />
@@ -55,17 +91,62 @@ const ShopifyProductDetail = () => {
   }
 
   if (error || !product) {
+    // Handles change when products are renamed in Shopify, which turns older
+    // links — including ones already live in ads — into dead ends. Offer the
+    // closest current matches instead of stopping the visitor cold.
+    const slugWords = (handle || "")
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((w) => w.length > 2);
+    const suggestions = relatedProducts
+      .map((p) => {
+        const hay = `${p.node.handle} ${p.node.title}`.toLowerCase();
+        return { p, score: slugWords.filter((w) => hay.includes(w)).length };
+      })
+      .filter((s) => s.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3)
+      .map((s) => s.p);
+
     return (
       <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
         <Navbar forceScrolled />
         <main className="pt-24 lg:pt-32 pb-16">
           <div className="max-w-[600px] mx-auto px-6 text-center">
             <h1 className="font-serif text-[28px] font-normal mb-4" style={{ color: "#2C2824" }}>
-              Product Not Found
+              This piece has moved
             </h1>
             <p className="font-serif text-[15px] font-light mb-8" style={{ color: "#6A655F" }}>
-              The product you're looking for doesn't exist or has been removed.
+              {suggestions.length > 0
+                ? "That link is out of date. You may be looking for one of these:"
+                : "We couldn't find that piece — it may have been renamed or retired."}
             </p>
+
+            {suggestions.length > 0 && (
+              <div className="flex flex-col gap-3 mb-8">
+                {suggestions.map((s) => (
+                  <Link
+                    key={s.node.id}
+                    to={`/product/${s.node.handle}`}
+                    className="flex items-center gap-4 p-3 text-left transition-opacity hover:opacity-80"
+                    style={{ backgroundColor: "#F8F6F3", border: "1px solid #E8E4DF" }}
+                  >
+                    {s.node.images.edges[0]?.node?.url && (
+                      <img
+                        src={shopifyImage(s.node.images.edges[0].node.url, 160)}
+                        alt={s.node.title}
+                        className="w-14 h-16 object-cover flex-shrink-0"
+                        loading="lazy"
+                      />
+                    )}
+                    <span className="font-serif text-[16px]" style={{ color: "#2C2824" }}>
+                      {s.node.title}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            )}
+
             <Link
               to="/shop"
               className="inline-block font-sans text-[11px] tracking-[0.2em] uppercase"
@@ -148,18 +229,25 @@ const ShopifyProductDetail = () => {
               animate="visible"
               variants={fadeInUp}
             >
-              {/* Main Image */}
-              <div 
-                className="relative aspect-[4/5] overflow-hidden mb-4"
-                style={{ backgroundColor: "#EEEBE6" }}
+              {/* Main Image — height is capped to the viewport so the whole
+                  photo and the buy panel beside it are visible without
+                  scrolling, and the backdrop is sampled from the photo itself
+                  so no pale band shows around it. */}
+              <div
+                className="relative overflow-hidden mb-4 w-full h-[58vh] sm:h-[62vh] lg:h-[calc(100vh-190px)] lg:max-h-[760px] lg:min-h-[460px]"
+                style={{ background: backdrop }}
                 onMouseEnter={() => setIsZooming(true)}
                 onMouseLeave={() => setIsZooming(false)}
                 onMouseMove={handleMouseMove}
               >
                 {images.length > 0 ? (
                   <img
-                    src={images[currentImageIndex]?.node.url}
+                    key={images[currentImageIndex]?.node.url}
+                    src={shopifyImage(images[currentImageIndex]?.node.url, 1400)}
                     alt={images[currentImageIndex]?.node.altText || product.title}
+                    decoding="async"
+                    crossOrigin="anonymous"
+                    onLoad={handleImageLoad}
                     className="absolute inset-0 w-full h-full object-contain transition-transform duration-300"
                     style={{
                       backgroundColor: "#F5F1EA",
@@ -216,8 +304,10 @@ const ShopifyProductDetail = () => {
                       style={{ backgroundColor: "#EEEBE6" }}
                     >
                       <img
-                        src={img.node.url}
+                        src={shopifyImage(img.node.url, 160)}
                         alt={img.node.altText || `View ${index + 1}`}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-contain"
                       />
                     </button>

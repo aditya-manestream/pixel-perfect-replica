@@ -49,7 +49,7 @@ const OurStory = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[62vh] sm:h-[68vh] lg:h-[70vh] min-h-[400px] sm:min-h-[460px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img src={storyHero} alt="Ardori leather craftsmanship" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/40" />
@@ -83,7 +83,7 @@ const OurStory = () => {
       </section>
 
       {/* Section 1: Rooted in Nature. Designed for Life. */}
-      <section className="py-20 lg:py-28 px-6" style={{ backgroundColor: "#FAF8F5" }}>
+      <section className="py-14 sm:py-16 lg:py-28 px-6" style={{ backgroundColor: "#FAF8F5" }}>
         <motion.div {...fadeInUp} className="text-center max-w-[700px] mx-auto">
           <h2 
             className="font-serif text-[28px] md:text-[36px] lg:text-[42px] font-normal mb-8 leading-[1.3]" 
@@ -119,7 +119,7 @@ const OurStory = () => {
       </section>
 
       {/* Section 2: Our Founder (Navy Pattern Background) */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
+      <section className="relative py-14 sm:py-16 lg:py-28 overflow-hidden">
         <div
           className="absolute inset-0"
           style={{
@@ -189,7 +189,7 @@ const OurStory = () => {
       </section>
 
       {/* Section 3: Quote Section */}
-      <section className="py-20 lg:py-28 px-6" style={{ backgroundColor: "#FAF8F5" }}>
+      <section className="py-14 sm:py-16 lg:py-28 px-6" style={{ backgroundColor: "#FAF8F5" }}>
         <motion.div {...fadeInUp} className="text-center max-w-[800px] mx-auto">
           <blockquote 
             className="font-serif text-[22px] md:text-[28px] lg:text-[32px] font-normal italic leading-[1.5] mb-8" 
@@ -208,13 +208,13 @@ const OurStory = () => {
       </section>
 
       {/* Section 4: Editorial Image + Insight Layout with Navy Backgrounds */}
-      <section className="px-6 py-20 lg:py-28" style={{ backgroundColor: "#FAF8F5" }}>
+      <section className="px-6 py-14 sm:py-16 lg:py-28" style={{ backgroundColor: "#FAF8F5" }}>
         <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {/* Left Column */}
             <motion.div {...fadeInUp} className="space-y-6">
               <div className="overflow-hidden">
-                <img src={storyCraft} alt="Artisan craftsmanship" className="w-full h-[400px] lg:h-[500px] object-cover" />
+                <img src={storyCraft} alt="Artisan craftsmanship" className="w-full h-[260px] sm:h-[340px] md:h-[400px] lg:h-[500px] object-cover" />
               </div>
               {/* Slow Luxury Card - Navy Pattern Background */}
               <div 
@@ -272,7 +272,7 @@ const OurStory = () => {
               </div>
               {/* Large leather texture image */}
               <div className="overflow-hidden">
-                <img src={storyLeatherTexture} alt="Leather texture" className="w-full h-[500px] lg:h-[600px] object-cover object-bottom" />
+                <img src={storyLeatherTexture} alt="Leather texture" className="w-full h-[300px] sm:h-[380px] md:h-[460px] lg:h-[600px] object-cover object-bottom" />
               </div>
             </motion.div>
           </div>

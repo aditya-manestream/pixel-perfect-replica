@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, ShoppingBag } from "lucide-react";
 import { useShopifyProducts } from "@/hooks/useShopifyProducts";
-import { formatPrice, isNewProduct, isBestSeller, ShopifyProduct } from "@/lib/shopify";
+import { formatPrice, isNewProduct, isBestSeller, shopifyImage, ShopifyProduct } from "@/lib/shopify";
 import {
   Carousel,
   CarouselContent,
@@ -235,8 +235,10 @@ const RelatedProductsCarousel = ({
                       {/* Image */}
                       {img ? (
                         <img
-                          src={img.url}
+                          src={shopifyImage(img.url, 500)}
                           alt={img.altText || product.node.title}
+                          loading="lazy"
+                          decoding="async"
                           className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                           style={{ backgroundColor: "#F5F1EA" }}
                         />

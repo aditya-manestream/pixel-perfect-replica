@@ -1,9 +1,10 @@
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useQueryClient } from "@tanstack/react-query";
 import { ChevronDown, Grid3X3, LayoutGrid, ShoppingBag } from "lucide-react";
 import { useShopifyProducts } from "@/hooks/useShopifyProducts";
-import { formatPrice, isNewProduct, isBestSeller, getColorOptions, ShopifyProduct } from "@/lib/shopify";
+import { formatPrice, isNewProduct, isBestSeller, getColorOptions, shopifyImage, fetchProductByHandle, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 
@@ -17,31 +18,42 @@ const sortOptions = [
   { value: "price-desc", label: "Price: High to Low" },
 ];
 
-const filterOptions = [
-  { value: "all", label: "All Products" },
-  { value: "new", label: "New Arrivals" },
-  { value: "best-seller", label: "Best Sellers" },
-];
-
 const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => {
   const { products, loading, error } = useShopifyProducts();
   const { addItem } = useCartStore();
-  
+  const queryClient = useQueryClient();
+
+  // Warm the cache the moment a card is hovered, so the click into the product
+  // page usually finds the data already fetched.
+  const prefetchProduct = (handle: string) => {
+    queryClient.prefetchQuery({
+      queryKey: ["product", handle],
+      queryFn: () => fetchProductByHandle(handle),
+    });
+  };
+
   const [sortBy, setSortBy] = useState("featured");
-  const [filterBy, setFilterBy] = useState("all");
   const [showSortDropdown, setShowSortDropdown] = useState(false);
-  const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const [gridView, setGridView] = useState<2 | 3>(3);
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
+
+  // Search term arrives from the navbar as /shop?q=…
+  const [searchParams] = useSearchParams();
+  const searchQuery = (searchParams.get("q") || "").trim().toLowerCase();
 
   const filteredAndSortedProducts = useMemo(() => {
     let result = [...products];
 
-    // Filter
-    if (filterBy === "new") {
-      result = result.filter(p => isNewProduct(p.node));
-    } else if (filterBy === "best-seller") {
-      result = result.filter(p => isBestSeller(p.node));
+    // Search across title, product type and tags
+    if (searchQuery) {
+      result = result.filter(p => {
+        const n = p.node;
+        const haystack = [n.title, n.productType, ...(n.tags || [])]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        return haystack.includes(searchQuery);
+      });
     }
 
     // Sort
@@ -58,7 +70,7 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
     }
 
     return result;
-  }, [products, sortBy, filterBy]);
+  }, [products, sortBy, searchQuery]);
 
   const handleAddToCart = (product: ShopifyProduct, e: React.MouseEvent) => {
     e.preventDefault();
@@ -141,43 +153,12 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
         {/* Toolbar */}
         {showFilters && (
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-6" style={{ borderBottom: "1px solid #E8E4DF" }}>
-            {/* Filter Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => {
-                  setShowFilterDropdown(!showFilterDropdown);
-                  setShowSortDropdown(false);
-                }}
-                className="flex items-center gap-2 font-sans text-[12px] tracking-[0.1em] uppercase transition-opacity hover:opacity-70"
-                style={{ color: "#3D3530" }}
-              >
-                Filter: {filterOptions.find(f => f.value === filterBy)?.label}
-                <ChevronDown size={14} strokeWidth={1.5} />
-              </button>
-              
-              {showFilterDropdown && (
-                <div 
-                  className="absolute top-full left-0 mt-2 py-2 z-20 min-w-[160px]"
-                  style={{ backgroundColor: "#FFFFFF", border: "1px solid #E8E4DF", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}
-                >
-                  {filterOptions.map(option => (
-                    <button
-                      key={option.value}
-                      onClick={() => {
-                        setFilterBy(option.value);
-                        setShowFilterDropdown(false);
-                      }}
-                      className="w-full text-left px-4 py-2 font-sans text-[12px] tracking-[0.05em] transition-colors hover:bg-gray-50"
-                      style={{ 
-                        color: filterBy === option.value ? "#C9A86C" : "#3D3530" 
-                      }}
-                    >
-                      {option.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            {/* Result count / active search term */}
+            <p className="font-sans text-[12px] tracking-[0.1em] uppercase" style={{ color: "#3D3530" }}>
+              {searchQuery
+                ? `${filteredAndSortedProducts.length} result${filteredAndSortedProducts.length === 1 ? "" : "s"} for “${searchQuery}”`
+                : `${filteredAndSortedProducts.length} ${filteredAndSortedProducts.length === 1 ? "piece" : "pieces"}`}
+            </p>
 
             {/* Right Side Controls */}
             <div className="flex items-center gap-6">
@@ -202,10 +183,7 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
               {/* Sort Dropdown */}
               <div className="relative">
                 <button
-                  onClick={() => {
-                    setShowSortDropdown(!showSortDropdown);
-                    setShowFilterDropdown(false);
-                  }}
+                  onClick={() => setShowSortDropdown(!showSortDropdown)}
                   className="flex items-center gap-2 font-sans text-[12px] tracking-[0.1em] uppercase transition-opacity hover:opacity-70"
                   style={{ color: "#3D3530" }}
                 >
@@ -240,6 +218,25 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
           </div>
         )}
 
+        {/* No results for the current search */}
+        {filteredAndSortedProducts.length === 0 && (
+          <div className="py-16 text-center">
+            <h3 className="font-serif text-[22px] lg:text-[26px] font-normal mb-3" style={{ color: "#2C2824" }}>
+              Nothing matched “{searchQuery}”
+            </h3>
+            <p className="font-serif text-[15px] font-light mb-6" style={{ color: "#6A655F" }}>
+              Try a different name, or browse the full collection.
+            </p>
+            <Link
+              to="/shop"
+              className="inline-block font-sans text-[11px] tracking-[0.2em] uppercase"
+              style={{ backgroundColor: "#2C2824", color: "#FFFFFF", padding: "14px 32px" }}
+            >
+              View All
+            </Link>
+          </div>
+        )}
+
         {/* Product Grid */}
         <div className={`grid grid-cols-2 gap-4 lg:gap-6 ${gridView === 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-3'}`}>
           {filteredAndSortedProducts.map((product, index) => {
@@ -257,7 +254,10 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05, duration: 0.4 }}
                 className="group"
-                onMouseEnter={() => setHoveredProduct(node.id)}
+                onMouseEnter={() => {
+                  setHoveredProduct(node.id);
+                  prefetchProduct(node.handle);
+                }}
                 onMouseLeave={() => setHoveredProduct(null)}
               >
                 <Link to={`/product/${node.handle}`}>
@@ -290,15 +290,19 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
                     {primaryImage ? (
                       <>
                         <img
-                          src={primaryImage.url}
+                          src={shopifyImage(primaryImage.url, 600)}
                           alt={primaryImage.altText || node.title}
+                          loading="lazy"
+                          decoding="async"
                           className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
                           style={{ opacity: isHovered && secondaryImage ? 0 : 1, backgroundColor: "#F5F1EA" }}
                         />
                         {secondaryImage && (
                           <img
-                            src={secondaryImage.url}
+                            src={shopifyImage(secondaryImage.url, 600)}
                             alt={secondaryImage.altText || node.title}
+                            loading="lazy"
+                            decoding="async"
                             className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
                             style={{ opacity: isHovered ? 1 : 0, backgroundColor: "#F5F1EA" }}
                           />

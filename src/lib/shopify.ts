@@ -77,6 +77,10 @@ export interface CartItem {
 }
 
 // GraphQL Queries
+// Trimmed query for the shop grid + related-products carousel. These surfaces only
+// render 1–2 images, the first variant, price, title, tags and options — so we skip
+// description/descriptionHtml/metafields and cap images/variants, cutting the JSON
+// payload dramatically versus fetching full product detail for every card.
 const PRODUCTS_QUERY = `
   query GetProducts($first: Int!, $query: String) {
     products(first: $first, query: $query) {
@@ -84,8 +88,6 @@ const PRODUCTS_QUERY = `
         node {
           id
           title
-          description
-          descriptionHtml
           handle
           tags
           productType
@@ -95,7 +97,7 @@ const PRODUCTS_QUERY = `
               currencyCode
             }
           }
-          images(first: 10) {
+          images(first: 2) {
             edges {
               node {
                 url
@@ -103,7 +105,7 @@ const PRODUCTS_QUERY = `
               }
             }
           }
-          variants(first: 20) {
+          variants(first: 1) {
             edges {
               node {
                 id
@@ -117,21 +119,12 @@ const PRODUCTS_QUERY = `
                   name
                   value
                 }
-                image {
-                  url
-                  altText
-                }
               }
             }
           }
           options {
             name
             values
-          }
-          metafields(identifiers: [{namespace: "custom", key: "what_fits_inside"}]) {
-            key
-            value
-            type
           }
         }
       }
@@ -310,6 +303,20 @@ export async function createStorefrontCheckout(items: CartItem[]): Promise<strin
 }
 
 // Helper functions
+// Ask Shopify's image CDN for an appropriately sized image instead of shipping the
+// full-resolution original. Shopify resizes on the fly and auto-serves WebP/AVIF to
+// browsers that support it, so a grid thumbnail becomes ~50–150 KB instead of MBs.
+export function shopifyImage(url: string | undefined | null, width: number): string {
+  if (!url) return '';
+  try {
+    const u = new URL(url);
+    u.searchParams.set('width', String(width));
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
 export function formatPrice(amount: string, currencyCode: string = 'INR'): string {
   const num = parseFloat(amount);
   if (currencyCode === 'INR') {

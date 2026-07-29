@@ -21,12 +21,16 @@ const Index = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="relative w-full h-screen overflow-hidden">
+      {/* The hero photo is 3:2 landscape. A full-height hero on a portrait phone
+          shows only ~31% of its width — an extreme crop into the model's face.
+          Shortening the hero on small screens widens the visible slice, and the
+          crop origin is tuned per breakpoint to keep the bag in frame. */}
+      <div className="relative w-full h-[78vh] sm:h-[85vh] lg:h-screen min-h-[520px] overflow-hidden">
         <img
           src={heroBg}
           alt="ARDORI - Timeless Silhouettes, Enduring Craft"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: "75% 55%" }} />
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-[64%_58%] sm:object-[70%_56%] lg:object-[75%_55%]" />
 
         {/* Scrim so the headline stays readable regardless of what's behind it */}
         <div

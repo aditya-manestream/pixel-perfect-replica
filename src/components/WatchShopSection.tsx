@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useShopifyProducts } from "@/hooks/useShopifyProducts";
@@ -56,9 +56,27 @@ const WatchShopSection = () => {
     return () => clearInterval(interval);
   }, [isPaused, nextProduct, items.length]);
 
-  const handleMouseEnter = (index: number) => {
-    if (index !== centerIndex) setCenterIndex(index);
+  // Re-centring a card slides the others sideways underneath a stationary
+  // cursor, so whichever card lands under it fires mouseenter. Acting on that
+  // re-centres again, and the carousel spins by itself without the pointer ever
+  // moving. We compare the cursor position carried by the hover event against
+  // where it was when we last re-centred: if it hasn't moved, the card came to
+  // the cursor rather than the cursor to the card, so we ignore it. Reading the
+  // position off the event matters — boundary events fire before mousemove, so
+  // a separately tracked pointer would still be one step stale here.
+  const lastCenterPointer = useRef<{ x: number; y: number } | null>(null);
+
+  const handleMouseEnter = (index: number, e: React.MouseEvent) => {
     setIsPaused(true);
+    if (index === centerIndex) return;
+
+    const from = lastCenterPointer.current;
+    if (from && Math.abs(e.clientX - from.x) < 4 && Math.abs(e.clientY - from.y) < 4) {
+      return;
+    }
+
+    lastCenterPointer.current = { x: e.clientX, y: e.clientY };
+    setCenterIndex(index);
   };
   const handleMouseLeave = () => setIsPaused(false);
 
@@ -132,7 +150,7 @@ const WatchShopSection = () => {
               initial={false}
               animate={{ x: xOffset, scale, opacity, zIndex }}
               transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseEnter={(e) => handleMouseEnter(index, e)}
               style={{ boxShadow: shadow }}
             >
               <Link

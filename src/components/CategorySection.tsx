@@ -4,36 +4,42 @@ import categoryBaguette from "@/assets/category-baguette.jpg";
 import categoryTote from "@/assets/category-tote.jpg";
 import categoryCrossbody from "@/assets/category-crossbody.jpg";
 import categoryPurse from "@/assets/category-purse.jpg";
+import categoryWallet from "@/assets/values-product-3.jpg";
 
+// The label is the category; the products that sit in it are shown as a
+// sub-line so customers can connect a category to the pieces they've seen.
 const categories = [
-  { id: "mining", label: "MINIBAG" },
-  { id: "baguette", label: "BAGUETTE" },
-  { id: "tote", label: "TOTE" },
-  { id: "crossbody", label: "CROSSBODY" },
-  { id: "purse", label: "PURSE / WALLET (UNISEX)" },
+  { id: "minibag", label: "MINIBAG", products: "Kumi (Big & Small)" },
+  { id: "clutches", label: "CLUTCHES", products: "Purnima (Big & Small)" },
+  { id: "purse", label: "PURSE", products: "Kaya" },
+  { id: "crossbody", label: "CROSSBODY", products: "Kalika" },
+  { id: "wallet", label: "WALLET", products: "Parna" },
+  { id: "tote", label: "TOTE", products: "Mandala" },
 ];
 
 const categoryImages: Record<string, string> = {
-  mining: categoryMining,
-  baguette: categoryBaguette,
-  tote: categoryTote,
-  crossbody: categoryCrossbody,
+  minibag: categoryMining,
+  clutches: categoryBaguette,
   purse: categoryPurse,
+  crossbody: categoryCrossbody,
+  wallet: categoryWallet,
+  tote: categoryTote,
 };
 
 // Each source photo frames the bag differently (most are shot with a lot of
 // empty space above), so the crop has to be tuned per image or the bag gets
 // cut off by the 4:3 container.
 const categoryImagePosition: Record<string, string> = {
-  mining: "center 80%",
-  baguette: "center 60%",
-  tote: "center 20%",
-  crossbody: "center 80%",
+  minibag: "center 80%",
+  clutches: "center 60%",
   purse: "center 40%",
+  crossbody: "center 80%",
+  wallet: "center 40%",
+  tote: "center 20%",
 };
 
 const CategorySection = () => {
-  const [activeCategory, setActiveCategory] = useState("mining");
+  const [activeCategory, setActiveCategory] = useState("minibag");
 
   return (
     <section 
@@ -64,17 +70,32 @@ const CategorySection = () => {
                 <button
                   key={category.id}
                   onMouseEnter={() => setActiveCategory(category.id)}
+                  // Touch devices never fire mouseenter, so tapping has to switch
+                  // the category too or the list is inert on phones/tablets.
+                  onClick={() => setActiveCategory(category.id)}
+                  onFocus={() => setActiveCategory(category.id)}
                   className="text-left transition-all duration-300 ease-out"
-                  style={{ 
+                  style={{
                     fontFamily: '"Montserrat", sans-serif',
-                    fontSize: category.id === "purse" ? "18px" : "20px",
                     fontWeight: category.id === activeCategory ? 600 : 400,
                     color: category.id === activeCategory ? "#2C2824" : "#B5AFA6",
                     letterSpacing: "0.06em",
-                    textTransform: "uppercase",
                   }}
                 >
-                  {category.label}
+                  <span
+                    className="block text-[17px] sm:text-[18px] lg:text-[20px] uppercase"
+                  >
+                    {category.label}
+                  </span>
+                  <span
+                    className="block font-serif italic normal-case text-[12px] lg:text-[13px] mt-0.5"
+                    style={{
+                      letterSpacing: "0.02em",
+                      color: category.id === activeCategory ? "#8A8279" : "#C4BEB5",
+                    }}
+                  >
+                    {category.products}
+                  </span>
                 </button>
               ))}
             </nav>
