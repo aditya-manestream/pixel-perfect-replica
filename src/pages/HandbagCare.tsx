@@ -275,7 +275,7 @@ const HandbagCare = () => {
                     src={careProfessional}
                     alt="Professional Leather Care"
                     className="w-full h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] object-cover"
-                    style={{ objectPosition: "center 60%" }}
+                    style={{ objectPosition: "56% 72%" }}
                   />
                 </div>
               </div>
@@ -292,7 +292,7 @@ const HandbagCare = () => {
                     src={careResources}
                     alt="Leather Care Resources"
                     className="w-full h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] object-cover"
-                    style={{ objectPosition: "center 62%" }}
+                    style={{ objectPosition: "58% 72%" }}
                   />
                 </div>
               </div>
