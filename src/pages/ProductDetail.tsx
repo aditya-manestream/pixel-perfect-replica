@@ -49,7 +49,7 @@ const ProductDetail = () => {
       <Navbar />
 
       {/* Main Content */}
-      <main className="pt-20 lg:pt-24 pb-16 lg:pb-24">
+      <div className="pt-20 lg:pt-24 pb-16 lg:pb-24">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-[12px] lg:text-[13px] font-sans tracking-[0.02em] mb-8" style={{ color: "#7A7570" }}>
@@ -467,7 +467,7 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
-      </main>
+      </div>
 
       {/* Trust Badges Section */}
       <TrustBadgesSection />

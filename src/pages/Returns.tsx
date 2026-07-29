@@ -362,7 +362,7 @@ const Returns = () => {
             </aside>
 
             {/* Right Content Area */}
-            <main className="flex-1 min-w-0">
+            <div className="flex-1 min-w-0">
               <motion.div
                 variants={fadeInUp}
                 initial="hidden"
@@ -459,7 +459,7 @@ const Returns = () => {
                   </p>
                 </motion.div>
               </motion.div>
-            </main>
+            </div>
           </div>
         </div>
       </section>
