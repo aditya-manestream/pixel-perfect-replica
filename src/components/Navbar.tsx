@@ -95,7 +95,7 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
           >
             <img
               src={ardoriMark.url}
-              alt="Ardori"
+              alt="Ardori luxury leather handbags logo"
               className="h-8 sm:h-9 lg:h-10 w-auto"
             />
           </Link>

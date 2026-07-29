@@ -143,7 +143,7 @@ const OurStory = () => {
             className="w-[200px] h-[240px] mx-auto mb-10 overflow-hidden" 
             style={{ backgroundColor: "#FAF8F5" }}
           >
-            <img src={storyFounder} alt="Founder" className="w-full h-full object-cover" />
+            <img src={storyFounder} alt="Ardori founder Eesha in the atelier" className="w-full h-full object-cover" />
           </motion.div>
 
           <motion.div 

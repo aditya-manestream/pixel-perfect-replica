@@ -20,11 +20,11 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex justify-center mb-6 transition-opacity duration-300 hover:opacity-80" aria-label="Ardori">
-              <img src={ardoriMark.url} alt="Ardori" className="h-12 lg:h-14 w-auto" />
+              <img src={ardoriMark.url} alt="Ardori luxury leather handbags logo" className="h-12 lg:h-14 w-auto" />
             </Link>
             <p
               className="font-serif text-[14px] lg:text-[15px] font-light leading-[1.8] mb-8"
-              style={{ color: "#9A958F" }}
+              style={{ color: "#C3BDB4" }}
             >
               Handcrafted luxury handbags inspired by India's flora and fauna.
               Ethically made with vegetable-tanned leather by skilled artisans
@@ -38,7 +38,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-all duration-300 hover:brightness-125"
-                style={{ color: "#9A958F" }}
+                style={{ color: "#C3BDB4" }}
                 aria-label="Instagram"
               >
                 <Instagram size={20} strokeWidth={1.2} />
@@ -48,7 +48,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-all duration-300 hover:brightness-125"
-                style={{ color: "#9A958F" }}
+                style={{ color: "#C3BDB4" }}
                 aria-label="Facebook"
               >
                 <Facebook size={20} strokeWidth={1.2} />
@@ -56,7 +56,7 @@ const Footer = () => {
               <a
                 href="mailto:love@ardorilabel.com"
                 className="transition-all duration-300 hover:brightness-125"
-                style={{ color: "#9A958F" }}
+                style={{ color: "#C3BDB4" }}
                 aria-label="Email"
               >
                 <Mail size={20} strokeWidth={1.2} />
@@ -77,7 +77,7 @@ const Footer = () => {
                 <Link
                   to="/shop"
                   className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                  style={{ color: "#9A958F", opacity: 0.85 }}
+                  style={{ color: "#C3BDB4", opacity: 0.85 }}
                 >
                   Shop All
                 </Link>
@@ -86,7 +86,7 @@ const Footer = () => {
                 <Link
                   to="/our-story"
                   className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                  style={{ color: "#9A958F", opacity: 0.85 }}
+                  style={{ color: "#C3BDB4", opacity: 0.85 }}
                 >
                   Our Story
                 </Link>
@@ -95,7 +95,7 @@ const Footer = () => {
                 <Link
                   to="/handbag-care"
                   className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                  style={{ color: "#9A958F", opacity: 0.85 }}
+                  style={{ color: "#C3BDB4", opacity: 0.85 }}
                 >
                   Handbag Care
                 </Link>
@@ -104,7 +104,7 @@ const Footer = () => {
                 <Link
                   to="/contact"
                   className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                  style={{ color: "#9A958F", opacity: 0.85 }}
+                  style={{ color: "#C3BDB4", opacity: 0.85 }}
                 >
                   Contact
                 </Link>
@@ -126,7 +126,7 @@ const Footer = () => {
                   <Link
                     to="/shipping"
                     className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                    style={{ color: "#9A958F", opacity: 0.85 }}
+                    style={{ color: "#C3BDB4", opacity: 0.85 }}
                   >
                     Shipping Information
                   </Link>
@@ -135,7 +135,7 @@ const Footer = () => {
                   <Link
                     to="/returns"
                     className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                    style={{ color: "#9A958F", opacity: 0.85 }}
+                    style={{ color: "#C3BDB4", opacity: 0.85 }}
                   >
                     Return & Exchange Policy
                   </Link>
@@ -144,7 +144,7 @@ const Footer = () => {
                   <Link
                     to="/privacy-policy"
                     className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                    style={{ color: "#9A958F", opacity: 0.85 }}
+                    style={{ color: "#C3BDB4", opacity: 0.85 }}
                   >
                     Privacy Policy
                   </Link>
@@ -153,7 +153,7 @@ const Footer = () => {
                   <Link
                     to="/terms-of-service"
                     className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                    style={{ color: "#9A958F", opacity: 0.85 }}
+                    style={{ color: "#C3BDB4", opacity: 0.85 }}
                   >
                     Terms of Service
                   </Link>
@@ -164,7 +164,7 @@ const Footer = () => {
                   <Link
                     to="/warranty-policy"
                     className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                    style={{ color: "#9A958F", opacity: 0.85 }}
+                    style={{ color: "#C3BDB4", opacity: 0.85 }}
                   >
                     Warranty Policy
                   </Link>
@@ -173,7 +173,7 @@ const Footer = () => {
                   <Link
                     to="/faqs"
                     className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                    style={{ color: "#9A958F", opacity: 0.85 }}
+                    style={{ color: "#C3BDB4", opacity: 0.85 }}
                   >
                     FAQs
                   </Link>
@@ -182,7 +182,7 @@ const Footer = () => {
                   <Link
                     to="/track-order"
                     className="font-serif text-[14px] lg:text-[15px] font-light transition-opacity duration-300 hover:opacity-100"
-                    style={{ color: "#9A958F", opacity: 0.85 }}
+                    style={{ color: "#C3BDB4", opacity: 0.85 }}
                   >
                     Track Your Order
                   </Link>
@@ -216,7 +216,7 @@ const Footer = () => {
             </h4>
             <p
               className="font-serif text-[13px] lg:text-[14px] font-light mb-6"
-              style={{ color: "#7A7570" }}
+              style={{ color: "#B8B2A8" }}
             >
               Sign up with your email to receive an additional 2% off.
             </p>
@@ -228,9 +228,9 @@ const Footer = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email Address"
-                  className="w-full bg-transparent border-0 border-b pb-2 font-serif text-[14px] placeholder:font-serif focus:outline-none transition-all duration-300 focus:border-[#7A7570]"
+                  className="w-full bg-transparent border-0 border-b pb-2 font-serif text-[14px] placeholder:font-serif focus:outline-none transition-all duration-300 focus:border-[#B8B2A8]"
                   style={{
-                    color: "#9A958F",
+                    color: "#C3BDB4",
                     borderColor: "#4A4540",
                   }}
                   required
