@@ -13,11 +13,17 @@ import UnboxingSection from "@/components/UnboxingSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import InstagramSection from "@/components/InstagramSection";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 const Index = () => {
   return (
     <div className="w-full">
       {/* Sticky Navbar */}
+      <Seo
+        title={"Ardori — Handcrafted Leather Handbags Inspired by Nature"}
+        description={"Vegetable-tanned leather handbags handcrafted in India, shaped by the country's flora and fauna. Timeless silhouettes, slow luxury, enduring craft."}
+        path="/"
+      />
       <Navbar />
 
       {/* Hero Section */}

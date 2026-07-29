@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -70,6 +71,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
+      <Seo
+        title={"Contact Ardori — We're Here to Help"}
+        description={"Questions about an order, sizing or leather care? Reach the Ardori customer care team at love@ardorilabel.com or send us a message."}
+        path="/contact"
+      />
       <Navbar />
       
       {/* Hero Section - Navy Pattern Background (Prominent) */}

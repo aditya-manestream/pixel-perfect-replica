@@ -4,6 +4,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -78,6 +79,11 @@ const FAQs = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
+      <Seo
+        title={"Frequently Asked Questions | Ardori"}
+        description={"Answers about Ardori shipping timelines, returns and exchanges, leather care and our 8-month handbag warranty."}
+        path="/faqs"
+      />
       <Navbar />
 
       {/* Hero Section */}

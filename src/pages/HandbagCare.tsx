@@ -11,6 +11,7 @@ import careAvoid from "@/assets/story-leather-texture.jpg";
 import careLeather from "@/assets/care-leather.jpg";
 import careProfessional from "@/assets/shop-product-4.jpg";
 import careResources from "@/assets/care-resources.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -77,6 +78,11 @@ const careSections = [
 const HandbagCare = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
+      <Seo
+        title={"Handbag Care Guide for Leather Bags | Ardori"}
+        description={"How to clean, condition and store your vegetable-tanned leather handbag so it ages into a beautiful patina instead of wearing out."}
+        path="/handbag-care"
+      />
       <Navbar />
 
       {/* Hero Section */}

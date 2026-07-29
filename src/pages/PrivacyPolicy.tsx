@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -216,6 +217,11 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
+      <Seo
+        title={"Privacy Policy | Ardori"}
+        description={"How Ardori collects, uses and protects your personal information when you shop with us or subscribe to our updates."}
+        path="/privacy-policy"
+      />
       <Navbar />
       
       {/* Hero Section */}

@@ -2,10 +2,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ShopifyProductGrid from "@/components/shop/ShopifyProductGrid";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
+import Seo from "@/components/Seo";
 
 const Shop = () => {
   return (
     <div className="min-h-screen">
+      <Seo
+        title={"Shop Leather Handbags | Ardori"}
+        description={"Browse the Ardori collection of handcrafted vegetable-tanned leather handbags — totes, slings and everyday carry pieces made in India."}
+        path="/shop"
+      />
       <Navbar />
       
       {/* Hero Section */}

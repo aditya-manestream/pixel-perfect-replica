@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -203,6 +204,11 @@ const Returns = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
+      <Seo
+        title={"Return & Exchange Policy | Ardori"}
+        description={"Ardori accepts returns within 48 hours of delivery on unused handbags in original packaging. Here is how the return process works."}
+        path="/returns"
+      />
       <Navbar />
       
       {/* Hero Section */}

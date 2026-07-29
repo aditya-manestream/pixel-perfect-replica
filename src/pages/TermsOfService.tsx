@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -259,6 +260,11 @@ const TermsOfService = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
+      <Seo
+        title={"Terms of Service | Ardori"}
+        description={"The terms that govern purchases, orders and use of the Ardori website and handcrafted leather handbag collection."}
+        path="/terms-of-service"
+      />
       <Navbar />
       
       {/* Hero Section */}
