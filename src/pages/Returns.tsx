@@ -72,7 +72,7 @@ const policySections = [
           <li className="flex items-start gap-3">
             <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
-              The item is not part of a Sale, Custom Order, Monogrammed/Personalized piece, or Made-to-Order item
+              The item is not part of a Sale
             </span>
           </li>
         </ul>
@@ -94,12 +94,6 @@ const policySections = [
           <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
             Items damaged due to improper use, exposure to water/chemicals, or lack of care
-          </span>
-        </li>
-        <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
-          <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
-            Custom, personalized, or made-to-order pieces
           </span>
         </li>
       </ul>

@@ -65,6 +65,7 @@ const careSections = [
     title: "What to Avoid",
     intro: "Things that can damage your leather bag.",
     image: careAvoid,
+    imagePosition: "center bottom",
     items: [
       "Water exposure (if wet, air dry naturally)",
       "Heat sources",
@@ -210,7 +211,7 @@ const HandbagCare = () => {
                         src={section.image}
                         alt={section.title}
                         className="w-full h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] object-cover"
-                        style={{ objectPosition: "center top" }}
+                        style={{ objectPosition: (section as { imagePosition?: string }).imagePosition ?? "center top" }}
                       />
                     </div>
                   </div>
