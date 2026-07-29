@@ -26,6 +26,7 @@ const careSections = [
     title: "Daily Care",
     intro: "Simple habits to keep your bag looking fresh every day.",
     image: careDaily,
+    imagePosition: "center center",
     items: [
       "Clean hands before handling",
       "Avoid overloading",
@@ -39,6 +40,7 @@ const careSections = [
     title: "Cleaning & Maintenance",
     intro: "Proper cleaning techniques to maintain the leather's beauty.",
     image: careCleaning,
+    imagePosition: "center 55%",
     items: [
       "Wipe gently with soft, dry cloth",
       "For spills: blot immediately, don't rub",
@@ -52,6 +54,7 @@ const careSections = [
     title: "Storage Tips",
     intro: "How to store your bag when not in use.",
     image: careStorage,
+    imagePosition: "center center",
     items: [
       "Stuff with tissue paper to maintain shape",
       "Store in provided dust bag",
@@ -65,7 +68,7 @@ const careSections = [
     title: "What to Avoid",
     intro: "Things that can damage your leather bag.",
     image: careAvoid,
-    imagePosition: "center bottom",
+    imagePosition: "center 80%",
     items: [
       "Water exposure (if wet, air dry naturally)",
       "Heat sources",
@@ -272,7 +275,7 @@ const HandbagCare = () => {
                     src={careProfessional}
                     alt="Professional Leather Care"
                     className="w-full h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] object-cover"
-                    style={{ objectPosition: "center top" }}
+                    style={{ objectPosition: "center 60%" }}
                   />
                 </div>
               </div>
@@ -288,7 +291,8 @@ const HandbagCare = () => {
                   <img
                     src={careResources}
                     alt="Leather Care Resources"
-                    className="w-full h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] object-cover object-bottom"
+                    className="w-full h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] object-cover"
+                    style={{ objectPosition: "center 62%" }}
                   />
                 </div>
               </div>
