@@ -55,11 +55,32 @@ const Contact = () => {
     setUploadedImage(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData, uploadedImage);
-    // Handle form submission
+    if (sending) return;
+    setSending(true);
+    try {
+      const { error } = await supabase.functions.invoke("contact-submit", {
+        body: {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          orderNumber: formData.orderNumber.trim(),
+          subject: formData.subject,
+          message: formData.message.trim(),
+        },
+      });
+      if (error) throw error;
+      toast.success("Thank you — we've emailed you a confirmation.");
+      setFormData({ name: "", email: "", phone: "", orderNumber: "", subject: "", message: "" });
+      setUploadedImage(null);
+    } catch {
+      toast.error("Your message couldn't be sent. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
+
 
   const quickLinks = [
     { label: "Track Your Order", href: "/track-order" },
