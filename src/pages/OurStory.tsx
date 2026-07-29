@@ -4,7 +4,7 @@ import { Leaf, Heart, Scale } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InstagramSection from "@/components/InstagramSection";
-import storyHeroAsset from "@/assets/our-story-hero.jpg.asset.json";
+import storyHeroAsset from "@/assets/our-story-hero-editorial.jpg.asset.json";
 const storyHero = storyHeroAsset.url;
 import storyFounder from "@/assets/founder-eesha.jpg";
 import storyCraft from "@/assets/story-craft.jpg";
