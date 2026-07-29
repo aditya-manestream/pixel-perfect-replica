@@ -70,6 +70,18 @@ const faqs = [
   }
 ];
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.flatMap((category) =>
+    category.questions.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    }))
+  ),
+};
+
 const FAQs = () => {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
 
@@ -83,6 +95,7 @@ const FAQs = () => {
         title={"Frequently Asked Questions | Ardori"}
         description={"Answers about Ardori shipping timelines, returns and exchanges, leather care and our 8-month handbag warranty."}
         path="/faqs"
+        jsonLd={faqJsonLd}
       />
       <Navbar />
 

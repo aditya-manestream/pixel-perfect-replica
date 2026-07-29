@@ -12,6 +12,7 @@ import { formatPrice, isNewProduct, isBestSeller, shopifyImage, ShopifyProduct }
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -205,8 +206,38 @@ const ShopifyProductDetail = () => {
     .filter(p => p.node.id !== product.id)
     .slice(0, 4);
 
+  const productPrice = selectedVariant?.price ?? product.priceRange.minVariantPrice;
+  const productDescription =
+    (product.description || `${product.title} — a handcrafted vegetable-tanned leather handbag by Ardori.`)
+      .slice(0, 160);
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.title,
+    description: productDescription,
+    image: images.map((img) => img.node.url),
+    brand: { "@type": "Brand", name: "Ardori" },
+    offers: {
+      "@type": "Offer",
+      url: `https://ardorilabel.com/product/${product.handle}`,
+      price: productPrice.amount,
+      priceCurrency: productPrice.currencyCode,
+      availability: selectedVariant?.availableForSale
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+    },
+  };
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
+      <Seo
+        title={`${product.title} | Ardori Leather Handbags`}
+        description={productDescription}
+        path={`/product/${product.handle}`}
+        type="product"
+        image={images[0]?.node.url}
+        jsonLd={productJsonLd}
+      />
       <Navbar forceScrolled />
 
       <div className="pt-20 lg:pt-24 pb-16 lg:pb-24">
