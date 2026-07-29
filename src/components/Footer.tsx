@@ -19,7 +19,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link to="/" className="inline-block mb-6 transition-opacity duration-300 hover:opacity-80" aria-label="Ardori">
+            <Link to="/" className="flex justify-center mb-6 transition-opacity duration-300 hover:opacity-80" aria-label="Ardori">
               <img src={ardoriMark.url} alt="Ardori" className="h-12 lg:h-14 w-auto" />
             </Link>
             <p
