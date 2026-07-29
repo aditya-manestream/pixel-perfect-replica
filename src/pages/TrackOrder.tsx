@@ -4,6 +4,7 @@ import { Search, Package, Truck, CheckCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -27,6 +28,11 @@ const TrackOrder = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
+      <Seo
+        title={"Track Your Order | Ardori"}
+        description={"Enter your order details to follow your Ardori handbag from our Mumbai atelier to your doorstep."}
+        path="/track-order"
+      />
       <Navbar />
 
       {/* Hero Section */}

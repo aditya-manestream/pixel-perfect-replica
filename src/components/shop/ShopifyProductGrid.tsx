@@ -337,12 +337,12 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
                     >
                       {node.productType || "Handbag"}
                     </p>
-                    <h3 
+                    <h2 
                       className="font-serif text-[16px] lg:text-[18px] font-normal mb-1"
                       style={{ color: "#2C2824" }}
                     >
                       {node.title}
-                    </h3>
+                    </h2>
                     <p 
                       className="font-serif text-[15px] lg:text-[16px] mb-3"
                       style={{ color: "#3D3530" }}

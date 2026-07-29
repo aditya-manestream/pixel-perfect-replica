@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -11,6 +12,11 @@ const fadeInUp = {
 const Journal = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
+      <Seo
+        title={"Journal — Notes on Craft & Leather | Ardori"}
+        description={"Stories from the Ardori atelier: vegetable tanning, design inspiration from India's flora and fauna, and the making of each handbag."}
+        path="/journal"
+      />
       <Navbar />
 
       {/* Hero Section */}

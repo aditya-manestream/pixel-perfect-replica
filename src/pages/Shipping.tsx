@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -154,6 +155,11 @@ const Shipping = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
+      <Seo
+        title={"Shipping Information | Ardori"}
+        description={"Ardori ships across India within 10 business days, with complimentary shipping on orders above Rs 5,000. Track your order any time."}
+        path="/shipping"
+      />
       <Navbar />
       
       {/* Hero Section */}
@@ -307,7 +313,7 @@ const Shipping = () => {
             </aside>
 
             {/* Right Content Area */}
-            <main className="flex-1 min-w-0">
+            <div className="flex-1 min-w-0">
               <motion.div
                 variants={fadeInUp}
                 initial="hidden"
@@ -404,7 +410,7 @@ const Shipping = () => {
                   </p>
                 </motion.div>
               </motion.div>
-            </main>
+            </div>
           </div>
         </div>
       </section>

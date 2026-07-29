@@ -12,6 +12,7 @@ import { formatPrice, isNewProduct, isBestSeller, shopifyImage, ShopifyProduct }
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -71,7 +72,7 @@ const ShopifyProductDetail = () => {
     return (
       <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
         <Navbar forceScrolled />
-        <main className="pt-20 lg:pt-24 pb-16">
+        <div className="pt-20 lg:pt-24 pb-16">
           <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
               <div className="lg:col-span-7">
@@ -84,7 +85,7 @@ const ShopifyProductDetail = () => {
               </div>
             </div>
           </div>
-        </main>
+        </div>
         <Footer />
       </div>
     );
@@ -111,7 +112,7 @@ const ShopifyProductDetail = () => {
     return (
       <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
         <Navbar forceScrolled />
-        <main className="pt-24 lg:pt-32 pb-16">
+        <div className="pt-24 lg:pt-32 pb-16">
           <div className="max-w-[600px] mx-auto px-6 text-center">
             <h1 className="font-serif text-[28px] font-normal mb-4" style={{ color: "#2C2824" }}>
               This piece has moved
@@ -155,7 +156,7 @@ const ShopifyProductDetail = () => {
               Back to Shop
             </Link>
           </div>
-        </main>
+        </div>
         <Footer />
       </div>
     );
@@ -205,11 +206,41 @@ const ShopifyProductDetail = () => {
     .filter(p => p.node.id !== product.id)
     .slice(0, 4);
 
+  const productPrice = selectedVariant?.price ?? product.priceRange.minVariantPrice;
+  const productDescription =
+    (product.description || `${product.title} — a handcrafted vegetable-tanned leather handbag by Ardori.`)
+      .slice(0, 160);
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.title,
+    description: productDescription,
+    image: images.map((img) => img.node.url),
+    brand: { "@type": "Brand", name: "Ardori" },
+    offers: {
+      "@type": "Offer",
+      url: `https://ardorilabel.com/product/${product.handle}`,
+      price: productPrice.amount,
+      priceCurrency: productPrice.currencyCode,
+      availability: selectedVariant?.availableForSale
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+    },
+  };
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
+      <Seo
+        title={`${product.title} | Ardori Leather Handbags`}
+        description={productDescription}
+        path={`/product/${product.handle}`}
+        type="product"
+        image={images[0]?.node.url}
+        jsonLd={productJsonLd}
+      />
       <Navbar forceScrolled />
 
-      <main className="pt-20 lg:pt-24 pb-16 lg:pb-24">
+      <div className="pt-20 lg:pt-24 pb-16 lg:pb-24">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-[12px] lg:text-[13px] font-sans tracking-[0.02em] mb-8" style={{ color: "#7A7570" }}>
@@ -699,7 +730,7 @@ const ShopifyProductDetail = () => {
             </div>
           </motion.div>
         </div>
-      </main>
+      </div>
 
       {/* You May Also Like - Related Products */}
       <RelatedProductsCarousel 

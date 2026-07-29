@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -217,6 +218,11 @@ const WarrantyPolicy = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
+      <Seo
+        title={"Warranty Policy — 8-Month Cover | Ardori"}
+        description={"Every Ardori handbag carries an 8-month warranty against manufacturing defects in stitching, hardware and construction. See what's covered."}
+        path="/warranty-policy"
+      />
       <Navbar />
       
       {/* Hero Section */}

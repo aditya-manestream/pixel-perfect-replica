@@ -136,7 +136,7 @@ const ShopifyCart = () => {
     return (
       <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
         <Navbar />
-        <main className="pt-24 lg:pt-32 pb-16 lg:pb-24">
+        <div className="pt-24 lg:pt-32 pb-16 lg:pb-24">
           <div className="max-w-[600px] mx-auto px-6 text-center">
             <motion.div
               initial="hidden"
@@ -174,7 +174,7 @@ const ShopifyCart = () => {
               </Link>
             </motion.div>
           </div>
-        </main>
+        </div>
         <Footer />
       </div>
     );
@@ -184,7 +184,7 @@ const ShopifyCart = () => {
     <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
       <Navbar />
 
-      <main className="pt-20 lg:pt-24 pb-16 lg:pb-24">
+      <div className="pt-20 lg:pt-24 pb-16 lg:pb-24">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           {/* Header */}
           <motion.div 
@@ -475,7 +475,7 @@ const ShopifyCart = () => {
             </motion.div>
           </div>
         </div>
-      </main>
+      </div>
 
       <Footer />
     </div>

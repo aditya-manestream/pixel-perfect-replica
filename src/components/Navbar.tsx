@@ -95,7 +95,7 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
           >
             <img
               src={ardoriMark.url}
-              alt="Ardori"
+              alt="Ardori luxury leather handbags logo"
               className="h-8 sm:h-9 lg:h-10 w-auto"
             />
           </Link>
@@ -275,6 +275,7 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
             <input
               ref={searchInputRef}
               type="search"
+              aria-label="Search products"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search for a bag…"

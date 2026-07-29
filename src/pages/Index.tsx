@@ -13,11 +13,17 @@ import UnboxingSection from "@/components/UnboxingSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import InstagramSection from "@/components/InstagramSection";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 const Index = () => {
   return (
     <div className="w-full">
       {/* Sticky Navbar */}
+      <Seo
+        title={"Ardori — Handcrafted Leather Handbags Inspired by Nature"}
+        description={"Vegetable-tanned leather handbags handcrafted in India, shaped by the country's flora and fauna. Timeless silhouettes, slow luxury, enduring craft."}
+        path="/"
+      />
       <Navbar />
 
       {/* Hero Section */}
@@ -30,6 +36,9 @@ const Index = () => {
           src={heroBg}
           alt="ARDORI - Timeless Silhouettes, Enduring Craft"
           decoding="async"
+          fetchPriority="high"
+          width={1920}
+          height={1280}
           className="absolute inset-0 w-full h-full object-cover object-[64%_58%] sm:object-[70%_56%] lg:object-[75%_55%]" />
 
         {/* Scrim so the headline stays readable regardless of what's behind it */}

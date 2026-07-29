@@ -10,6 +10,7 @@ import storyFounder from "@/assets/founder-eesha.jpg";
 import storyCraft from "@/assets/story-craft.jpg";
 import storyLeatherTexture from "@/assets/story-leather-texture.jpg";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
+import Seo from "@/components/Seo";
 
 const fadeInUp = {
   initial: {
@@ -46,6 +47,11 @@ const values = [{
 const OurStory = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
+      <Seo
+        title={"Our Story — Slow Luxury from India | Ardori"}
+        description={"The story behind Ardori: a Mumbai-born label crafting vegetable-tanned leather handbags with patience, sustainability and honest craftsmanship."}
+        path="/our-story"
+      />
       <Navbar />
 
       {/* Hero Section */}
@@ -143,7 +149,7 @@ const OurStory = () => {
             className="w-[200px] h-[240px] mx-auto mb-10 overflow-hidden" 
             style={{ backgroundColor: "#FAF8F5" }}
           >
-            <img src={storyFounder} alt="Founder" className="w-full h-full object-cover" />
+            <img src={storyFounder} alt="Ardori founder Eesha in the atelier" className="w-full h-full object-cover" />
           </motion.div>
 
           <motion.div 

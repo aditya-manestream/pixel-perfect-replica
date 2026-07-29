@@ -107,7 +107,7 @@ const CategorySection = () => {
               <img
                 key={category.id}
                 src={categoryImages[category.id]}
-                alt={category.label}
+                alt={`${category.label} leather handbags by Ardori`}
                 className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out"
                 style={{
                   opacity: category.id === activeCategory ? 1 : 0,
