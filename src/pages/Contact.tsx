@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Instagram, Facebook, Send, Upload, X, Eye, ArrowRight } from "lucide-react";
 import instagram1 from "@/assets/instagram-reel-1.jpg";
