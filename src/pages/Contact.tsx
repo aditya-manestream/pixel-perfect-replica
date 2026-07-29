@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Instagram, Facebook, Send, Upload, X, Eye, ArrowRight } from "lucide-react";
 import instagram1 from "@/assets/instagram-reel-1.jpg";
@@ -36,6 +39,8 @@ const Contact = () => {
     message: ""
   });
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  const [sending, setSending] = useState(false);
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -55,11 +60,32 @@ const Contact = () => {
     setUploadedImage(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData, uploadedImage);
-    // Handle form submission
+    if (sending) return;
+    setSending(true);
+    try {
+      const { error } = await supabase.functions.invoke("contact-submit", {
+        body: {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          orderNumber: formData.orderNumber.trim(),
+          subject: formData.subject,
+          message: formData.message.trim(),
+        },
+      });
+      if (error) throw error;
+      toast.success("Thank you — we've emailed you a confirmation.");
+      setFormData({ name: "", email: "", phone: "", orderNumber: "", subject: "", message: "" });
+      setUploadedImage(null);
+    } catch {
+      toast.error("Your message couldn't be sent. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
+
 
   const quickLinks = [
     { label: "Track Your Order", href: "/track-order" },
@@ -603,7 +629,8 @@ const Contact = () => {
                   {/* Submit Button */}
                   <Button
                     type="submit"
-                    className="w-full h-14 rounded-none mt-6 transition-all duration-300 hover:opacity-90"
+                    disabled={sending}
+                    className="w-full h-14 rounded-none mt-6 transition-all duration-300 hover:opacity-90 disabled:opacity-60"
                     style={{
                       backgroundColor: "#1A1A1A",
                       color: "#FAF8F5",
@@ -613,8 +640,9 @@ const Contact = () => {
                     }}
                   >
                     <Send size={14} strokeWidth={1.5} className="mr-2" />
-                    SEND MESSAGE
+                    {sending ? "SENDING…" : "SEND MESSAGE"}
                   </Button>
+
                 </form>
               </div>
             </motion.div>
