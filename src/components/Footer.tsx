@@ -255,11 +255,13 @@ const Footer = () => {
               </div>
               <button
                 type="submit"
-                className="font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase transition-opacity duration-300 hover:opacity-100"
+                disabled={sending}
+                className="font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase transition-opacity duration-300 hover:opacity-100 disabled:opacity-50"
                 style={{ color: "#E8E4DF", opacity: 0.9 }}
               >
-                GET CODE
+                {sending ? "SENDING…" : "GET CODE"}
               </button>
+
             </form>
           </div>
 
