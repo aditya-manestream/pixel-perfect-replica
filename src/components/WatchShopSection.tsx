@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useShopifyProducts } from "@/hooks/useShopifyProducts";
 import { isNewProduct } from "@/lib/shopify";
 import styled1 from "@/assets/shop-product-1.jpg";
@@ -11,6 +12,7 @@ const STYLED_IMAGES = [styled1, styled2, styled3, styled4, styled5];
 
 const WatchShopSection = () => {
   const { products, loading } = useShopifyProducts();
+  const [isPaused, setIsPaused] = useState(false);
 
   const items = products.slice(0, 5).map((p, i) => {
     const node = p.node;
@@ -55,10 +57,19 @@ const WatchShopSection = () => {
         </p>
       </div>
 
-      <div className="relative overflow-hidden">
+      <div
+        className="relative overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onFocus={() => setIsPaused(true)}
+        onBlur={() => setIsPaused(false)}
+      >
         <div
-          className="flex gap-8 w-max hover:[animation-play-state:paused]"
-          style={{ animation: "scroll-left 40s linear infinite" }}
+          className="flex gap-8 w-max"
+          style={{
+            animation: "scroll-left 40s linear infinite",
+            animationPlayState: isPaused ? "paused" : "running",
+          }}
         >
           {duplicatedItems.map((product, index) => (
             <Link
