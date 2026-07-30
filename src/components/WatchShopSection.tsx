@@ -52,7 +52,7 @@ const WatchShopSection = () => {
 
   useEffect(() => {
     if (isPaused || items.length < 2) return;
-    const interval = setInterval(nextProduct, 4500);
+    const interval = setInterval(nextProduct, 3000);
     return () => clearInterval(interval);
   }, [isPaused, nextProduct, items.length]);
 
@@ -125,6 +125,7 @@ const WatchShopSection = () => {
 
       <div
         className="relative h-[400px] lg:h-[500px] flex items-center justify-center"
+        onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={handleMouseLeave}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
