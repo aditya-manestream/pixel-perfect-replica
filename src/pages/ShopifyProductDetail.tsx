@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, Minus, Plus, Search, ShoppingBag, Truck, Shield, RotateCcw } from "lucide-react";
@@ -41,6 +41,7 @@ const ShopifyProductDetail = () => {
   // image edge-to-edge with no visible join.
   const NEUTRAL_BACKDROP = "#EEEBE6";
   const [backdrop, setBackdrop] = useState(NEUTRAL_BACKDROP);
+  const imageRatio = useRef<number | null>(null);
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
@@ -48,6 +49,7 @@ const ShopifyProductDetail = () => {
       const w = img.naturalWidth;
       const h = img.naturalHeight;
       if (!w || !h) return;
+      imageRatio.current = w / h;
 
       const canvas = document.createElement("canvas");
       canvas.width = w;
@@ -169,13 +171,33 @@ const ShopifyProductDetail = () => {
     opt.name.toLowerCase() === 'color' || opt.name.toLowerCase() === 'colour'
   );
 
+  // The photo is object-contain inside a wider frame, so the rendered image is
+  // letterboxed. Map the cursor from frame coordinates into the rendered
+  // photo's own box, otherwise the zoom origin drifts away from the pointer.
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isZooming) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setZoomPosition({ x, y });
+    const ratio = imageRatio.current;
+
+    let left = 0, top = 0, w = rect.width, h = rect.height;
+    if (ratio) {
+      const frameRatio = rect.width / rect.height;
+      if (ratio > frameRatio) {
+        h = rect.width / ratio;
+        top = (rect.height - h) / 2;
+      } else {
+        w = rect.height * ratio;
+        left = (rect.width - w) / 2;
+      }
+    }
+
+    const x = ((e.clientX - rect.left - left) / w) * 100;
+    const y = ((e.clientY - rect.top - top) / h) * 100;
+    setZoomPosition({
+      x: Math.min(100, Math.max(0, x)),
+      y: Math.min(100, Math.max(0, y)),
+    });
   };
+
 
   const toggleAccordion = (section: string) => {
     setOpenAccordion(openAccordion === section ? null : section);
@@ -279,10 +301,10 @@ const ShopifyProductDetail = () => {
                     decoding="async"
                     crossOrigin="anonymous"
                     onLoad={handleImageLoad}
-                    className="absolute inset-0 w-full h-full object-contain transition-transform duration-300"
+                    className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 cursor-zoom-in"
                     style={{
                       backgroundColor: "#F5F1EA",
-                      transform: isZooming ? `scale(1.5)` : "scale(1)",
+                      transform: isZooming ? `scale(2)` : "scale(1)",
                       transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
                     }}
                   />
