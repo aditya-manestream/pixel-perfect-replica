@@ -169,13 +169,34 @@ const ShopifyProductDetail = () => {
     opt.name.toLowerCase() === 'color' || opt.name.toLowerCase() === 'colour'
   );
 
+  // The photo is object-contain inside a wider frame, so the rendered image is
+  // letterboxed. Map the cursor from frame coordinates into the rendered
+  // photo's own box, otherwise the zoom origin drifts away from the pointer.
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isZooming) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setZoomPosition({ x, y });
+    const ratio = imageRatio.current;
+
+    let left = 0, top = 0, w = rect.width, h = rect.height;
+    if (ratio) {
+      const frameRatio = rect.width / rect.height;
+      if (ratio > frameRatio) {
+        h = rect.width / ratio;
+        top = (rect.height - h) / 2;
+      } else {
+        w = rect.height * ratio;
+        left = (rect.width - w) / 2;
+      }
+    }
+
+    const x = ((e.clientX - rect.left - left) / w) * 100;
+    const y = ((e.clientY - rect.top - top) / h) * 100;
+    setZoomPosition({
+      x: Math.min(100, Math.max(0, x)),
+      y: Math.min(100, Math.max(0, y)),
+    });
   };
+
 
   const toggleAccordion = (section: string) => {
     setOpenAccordion(openAccordion === section ? null : section);
