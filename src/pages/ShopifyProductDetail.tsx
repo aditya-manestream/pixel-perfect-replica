@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, Minus, Plus, Search, ShoppingBag, Truck, Shield, RotateCcw } from "lucide-react";
@@ -41,6 +41,7 @@ const ShopifyProductDetail = () => {
   // image edge-to-edge with no visible join.
   const NEUTRAL_BACKDROP = "#EEEBE6";
   const [backdrop, setBackdrop] = useState(NEUTRAL_BACKDROP);
+  const imageRatio = useRef<number | null>(null);
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
@@ -48,6 +49,7 @@ const ShopifyProductDetail = () => {
       const w = img.naturalWidth;
       const h = img.naturalHeight;
       if (!w || !h) return;
+      imageRatio.current = w / h;
 
       const canvas = document.createElement("canvas");
       canvas.width = w;
@@ -300,10 +302,10 @@ const ShopifyProductDetail = () => {
                     decoding="async"
                     crossOrigin="anonymous"
                     onLoad={handleImageLoad}
-                    className="absolute inset-0 w-full h-full object-contain transition-transform duration-300"
+                    className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 cursor-zoom-in"
                     style={{
                       backgroundColor: "#F5F1EA",
-                      transform: isZooming ? `scale(1.5)` : "scale(1)",
+                      transform: isZooming ? `scale(2)` : "scale(1)",
                       transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`,
                     }}
                   />
