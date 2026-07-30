@@ -1,6 +1,13 @@
-import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useTransform,
+  animate,
+  type MotionValue,
+} from "framer-motion";
 import { useShopifyProducts } from "@/hooks/useShopifyProducts";
 import { isNewProduct } from "@/lib/shopify";
 import styled1 from "@/assets/shop-product-1.jpg";
@@ -10,6 +17,92 @@ import styled4 from "@/assets/shop-product-4.jpg";
 import styled5 from "@/assets/shop-product-5.jpg";
 
 const STYLED_IMAGES = [styled1, styled2, styled3, styled4, styled5];
+
+interface CarouselItem {
+  id: string;
+  handle: string;
+  name: string;
+  image: string;
+  alt: string;
+  isNew: boolean;
+}
+
+interface CarouselCardProps {
+  product: CarouselItem;
+  index: number;
+  activeIndex: MotionValue<number>;
+  itemsLength: number;
+  onMouseEnter: (index: number, e: React.MouseEvent) => void;
+}
+
+const CarouselCard = ({
+  product,
+  index,
+  activeIndex,
+  itemsLength,
+  onMouseEnter,
+}: CarouselCardProps) => {
+  const position = useTransform(activeIndex, (latest) => {
+    const rawPos = index - latest;
+    const k = Math.round(rawPos / itemsLength);
+    return rawPos - k * itemsLength;
+  });
+  const x = useTransform(position, (p) => p * 280);
+  const scale = useTransform(
+    position,
+    (p) => 1.1 - Math.min(Math.abs(p), 2) * 0.125
+  );
+  const opacity = useTransform(
+    position,
+    (p) => 1 - Math.min(Math.abs(p), 2) * 0.15
+  );
+  const zIndex = useTransform(
+    position,
+    (p) => 10 - Math.round(Math.min(Math.abs(p), 2) * 2)
+  );
+  const shadow = useTransform(position, (p) =>
+    Math.abs(p) < 0.5
+      ? "0 20px 40px -10px rgba(0,0,0,0.25)"
+      : "0 10px 20px -5px rgba(0,0,0,0.1)"
+  );
+  const pointerEvents = useTransform(position, (p) =>
+    Math.abs(p) <= 2 ? "auto" : "none"
+  );
+
+  return (
+    <motion.div
+      key={product.id}
+      className="absolute"
+      style={{ x, scale, opacity, zIndex, boxShadow: shadow, pointerEvents }}
+      onMouseEnter={(e) => onMouseEnter(index, e)}
+    >
+      <Link
+        to={`/product/${product.handle}`}
+        className="block cursor-pointer"
+        aria-label={`View ${product.name}`}
+      >
+        <div
+          className="relative w-[200px] lg:w-[260px] rounded-lg overflow-hidden"
+          style={{ backgroundColor: "#F5F2ED" }}
+        >
+          {product.isNew && (
+            <div
+              className="absolute top-3 left-3 z-10 px-3 py-1 text-[10px] lg:text-[11px] font-sans tracking-[0.1em] uppercase"
+              style={{ backgroundColor: "#FFFFFF", color: "#3A3530" }}
+            >
+              NEW
+            </div>
+          )}
+          <img
+            src={product.image}
+            alt={product.alt}
+            className="w-full h-[280px] lg:h-[360px] object-cover"
+          />
+        </div>
+      </Link>
+    </motion.div>
+  );
+};
 
 const WatchShopSection = () => {
   const { products, loading } = useShopifyProducts();
@@ -32,53 +125,46 @@ const WatchShopSection = () => {
     [products]
   );
 
-  const [centerIndex, setCenterIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const activeIndex = useMotionValue(0);
+  const speed = useRef(0.5); // cards per second
+  const lastCenterPointer = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     if (items.length > 0) {
-      setCenterIndex(Math.floor(items.length / 2));
+      activeIndex.set(Math.floor(items.length / 2));
     }
-  }, [items.length]);
+  }, [items.length, activeIndex]);
 
-  const nextProduct = useCallback(() => {
-    setCenterIndex((prev) => (prev + 1) % Math.max(items.length, 1));
-  }, [items.length]);
-
-  const prevProduct = useCallback(() => {
-    setCenterIndex((prev) => (prev - 1 + items.length) % Math.max(items.length, 1));
-  }, [items.length]);
-
-  useEffect(() => {
+  useAnimationFrame((t, delta) => {
     if (isPaused || items.length < 2) return;
-    const interval = setInterval(nextProduct, 3000);
-    return () => clearInterval(interval);
-  }, [isPaused, nextProduct, items.length]);
-
-  // Re-centring a card slides the others sideways underneath a stationary
-  // cursor, so whichever card lands under it fires mouseenter. Acting on that
-  // re-centres again, and the carousel spins by itself without the pointer ever
-  // moving. We compare the cursor position carried by the hover event against
-  // where it was when we last re-centred: if it hasn't moved, the card came to
-  // the cursor rather than the cursor to the card, so we ignore it. Reading the
-  // position off the event matters — boundary events fire before mousemove, so
-  // a separately tracked pointer would still be one step stale here.
-  const lastCenterPointer = useRef<{ x: number; y: number } | null>(null);
+    const current = activeIndex.get();
+    activeIndex.set((current + (speed.current * delta) / 1000) % items.length);
+  });
 
   const handleMouseEnter = (index: number, e: React.MouseEvent) => {
     setIsPaused(true);
+    const currentIndex = activeIndex.get();
+    const centerIndex = Math.round(currentIndex);
     if (index === centerIndex) return;
 
     const from = lastCenterPointer.current;
-    if (from && Math.abs(e.clientX - from.x) < 4 && Math.abs(e.clientY - from.y) < 4) {
+    if (
+      from &&
+      Math.abs(e.clientX - from.x) < 4 &&
+      Math.abs(e.clientY - from.y) < 4
+    ) {
       return;
     }
 
     lastCenterPointer.current = { x: e.clientX, y: e.clientY };
-    setCenterIndex(index);
+    animate(activeIndex, index, { duration: 0.7, ease: [0.4, 0, 0.2, 1] });
   };
-  const handleMouseLeave = () => setIsPaused(false);
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.touches[0].clientX);
@@ -89,16 +175,13 @@ const WatchShopSection = () => {
     if (touchStart === null) return;
     const diff = touchStart - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) {
-      diff > 0 ? nextProduct() : prevProduct();
+      const current = activeIndex.get();
+      const target = diff > 0 ? Math.round(current + 1) : Math.round(current - 1);
+      const wrapped = ((target % items.length) + items.length) % items.length;
+      animate(activeIndex, wrapped, { duration: 0.7, ease: [0.4, 0, 0.2, 1] });
     }
     setTouchStart(null);
     setTimeout(() => setIsPaused(false), 3000);
-  };
-
-  const getPosition = (index: number) => {
-    const diff = index - centerIndex;
-    const normalizedDiff = ((diff + items.length + 2) % items.length) - 2;
-    return normalizedDiff;
   };
 
   if (!loading && items.length === 0) return null;
@@ -130,57 +213,16 @@ const WatchShopSection = () => {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        {items.map((product, index) => {
-          const position = getPosition(index);
-          const isCenter = position === 0;
-          const isVisible = Math.abs(position) <= 2;
-          if (!isVisible) return null;
-
-          const xOffset = position * 280;
-          const scale = isCenter ? 1.1 : 0.85;
-          const opacity = isCenter ? 1 : 0.7;
-          const zIndex = isCenter ? 10 : 5 - Math.abs(position);
-          const shadow = isCenter
-            ? "0 20px 40px -10px rgba(0,0,0,0.25)"
-            : "0 10px 20px -5px rgba(0,0,0,0.1)";
-
-          return (
-            <motion.div
-              key={product.id}
-              className="absolute"
-              initial={false}
-              animate={{ x: xOffset, scale, opacity, zIndex }}
-              transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-              onMouseEnter={(e) => handleMouseEnter(index, e)}
-              style={{ boxShadow: shadow }}
-            >
-              <Link
-                to={`/product/${product.handle}`}
-                className="block cursor-pointer"
-                aria-label={`View ${product.name}`}
-              >
-                <div
-                  className="relative w-[200px] lg:w-[260px] rounded-lg overflow-hidden"
-                  style={{ backgroundColor: "#F5F2ED" }}
-                >
-                  {product.isNew && (
-                    <div
-                      className="absolute top-3 left-3 z-10 px-3 py-1 text-[10px] lg:text-[11px] font-sans tracking-[0.1em] uppercase"
-                      style={{ backgroundColor: "#FFFFFF", color: "#3A3530" }}
-                    >
-                      NEW
-                    </div>
-                  )}
-                  <img
-                    src={product.image}
-                    alt={product.alt}
-                    className="w-full h-[280px] lg:h-[360px] object-cover"
-                  />
-                </div>
-              </Link>
-            </motion.div>
-          );
-        })}
+        {items.map((product, index) => (
+          <CarouselCard
+            key={product.id}
+            product={product}
+            index={index}
+            activeIndex={activeIndex}
+            itemsLength={items.length}
+            onMouseEnter={handleMouseEnter}
+          />
+        ))}
       </div>
 
       <div className="text-center mt-10 lg:mt-14">
