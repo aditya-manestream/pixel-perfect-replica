@@ -32,7 +32,7 @@ interface CarouselCardProps {
   index: number;
   activeIndex: MotionValue<number>;
   itemsLength: number;
-  onMouseEnter: (index: number) => void;
+  onMouseEnter: (index: number, e: React.MouseEvent) => void;
 }
 
 const CarouselCard = ({
@@ -74,7 +74,7 @@ const CarouselCard = ({
       key={product.id}
       className="absolute"
       style={{ x, scale, opacity, zIndex, boxShadow: shadow, pointerEvents }}
-      onMouseEnter={() => onMouseEnter(index)}
+      onMouseEnter={(e) => onMouseEnter(index, e)}
     >
       <Link
         to={`/product/${product.handle}`}
@@ -129,6 +129,7 @@ const WatchShopSection = () => {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const activeIndex = useMotionValue(0);
   const speed = useRef(0.5); // cards per second
+  const lastCenterPointer = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     if (items.length > 0) {
@@ -142,8 +143,22 @@ const WatchShopSection = () => {
     activeIndex.set((current + (speed.current * delta) / 1000) % items.length);
   });
 
-  const handleMouseEnter = (index: number) => {
+  const handleMouseEnter = (index: number, e: React.MouseEvent) => {
     setIsPaused(true);
+    const currentIndex = activeIndex.get();
+    const centerIndex = Math.round(currentIndex);
+    if (index === centerIndex) return;
+
+    const from = lastCenterPointer.current;
+    if (
+      from &&
+      Math.abs(e.clientX - from.x) < 4 &&
+      Math.abs(e.clientY - from.y) < 4
+    ) {
+      return;
+    }
+
+    lastCenterPointer.current = { x: e.clientX, y: e.clientY };
     animate(activeIndex, index, { duration: 0.7, ease: [0.4, 0, 0.2, 1] });
   };
 
