@@ -175,7 +175,6 @@ const ShopifyProductDetail = () => {
   // letterboxed. Map the cursor from frame coordinates into the rendered
   // photo's own box, otherwise the zoom origin drifts away from the pointer.
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isZooming) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const ratio = imageRatio.current;
 
