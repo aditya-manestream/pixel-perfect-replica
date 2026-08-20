@@ -89,6 +89,13 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
       selectedOptions: firstVariant.selectedOptions,
     });
 
+    trackAddToCart({
+      id: firstVariant.id,
+      name: product.node.title,
+      quantity: 1,
+      price: parseFloat(firstVariant.price.amount),
+    });
+
     toast.success(`${product.node.title} added to cart`, {
       position: "top-center",
     });
