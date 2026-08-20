@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Heart, Minus, Plus, Search, ShoppingBag, Truck, Shield, RotateCcw } from "lucide-react";
@@ -11,6 +11,7 @@ import { useShopifyProduct, useShopifyProducts } from "@/hooks/useShopifyProduct
 import { formatPrice, isNewProduct, isBestSeller, shopifyImage, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
+import { trackAddToCart, trackViewContent } from "@/lib/pixel";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 import Seo from "@/components/Seo";
 
@@ -42,6 +43,21 @@ const ShopifyProductDetail = () => {
   const NEUTRAL_BACKDROP = "#EEEBE6";
   const [backdrop, setBackdrop] = useState(NEUTRAL_BACKDROP);
   const imageRatio = useRef<number | null>(null);
+
+  // Meta Pixel: ViewContent once per product view.
+  useEffect(() => {
+    if (!product) return;
+    const firstVariant = product.variants.edges[0]?.node;
+    trackViewContent({
+      id: firstVariant?.id ?? product.id,
+      name: product.title,
+      quantity: 1,
+      price: parseFloat(
+        firstVariant?.price.amount ?? product.priceRange.minVariantPrice.amount
+      ),
+    });
+  }, [product]);
+
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
@@ -213,6 +229,13 @@ const ShopifyProductDetail = () => {
       price: selectedVariant.price,
       quantity,
       selectedOptions: selectedVariant.selectedOptions,
+    });
+
+    trackAddToCart({
+      id: selectedVariant.id,
+      name: product.title,
+      quantity,
+      price: parseFloat(selectedVariant.price.amount),
     });
 
     toast.success(`${product.title} added to cart`, {

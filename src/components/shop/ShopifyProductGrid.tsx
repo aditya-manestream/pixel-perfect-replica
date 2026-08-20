@@ -7,6 +7,7 @@ import { useShopifyProducts } from "@/hooks/useShopifyProducts";
 import { formatPrice, isNewProduct, isBestSeller, getColorOptions, shopifyImage, fetchProductByHandle, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
+import { trackAddToCart } from "@/lib/pixel";
 
 interface ShopifyProductGridProps {
   showFilters?: boolean;
@@ -86,6 +87,13 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
       price: firstVariant.price,
       quantity: 1,
       selectedOptions: firstVariant.selectedOptions,
+    });
+
+    trackAddToCart({
+      id: firstVariant.id,
+      name: product.node.title,
+      quantity: 1,
+      price: parseFloat(firstVariant.price.amount),
     });
 
     toast.success(`${product.node.title} added to cart`, {

@@ -1,25 +1,49 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CheckCircle, Package, Truck } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useCartStore } from "@/stores/cartStore";
+import { trackPurchase, PixelLine } from "@/lib/pixel";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
+interface ConfirmationState {
+  paymentId?: string;
+  orderId?: string;
+  value?: number;
+  lines?: PixelLine[];
+}
+
 const OrderConfirmation = () => {
   const { clearCart } = useCartStore();
+  const location = useLocation();
+  // Captured once: the cart clears on mount and router state can be lost on
+  // re-render, so the Purchase payload must not depend on live store data.
+  const orderRef = useRef<ConfirmationState>((location.state as ConfirmationState) ?? {});
+  const [fallbackNumber] = useState(() => `ARD-${Date.now().toString().slice(-8)}`);
 
   // Clear cart on mount (after successful checkout)
   useEffect(() => {
     clearCart();
   }, [clearCart]);
 
-  const orderNumber = `ARD-${Date.now().toString().slice(-8)}`;
+  // Meta Pixel: Purchase, only after a verified Razorpay payment.
+  useEffect(() => {
+    const { paymentId, value, lines } = orderRef.current;
+    if (!paymentId) return;
+    trackPurchase({
+      paymentId,
+      value: value ?? lines?.reduce((s, l) => s + l.price * l.quantity, 0) ?? 0,
+      lines,
+    });
+  }, []);
+
+  const orderNumber = orderRef.current.orderId ?? fallbackNumber;
   const estimatedDelivery = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString('en-IN', {
     weekday: 'long',
     year: 'numeric',
