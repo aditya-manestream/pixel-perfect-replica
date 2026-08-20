@@ -1,8 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
+  const isFirstLoad = useRef(true);
 
   useEffect(() => {
     // Scroll to top on route change with instant behavior
@@ -12,7 +19,16 @@ const ScrollToTop = () => {
     if (window.location.hash) {
       window.history.replaceState(null, "", pathname);
     }
+
+    // Meta Pixel: index.html already fires the initial PageView, so only track
+    // subsequent client-side route changes here.
+    if (isFirstLoad.current) {
+      isFirstLoad.current = false;
+      return;
+    }
+    window.fbq?.("track", "PageView");
   }, [pathname]);
+
 
   return null;
 };
