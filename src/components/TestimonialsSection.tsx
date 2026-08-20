@@ -2,6 +2,14 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
+import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 import { useShopifyProducts } from "@/hooks/useShopifyProducts";
 import t1 from "@/assets/testimonial-t1.jpg.asset.json";
@@ -308,6 +316,24 @@ const TestimonialsSection = () => {
     };
   };
 
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewName, setReviewName] = useState("");
+  const [reviewText, setReviewText] = useState("");
+
+  const handleSubmitReview = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!reviewName.trim() || !reviewText.trim()) {
+      toast.error("Please add your name and a few words about your bag.");
+      return;
+    }
+    toast.success("Thank you — your review has been submitted for moderation.");
+    setReviewOpen(false);
+    setReviewRating(5);
+    setReviewName("");
+    setReviewText("");
+  };
+
   return (
     <section className="relative w-full py-20 lg:py-28 overflow-hidden" data-dark-section>
       {/* Background Pattern */}
@@ -434,6 +460,71 @@ const TestimonialsSection = () => {
               aria-label={`View testimonial ${index + 1}`}
             />
           ))}
+        </div>
+
+        {/* Write a Review CTA */}
+        <div className="flex justify-center mt-12 lg:mt-14">
+          <Dialog open={reviewOpen} onOpenChange={setReviewOpen}>
+            <DialogTrigger asChild>
+              <button
+                type="button"
+                className="font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase px-10 py-4 border transition-all duration-300 hover:bg-[rgba(201,168,108,0.12)]"
+                style={{ borderColor: "#C9A86C", color: "#E8E4DF", backgroundColor: "transparent" }}
+              >
+                Write a Review
+              </button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[440px]" style={{ backgroundColor: "#FDFCFA" }}>
+              <DialogHeader>
+                <DialogTitle className="font-serif text-[22px] font-normal" style={{ color: "#2C2824" }}>
+                  Write a Review
+                </DialogTitle>
+              </DialogHeader>
+              <form onSubmit={handleSubmitReview} className="space-y-4">
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
+                      onClick={() => setReviewRating(star)}
+                    >
+                      <Star
+                        size={22}
+                        fill={star <= reviewRating ? "#C9A86C" : "transparent"}
+                        stroke={star <= reviewRating ? "#C9A86C" : "#D4D0CB"}
+                        strokeWidth={1.5}
+                      />
+                    </button>
+                  ))}
+                </div>
+                <input
+                  value={reviewName}
+                  onChange={(e) => setReviewName(e.target.value)}
+                  placeholder="Your name"
+                  aria-label="Your name"
+                  className="w-full px-3 py-2 font-sans text-[13px] bg-transparent outline-none"
+                  style={{ border: "1px solid #E8E4DF", color: "#2C2824" }}
+                />
+                <textarea
+                  value={reviewText}
+                  onChange={(e) => setReviewText(e.target.value)}
+                  placeholder="Tell us about your bag"
+                  aria-label="Your review"
+                  rows={4}
+                  className="w-full px-3 py-2 font-sans text-[13px] bg-transparent outline-none resize-none"
+                  style={{ border: "1px solid #E8E4DF", color: "#2C2824" }}
+                />
+                <button
+                  type="submit"
+                  className="w-full py-3 font-sans text-[11px] tracking-[0.15em] uppercase transition-all hover:opacity-90"
+                  style={{ backgroundColor: "#2C2824", color: "#FFFFFF" }}
+                >
+                  Submit Review
+                </button>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </section>
