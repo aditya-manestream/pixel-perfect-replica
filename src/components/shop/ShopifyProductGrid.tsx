@@ -7,6 +7,7 @@ import { useShopifyProducts } from "@/hooks/useShopifyProducts";
 import { formatPrice, isNewProduct, isBestSeller, getColorOptions, shopifyImage, fetchProductByHandle, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
+import { trackAddToCart } from "@/lib/pixel";
 
 interface ShopifyProductGridProps {
   showFilters?: boolean;
