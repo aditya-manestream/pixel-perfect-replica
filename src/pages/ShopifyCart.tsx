@@ -134,6 +134,7 @@ const ShopifyCart = () => {
       });
 
       rzp.open();
+      trackInitiateCheckout(pixelLines, totalRupees);
     } catch (e: any) {
       toast({ title: "Checkout error", description: e.message, variant: "destructive" });
     } finally {
