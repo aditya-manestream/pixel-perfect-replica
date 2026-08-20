@@ -11,6 +11,7 @@ import { useShopifyProduct, useShopifyProducts } from "@/hooks/useShopifyProduct
 import { formatPrice, isNewProduct, isBestSeller, shopifyImage, ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { toast } from "sonner";
+import { trackAddToCart, trackViewContent } from "@/lib/pixel";
 import navyPatternBg from "@/assets/navy-pattern-bg.jpg";
 import Seo from "@/components/Seo";
 
