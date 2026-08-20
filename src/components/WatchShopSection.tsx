@@ -8,25 +8,32 @@ import styled3 from "@/assets/shop-product-3.jpg";
 import styled4 from "@/assets/shop-product-4.jpg";
 import styled5 from "@/assets/shop-product-5.jpg";
 
-const STYLED_IMAGES = [styled1, styled2, styled3, styled4, styled5];
+// Each styled photo shows a specific bag, so link it to that exact product
+// instead of whatever order Shopify happens to return the catalogue in.
+const STYLED_LOOKS = [
+  { image: styled1, handle: "purnima-big", label: "Purnima" },
+  { image: styled2, handle: "kaya-minibag", label: "Kaya" },
+  { image: styled3, handle: "mandala-tote", label: "Mandala" },
+  { image: styled4, handle: "parna-wallet", label: "Parna" },
+  { image: styled5, handle: "kumi-small", label: "Kumi (Small)" },
+];
 
 const WatchShopSection = () => {
   const { products, loading } = useShopifyProducts();
   const [isPaused, setIsPaused] = useState(false);
 
-  const items = products.slice(0, 5).map((p, i) => {
-    const node = p.node;
+  const items = STYLED_LOOKS.map((look) => {
+    const match = products.find((p) => p.node.handle === look.handle);
+    const node = match?.node;
     return {
-      id: node.id,
-      handle: node.handle,
-      name: node.title,
-      image: STYLED_IMAGES[i],
-      alt: node.title,
-      isNew: isNewProduct(node),
+      id: look.handle,
+      handle: node?.handle ?? look.handle,
+      name: node?.title ?? look.label,
+      image: look.image,
+      alt: `${node?.title ?? look.label} styled by Ardori`,
+      isNew: node ? isNewProduct(node) : false,
     };
   });
-
-  if (!loading && items.length === 0) return null;
 
   const duplicatedItems = [...items, ...items];
 

@@ -9,7 +9,7 @@ import careCleaning from "@/assets/story-craft.jpg";
 import careStorage from "@/assets/unboxing-packaging.jpg";
 import careAvoid from "@/assets/story-leather-texture.jpg";
 import careLeather from "@/assets/care-leather.jpg";
-import careProfessional from "@/assets/shop-product-4.jpg";
+import careProfessional from "@/assets/values-product-2.jpg";
 import careResources from "@/assets/care-resources.jpg";
 import Seo from "@/components/Seo";
 
@@ -275,7 +275,7 @@ const HandbagCare = () => {
                     src={careProfessional}
                     alt="Professional Leather Care"
                     className="w-full h-[260px] sm:h-[320px] md:h-[360px] lg:h-[420px] object-cover"
-                    style={{ objectPosition: "56% 66%" }}
+                    style={{ objectPosition: "62% 50%" }}
                   />
                 </div>
               </div>
