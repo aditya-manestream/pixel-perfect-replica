@@ -48,7 +48,7 @@ const OurStory = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
       <Seo
-        title={"Our Story — Slow Luxury from India | Ardori"}
+        title={"Our Story | Slow Luxury from India | Ardori"}
         description={"The story behind Ardori: a Mumbai-born label crafting vegetable-tanned leather handbags with patience, sustainability and honest craftsmanship."}
         path="/our-story"
       />
@@ -101,25 +101,25 @@ const OurStory = () => {
             className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7]" 
             style={{ color: "#7A7570" }}
           >
-            India's landscapes are layered — from Himalayan blooms to tropical coasts, from desert flora to monsoon forests.
+            India's landscapes are layered, from Himalayan blooms to tropical coasts, from desert flora to monsoon forests.
           </p>
           <p 
             className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7] mt-2" 
             style={{ color: "#7A7570" }}
           >
-            Ardori reinterprets and translates this richness into design. Each silhouette draws subtle cues from the natural world — curves, symmetry, texture, movement.
+            Ardori reinterprets and translates this richness into design. Each silhouette draws subtle cues from the natural world: curves, symmetry, texture, movement.
           </p>
           <p 
             className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7] mt-2" 
             style={{ color: "#7A7570" }}
           >
-            Our collections are released in small, capsule drops — intentional in quantity and deliberate in design.
+            Our collections are released in small, capsule drops, intentional in quantity and deliberate in design.
           </p>
           <p 
             className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7] mt-2" 
             style={{ color: "#7A7570" }}
           >
-            Ardori takes its name from "Ardor" — a fierce devotion to preserving the world around us while celebrating the art of the handmade.
+            Ardori takes its name from "Ardor", a fierce devotion to preserving the world around us while celebrating the art of the handmade.
           </p>
         </motion.div>
       </section>
@@ -140,7 +140,7 @@ const OurStory = () => {
             className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-10" 
             style={{ color: "#C9A86C" }}
           >
-            A NOTE FROM THE FOUNDER — EESHA
+            A NOTE FROM THE FOUNDER, EESHA
           </motion.p>
 
           <motion.div 
