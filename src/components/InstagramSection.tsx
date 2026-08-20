@@ -6,10 +6,10 @@ import instagramReel3 from "@/assets/instagram-reel-3.jpg";
 import instagramReel4 from "@/assets/instagram-reel-4.jpg";
 
 const images = [
-  { id: 1, src: instagramReel1, alt: "Born of earth and ardor", link: "https://www.instagram.com/p/DTvJdD6DCjj/" },
-  { id: 2, src: instagramReel2, alt: "Five Women Five Roop - Ardori celebrates all of you", link: "https://www.instagram.com/p/DUlMGHnDI38/?img_index=1" },
-  { id: 3, src: instagramReel3, alt: "Vegan leather vs animal leather", link: "https://www.instagram.com/p/DVlcC18k9pN/" },
-  { id: 4, src: instagramReel4, alt: "Noises Voices of Ardori", link: "https://www.instagram.com/p/DVtNQYEjGeh/" },
+  { id: 1, src: instagramReel1, alt: "Born of earth and ardor", link: "https://www.instagram.com/p/DadLjyADCNx/?img_index=1" },
+  { id: 2, src: instagramReel2, alt: "Five Women Five Roop - Ardori celebrates all of you", link: "https://www.instagram.com/p/Dba1N09DMOX/?img_index=1" },
+  { id: 3, src: instagramReel3, alt: "Vegan leather vs animal leather", link: "https://www.instagram.com/p/DbIuoWSDI9L/?img_index=1" },
+  { id: 4, src: instagramReel4, alt: "Noises Voices of Ardori", link: "https://www.instagram.com/p/DWB1D0XjEk-/?img_index=1" },
 ];
 
 const InstagramSection = () => {
