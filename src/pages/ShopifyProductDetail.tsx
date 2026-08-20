@@ -44,6 +44,21 @@ const ShopifyProductDetail = () => {
   const [backdrop, setBackdrop] = useState(NEUTRAL_BACKDROP);
   const imageRatio = useRef<number | null>(null);
 
+  // Meta Pixel: ViewContent once per product view.
+  useEffect(() => {
+    if (!product) return;
+    const firstVariant = product.variants.edges[0]?.node;
+    trackViewContent({
+      id: firstVariant?.id ?? product.id,
+      name: product.title,
+      quantity: 1,
+      price: parseFloat(
+        firstVariant?.price.amount ?? product.priceRange.minVariantPrice.amount
+      ),
+    });
+  }, [product]);
+
+
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     try {
