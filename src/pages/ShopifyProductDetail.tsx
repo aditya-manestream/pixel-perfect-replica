@@ -231,6 +231,13 @@ const ShopifyProductDetail = () => {
       selectedOptions: selectedVariant.selectedOptions,
     });
 
+    trackAddToCart({
+      id: selectedVariant.id,
+      name: product.title,
+      quantity,
+      price: parseFloat(selectedVariant.price.amount),
+    });
+
     toast.success(`${product.title} added to cart`, {
       position: "top-center",
     });
