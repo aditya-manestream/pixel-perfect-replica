@@ -67,6 +67,13 @@ const ShopifyCart = () => {
       return;
     }
 
+    const pixelLines: PixelLine[] = items.map((item) => ({
+      id: item.variantId,
+      name: item.product.node.title,
+      quantity: item.quantity,
+      price: parseFloat(item.price.amount),
+    }));
+
     setPayLoading(true);
     try {
       const ok = await loadRazorpayScript();
@@ -103,7 +110,14 @@ const ShopifyCart = () => {
             }
             toast({ title: "Payment successful", description: `Payment ID: ${verify.payment_id}` });
             clearCart();
-            navigate("/order-confirmation", { state: { paymentId: verify.payment_id, orderId: verify.order_id } });
+            navigate("/order-confirmation", {
+              state: {
+                paymentId: verify.payment_id,
+                orderId: verify.order_id,
+                value: totalRupees,
+                lines: pixelLines,
+              },
+            });
           } catch (e: any) {
             toast({ title: "Verification error", description: e.message, variant: "destructive" });
           }
