@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useShopifyProducts } from "@/hooks/useShopifyProducts";
-import { isNewProduct } from "@/lib/shopify";
+import { isNewProduct, resolveHandle, shopifyImage } from "@/lib/shopify";
 import styled1 from "@/assets/shop-product-1.jpg";
 import styled2 from "@/assets/shop-product-2.jpg";
 import styled3 from "@/assets/shop-product-3.jpg";
@@ -18,22 +18,53 @@ const STYLED_LOOKS = [
   { image: styled5, handle: "kumi-small", label: "Kumi (Small)" },
 ];
 
+interface StyledItem {
+  id: string;
+  handle: string;
+  name: string;
+  image: string;
+  alt: string;
+  isNew: boolean;
+}
+
 const WatchShopSection = () => {
   const { products, loading } = useShopifyProducts();
   const [isPaused, setIsPaused] = useState(false);
 
-  const items = STYLED_LOOKS.map((look) => {
-    const match = products.find((p) => p.node.handle === look.handle);
-    const node = match?.node;
-    return {
+  // Styled photos whose product is still live in Shopify. A drafted or deleted
+  // product (e.g. Kumi Small) drops out instead of linking to a dead page.
+  const styledItems: StyledItem[] = STYLED_LOOKS.flatMap((look) => {
+    const node = resolveHandle(products, look.handle);
+    if (!node) return [];
+    return [{
       id: look.handle,
-      handle: node?.handle ?? look.handle,
-      name: node?.title ?? look.label,
+      handle: node.handle,
+      name: node.title,
       image: look.image,
-      alt: `${node?.title ?? look.label} styled by Ardori`,
-      isNew: node ? isNewProduct(node) : false,
-    };
+      alt: `${node.title} styled by Ardori`,
+      isNew: isNewProduct(node),
+    }];
   });
+
+  // Backfill from the live catalogue (using each product's own Shopify photo) so
+  // the strip always stays full even when styled looks are dropped.
+  const used = new Set(styledItems.map((i) => i.handle));
+  const fillers: StyledItem[] = products
+    .filter((p) => !used.has(p.node.handle))
+    .map((p) => ({
+      id: p.node.handle,
+      handle: p.node.handle,
+      name: p.node.title,
+      image: shopifyImage(p.node.images.edges[0]?.node.url, 700),
+      alt: p.node.images.edges[0]?.node.altText || `${p.node.title} by Ardori`,
+      isNew: isNewProduct(p.node),
+    }))
+    .filter((i) => !!i.image);
+
+  const items = [...styledItems, ...fillers].slice(0, Math.max(STYLED_LOOKS.length, 5));
+
+  if (!loading && items.length === 0) return null;
+
 
   const duplicatedItems = [...items, ...items];
 
