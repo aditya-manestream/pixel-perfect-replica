@@ -25,13 +25,14 @@ function page(body: string) {
 
 serve(async (req) => {
   try {
-    const data = await adminGraphql(`query ConnectionCheck { shop { name myshopifyDomain } }`);
+    const data = await adminGraphql(`query ConnectionCheck { shop { name myshopifyDomain } products(first:5){edges{node{id title handle status}}} }`);
     const shop = data?.shop;
 
     return page(`
       <h1>Shopify is connected</h1>
       <p class="note"><strong>Store:</strong> ${shop?.name || "Ardori"}</p>
       <p class="note"><strong>Domain:</strong> ${shop?.myshopifyDomain || "ardori-4.myshopify.com"}</p>
+      <pre>${JSON.stringify(data?.products?.edges?.map((e:any)=>e.node) || [], null, 1)}</pre>
       <p class="note">The website can securely create Shopify orders after verified Razorpay payments. No access token needs to be copied or stored manually.</p>
     `);
   } catch (err: any) {
