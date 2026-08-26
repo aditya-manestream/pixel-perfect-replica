@@ -31,6 +31,46 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
+interface CheckoutDetails {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address1: string;
+  address2: string;
+  city: string;
+  state: string;
+  pincode: string;
+}
+
+const EMPTY_DETAILS: CheckoutDetails = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  address1: "",
+  address2: "",
+  city: "",
+  state: "",
+  pincode: "",
+};
+
+const DETAILS_KEY = "ardori_checkout_details";
+
+function validateDetails(d: CheckoutDetails): Partial<Record<keyof CheckoutDetails, string>> {
+  const e: Partial<Record<keyof CheckoutDetails, string>> = {};
+  if (!d.firstName.trim()) e.firstName = "Required";
+  if (!d.lastName.trim()) e.lastName = "Required";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email.trim())) e.email = "Enter a valid email";
+  if (!/^\d{10}$/.test(d.phone.replace(/\D/g, "").slice(-10))) e.phone = "Enter a 10-digit number";
+  if (!d.address1.trim()) e.address1 = "Required";
+  if (!d.city.trim()) e.city = "Required";
+  if (!d.state.trim()) e.state = "Required";
+  if (!/^\d{6}$/.test(d.pincode.trim())) e.pincode = "Enter a 6-digit PIN code";
+  return e;
+}
+
+
 const ShopifyCart = () => {
   const {
     items,
