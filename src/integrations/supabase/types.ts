@@ -101,6 +101,39 @@ export type Database = {
         }
         Relationships: []
       }
+      shopify_order_sync: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          id: string
+          payload: Json | null
+          razorpay_order_id: string | null
+          razorpay_payment_id: string
+          shopify_order_name: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          payload?: Json | null
+          razorpay_order_id?: string | null
+          razorpay_payment_id: string
+          shopify_order_name?: string | null
+          status: string
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          payload?: Json | null
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string
+          shopify_order_name?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
       suppressed_emails: {
         Row: {
           created_at: string
