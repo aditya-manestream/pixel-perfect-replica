@@ -37,8 +37,3 @@ serve(async (req) => {
     return page(`<h1>Shopify connection failed</h1><pre>${err.message || err}</pre>`);
   }
 });
-
-/**
- * Creates a throwaway order with inventory bypassed, then deletes it, to prove
- * the orderCreate mutation shape is valid against the live Admin API.
- */
