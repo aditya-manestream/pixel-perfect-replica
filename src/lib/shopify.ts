@@ -14,6 +14,8 @@ export interface ShopifyProduct {
     handle: string;
     tags: string[];
     productType: string;
+    publishedAt?: string;
+
     priceRange: {
       minVariantPrice: {
         amount: string;
@@ -76,11 +78,10 @@ export interface CartItem {
   }>;
 }
 
-// GraphQL Queries
-// Trimmed query for the shop grid + related-products carousel. These surfaces only
-// render 1–2 images, the first variant, price, title, tags and options — so we skip
-// description/descriptionHtml/metafields and cap images/variants, cutting the JSON
-// payload dramatically versus fetching full product detail for every card.
+// Listing query for the shop grid, homepage sections and related-products carousel.
+// It fetches the full image set (galleries and hover images need more than the first
+// two photos) plus every variant, while still skipping the heavy description and
+// metafield fields that only the product detail page renders.
 const PRODUCTS_QUERY = `
   query GetProducts($first: Int!, $query: String) {
     products(first: $first, query: $query) {
@@ -91,13 +92,14 @@ const PRODUCTS_QUERY = `
           handle
           tags
           productType
+          publishedAt
           priceRange {
             minVariantPrice {
               amount
               currencyCode
             }
           }
-          images(first: 2) {
+          images(first: 10) {
             edges {
               node {
                 url
@@ -105,7 +107,7 @@ const PRODUCTS_QUERY = `
               }
             }
           }
-          variants(first: 1) {
+          variants(first: 20) {
             edges {
               node {
                 id
@@ -118,6 +120,10 @@ const PRODUCTS_QUERY = `
                 selectedOptions {
                   name
                   value
+                }
+                image {
+                  url
+                  altText
                 }
               }
             }
@@ -132,6 +138,7 @@ const PRODUCTS_QUERY = `
   }
 `;
 
+
 const PRODUCT_BY_HANDLE_QUERY = `
   query GetProductByHandle($handle: String!) {
     productByHandle(handle: $handle) {
@@ -142,13 +149,15 @@ const PRODUCT_BY_HANDLE_QUERY = `
       handle
       tags
       productType
+      publishedAt
       priceRange {
         minVariantPrice {
           amount
           currencyCode
         }
       }
-      images(first: 10) {
+      images(first: 25) {
+
         edges {
           node {
             url
@@ -328,21 +337,72 @@ export function formatPrice(amount: string, currencyCode: string = 'INR'): strin
   }).format(num);
 }
 
+// Tags in Shopify are typed by hand, so match them loosely: case, spaces,
+// hyphens and underscores are all normalised away before comparing.
+function normalizeTag(tag: string): string {
+  return tag.toLowerCase().replace(/[\s_-]+/g, '');
+}
+
+function hasAnyTag(product: ShopifyProduct['node'], candidates: string[]): boolean {
+  const normalized = (product.tags ?? []).map(normalizeTag);
+  return candidates.some(c => normalized.includes(normalizeTag(c)));
+}
+
+const NEW_TAGS = ['new', 'new arrival', 'new arrivals', 'newin', 'just in', 'latest'];
+const BEST_SELLER_TAGS = ['best seller', 'bestseller', 'best sellers', 'popular'];
+
 export function isNewProduct(product: ShopifyProduct['node']): boolean {
-  return product.tags.some(tag => 
-    tag.toLowerCase() === 'new' || 
-    tag.toLowerCase() === 'new-arrival' || 
-    tag.toLowerCase() === 'new arrival'
-  );
+  return hasAnyTag(product, NEW_TAGS);
 }
 
 export function isBestSeller(product: ShopifyProduct['node']): boolean {
-  return product.tags.some(tag => 
-    tag.toLowerCase() === 'best-seller' || 
-    tag.toLowerCase() === 'best seller' || 
-    tag.toLowerCase() === 'bestseller'
-  );
+  return hasAnyTag(product, BEST_SELLER_TAGS);
 }
+
+/**
+ * Products for the "New Arrivals" surface. Prefers explicitly tagged products, but
+ * if nobody has tagged anything in Shopify yet it falls back to the most recently
+ * published products so the section never silently disappears.
+ */
+export function selectNewArrivals(products: ShopifyProduct[], limit = 3): ShopifyProduct[] {
+  const tagged = products.filter(p => isNewProduct(p.node));
+  if (tagged.length > 0) return tagged.slice(0, limit);
+
+  return [...products]
+    .sort((a, b) => {
+      const at = a.node.publishedAt ? Date.parse(a.node.publishedAt) : 0;
+      const bt = b.node.publishedAt ? Date.parse(b.node.publishedAt) : 0;
+      return bt - at;
+    })
+    .slice(0, limit);
+}
+
+/**
+ * Resolve a hardcoded handle against the live catalogue. Returns null when the
+ * product was drafted, unpublished or deleted in Shopify, so callers can skip the
+ * item instead of rendering a link to a page that no longer exists.
+ */
+export function resolveHandle(
+  products: ShopifyProduct[],
+  handle: string
+): ShopifyProduct['node'] | null {
+  return products.find(p => p.node.handle === handle)?.node ?? null;
+}
+
+/**
+ * Best-effort category matching. Uses productType when the merchant filled it in,
+ * otherwise falls back to shared tags (excluding generic marketing tags).
+ */
+export function isSameCategory(a: ShopifyProduct['node'], b: ShopifyProduct['node']): boolean {
+  if (a.productType && b.productType) {
+    return a.productType.toLowerCase() === b.productType.toLowerCase();
+  }
+  const generic = new Set([...NEW_TAGS, ...BEST_SELLER_TAGS].map(normalizeTag));
+  const aTags = (a.tags ?? []).map(normalizeTag).filter(t => !generic.has(t));
+  const bTags = new Set((b.tags ?? []).map(normalizeTag).filter(t => !generic.has(t)));
+  return aTags.some(t => bTags.has(t));
+}
+
 
 export function getColorOptions(product: ShopifyProduct['node']): string[] {
   const colorOption = product.options.find(opt => 

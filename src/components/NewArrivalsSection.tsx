@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
 import { useShopifyProducts } from "@/hooks/useShopifyProducts";
-import { isNewProduct, isBestSeller, formatPrice } from "@/lib/shopify";
+import { isNewProduct, isBestSeller, formatPrice, selectNewArrivals } from "@/lib/shopify";
 
 const NewArrivalsSection = () => {
   const { products, loading } = useShopifyProducts();
-  
-  // Filter to only "new" tagged products (case-insensitive) and limit to 3
-  const newArrivals = products
-    .filter(p => isNewProduct(p.node))
-    .slice(0, 3);
-  
-  // Hide section if no new arrivals and not loading
+
+  // Tagged "new" products first; if nothing is tagged in Shopify yet, the most
+  // recently published products stand in so the section is never empty.
+  const newArrivals = selectNewArrivals(products, 3);
+
+  // Only hide when the catalogue itself is empty
   if (!loading && newArrivals.length === 0) {
     return null;
   }
+
 
   return (
     <section 

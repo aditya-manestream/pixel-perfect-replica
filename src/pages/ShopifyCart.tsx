@@ -31,6 +31,46 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
+interface CheckoutDetails {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address1: string;
+  address2: string;
+  city: string;
+  state: string;
+  pincode: string;
+}
+
+const EMPTY_DETAILS: CheckoutDetails = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  address1: "",
+  address2: "",
+  city: "",
+  state: "",
+  pincode: "",
+};
+
+const DETAILS_KEY = "ardori_checkout_details";
+
+function validateDetails(d: CheckoutDetails): Partial<Record<keyof CheckoutDetails, string>> {
+  const e: Partial<Record<keyof CheckoutDetails, string>> = {};
+  if (!d.firstName.trim()) e.firstName = "Required";
+  if (!d.lastName.trim()) e.lastName = "Required";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email.trim())) e.email = "Enter a valid email";
+  if (!/^\d{10}$/.test(d.phone.replace(/\D/g, "").slice(-10))) e.phone = "Enter a 10-digit number";
+  if (!d.address1.trim()) e.address1 = "Required";
+  if (!d.city.trim()) e.city = "Required";
+  if (!d.state.trim()) e.state = "Required";
+  if (!/^\d{6}$/.test(d.pincode.trim())) e.pincode = "Enter a 6-digit PIN code";
+  return e;
+}
+
+
 const ShopifyCart = () => {
   const {
     items,
@@ -53,13 +93,49 @@ const ShopifyCart = () => {
   const [promoInput, setPromoInput] = useState("");
   const [payLoading, setPayLoading] = useState(false);
 
+  // Shipping details are required so the paid order can be pushed into Shopify
+  // (and from there picked up by Shiprocket) with a real delivery address.
+  const [details, setDetails] = useState<CheckoutDetails>(() => {
+    try {
+      const saved = localStorage.getItem(DETAILS_KEY);
+      if (saved) return { ...EMPTY_DETAILS, ...JSON.parse(saved) };
+    } catch { /* ignore corrupt storage */ }
+    return EMPTY_DETAILS;
+  });
+  const [touched, setTouched] = useState(false);
+
+  const errors = validateDetails(details);
+  const detailsValid = Object.keys(errors).length === 0;
+
+  const setField = (key: keyof CheckoutDetails, value: string) => {
+    setDetails((prev) => {
+      const next = { ...prev, [key]: value };
+      try {
+        localStorage.setItem(DETAILS_KEY, JSON.stringify(next));
+      } catch { /* ignore */ }
+      return next;
+    });
+  };
+
   const handleApplyPromo = () => {
     if (promoInput.trim()) {
       applyPromoCode(promoInput);
     }
   };
 
+
   const handleCheckout = async () => {
+    setTouched(true);
+    if (!detailsValid) {
+      toast({
+        title: "Shipping details needed",
+        description: "Please complete your delivery details before paying.",
+        variant: "destructive",
+      });
+      document.getElementById("shipping-details")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
     const totalRupees = getTotal();
     const amountPaise = Math.round(totalRupees * 100);
     if (amountPaise < 100) {
@@ -70,6 +146,14 @@ const ShopifyCart = () => {
     const pixelLines: PixelLine[] = items.map((item) => ({
       id: item.variantId,
       name: item.product.node.title,
+      quantity: item.quantity,
+      price: parseFloat(item.price.amount),
+    }));
+
+    // Sent to the server so the verified payment can be mirrored as a real
+    // Shopify order (inventory, analytics and Shiprocket pickup).
+    const orderLines = items.map((item) => ({
+      variantId: item.variantId,
       quantity: item.quantity,
       price: parseFloat(item.price.amount),
     }));
@@ -92,6 +176,11 @@ const ShopifyCart = () => {
         name: "Ardori",
         description: `Order of ${itemCount} item(s)`,
         theme: { color: "#121B2D" },
+        prefill: {
+          name: `${details.firstName} ${details.lastName}`.trim(),
+          email: details.email,
+          contact: details.phone,
+        },
         handler: async (response: any) => {
           try {
             const { data: verify, error: verr } = await supabase.functions.invoke(
@@ -101,6 +190,15 @@ const ShopifyCart = () => {
                   razorpay_order_id: response.razorpay_order_id,
                   razorpay_payment_id: response.razorpay_payment_id,
                   razorpay_signature: response.razorpay_signature,
+                  customer: details,
+                  lines: orderLines,
+                  totals: {
+                    subtotal: getSubtotal(),
+                    discount: getDiscount(),
+                    shipping: getShipping(),
+                    total: totalRupees,
+                    promoCode: appliedPromoCode,
+                  },
                 },
               }
             );
@@ -114,6 +212,7 @@ const ShopifyCart = () => {
               state: {
                 paymentId: verify.payment_id,
                 orderId: verify.order_id,
+                shopifyOrderName: verify.shopify_order_name,
                 value: totalRupees,
                 lines: pixelLines,
               },
@@ -122,6 +221,7 @@ const ShopifyCart = () => {
             toast({ title: "Verification error", description: e.message, variant: "destructive" });
           }
         },
+
         modal: {
           ondismiss: () => {
             toast({ title: "Payment cancelled" });
@@ -357,6 +457,64 @@ const ShopifyCart = () => {
                 >
                   Order Summary
                 </h2>
+
+                {/* Shipping Details */}
+                <div id="shipping-details" className="mb-6">
+                  <h3
+                    className="font-sans text-[11px] tracking-[0.15em] uppercase mb-4"
+                    style={{ color: "#6A655F" }}
+                  >
+                    Shipping Details
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {([
+                      { key: "firstName", label: "First name", span: 1, type: "text", autoComplete: "given-name" },
+                      { key: "lastName", label: "Last name", span: 1, type: "text", autoComplete: "family-name" },
+                      { key: "email", label: "Email", span: 2, type: "email", autoComplete: "email" },
+                      { key: "phone", label: "Phone", span: 2, type: "tel", autoComplete: "tel" },
+                      { key: "address1", label: "Address", span: 2, type: "text", autoComplete: "address-line1" },
+                      { key: "address2", label: "Apartment, landmark (optional)", span: 2, type: "text", autoComplete: "address-line2" },
+                      { key: "city", label: "City", span: 1, type: "text", autoComplete: "address-level2" },
+                      { key: "state", label: "State", span: 1, type: "text", autoComplete: "address-level1" },
+                      { key: "pincode", label: "PIN code", span: 2, type: "text", autoComplete: "postal-code" },
+                    ] as const).map((field) => {
+                      const error = touched ? errors[field.key] : undefined;
+                      return (
+                        <div key={field.key} className={field.span === 2 ? "col-span-2" : "col-span-1"}>
+                          <label
+                            htmlFor={`ship-${field.key}`}
+                            className="block font-sans text-[10px] tracking-[0.1em] uppercase mb-1.5"
+                            style={{ color: "#9A958F" }}
+                          >
+                            {field.label}
+                          </label>
+                          <input
+                            id={`ship-${field.key}`}
+                            type={field.type}
+                            autoComplete={field.autoComplete}
+                            value={details[field.key]}
+                            onChange={(e) => setField(field.key, e.target.value)}
+                            onBlur={() => setTouched(true)}
+                            aria-invalid={!!error}
+                            className="w-full px-3 py-2.5 font-sans text-[13px] focus:outline-none"
+                            style={{
+                              backgroundColor: "#FFFFFF",
+                              border: `1px solid ${error ? "#E57373" : "#E0DCD6"}`,
+                              color: "#2C2824",
+                            }}
+                          />
+                          {error && (
+                            <p className="mt-1 font-sans text-[11px]" style={{ color: "#E57373" }}>
+                              {error}
+                            </p>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+
 
                 {/* Promo Code */}
                 <div className="mb-6">

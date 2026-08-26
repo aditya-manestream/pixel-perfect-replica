@@ -15,9 +15,11 @@ const fadeInUp = {
 interface ConfirmationState {
   paymentId?: string;
   orderId?: string;
+  shopifyOrderName?: string;
   value?: number;
   lines?: PixelLine[];
 }
+
 
 const OrderConfirmation = () => {
   const { clearCart } = useCartStore();
@@ -43,7 +45,10 @@ const OrderConfirmation = () => {
     });
   }, []);
 
-  const orderNumber = orderRef.current.orderId ?? fallbackNumber;
+  // Prefer the real Shopify order number once the order has synced across.
+  const orderNumber =
+    orderRef.current.shopifyOrderName ?? orderRef.current.orderId ?? fallbackNumber;
+
   const estimatedDelivery = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString('en-IN', {
     weekday: 'long',
     year: 'numeric',
