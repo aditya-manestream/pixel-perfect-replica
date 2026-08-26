@@ -34,6 +34,31 @@ function sanitizeLines(raw: unknown): { variantId: string; quantity: number; pri
 const str = (v: unknown, max = 200) =>
   typeof v === 'string' ? v.trim().slice(0, max) : '';
 
+function serviceClient() {
+  const url = Deno.env.get('SUPABASE_URL');
+  const key = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  if (!url || !key) return null;
+  return createClient(url, key);
+}
+
+/** Fast, strongly-consistent duplicate guard (Shopify's tag search index lags). */
+async function findSyncedOrder(paymentId: string): Promise<string | null> {
+  try {
+    const client = serviceClient();
+    if (!client) return null;
+    const { data } = await client
+      .from('shopify_order_sync')
+      .select('shopify_order_name')
+      .eq('razorpay_payment_id', paymentId)
+      .eq('status', 'synced')
+      .limit(1)
+      .maybeSingle();
+    return data?.shopify_order_name ?? null;
+  } catch {
+    return null;
+  }
+}
+
 async function logSync(record: Record<string, unknown>) {
   try {
     const url = Deno.env.get('SUPABASE_URL');
@@ -92,6 +117,17 @@ Deno.serve(async (req) => {
       console.error(syncError, JSON.stringify(lines));
     } else {
       try {
+        const alreadySynced = await findSyncedOrder(String(razorpay_payment_id));
+        if (alreadySynced) {
+          return json({
+            verified: true,
+            payment_id: razorpay_payment_id,
+            order_id: razorpay_order_id,
+            shopify_order_name: alreadySynced,
+            shopify_synced: true,
+          });
+        }
+
         const total = Number(totals?.total);
         const shipping = Number(totals?.shipping);
         const discount = Number(totals?.discount);

@@ -12,7 +12,6 @@ function page(body: string) {
   <style>
     body { font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; max-width: 640px; margin: 48px auto; padding: 0 20px; line-height: 1.5; background: #0F172A; color: #E8E4DF; }
     h1 { color: #C4A164; font-size: 1.4rem; margin-bottom: 0.5rem; }
-    .token { background: #121B2D; border: 1px solid #C4A164; padding: 14px; border-radius: 8px; word-break: break-all; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; margin: 18px 0; font-size: 0.9rem; }
     .note { color: rgba(232,228,223,0.7); font-size: 0.95rem; }
     pre { white-space: pre-wrap; background: #121B2D; padding: 12px; border-radius: 6px; }
   </style>
