@@ -53,11 +53,36 @@ const ShopifyCart = () => {
   const [promoInput, setPromoInput] = useState("");
   const [payLoading, setPayLoading] = useState(false);
 
+  // Shipping details are required so the paid order can be pushed into Shopify
+  // (and from there picked up by Shiprocket) with a real delivery address.
+  const [details, setDetails] = useState<CheckoutDetails>(() => {
+    try {
+      const saved = localStorage.getItem(DETAILS_KEY);
+      if (saved) return { ...EMPTY_DETAILS, ...JSON.parse(saved) };
+    } catch { /* ignore corrupt storage */ }
+    return EMPTY_DETAILS;
+  });
+  const [touched, setTouched] = useState(false);
+
+  const errors = validateDetails(details);
+  const detailsValid = Object.keys(errors).length === 0;
+
+  const setField = (key: keyof CheckoutDetails, value: string) => {
+    setDetails((prev) => {
+      const next = { ...prev, [key]: value };
+      try {
+        localStorage.setItem(DETAILS_KEY, JSON.stringify(next));
+      } catch { /* ignore */ }
+      return next;
+    });
+  };
+
   const handleApplyPromo = () => {
     if (promoInput.trim()) {
       applyPromoCode(promoInput);
     }
   };
+
 
   const handleCheckout = async () => {
     const totalRupees = getTotal();
