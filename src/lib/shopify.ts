@@ -149,13 +149,15 @@ const PRODUCT_BY_HANDLE_QUERY = `
       handle
       tags
       productType
+      publishedAt
       priceRange {
         minVariantPrice {
           amount
           currencyCode
         }
       }
-      images(first: 10) {
+      images(first: 25) {
+
         edges {
           node {
             url
