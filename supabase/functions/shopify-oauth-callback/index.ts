@@ -24,20 +24,13 @@ function page(body: string) {
 
 serve(async (req) => {
   try {
-    const url = new URL(req.url);
     const data = await adminGraphql(`query ConnectionCheck { shop { name myshopifyDomain } }`);
     const shop = data?.shop;
-
-    let diag = "";
-    if (url.searchParams.get("selftest") === "1") {
-      diag = `<pre>${JSON.stringify(await selfTest(), null, 1)}</pre>`;
-    }
 
     return page(`
       <h1>Shopify is connected</h1>
       <p class="note"><strong>Store:</strong> ${shop?.name || "Ardori"}</p>
       <p class="note"><strong>Domain:</strong> ${shop?.myshopifyDomain || "ardori-4.myshopify.com"}</p>
-      ${diag}
       <p class="note">The website can securely create Shopify orders after verified Razorpay payments. No access token needs to be copied or stored manually.</p>
     `);
   } catch (err: any) {
@@ -49,70 +42,3 @@ serve(async (req) => {
  * Creates a throwaway order with inventory bypassed, then deletes it, to prove
  * the orderCreate mutation shape is valid against the live Admin API.
  */
-async function selfTest() {
-  const products = await adminGraphql(`
-    query { products(first: 5, query: "status:active") { edges { node { id title variants(first:1) { edges { node { id price } } } } } } }
-  `);
-  const node = products?.products?.edges?.[0]?.node;
-  const variant = node?.variants?.edges?.[0]?.node;
-  if (!variant) return { ok: false, reason: "no active variant found" };
-
-  const pre = await adminGraphql(
-    `query($q: String!) { orders(first:5, query:$q) { edges { node { id name } } } }`,
-    { q: "tag:'rzp_selftest_diagnostic'" },
-  );
-  const stale = pre?.orders?.edges?.map((e: any) => e.node) ?? [];
-  for (const o of stale) {
-    await adminGraphql(
-      `mutation($orderId: ID!) { orderDelete(orderId: $orderId) { deletedId userErrors { message } } }`,
-      { orderId: o.id },
-    );
-  }
-
-  const created = await adminGraphql(
-    `mutation CreateOrder($order: OrderCreateOrderInput!, $options: OrderCreateOptionsInput) {
-      orderCreate(order: $order, options: $options) {
-        order { id name displayFinancialStatus totalPriceSet { shopMoney { amount currencyCode } } }
-        userErrors { field message }
-      }
-    }`,
-    {
-      order: {
-        email: "selftest@ardorilabel.com",
-        currency: "INR",
-        financialStatus: "PAID",
-        tags: ["razorpay", "website", "rzp_selftest_diagnostic"],
-        note: "Automated connection self-test",
-        lineItems: [{ variantId: variant.id, quantity: 1, priceSet: { shopMoney: { amount: variant.price, currencyCode: "INR" } } }],
-        shippingAddress: {
-          firstName: "Self", lastName: "Test", address1: "1 Test Road", city: "Mumbai",
-          province: "Maharashtra", zip: "400001", countryCode: "IN", phone: "+919999999999",
-        },
-        shippingLines: [{ title: "Standard Shipping", priceSet: { shopMoney: { amount: "199.00", currencyCode: "INR" } } }],
-        transactions: [{ kind: "SALE", status: "SUCCESS", gateway: "razorpay", amountSet: { shopMoney: { amount: variant.price, currencyCode: "INR" } } }],
-      },
-      options: { inventoryBehaviour: "BYPASS", sendReceipt: false },
-    },
-  );
-
-  const userErrors = created?.orderCreate?.userErrors ?? [];
-  const order = created?.orderCreate?.order;
-
-  let lookup = null;
-  let deleted = null;
-  if (order?.id) {
-    const found = await adminGraphql(
-      `query($q: String!) { orders(first:1, query:$q) { edges { node { id name } } } }`,
-      { q: "tag:'rzp_selftest_diagnostic'" },
-    );
-    lookup = found?.orders?.edges?.[0]?.node ?? null;
-
-    const del = await adminGraphql(
-      `mutation($orderId: ID!) { orderDelete(orderId: $orderId) { deletedId userErrors { message } } }`,
-      { orderId: order.id },
-    );
-    deleted = del?.orderDelete ?? null;
-  }
-
-  return { cleanedStale: stale.length, product: node?.title, userErrors, order, tagLookupWorks: Boolean(lookup), deleted };
-}
