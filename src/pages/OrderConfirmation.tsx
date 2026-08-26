@@ -15,9 +15,11 @@ const fadeInUp = {
 interface ConfirmationState {
   paymentId?: string;
   orderId?: string;
+  shopifyOrderName?: string;
   value?: number;
   lines?: PixelLine[];
 }
+
 
 const OrderConfirmation = () => {
   const { clearCart } = useCartStore();
