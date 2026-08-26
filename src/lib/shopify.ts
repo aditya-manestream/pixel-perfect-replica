@@ -78,11 +78,10 @@ export interface CartItem {
   }>;
 }
 
-// GraphQL Queries
-// Trimmed query for the shop grid + related-products carousel. These surfaces only
-// render 1–2 images, the first variant, price, title, tags and options — so we skip
-// description/descriptionHtml/metafields and cap images/variants, cutting the JSON
-// payload dramatically versus fetching full product detail for every card.
+// Listing query for the shop grid, homepage sections and related-products carousel.
+// It fetches the full image set (galleries and hover images need more than the first
+// two photos) plus every variant, while still skipping the heavy description and
+// metafield fields that only the product detail page renders.
 const PRODUCTS_QUERY = `
   query GetProducts($first: Int!, $query: String) {
     products(first: $first, query: $query) {
@@ -93,13 +92,14 @@ const PRODUCTS_QUERY = `
           handle
           tags
           productType
+          publishedAt
           priceRange {
             minVariantPrice {
               amount
               currencyCode
             }
           }
-          images(first: 2) {
+          images(first: 10) {
             edges {
               node {
                 url
@@ -107,7 +107,7 @@ const PRODUCTS_QUERY = `
               }
             }
           }
-          variants(first: 1) {
+          variants(first: 20) {
             edges {
               node {
                 id
@@ -121,6 +121,10 @@ const PRODUCTS_QUERY = `
                   name
                   value
                 }
+                image {
+                  url
+                  altText
+                }
               }
             }
           }
@@ -133,6 +137,7 @@ const PRODUCTS_QUERY = `
     }
   }
 `;
+
 
 const PRODUCT_BY_HANDLE_QUERY = `
   query GetProductByHandle($handle: String!) {
