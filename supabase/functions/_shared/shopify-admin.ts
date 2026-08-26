@@ -1,7 +1,8 @@
 // Shopify Admin API helper. Used server-side only — the Admin token must never
 // reach the browser.
 
-const SHOPIFY_STORE_DOMAIN = 'ardori-4.myshopify.com';
+const SHOPIFY_STORE_DOMAIN =
+  Deno.env.get('SHOPIFY_STORE_DOMAIN') || 'ardori-4.myshopify.com';
 const SHOPIFY_ADMIN_API_VERSION = '2025-01';
 
 export interface ShippingAddressInput {
