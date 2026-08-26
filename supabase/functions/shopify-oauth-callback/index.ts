@@ -57,6 +57,18 @@ async function selfTest() {
   const variant = node?.variants?.edges?.[0]?.node;
   if (!variant) return { ok: false, reason: "no active variant found" };
 
+  const pre = await adminGraphql(
+    `query($q: String!) { orders(first:5, query:$q) { edges { node { id name } } } }`,
+    { q: "tag:'rzp_selftest_diagnostic'" },
+  );
+  const stale = pre?.orders?.edges?.map((e: any) => e.node) ?? [];
+  for (const o of stale) {
+    await adminGraphql(
+      `mutation($orderId: ID!) { orderDelete(orderId: $orderId) { deletedId userErrors { message } } }`,
+      { orderId: o.id },
+    );
+  }
+
   const created = await adminGraphql(
     `mutation CreateOrder($order: OrderCreateOrderInput!, $options: OrderCreateOptionsInput) {
       orderCreate(order: $order, options: $options) {
@@ -96,11 +108,11 @@ async function selfTest() {
     lookup = found?.orders?.edges?.[0]?.node ?? null;
 
     const del = await adminGraphql(
-      `mutation($input: OrderDeleteInput!) { orderDelete(input: $input) { deletedId userErrors { message } } }`,
-      { input: { id: order.id } },
+      `mutation($orderId: ID!) { orderDelete(orderId: $orderId) { deletedId userErrors { message } } }`,
+      { orderId: order.id },
     );
     deleted = del?.orderDelete ?? null;
   }
 
-  return { product: node?.title, userErrors, order, tagLookupWorks: Boolean(lookup), deleted };
+  return { cleanedStale: stale.length, product: node?.title, userErrors, order, tagLookupWorks: Boolean(lookup), deleted };
 }
