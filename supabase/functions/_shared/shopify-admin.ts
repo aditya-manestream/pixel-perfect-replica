@@ -3,7 +3,51 @@
 
 const SHOPIFY_STORE_DOMAIN =
   Deno.env.get('SHOPIFY_STORE_DOMAIN') || 'ardori-4.myshopify.com';
-const SHOPIFY_ADMIN_API_VERSION = '2025-01';
+const SHOPIFY_ADMIN_API_VERSION = '2026-07';
+
+let cachedAccessToken: { value: string; expiresAt: number } | null = null;
+
+async function getAdminAccessToken(): Promise<string> {
+  const permanentToken = Deno.env.get('SHOPIFY_ADMIN_ACCESS_TOKEN');
+  if (permanentToken?.startsWith('shpat_')) return permanentToken;
+
+  if (cachedAccessToken && cachedAccessToken.expiresAt > Date.now() + 60_000) {
+    return cachedAccessToken.value;
+  }
+
+  const clientId = Deno.env.get('SHOPIFY_CLIENT_ID');
+  const clientSecret = Deno.env.get('SHOPIFY_CLIENT_SECRET');
+  if (!clientId || !clientSecret) {
+    throw new Error('Shopify client credentials are not configured');
+  }
+
+  const tokenResponse = await fetch(
+    `https://${SHOPIFY_STORE_DOMAIN}/admin/oauth/access_token`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        grant_type: 'client_credentials',
+        client_id: clientId,
+        client_secret: clientSecret,
+      }),
+    },
+  );
+
+  const tokenBody = await tokenResponse.text();
+  if (!tokenResponse.ok) {
+    throw new Error(`Shopify token exchange failed [${tokenResponse.status}]: ${tokenBody}`);
+  }
+
+  const tokenData = JSON.parse(tokenBody) as { access_token?: string; expires_in?: number };
+  if (!tokenData.access_token) throw new Error('Shopify token exchange returned no access token');
+
+  cachedAccessToken = {
+    value: tokenData.access_token,
+    expiresAt: Date.now() + Math.max(60, tokenData.expires_in ?? 86_400) * 1000,
+  };
+  return cachedAccessToken.value;
+}
 
 export interface ShippingAddressInput {
   firstName?: string;
@@ -38,15 +82,17 @@ export interface CreateOrderInput {
 }
 
 export function adminTokenConfigured(): boolean {
-  return !!Deno.env.get('SHOPIFY_ADMIN_ACCESS_TOKEN');
+  return Boolean(
+    Deno.env.get('SHOPIFY_ADMIN_ACCESS_TOKEN') ||
+      (Deno.env.get('SHOPIFY_CLIENT_ID') && Deno.env.get('SHOPIFY_CLIENT_SECRET')),
+  );
 }
 
 export async function adminGraphql(
   query: string,
   variables: Record<string, unknown> = {},
 ): Promise<any> {
-  const token = Deno.env.get('SHOPIFY_ADMIN_ACCESS_TOKEN');
-  if (!token) throw new Error('SHOPIFY_ADMIN_ACCESS_TOKEN is not configured');
+  const token = await getAdminAccessToken();
 
   const res = await fetch(
     `https://${SHOPIFY_STORE_DOMAIN}/admin/api/${SHOPIFY_ADMIN_API_VERSION}/graphql.json`,
