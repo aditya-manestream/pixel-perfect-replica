@@ -125,6 +125,17 @@ const ShopifyCart = () => {
 
 
   const handleCheckout = async () => {
+    setTouched(true);
+    if (!detailsValid) {
+      toast({
+        title: "Shipping details needed",
+        description: "Please complete your delivery details before paying.",
+        variant: "destructive",
+      });
+      document.getElementById("shipping-details")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
     const totalRupees = getTotal();
     const amountPaise = Math.round(totalRupees * 100);
     if (amountPaise < 100) {
@@ -135,6 +146,14 @@ const ShopifyCart = () => {
     const pixelLines: PixelLine[] = items.map((item) => ({
       id: item.variantId,
       name: item.product.node.title,
+      quantity: item.quantity,
+      price: parseFloat(item.price.amount),
+    }));
+
+    // Sent to the server so the verified payment can be mirrored as a real
+    // Shopify order (inventory, analytics and Shiprocket pickup).
+    const orderLines = items.map((item) => ({
+      variantId: item.variantId,
       quantity: item.quantity,
       price: parseFloat(item.price.amount),
     }));
@@ -157,6 +176,11 @@ const ShopifyCart = () => {
         name: "Ardori",
         description: `Order of ${itemCount} item(s)`,
         theme: { color: "#121B2D" },
+        prefill: {
+          name: `${details.firstName} ${details.lastName}`.trim(),
+          email: details.email,
+          contact: details.phone,
+        },
         handler: async (response: any) => {
           try {
             const { data: verify, error: verr } = await supabase.functions.invoke(
@@ -166,6 +190,15 @@ const ShopifyCart = () => {
                   razorpay_order_id: response.razorpay_order_id,
                   razorpay_payment_id: response.razorpay_payment_id,
                   razorpay_signature: response.razorpay_signature,
+                  customer: details,
+                  lines: orderLines,
+                  totals: {
+                    subtotal: getSubtotal(),
+                    discount: getDiscount(),
+                    shipping: getShipping(),
+                    total: totalRupees,
+                    promoCode: appliedPromoCode,
+                  },
                 },
               }
             );
@@ -179,6 +212,7 @@ const ShopifyCart = () => {
               state: {
                 paymentId: verify.payment_id,
                 orderId: verify.order_id,
+                shopifyOrderName: verify.shopify_order_name,
                 value: totalRupees,
                 lines: pixelLines,
               },
@@ -187,6 +221,7 @@ const ShopifyCart = () => {
             toast({ title: "Verification error", description: e.message, variant: "destructive" });
           }
         },
+
         modal: {
           ondismiss: () => {
             toast({ title: "Payment cancelled" });
