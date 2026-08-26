@@ -458,6 +458,64 @@ const ShopifyCart = () => {
                   Order Summary
                 </h2>
 
+                {/* Shipping Details */}
+                <div id="shipping-details" className="mb-6">
+                  <h3
+                    className="font-sans text-[11px] tracking-[0.15em] uppercase mb-4"
+                    style={{ color: "#6A655F" }}
+                  >
+                    Shipping Details
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {([
+                      { key: "firstName", label: "First name", span: 1, type: "text", autoComplete: "given-name" },
+                      { key: "lastName", label: "Last name", span: 1, type: "text", autoComplete: "family-name" },
+                      { key: "email", label: "Email", span: 2, type: "email", autoComplete: "email" },
+                      { key: "phone", label: "Phone", span: 2, type: "tel", autoComplete: "tel" },
+                      { key: "address1", label: "Address", span: 2, type: "text", autoComplete: "address-line1" },
+                      { key: "address2", label: "Apartment, landmark (optional)", span: 2, type: "text", autoComplete: "address-line2" },
+                      { key: "city", label: "City", span: 1, type: "text", autoComplete: "address-level2" },
+                      { key: "state", label: "State", span: 1, type: "text", autoComplete: "address-level1" },
+                      { key: "pincode", label: "PIN code", span: 2, type: "text", autoComplete: "postal-code" },
+                    ] as const).map((field) => {
+                      const error = touched ? errors[field.key] : undefined;
+                      return (
+                        <div key={field.key} className={field.span === 2 ? "col-span-2" : "col-span-1"}>
+                          <label
+                            htmlFor={`ship-${field.key}`}
+                            className="block font-sans text-[10px] tracking-[0.1em] uppercase mb-1.5"
+                            style={{ color: "#9A958F" }}
+                          >
+                            {field.label}
+                          </label>
+                          <input
+                            id={`ship-${field.key}`}
+                            type={field.type}
+                            autoComplete={field.autoComplete}
+                            value={details[field.key]}
+                            onChange={(e) => setField(field.key, e.target.value)}
+                            onBlur={() => setTouched(true)}
+                            aria-invalid={!!error}
+                            className="w-full px-3 py-2.5 font-sans text-[13px] focus:outline-none"
+                            style={{
+                              backgroundColor: "#FFFFFF",
+                              border: `1px solid ${error ? "#E57373" : "#E0DCD6"}`,
+                              color: "#2C2824",
+                            }}
+                          />
+                          {error && (
+                            <p className="mt-1 font-sans text-[11px]" style={{ color: "#E57373" }}>
+                              {error}
+                            </p>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+
+
                 {/* Promo Code */}
                 <div className="mb-6">
                   <div className="flex gap-2">
