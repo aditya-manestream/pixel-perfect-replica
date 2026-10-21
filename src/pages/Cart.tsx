@@ -132,7 +132,7 @@ const Cart = () => {
                       style={{ backgroundColor: "#E8E4DF" }}
                     >
                       <img
-                        src={`https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=300&h=400&fit=crop`}
+                        src={`/library-assets/0879397e6721.jpg`}
                         alt={item.product.name}
                         className="w-full h-full object-cover"
                       />

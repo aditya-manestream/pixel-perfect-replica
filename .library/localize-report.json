@@ -1,0 +1,76 @@
+{
+  "downloaded": [
+    {
+      "url": "/__l5e/assets-v1/1ebfa393-74ad-45a1-8970-762887afdfb9/ardori-a-dark.png",
+      "local": "/library-assets/31b29989b45d.png",
+      "bytes": 191539
+    },
+    {
+      "url": "/__l5e/assets-v1/1e014b27-5691-4194-98f3-15d0ef8377e1/ardori-a-light.png",
+      "local": "/library-assets/72fc7ee2a34d.png",
+      "bytes": 57414
+    },
+    {
+      "url": "/__l5e/assets-v1/a97c76a5-1c9a-43aa-afa0-bbdbae52c405/ardori-mark-dark.png",
+      "local": "/library-assets/60baca027399.png",
+      "bytes": 35133
+    },
+    {
+      "url": "/__l5e/assets-v1/63fe53bc-c753-4594-a514-5a42addde628/ardori-mark-light.png",
+      "local": "/library-assets/9e24f194e535.png",
+      "bytes": 44478
+    },
+    {
+      "url": "/__l5e/assets-v1/a2185268-c1fa-41da-aa25-ed8ede8a8f96/our-story-hero-editorial.jpg",
+      "local": "/library-assets/8a7409f05a6f.jpg",
+      "bytes": 183310
+    },
+    {
+      "url": "/__l5e/assets-v1/b35c9ad7-6f6b-48dc-a0fb-24940272742c/our-story-hero.jpg",
+      "local": "/library-assets/bb99afe5ab48.jpg",
+      "bytes": 808830
+    },
+    {
+      "url": "/__l5e/assets-v1/48706507-02cf-46f8-9906-78392adc73d5/testimonial-t1.jpg",
+      "local": "/library-assets/87183240a7a7.jpg",
+      "bytes": 1616526
+    },
+    {
+      "url": "/__l5e/assets-v1/0e3ca044-539d-4eed-9dea-5a9fd0d6a9fc/testimonial-t2.jpg",
+      "local": "/library-assets/4a8020c2de75.jpg",
+      "bytes": 2170784
+    },
+    {
+      "url": "/__l5e/assets-v1/4df3cf23-8d35-42f0-a89a-c4f8e81bd666/testimonial-t3.jpg",
+      "local": "/library-assets/eab642e5dabe.jpg",
+      "bytes": 1721530
+    },
+    {
+      "url": "/__l5e/assets-v1/c3b80202-e3a6-4c5d-866d-e4982684d8a1/testimonial-t4.jpg",
+      "local": "/library-assets/268b2f69eb28.jpg",
+      "bytes": 1885340
+    },
+    {
+      "url": "/__l5e/assets-v1/03b9fa24-ae57-44fb-a2db-fe804477b416/testimonial-t5.jpg",
+      "local": "/library-assets/706ab839bb27.jpg",
+      "bytes": 162827
+    },
+    {
+      "url": "/__l5e/assets-v1/a28c6fa8-e1da-4f18-907a-ad377dc31ed6/testimonial-t6.jpg",
+      "local": "/library-assets/9f22e3b7571e.jpg",
+      "bytes": 103607
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=300&h=400&fit=crop",
+      "local": "/library-assets/0879397e6721.jpg",
+      "bytes": 26299
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=100&h=120&fit=crop",
+      "local": "/library-assets/6ef3ae2c9736.jpg",
+      "bytes": 4732
+    }
+  ],
+  "failed": [],
+  "filesChanged": 14
+}
