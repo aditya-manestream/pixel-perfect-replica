@@ -1,16 +1,3 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
+# Library copy of a client site: keep it out of search so it never competes with the live site.
 User-agent: *
-Allow: /
-
-Sitemap: https://ardorilabel.com/sitemap.xml
+Disallow: /
