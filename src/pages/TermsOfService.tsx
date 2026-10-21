@@ -34,19 +34,19 @@ const termsSections = [
         </p>
         <ul className="space-y-3 ml-4">
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               Misuse our website or any data received from it
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               Attempt to steal data or engage in fraudulent activity
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               Use automated systems (bots, scrapers) to access our site
             </span>
@@ -61,25 +61,25 @@ const termsSections = [
     content: (
       <ul className="space-y-3 ml-4">
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             All items are handcrafted from natural leather
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             Variations in leather grain, texture, or colour are normal characteristics and not defects
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             Product images are for representation; actual products may vary slightly due to natural leather qualities
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             We strive to display accurate colors, but slight variations may occur due to screen settings
           </span>
@@ -93,19 +93,19 @@ const termsSections = [
     content: (
       <ul className="space-y-3 ml-4">
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             All prices are in Indian Rupees (INR) and inclusive of GST
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             We reserve the right to modify prices, discontinue products, or run promotions at our discretion
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             Product availability is subject to change without notice
           </span>
@@ -133,25 +133,25 @@ const termsSections = [
     content: (
       <ul className="space-y-3 ml-4">
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             All orders are subject to acceptance and availability
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             Payment must be completed to confirm your order
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             We use secure third-party payment gateways
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             We do not store your credit/debit card information
           </span>
@@ -169,25 +169,25 @@ const termsSections = [
         </p>
         <ul className="space-y-3 ml-4">
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               Delays due to courier services or unforeseen circumstances
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               Losses arising from misuse of products
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               Damage caused after delivery
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               Indirect, incidental, or consequential damages
             </span>
@@ -205,7 +205,7 @@ const termsSections = [
         <Link 
           to="/warranty-policy" 
           className="transition-opacity hover:opacity-70"
-          style={{ color: "#8B7355" }}
+          style={{ color: "#75603F" }}
         >
           Warranty Policy
         </Link>
@@ -238,11 +238,11 @@ const termsSections = [
       <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.9" }}>
         For questions about these terms, contact us at{" "}
         <a 
-          href="mailto:love@ardorilabel.com" 
+          href="mailto:hello@ardori.in" 
           className="transition-opacity hover:opacity-70"
-          style={{ color: "#8B7355" }}
+          style={{ color: "#75603F" }}
         >
-          love@ardorilabel.com
+          hello@ardori.in
         </a>
         .
       </p>
@@ -314,7 +314,7 @@ const TermsOfService = () => {
           >
             <p 
               className="text-[11px] uppercase tracking-[0.2em] mb-5"
-              style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+              style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
             >
               Quick Navigation
             </p>

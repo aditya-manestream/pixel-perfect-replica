@@ -1,30 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Minus, Plus, Trash2, ArrowLeft, Tag, X, ShoppingBag } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 import { useCartStore } from "@/stores/cartStore";
 import { formatPrice } from "@/lib/shopify";
-import { supabase } from "@/integrations/supabase/client";
+import { whatsappLink } from "@/kit";
 import { toast } from "@/hooks/use-toast";
-import { trackInitiateCheckout, PixelLine } from "@/lib/pixel";
-
-declare global {
-  interface Window {
-    Razorpay: any;
-  }
-}
-
-const loadRazorpayScript = () =>
-  new Promise<boolean>((resolve) => {
-    if (window.Razorpay) return resolve(true);
-    const s = document.createElement("script");
-    s.src = "https://checkout.razorpay.com/v1/checkout.js";
-    s.onload = () => resolve(true);
-    s.onerror = () => resolve(false);
-    document.body.appendChild(s);
-  });
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -89,9 +73,7 @@ const ShopifyCart = () => {
     isLoading,
   } = useCartStore();
 
-  const navigate = useNavigate();
   const [promoInput, setPromoInput] = useState("");
-  const [payLoading, setPayLoading] = useState(false);
 
   // Shipping details are required so the paid order can be pushed into Shopify
   // (and from there picked up by Shiprocket) with a real delivery address.
@@ -129,117 +111,31 @@ const ShopifyCart = () => {
     if (!detailsValid) {
       toast({
         title: "Shipping details needed",
-        description: "Please complete your delivery details before paying.",
+        description: "Please complete your delivery details before ordering.",
         variant: "destructive",
       });
       document.getElementById("shipping-details")?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
 
-    const totalRupees = getTotal();
-    const amountPaise = Math.round(totalRupees * 100);
-    if (amountPaise < 100) {
-      toast({ title: "Cart total too low", description: "Minimum order is ₹1.", variant: "destructive" });
-      return;
-    }
-
-    const pixelLines: PixelLine[] = items.map((item) => ({
-      id: item.variantId,
-      name: item.product.node.title,
-      quantity: item.quantity,
-      price: parseFloat(item.price.amount),
-    }));
-
-    // Sent to the server so the verified payment can be mirrored as a real
-    // Shopify order (inventory, analytics and Shiprocket pickup).
-    const orderLines = items.map((item) => ({
-      variantId: item.variantId,
-      quantity: item.quantity,
-      price: parseFloat(item.price.amount),
-    }));
-
-    setPayLoading(true);
-    try {
-      const ok = await loadRazorpayScript();
-      if (!ok) throw new Error("Failed to load payment gateway");
-
-      const { data, error } = await supabase.functions.invoke("create-razorpay-order", {
-        body: { amount: amountPaise, currency: "INR", receipt: `ardori_${Date.now()}` },
-      });
-      if (error || !data?.order_id) throw new Error(error?.message || "Could not create order");
-
-      const rzp = new window.Razorpay({
-        key: data.key_id,
-        amount: data.amount,
-        currency: data.currency,
-        order_id: data.order_id,
-        name: "Ardori",
-        description: `Order of ${itemCount} item(s)`,
-        theme: { color: "#121B2D" },
-        prefill: {
-          name: `${details.firstName} ${details.lastName}`.trim(),
-          email: details.email,
-          contact: details.phone,
-        },
-        handler: async (response: any) => {
-          try {
-            const { data: verify, error: verr } = await supabase.functions.invoke(
-              "verify-razorpay-payment",
-              {
-                body: {
-                  razorpay_order_id: response.razorpay_order_id,
-                  razorpay_payment_id: response.razorpay_payment_id,
-                  razorpay_signature: response.razorpay_signature,
-                  customer: details,
-                  lines: orderLines,
-                  totals: {
-                    subtotal: getSubtotal(),
-                    discount: getDiscount(),
-                    shipping: getShipping(),
-                    total: totalRupees,
-                    promoCode: appliedPromoCode,
-                  },
-                },
-              }
-            );
-            if (verr || !verify?.verified) {
-              toast({ title: "Payment verification failed", description: "Please contact support.", variant: "destructive" });
-              return;
-            }
-            toast({ title: "Payment successful", description: `Payment ID: ${verify.payment_id}` });
-            clearCart();
-            navigate("/order-confirmation", {
-              state: {
-                paymentId: verify.payment_id,
-                orderId: verify.order_id,
-                shopifyOrderName: verify.shopify_order_name,
-                value: totalRupees,
-                lines: pixelLines,
-              },
-            });
-          } catch (e: any) {
-            toast({ title: "Verification error", description: e.message, variant: "destructive" });
-          }
-        },
-
-        modal: {
-          ondismiss: () => {
-            toast({ title: "Payment cancelled" });
-          },
-        },
-      });
-
-      rzp.on("payment.failed", (resp: any) => {
-        toast({ title: "Payment failed", description: resp.error?.description || "Try again.", variant: "destructive" });
-      });
-
-      rzp.open();
-      trackInitiateCheckout(pixelLines, totalRupees);
-    } catch (e: any) {
-      toast({ title: "Checkout error", description: e.message, variant: "destructive" });
-    } finally {
-      setPayLoading(false);
-    }
+    // Library build: no payment gateway. The order is handed to WhatsApp with the cart and
+    // delivery details filled in, so nothing is charged and no live order is created.
+    const lines = items.map(
+      (item) => `${item.quantity} x ${item.product.node.title}${item.variantTitle && item.variantTitle !== "Default Title" ? ` (${item.variantTitle})` : ""}: ${formatPrice(String(parseFloat(item.price.amount) * item.quantity))}`,
+    );
+    const text = [
+      "Order enquiry",
+      ...lines,
+      appliedPromoCode ? `Promo: ${appliedPromoCode}` : "",
+      `Total: ${formatPrice(String(getTotal()))}`,
+      "",
+      `Name: ${details.firstName} ${details.lastName}`.trim(),
+      `Phone: ${details.phone}`,
+      `Email: ${details.email}`,
+      `Deliver to: ${[details.address1, details.address2, details.city, details.state, details.pincode].filter(Boolean).join(", ")}`,
+    ].filter((l) => l !== "").join("\n");
+    window.open(whatsappLink(text), "_blank", "noopener");
+    toast({ title: "Your order is ready in WhatsApp", description: "Press send there and we'll confirm availability and payment on the same chat." });
   };
 
   const subtotal = getSubtotal();
@@ -251,6 +147,7 @@ const ShopifyCart = () => {
   if (items.length === 0) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
+        <Seo title={"Your Cart | Ardori"} description={"Review your Ardori bag selection and order on WhatsApp."} path="/cart" />
         <Navbar />
         <div className="pt-24 lg:pt-32 pb-16 lg:pb-24">
           <div className="max-w-[600px] mx-auto px-6 text-center">
@@ -263,7 +160,7 @@ const ShopifyCart = () => {
                 className="w-24 h-24 rounded-full mx-auto mb-8 flex items-center justify-center"
                 style={{ backgroundColor: "#F8F6F3" }}
               >
-                <ShoppingBag size={40} strokeWidth={1} style={{ color: "#9A958F" }} />
+                <ShoppingBag size={40} strokeWidth={1} style={{ color: "#6A655F" }} />
               </div>
               <h1 
                 className="font-serif text-[28px] lg:text-[36px] font-normal mb-4"
@@ -298,6 +195,7 @@ const ShopifyCart = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
+      <Seo title={"Your Cart | Ardori"} description={"Review your Ardori bag selection and order on WhatsApp."} path="/cart" />
       <Navbar />
 
       <div className="pt-20 lg:pt-24 pb-16 lg:pb-24">
@@ -312,7 +210,7 @@ const ShopifyCart = () => {
             <Link 
               to="/shop" 
               className="inline-flex items-center gap-2 font-sans text-[12px] tracking-[0.1em] uppercase mb-6 transition-opacity hover:opacity-70"
-              style={{ color: "#7A7570" }}
+              style={{ color: "#6A655F" }}
             >
               <ArrowLeft size={16} strokeWidth={1.5} />
               Continue Shopping
@@ -361,7 +259,7 @@ const ShopifyCart = () => {
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <ShoppingBag size={24} strokeWidth={1} style={{ color: "#9A958F" }} />
+                            <ShoppingBag size={24} strokeWidth={1} style={{ color: "#6A655F" }} />
                           </div>
                         )}
                       </Link>
@@ -383,7 +281,7 @@ const ShopifyCart = () => {
                         {variantInfo && variantInfo !== "Default Title" && (
                           <p 
                             className="font-sans text-[12px] tracking-[0.05em] mb-2"
-                            style={{ color: "#7A7570" }}
+                            style={{ color: "#6A655F" }}
                           >
                             {variantInfo}
                           </p>
@@ -427,7 +325,7 @@ const ShopifyCart = () => {
                           <button
                             onClick={() => removeItem(item.variantId)}
                             className="flex items-center gap-1.5 font-sans text-[11px] tracking-[0.1em] uppercase transition-opacity hover:opacity-70"
-                            style={{ color: "#9A958F" }}
+                            style={{ color: "#6A655F" }}
                           >
                             <Trash2 size={14} strokeWidth={1.5} />
                             Remove
@@ -484,7 +382,7 @@ const ShopifyCart = () => {
                           <label
                             htmlFor={`ship-${field.key}`}
                             className="block font-sans text-[10px] tracking-[0.1em] uppercase mb-1.5"
-                            style={{ color: "#9A958F" }}
+                            style={{ color: "#6A655F" }}
                           >
                             {field.label}
                           </label>
@@ -524,7 +422,7 @@ const ShopifyCart = () => {
                         size={16} 
                         strokeWidth={1.5} 
                         className="absolute left-3 top-1/2 -translate-y-1/2"
-                        style={{ color: "#9A958F" }}
+                        style={{ color: "#6A655F" }}
                       />
                       <input
                         type="text"
@@ -618,7 +516,6 @@ const ShopifyCart = () => {
                 {/* Checkout Button */}
                 <button
                   onClick={handleCheckout}
-                  disabled={payLoading}
                   className="w-full font-sans text-[12px] lg:text-[13px] tracking-[0.15em] uppercase transition-all hover:opacity-90 disabled:opacity-60"
                   style={{
                     backgroundColor: "#2C2824",
@@ -626,14 +523,14 @@ const ShopifyCart = () => {
                     padding: "16px 24px",
                   }}
                 >
-                  {payLoading ? "Processing..." : "Pay with Razorpay"}
+                  Order on WhatsApp
                 </button>
 
                 {/* Free Shipping Note */}
                 {subtotal < 5000 && (
                   <p 
                     className="mt-4 font-serif text-[12px] lg:text-[13px] font-light text-center"
-                    style={{ color: "#7A7570" }}
+                    style={{ color: "#6A655F" }}
                   >
                     Add {formatPrice((5000 - subtotal).toString())} more for free shipping
                   </p>
@@ -641,7 +538,7 @@ const ShopifyCart = () => {
 
                 <p 
                   className="mt-4 font-sans text-[11px] text-center"
-                  style={{ color: "#9A958F" }}
+                  style={{ color: "#6A655F" }}
                 >
                   Secure checkout powered by Razorpay
                 </p>

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { ShopifyProduct, CartItem, createStorefrontCheckout } from '@/lib/shopify';
+import { ShopifyProduct, CartItem } from '@/lib/shopify';
 
 interface CartStore {
   items: CartItem[];
@@ -99,22 +99,8 @@ export const useCartStore = create<CartStore>()(
       setCheckoutUrl: (checkoutUrl) => set({ checkoutUrl }),
       setLoading: (isLoading) => set({ isLoading }),
 
-      createCheckout: async () => {
-        const { items, setLoading, setCheckoutUrl } = get();
-        if (items.length === 0) return null;
-
-        setLoading(true);
-        try {
-          const checkoutUrl = await createStorefrontCheckout(items);
-          setCheckoutUrl(checkoutUrl);
-          return checkoutUrl;
-        } catch (error) {
-          console.error('Failed to create checkout:', error);
-          return null;
-        } finally {
-          setLoading(false);
-        }
-      },
+      // Library build: checkout is a WhatsApp hand-off from the cart page, never a live Shopify cart.
+      createCheckout: async () => null,
 
       applyPromoCode: (code: string) => {
         const normalizedCode = code.trim().toUpperCase();

@@ -1,31 +1,9 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Mail } from "lucide-react";
-import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { whatsappLink } from "@/kit";
 import ardoriMark from "@/assets/ardori-mark-light.png.asset.json";
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [sending, setSending] = useState(false);
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (sending) return;
-    setSending(true);
-    try {
-      const { error } = await supabase.functions.invoke("newsletter-subscribe", {
-        body: { email: email.trim() },
-      });
-      if (error) throw error;
-      toast.success("Your 2% off code is on its way — check your inbox.");
-      setEmail("");
-    } catch {
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      setSending(false);
-    }
-  };
 
 
   return (
@@ -70,7 +48,7 @@ const Footer = () => {
                 <Facebook size={20} strokeWidth={1.2} />
               </a>
               <a
-                href="mailto:love@ardorilabel.com"
+                href="mailto:hello@ardori.in"
                 className="transition-all duration-300 hover:brightness-125"
                 style={{ color: "#C3BDB4" }}
                 aria-label="Email"
@@ -228,49 +206,32 @@ const Footer = () => {
               className="font-serif text-[16px] lg:text-[18px] font-normal italic mb-3"
               style={{ color: "#E8E4DF" }}
             >
-              Get 2% off your order
+              Hear about new pieces first
             </h4>
             <p
               className="font-serif text-[13px] lg:text-[14px] font-light mb-6"
               style={{ color: "#B8B2A8" }}
             >
-              Sign up with your email to receive an additional 2% off.
+              Join our WhatsApp list for new collections and restocks.
             </p>
 
-            <form onSubmit={handleSubscribe} className="flex items-center gap-4">
-              <div className="flex-1 relative">
-                <input
-                  type="email"
-                  aria-label="Email address for newsletter"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email Address"
-                  className="w-full bg-transparent border-0 border-b pb-2 font-serif text-[14px] placeholder:font-serif focus:outline-none transition-all duration-300 focus:border-[#B8B2A8]"
-                  style={{
-                    color: "#C3BDB4",
-                    borderColor: "#4A4540",
-                  }}
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={sending}
-                className="font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase transition-opacity duration-300 hover:opacity-100 disabled:opacity-50"
-                style={{ color: "#E8E4DF", opacity: 0.9 }}
-              >
-                {sending ? "SENDING…" : "GET CODE"}
-              </button>
-
-            </form>
+            <a
+              href={whatsappLink("Hi Ardori, please add me to your list for new collections.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase border-b pb-2 transition-opacity duration-300 hover:opacity-100"
+              style={{ color: "#E8E4DF", borderColor: "#4A4540", opacity: 0.9 }}
+            >
+              Join on WhatsApp
+            </a>
           </div>
 
           {/* Copyright */}
           <p
             className="font-sans text-[11px] lg:text-[12px] tracking-[0.1em] uppercase"
-            style={{ color: "#5A5550" }}
+            style={{ color: "#9A948C" }}
           >
-            © 2025 ARDORI INDIA
+            © {new Date().getFullYear()} ARDORI INDIA
           </p>
         </div>
       </div>

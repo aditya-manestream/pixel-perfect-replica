@@ -52,25 +52,25 @@ const policySections = [
         </p>
         <ul className="space-y-3 ml-4">
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               A return request is raised within 48-72 hours of delivery
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               The product is unused, unworn, and in original condition
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               All tags, dust bag, fillers, and packaging are intact
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               The item is not part of a Sale
             </span>
@@ -85,13 +85,13 @@ const policySections = [
     content: (
       <ul className="space-y-3 ml-4">
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
             Discounted or sale products
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
             Items damaged due to improper use, exposure to water/chemicals, or lack of care
           </span>
@@ -109,13 +109,13 @@ const policySections = [
         </p>
         <ul className="space-y-3 ml-4">
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               Raise a claim within 24 hours with photos + unboxing video (courier requirement)
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               We will replace the piece at no extra cost after inspection
             </span>
@@ -131,26 +131,26 @@ const policySections = [
       <>
         <p className="mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.8" }}>
           Email us at{" "}
-          <a href="mailto:love@ardorilabel.com" className="transition-opacity hover:opacity-70" style={{ color: "#8B7355" }}>
-            love@ardorilabel.com
+          <a href="mailto:hello@ardori.in" className="transition-opacity hover:opacity-70" style={{ color: "#75603F" }}>
+            hello@ardori.in
           </a>
           {" "}with:
         </p>
         <ul className="space-y-3 ml-4 mb-6">
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               Order number
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               Reason for return/exchange
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               Photos of the product
             </span>
@@ -168,13 +168,13 @@ const policySections = [
     content: (
       <ul className="space-y-3 ml-4">
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
             One free return/exchange is allowed per order (for serviceable pincodes)
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
             For non-serviceable pincodes, customers must ship items back at their own cost
           </span>
@@ -262,7 +262,7 @@ const Returns = () => {
                 <ChevronDown 
                   size={18} 
                   className={`transition-transform duration-300 ${mobileMenuOpen ? 'rotate-180' : ''}`}
-                  style={{ color: "#8B7355" }}
+                  style={{ color: "#75603F" }}
                 />
               </button>
               
@@ -279,7 +279,7 @@ const Returns = () => {
                     <div key={section.category} className={idx > 0 ? "mt-6" : ""}>
                       <h4 
                         className="text-[11px] uppercase tracking-[0.2em] mb-3"
-                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
                       >
                         {section.category}
                       </h4>
@@ -326,7 +326,7 @@ const Returns = () => {
                     <div key={section.category}>
                       <h4 
                         className="text-[11px] uppercase tracking-[0.2em] mb-4"
-                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
                       >
                         {section.category}
                       </h4>
@@ -444,11 +444,11 @@ const Returns = () => {
                   >
                     Questions? Contact us at{" "}
                     <a 
-                      href="mailto:love@ardorilabel.com" 
+                      href="mailto:hello@ardori.in" 
                       className="not-italic transition-opacity hover:opacity-70"
-                      style={{ color: "#8B7355" }}
+                      style={{ color: "#75603F" }}
                     >
-                      love@ardorilabel.com
+                      hello@ardori.in
                     </a>
                   </p>
                 </motion.div>

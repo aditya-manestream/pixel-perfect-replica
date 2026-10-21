@@ -31,19 +31,19 @@ const policySections = [
         </p>
         <ul className="space-y-3 ml-4">
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               <strong style={{ color: "#1A1A1A" }}>Personal details:</strong> Name, address, email, phone number
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               <strong style={{ color: "#1A1A1A" }}>Payment information:</strong> Processed securely via third-party payment gateways (we do not store card details)
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               <strong style={{ color: "#1A1A1A" }}>Usage data:</strong> Site visits, device information, cookies
             </span>
@@ -58,25 +58,25 @@ const policySections = [
     content: (
       <ul className="space-y-3 ml-4">
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             To process and deliver your orders
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             To improve our website and customer experience
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             To communicate order updates, promotions, and offers (only with your consent)
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             For fraud prevention and security
           </span>
@@ -90,19 +90,19 @@ const policySections = [
     content: (
       <ul className="space-y-3 ml-4">
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             All transactions use secure encryption (SSL)
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             Only a limited team has access to order-related information for fulfillment purposes
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             We employ industry-standard security measures to protect your data
           </span>
@@ -123,19 +123,19 @@ const policySections = [
         </p>
         <ul className="space-y-3 ml-4">
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               Shipping and delivery partners (to fulfill orders)
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               Payment gateways (to process transactions)
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
               Verified marketing tools (e.g., Klaviyo, Google Analytics, Meta Pixel) to improve service
             </span>
@@ -150,19 +150,19 @@ const policySections = [
     content: (
       <ul className="space-y-3 ml-4">
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             Access, modify, or delete your personal information
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             Opt out of marketing emails at any time
           </span>
         </li>
         <li className="flex items-start gap-3">
-          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+          <span className="w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
           <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.8" }}>
             Request clarification on how your data is used
           </span>
@@ -195,11 +195,11 @@ const policySections = [
       <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "17px", lineHeight: "1.9" }}>
         For privacy-related questions or to exercise your rights, contact us at{" "}
         <a 
-          href="mailto:love@ardorilabel.com" 
+          href="mailto:hello@ardori.in" 
           className="transition-opacity hover:opacity-70"
-          style={{ color: "#8B7355" }}
+          style={{ color: "#75603F" }}
         >
-          love@ardorilabel.com
+          hello@ardori.in
         </a>
         .
       </p>
@@ -271,7 +271,7 @@ const PrivacyPolicy = () => {
           >
             <p 
               className="text-[11px] uppercase tracking-[0.2em] mb-5"
-              style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+              style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
             >
               Quick Navigation
             </p>

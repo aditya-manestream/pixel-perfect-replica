@@ -6,7 +6,6 @@
 
     <!-- Warm up the connections to Shopify's Storefront API and image CDN so the
          first product/image request skips DNS + TLS setup (critical for ad landings). -->
-    <link rel="preconnect" href="https://ardori-4.myshopify.com" crossorigin />
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin />
     <link rel="dns-prefetch" href="https://cdn.shopify.com" />
 
@@ -19,29 +18,14 @@
     <meta property="og:url" content="https://ardorilabel.com/" />
     <meta property="og:title" content="Ardori — Handcrafted Leather Handbags Inspired by Nature" />
     <meta property="og:description" content="Vegetable-tanned leather handbags handcrafted in India, shaped by the country's flora and fauna. Timeless silhouettes, slow luxury, enduring craft." />
-    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/0UR02KPGU0YmQ1qCjRmU5NL2Dcn1/social-images/social-1768896452784-png (1).png">
+    <meta property="og:image" content="https://ms-lx-02-ardori.vercel.app/og-image.jpg">
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Ardori — Handcrafted Leather Handbags Inspired by Nature" />
     <meta name="twitter:description" content="Vegetable-tanned leather handbags handcrafted in India, shaped by the country's flora and fauna. Timeless silhouettes, slow luxury, enduring craft." />
-    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/0UR02KPGU0YmQ1qCjRmU5NL2Dcn1/social-images/social-1768896452784-png (1).png">
+    <meta name="twitter:image" content="https://ms-lx-02-ardori.vercel.app/og-image.jpg">
 
     <link rel="icon" type="image/png" href="/favicon.png">
-
-    <!-- Facebook Pixel Code -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window,document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1608410744131109');
-      fbq('track', 'PageView');
-    </script>
-    <!-- End Facebook Pixel Code -->
 
     <script type="application/ld+json">
       {
@@ -50,7 +34,7 @@
         "name": "Ardori",
         "url": "https://ardorilabel.com/",
         "description": "Handcrafted vegetable-tanned leather handbags made in India.",
-        "email": "love@ardorilabel.com",
+        "email": "hello@ardori.in",
         "address": { "@type": "PostalAddress", "addressLocality": "Mumbai", "addressCountry": "IN" },
         "sameAs": ["https://www.instagram.com/ardoridesigns"]
       }
@@ -71,15 +55,6 @@
   </head>
 
   <body>
-    <noscript>
-      <img
-        height="1"
-        width="1"
-        style="display: none"
-        alt=""
-        src="https://www.facebook.com/tr?id=1608410744131109&ev=PageView&noscript=1"
-      />
-    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

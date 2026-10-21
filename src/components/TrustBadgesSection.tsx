@@ -105,7 +105,7 @@ const TrustBadgesSection = () => {
                 {/* Description */}
                 <p 
                   className="font-sans text-[12px] lg:text-[13px] tracking-[0.02em]"
-                  style={{ color: "#7A7570" }}
+                  style={{ color: "#6A655F" }}
                 >
                   {item.description}
                 </p>
@@ -147,7 +147,7 @@ const TrustBadgesSection = () => {
                   </h4>
                   <p 
                     className="font-sans text-[12px] lg:text-[13px] leading-relaxed"
-                    style={{ color: "#7A7570" }}
+                    style={{ color: "#6A655F" }}
                   >
                     {benefit.description}
                   </p>

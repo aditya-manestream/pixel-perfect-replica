@@ -320,7 +320,7 @@ const ProductListing = () => {
         {/* Product Count */}
         <p 
           className="pt-6 pb-8 font-sans text-[13px] tracking-[0.02em]"
-          style={{ color: "#7A7570" }}
+          style={{ color: "#6A655F" }}
         >
           {filteredProducts.length} product{filteredProducts.length !== 1 ? "s" : ""}
         </p>

@@ -99,25 +99,25 @@ const OurStory = () => {
           </h2>
           <p 
             className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7]" 
-            style={{ color: "#7A7570" }}
+            style={{ color: "#6A655F" }}
           >
             India's landscapes are layered, from Himalayan blooms to tropical coasts, from desert flora to monsoon forests.
           </p>
           <p 
             className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7] mt-2" 
-            style={{ color: "#7A7570" }}
+            style={{ color: "#6A655F" }}
           >
             Ardori reinterprets and translates this richness into design. Each silhouette draws subtle cues from the natural world: curves, symmetry, texture, movement.
           </p>
           <p 
             className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7] mt-2" 
-            style={{ color: "#7A7570" }}
+            style={{ color: "#6A655F" }}
           >
             Our collections are released in small, capsule drops, intentional in quantity and deliberate in design.
           </p>
           <p 
             className="font-serif text-[15px] lg:text-[16px] font-light leading-[1.7] mt-2" 
-            style={{ color: "#7A7570" }}
+            style={{ color: "#6A655F" }}
           >
             Ardori takes its name from "Ardor", a fierce devotion to preserving the world around us while celebrating the art of the handmade.
           </p>
@@ -206,7 +206,7 @@ const OurStory = () => {
           <Link 
             to="/shop" 
             className="inline-block font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase pb-1 border-b transition-all duration-300 hover:opacity-70" 
-            style={{ color: "#5A5550", borderColor: "#9A958F" }}
+            style={{ color: "#5A5550", borderColor: "#6A655F" }}
           >
             EXPLORE THE COLLECTION
           </Link>

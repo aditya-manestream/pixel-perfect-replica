@@ -1,8 +1,7 @@
-// Shopify Storefront API Configuration
-const SHOPIFY_API_VERSION = '2025-01';
-const SHOPIFY_STORE_PERMANENT_DOMAIN = 'ardori-4.myshopify.com';
-const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
-const SHOPIFY_STOREFRONT_TOKEN = '25cdc4fcd1db630eb76c585f1599e907';
+// Library build: the live Shopify Storefront API is disconnected (no token, no network calls).
+// Products come from the local snapshot in src/data/catalog.ts, kept in the Storefront shape
+// so every component works unchanged.
+import { catalog } from "@/data/catalog";
 
 // Types
 export interface ShopifyProduct {
@@ -82,233 +81,21 @@ export interface CartItem {
 // It fetches the full image set (galleries and hover images need more than the first
 // two photos) plus every variant, while still skipping the heavy description and
 // metafield fields that only the product detail page renders.
-const PRODUCTS_QUERY = `
-  query GetProducts($first: Int!, $query: String) {
-    products(first: $first, query: $query) {
-      edges {
-        node {
-          id
-          title
-          handle
-          tags
-          productType
-          publishedAt
-          priceRange {
-            minVariantPrice {
-              amount
-              currencyCode
-            }
-          }
-          images(first: 10) {
-            edges {
-              node {
-                url
-                altText
-              }
-            }
-          }
-          variants(first: 20) {
-            edges {
-              node {
-                id
-                title
-                price {
-                  amount
-                  currencyCode
-                }
-                availableForSale
-                selectedOptions {
-                  name
-                  value
-                }
-                image {
-                  url
-                  altText
-                }
-              }
-            }
-          }
-          options {
-            name
-            values
-          }
-        }
-      }
-    }
-  }
-`;
 
 
-const PRODUCT_BY_HANDLE_QUERY = `
-  query GetProductByHandle($handle: String!) {
-    productByHandle(handle: $handle) {
-      id
-      title
-      description
-      descriptionHtml
-      handle
-      tags
-      productType
-      publishedAt
-      priceRange {
-        minVariantPrice {
-          amount
-          currencyCode
-        }
-      }
-      images(first: 25) {
 
-        edges {
-          node {
-            url
-            altText
-          }
-        }
-      }
-      variants(first: 20) {
-        edges {
-          node {
-            id
-            title
-            price {
-              amount
-              currencyCode
-            }
-            availableForSale
-            selectedOptions {
-              name
-              value
-            }
-            image {
-              url
-              altText
-            }
-          }
-        }
-      }
-      options {
-        name
-        values
-      }
-      metafields(identifiers: [{namespace: "custom", key: "what_fits_inside"}]) {
-        key
-        value
-        type
-      }
-    }
-  }
-`;
 
-const CART_CREATE_MUTATION = `
-  mutation cartCreate($input: CartInput!) {
-    cartCreate(input: $input) {
-      cart {
-        id
-        checkoutUrl
-        totalQuantity
-        cost {
-          totalAmount {
-            amount
-            currencyCode
-          }
-        }
-        lines(first: 100) {
-          edges {
-            node {
-              id
-              quantity
-              merchandise {
-                ... on ProductVariant {
-                  id
-                  title
-                  price {
-                    amount
-                    currencyCode
-                  }
-                  product {
-                    title
-                    handle
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      userErrors {
-        field
-        message
-      }
-    }
-  }
-`;
-
-// API Helper
-export async function storefrontApiRequest(query: string, variables: Record<string, unknown> = {}) {
-  const response = await fetch(SHOPIFY_STOREFRONT_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_TOKEN
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
-
-  if (response.status === 402) {
-    throw new Error('Shopify API access requires an active billing plan');
-  }
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  const data = await response.json();
-  
-  if (data.errors) {
-    throw new Error(`Shopify API Error: ${data.errors.map((e: { message: string }) => e.message).join(', ')}`);
-  }
-
-  return data;
-}
-
-// API Functions
+// API Functions (local catalogue)
 export async function fetchProducts(first: number = 50, query?: string): Promise<ShopifyProduct[]> {
-  const data = await storefrontApiRequest(PRODUCTS_QUERY, { first, query });
-  return data.data.products.edges;
+  const q = query?.trim().toLowerCase();
+  const list = q
+    ? catalog.filter(({ node }) => `${node.title} ${node.productType} ${node.tags.join(" ")}`.toLowerCase().includes(q))
+    : catalog;
+  return list.slice(0, first);
 }
 
 export async function fetchProductByHandle(handle: string): Promise<ShopifyProduct['node'] | null> {
-  const data = await storefrontApiRequest(PRODUCT_BY_HANDLE_QUERY, { handle });
-  return data.data.productByHandle;
-}
-
-export async function createStorefrontCheckout(items: CartItem[]): Promise<string> {
-  const lines = items.map(item => ({
-    quantity: item.quantity,
-    merchandiseId: item.variantId,
-  }));
-
-  const cartData = await storefrontApiRequest(CART_CREATE_MUTATION, {
-    input: { lines },
-  });
-
-  if (cartData.data.cartCreate.userErrors.length > 0) {
-    throw new Error(`Cart creation failed: ${cartData.data.cartCreate.userErrors.map((e: { message: string }) => e.message).join(', ')}`);
-  }
-
-  const cart = cartData.data.cartCreate.cart;
-  
-  if (!cart.checkoutUrl) {
-    throw new Error('No checkout URL returned from Shopify');
-  }
-
-  // Add channel parameter for checkout to work
-  const url = new URL(cart.checkoutUrl);
-  url.searchParams.set('channel', 'online_store');
-  return url.toString();
+  return catalog.find(({ node }) => node.handle === handle)?.node ?? null;
 }
 
 // Helper functions
@@ -317,13 +104,11 @@ export async function createStorefrontCheckout(items: CartItem[]): Promise<strin
 // browsers that support it, so a grid thumbnail becomes ~50–150 KB instead of MBs.
 export function shopifyImage(url: string | undefined | null, width: number): string {
   if (!url) return '';
-  try {
-    const u = new URL(url);
-    u.searchParams.set('width', String(width));
-    return u.toString();
-  } catch {
-    return url;
-  }
+  // Local images are already sized; only Shopify CDN URLs take a width parameter.
+  if (!url.startsWith('https://cdn.shopify.com/')) return url;
+  const u = new URL(url);
+  u.searchParams.set('width', String(width));
+  return u.toString();
 }
 
 export function formatPrice(amount: string, currencyCode: string = 'INR'): string {

@@ -244,7 +244,7 @@ const RelatedProductsCarousel = ({
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <ShoppingBag size={32} strokeWidth={1} style={{ color: "#9A958F" }} />
+                          <ShoppingBag size={32} strokeWidth={1} style={{ color: "#6A655F" }} />
                         </div>
                       )}
                     </div>

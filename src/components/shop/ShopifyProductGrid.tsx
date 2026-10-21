@@ -1,3 +1,4 @@
+import { whatsappLink } from "@/kit";
 import { useState, useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -139,17 +140,23 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
             className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
             style={{ backgroundColor: "#F8F6F3" }}
           >
-            <ShoppingBag size={32} strokeWidth={1} style={{ color: "#9A958F" }} />
+            <ShoppingBag size={32} strokeWidth={1} style={{ color: "#6A655F" }} />
           </div>
           <h2 className="font-serif text-[24px] lg:text-[28px] font-normal mb-4" style={{ color: "#2C2824" }}>
             No Products Found
           </h2>
           <p className="font-serif text-[15px] font-light leading-relaxed mb-6" style={{ color: "#6A655F" }}>
-            We're currently updating our collection. Please check back soon or create products in your Shopify store.
+            We're updating the collection online. Message us on WhatsApp and we'll share the bags available today.
           </p>
-          <p className="font-sans text-[13px]" style={{ color: "#9A958F" }}>
-            To add products, tell me what products you'd like to create!
-          </p>
+          <a
+            href={whatsappLink("Hi Ardori, which bags are available right now?")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block font-sans text-[12px] tracking-[0.15em] uppercase px-6 py-3 transition-opacity hover:opacity-90"
+            style={{ backgroundColor: "#2C2824", color: "#FFFFFF" }}
+          >
+            Ask on WhatsApp
+          </a>
         </div>
       </section>
     );
@@ -318,7 +325,7 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
                       </>
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <ShoppingBag size={48} strokeWidth={1} style={{ color: "#9A958F" }} />
+                        <ShoppingBag size={48} strokeWidth={1} style={{ color: "#6A655F" }} />
                       </div>
                     )}
 
@@ -341,7 +348,7 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
                   <div>
                     <p 
                       className="font-sans text-[10px] lg:text-[11px] tracking-[0.15em] uppercase mb-1"
-                      style={{ color: "#9A958F" }}
+                      style={{ color: "#6A655F" }}
                     >
                       {node.productType || "Handbag"}
                     </p>
@@ -373,7 +380,7 @@ const ShopifyProductGrid = ({ showFilters = true }: ShopifyProductGridProps) => 
                           />
                         ))}
                         {colorOptions.length > 4 && (
-                          <span className="font-sans text-[11px]" style={{ color: "#7A7570" }}>
+                          <span className="font-sans text-[11px]" style={{ color: "#6A655F" }}>
                             +{colorOptions.length - 4}
                           </span>
                         )}

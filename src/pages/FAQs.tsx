@@ -38,7 +38,7 @@ const faqs = [
       },
       {
         q: "How do I initiate a return?",
-        a: "Email us at love@ardorilabel.com with your order number and reason for return. Our team will guide you through the process."
+        a: "Email us at hello@ardori.in with your order number and reason for return. Our team will guide you through the process."
       }
     ]
   },
@@ -64,7 +64,7 @@ const faqs = [
       },
       {
         q: "How do I claim warranty?",
-        a: "Email us at love@ardorilabel.com with your order number, photos of the issue, and a description of the problem."
+        a: "Email us at hello@ardori.in with your order number, photos of the issue, and a description of the problem."
       }
     ]
   }
@@ -163,9 +163,9 @@ const FAQs = () => {
                           {faq.q}
                         </span>
                         {isOpen ? (
-                          <ChevronUp size={18} strokeWidth={1.5} style={{ color: "#7A7570" }} />
+                          <ChevronUp size={18} strokeWidth={1.5} style={{ color: "#6A655F" }} />
                         ) : (
-                          <ChevronDown size={18} strokeWidth={1.5} style={{ color: "#7A7570" }} />
+                          <ChevronDown size={18} strokeWidth={1.5} style={{ color: "#6A655F" }} />
                         )}
                       </button>
                       <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 pb-5" : "max-h-0"}`}>
@@ -193,7 +193,7 @@ const FAQs = () => {
               Still have questions?
             </p>
             <a
-              href="mailto:love@ardorilabel.com"
+              href="mailto:hello@ardori.in"
               className="inline-block font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-80"
               style={{
                 backgroundColor: "#2C2824",

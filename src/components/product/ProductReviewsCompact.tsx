@@ -147,7 +147,7 @@ const ProductReviewsCompact = () => {
                 </div>
                 <p 
                   className="font-sans text-[12px] tracking-[0.05em]"
-                  style={{ color: "#7A7570" }}
+                  style={{ color: "#6A655F" }}
                 >
                   Based on {totalReviews} reviews
                 </p>
@@ -178,7 +178,7 @@ const ProductReviewsCompact = () => {
                     </div>
                     <span 
                       className="font-sans text-[11px] w-8 text-right"
-                      style={{ color: "#7A7570" }}
+                      style={{ color: "#6A655F" }}
                     >
                       {item.count}
                     </span>
@@ -299,13 +299,13 @@ const ProductReviewsCompact = () => {
                   <div className="flex items-center justify-between">
                     <p 
                       className="font-sans text-[12px]"
-                      style={{ color: "#7A7570" }}
+                      style={{ color: "#6A655F" }}
                     >
                       {review.author} · {review.date}
                     </p>
                     <button 
                       className="font-sans text-[11px] tracking-[0.05em]"
-                      style={{ color: "#7A7570" }}
+                      style={{ color: "#6A655F" }}
                     >
                       Helpful (12)
                     </button>

@@ -24,7 +24,7 @@ const InstagramSection = () => {
           <span style={{ color: "#C9A86C" }}>✦</span>
           <p
             className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase"
-            style={{ color: "#7A7570" }}
+            style={{ color: "#6A655F" }}
           >
             FOLLOW OUR JOURNEY
           </p>
@@ -40,7 +40,7 @@ const InstagramSection = () => {
 
         <p
           className="font-serif text-[15px] lg:text-[17px] font-light max-w-[450px] mx-auto"
-          style={{ color: "#7A7570" }}
+          style={{ color: "#6A655F" }}
         >
           Join our community and discover the stories behind every piece.
         </p>
@@ -101,7 +101,7 @@ const InstagramSection = () => {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase px-10 py-4 border transition-all duration-300 hover:border-[#3A3530] hover:text-[#2C2824]"
           style={{
-            borderColor: "#9A958F",
+            borderColor: "#6A655F",
             color: "#5A5550",
             backgroundColor: "transparent",
           }}

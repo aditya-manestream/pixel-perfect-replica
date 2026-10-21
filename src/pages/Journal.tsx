@@ -76,7 +76,7 @@ const Journal = () => {
               and the inspiration drawn from India's natural beauty.
             </p>
             
-            <p className="font-serif text-[14px] lg:text-[15px] font-light italic" style={{ color: "#9A958F" }}>
+            <p className="font-serif text-[14px] lg:text-[15px] font-light italic" style={{ color: "#6A655F" }}>
               Subscribe to our newsletter to be the first to know when we launch.
             </p>
           </motion.div>

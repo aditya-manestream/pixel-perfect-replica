@@ -32,7 +32,7 @@ const NewArrivalsSection = () => {
             </h2>
             <p 
               className="font-serif text-[14px] lg:text-[16px] font-light"
-              style={{ color: "#7A7570" }}
+              style={{ color: "#6A655F" }}
             >
               Timeless silhouettes for the modern muse.
             </p>

@@ -5,24 +5,24 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import philosophyPattern from "@/assets/philosophy-pattern.jpg";
 import Seo from "@/components/Seo";
+import { whatsappLink } from "@/kit";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-// Courier tracking portal. It sends X-Frame-Options: DENY, so it cannot be
-// embedded in an iframe — we hand the customer off to it in a new tab instead.
-const TRACKING_URL = "https://3dhtf1-ma.myshopify.com";
+// Library build: the live courier tracking portal is disconnected; order questions go to WhatsApp.
 
 const TrackOrder = () => {
   const [orderNumber, setOrderNumber] = useState("");
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const trackingLink = () => whatsappLink(`Hi Ardori, where is my order?\nOrder: ${orderNumber.trim()}\nEmail: ${email.trim()}`);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    window.open(TRACKING_URL, "_blank", "noopener,noreferrer");
+    window.open(trackingLink(), "_blank", "noopener,noreferrer");
     setSubmitted(true);
   };
 
@@ -138,15 +138,15 @@ const TrackOrder = () => {
             >
               <div className="p-8 mb-8" style={{ backgroundColor: "#F8F6F3", border: "1px solid #E8E4DF" }}>
                 <p className="font-serif text-[18px] lg:text-[20px] font-normal mb-4" style={{ color: "#2C2824" }}>
-                  Tracking opened in a new tab
+                  Your request is ready in WhatsApp
                 </p>
                 <p className="font-serif text-[14px] lg:text-[15px] font-light leading-relaxed mb-6" style={{ color: "#6A655F" }}>
-                  Enter your order number{orderNumber ? ` (${orderNumber})` : ""} on the tracking page to see live courier
-                  updates. If the tab didn't open, use the button below.
+                  Press send there and we'll reply with the latest courier update{orderNumber ? ` for ${orderNumber}` : ""}.
+                  If WhatsApp didn't open, use the button below.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <a
-                    href={TRACKING_URL}
+                    href={trackingLink()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-sans text-[11px] lg:text-[12px] tracking-[0.15em] uppercase transition-all hover:opacity-90"
@@ -156,7 +156,7 @@ const TrackOrder = () => {
                       padding: "12px 24px",
                     }}
                   >
-                    Open Tracking Page
+                    Open WhatsApp
                   </a>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -191,7 +191,7 @@ const TrackOrder = () => {
                         <p className="font-sans text-[13px] tracking-[0.02em]" style={{ color: "#3D3530" }}>
                           {step.label}
                         </p>
-                        <p className="font-serif text-[13px] font-light" style={{ color: "#7A7570" }}>
+                        <p className="font-serif text-[13px] font-light" style={{ color: "#6A655F" }}>
                           {step.desc}
                         </p>
                       </div>
@@ -215,11 +215,11 @@ const TrackOrder = () => {
               Need help with your order?
             </p>
             <a
-              href="mailto:love@ardorilabel.com"
+              href="mailto:hello@ardori.in"
               className="font-sans text-[12px] tracking-[0.05em] transition-opacity hover:opacity-70"
               style={{ color: "#C9A86C" }}
             >
-              love@ardorilabel.com
+              hello@ardori.in
             </a>
           </motion.div>
         </div>

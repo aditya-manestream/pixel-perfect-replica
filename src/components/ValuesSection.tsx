@@ -195,7 +195,7 @@ const ValuesSection = () => {
             {/* Header */}
             <p
               className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-8 lg:mb-10"
-              style={{ color: "#7A7570" }}
+              style={{ color: "#6A655F" }}
             >
               OUR VALUES
             </p>

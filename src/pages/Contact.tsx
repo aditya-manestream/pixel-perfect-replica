@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { whatsappLink } from "@/kit";
 
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Instagram, Facebook, Send, Upload, X, Eye, ArrowRight } from "lucide-react";
@@ -64,26 +64,21 @@ const Contact = () => {
     e.preventDefault();
     if (sending) return;
     setSending(true);
-    try {
-      const { error } = await supabase.functions.invoke("contact-submit", {
-        body: {
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          phone: formData.phone.trim(),
-          orderNumber: formData.orderNumber.trim(),
-          subject: formData.subject,
-          message: formData.message.trim(),
-        },
-      });
-      if (error) throw error;
-      toast.success("Thank you — we've emailed you a confirmation.");
-      setFormData({ name: "", email: "", phone: "", orderNumber: "", subject: "", message: "" });
-      setUploadedImage(null);
-    } catch {
-      toast.error("Your message couldn't be sent. Please try again.");
-    } finally {
-      setSending(false);
-    }
+    // Library build: no backend, so the message is handed to WhatsApp with the details filled in.
+    const text = [
+      `Enquiry: ${formData.subject || "Contact"}`,
+      `Name: ${formData.name.trim()}`,
+      `Phone: ${formData.phone.trim()}`,
+      `Email: ${formData.email.trim()}`,
+      formData.orderNumber.trim() && `Order: ${formData.orderNumber.trim()}`,
+      `Message: ${formData.message.trim()}`,
+      uploadedImage && "I have a photo to share here.",
+    ].filter(Boolean).join("\n");
+    window.open(whatsappLink(text), "_blank", "noopener");
+    toast.success("Your message is ready in WhatsApp. Press send there and we'll reply on the same chat.");
+    setFormData({ name: "", email: "", phone: "", orderNumber: "", subject: "", message: "" });
+    setUploadedImage(null);
+    setSending(false);
   };
 
 
@@ -99,7 +94,7 @@ const Contact = () => {
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
       <Seo
         title={"Contact Ardori — We're Here to Help"}
-        description={"Questions about an order, sizing or leather care? Reach the Ardori customer care team at love@ardorilabel.com or send us a message."}
+        description={"Questions about an order, sizing or leather care? Reach the Ardori customer care team at hello@ardori.in or send us a message."}
         path="/contact"
       />
       <Navbar />
@@ -187,51 +182,51 @@ const Contact = () => {
                 </h2>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <Mail size={20} strokeWidth={1.2} style={{ color: "#8B7355", marginTop: "2px" }} />
+                    <Mail size={20} strokeWidth={1.2} style={{ color: "#75603F", marginTop: "2px" }} />
                     <div>
                       <p 
                         className="text-xs uppercase tracking-[0.15em] mb-1"
-                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
                       >
                         Email
                       </p>
                       <a 
-                        href="mailto:love@ardorilabel.com"
+                        href="mailto:hello@ardori.in"
                         className="text-base transition-opacity hover:opacity-70"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1A1A1A" }}
                       >
-                        love@ardorilabel.com
+                        hello@ardori.in
                       </a>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <Phone size={20} strokeWidth={1.2} style={{ color: "#8B7355", marginTop: "2px" }} />
+                    <Phone size={20} strokeWidth={1.2} style={{ color: "#75603F", marginTop: "2px" }} />
                     <div>
                       <p 
                         className="text-xs uppercase tracking-[0.15em] mb-1"
-                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
                       >
                         WhatsApp
                       </p>
                       <a
-                        href="https://wa.me/919702304058"
+                        href="https://wa.me/919876543210"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-base transition-opacity hover:opacity-70"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1A1A1A" }}
                       >
-                        +91 97023 04058
+                        +91 98765 43210
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <MapPin size={20} strokeWidth={1.2} style={{ color: "#8B7355", marginTop: "2px" }} />
+                    <MapPin size={20} strokeWidth={1.2} style={{ color: "#75603F", marginTop: "2px" }} />
                     <div>
                       <p
                         className="text-xs uppercase tracking-[0.15em] mb-1"
-                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
                       >
                         Location
                       </p>
@@ -383,7 +378,7 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 mt-5 text-xs uppercase tracking-[0.12em] transition-opacity hover:opacity-60"
-                  style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+                  style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
                 >
                   <Instagram size={16} strokeWidth={1.2} />
                   @ardoridesigns
@@ -426,7 +421,7 @@ const Contact = () => {
                       className="text-xs uppercase tracking-[0.15em]"
                       style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                     >
-                      Name <span style={{ color: "#8B7355" }}>*</span>
+                      Name <span style={{ color: "#75603F" }}>*</span>
                     </Label>
                     <Input
                       id="name"
@@ -451,7 +446,7 @@ const Contact = () => {
                       className="text-xs uppercase tracking-[0.15em]"
                       style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                     >
-                      Email <span style={{ color: "#8B7355" }}>*</span>
+                      Email <span style={{ color: "#75603F" }}>*</span>
                     </Label>
                     <Input
                       id="email"
@@ -523,7 +518,7 @@ const Contact = () => {
                       className="text-xs uppercase tracking-[0.15em]"
                       style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                     >
-                      Subject / Inquiry Type <span style={{ color: "#8B7355" }}>*</span>
+                      Subject / Inquiry Type <span style={{ color: "#75603F" }}>*</span>
                     </Label>
                     <Select onValueChange={handleSubjectChange} required>
                       <SelectTrigger 
@@ -560,7 +555,7 @@ const Contact = () => {
                       className="text-xs uppercase tracking-[0.15em]"
                       style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                     >
-                      Message <span style={{ color: "#8B7355" }}>*</span>
+                      Message <span style={{ color: "#75603F" }}>*</span>
                     </Label>
                     <Textarea
                       id="message"
@@ -640,7 +635,7 @@ const Contact = () => {
                     }}
                   >
                     <Send size={14} strokeWidth={1.5} className="mr-2" />
-                    {sending ? "SENDING…" : "SEND MESSAGE"}
+                    SEND ON WHATSAPP
                   </Button>
 
                 </form>

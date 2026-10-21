@@ -37,7 +37,7 @@ const RelatedProducts = ({ currentProductId }: RelatedProductsProps) => {
             {/* Eyebrow */}
             <p 
               className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-3"
-              style={{ color: "#7A7570" }}
+              style={{ color: "#6A655F" }}
             >
               ✦ CONTINUE EXPLORING ✦
             </p>

@@ -109,7 +109,7 @@ const Cart = () => {
             <Link
               to="/shop"
               className="inline-flex items-center gap-2 text-sm transition-opacity hover:opacity-70"
-              style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+              style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
             >
               <ArrowLeft size={16} />
               Continue Shopping
@@ -149,7 +149,7 @@ const Cart = () => {
                         </h3>
                         <p
                           className="text-sm mb-2"
-                          style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+                          style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
                         >
                           {item.product.category}
                         </p>
@@ -241,7 +241,7 @@ const Cart = () => {
                       <Tag
                         size={16}
                         className="absolute left-3 top-1/2 -translate-y-1/2"
-                        style={{ color: "#8B7355" }}
+                        style={{ color: "#75603F" }}
                       />
                       <Input
                         type="text"
@@ -388,7 +388,7 @@ const Cart = () => {
                 {subtotal < 5000 && (
                   <p
                     className="mt-4 text-center text-sm"
-                    style={{ fontFamily: "'Cormorant Garamond', serif", color: "#8B7355" }}
+                    style={{ fontFamily: "'Cormorant Garamond', serif", color: "#75603F" }}
                   >
                     Add {formatPrice(5000 - subtotal)} more for free shipping
                   </p>

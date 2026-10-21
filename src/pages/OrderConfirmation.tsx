@@ -106,7 +106,7 @@ const OrderConfirmation = () => {
               
               <div className="space-y-4">
                 <div className="flex justify-between items-center pb-3" style={{ borderBottom: "1px solid #E8E4DF" }}>
-                  <span className="font-sans text-[12px] tracking-[0.1em] uppercase" style={{ color: "#7A7570" }}>
+                  <span className="font-sans text-[12px] tracking-[0.1em] uppercase" style={{ color: "#6A655F" }}>
                     Order Number
                   </span>
                   <span className="font-sans text-[14px] font-medium" style={{ color: "#2C2824" }}>
@@ -115,7 +115,7 @@ const OrderConfirmation = () => {
                 </div>
                 
                 <div className="flex justify-between items-center pb-3" style={{ borderBottom: "1px solid #E8E4DF" }}>
-                  <span className="font-sans text-[12px] tracking-[0.1em] uppercase" style={{ color: "#7A7570" }}>
+                  <span className="font-sans text-[12px] tracking-[0.1em] uppercase" style={{ color: "#6A655F" }}>
                     Estimated Delivery
                   </span>
                   <span className="font-sans text-[14px]" style={{ color: "#2C2824" }}>
@@ -144,7 +144,7 @@ const OrderConfirmation = () => {
                     <p className="font-sans text-[13px] font-medium" style={{ color: "#3D3530" }}>
                       Order Confirmation
                     </p>
-                    <p className="font-serif text-[13px] font-light" style={{ color: "#7A7570" }}>
+                    <p className="font-serif text-[13px] font-light" style={{ color: "#6A655F" }}>
                       You'll receive an email with your order details
                     </p>
                   </div>
@@ -156,7 +156,7 @@ const OrderConfirmation = () => {
                     <p className="font-sans text-[13px] font-medium" style={{ color: "#3D3530" }}>
                       Crafting Your Bag
                     </p>
-                    <p className="font-serif text-[13px] font-light" style={{ color: "#7A7570" }}>
+                    <p className="font-serif text-[13px] font-light" style={{ color: "#6A655F" }}>
                       Our artisans will carefully prepare your order
                     </p>
                   </div>
@@ -168,7 +168,7 @@ const OrderConfirmation = () => {
                     <p className="font-sans text-[13px] font-medium" style={{ color: "#3D3530" }}>
                       Shipping Update
                     </p>
-                    <p className="font-serif text-[13px] font-light" style={{ color: "#7A7570" }}>
+                    <p className="font-serif text-[13px] font-light" style={{ color: "#6A655F" }}>
                       We'll notify you once your order ships with tracking info
                     </p>
                   </div>
@@ -179,15 +179,15 @@ const OrderConfirmation = () => {
             {/* Contact */}
             <p 
               className="font-serif text-[13px] lg:text-[14px] font-light mb-8"
-              style={{ color: "#7A7570" }}
+              style={{ color: "#6A655F" }}
             >
               Questions about your order? Contact us at{" "}
               <a 
-                href="mailto:love@ardorilabel.com" 
+                href="mailto:hello@ardori.in" 
                 className="transition-opacity hover:opacity-70"
                 style={{ color: "#C9A86C" }}
               >
-                love@ardorilabel.com
+                hello@ardori.in
               </a>
             </p>
 

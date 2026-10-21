@@ -288,7 +288,7 @@ const ShopifyProductDetail = () => {
       <div className="pt-20 lg:pt-24 pb-16 lg:pb-24">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-[12px] lg:text-[13px] font-sans tracking-[0.02em] mb-8" style={{ color: "#7A7570" }}>
+          <nav className="flex items-center gap-2 text-[12px] lg:text-[13px] font-sans tracking-[0.02em] mb-8" style={{ color: "#6A655F" }}>
             <Link to="/" className="hover:opacity-70 transition-opacity">Home</Link>
             <span>/</span>
             <Link to="/shop" className="hover:opacity-70 transition-opacity">Shop</Link>
@@ -333,7 +333,7 @@ const ShopifyProductDetail = () => {
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <ShoppingBag size={48} strokeWidth={1} style={{ color: "#9A958F" }} />
+                    <ShoppingBag size={48} strokeWidth={1} style={{ color: "#6A655F" }} />
                   </div>
                 )}
 
@@ -422,7 +422,7 @@ const ShopifyProductDetail = () => {
               {/* Product Type */}
               <p 
                 className="font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase mb-2"
-                style={{ color: "#7A7570" }}
+                style={{ color: "#6A655F" }}
               >
                 {product.productType || "Handbag"}
               </p>
@@ -555,7 +555,7 @@ const ShopifyProductDetail = () => {
               {/* Shipping Note */}
               <p 
                 className="font-sans text-[12px] lg:text-[13px] tracking-[0.02em] pb-8 mb-8"
-                style={{ color: "#7A7570", borderBottom: "1px solid #E8E4DF" }}
+                style={{ color: "#6A655F", borderBottom: "1px solid #E8E4DF" }}
               >
                 ✦ Free shipping across India · Ships within 5–8 business days
               </p>

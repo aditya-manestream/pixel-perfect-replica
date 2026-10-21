@@ -174,7 +174,7 @@ const HandbagCare = () => {
                         <section.icon
                           size={20}
                           strokeWidth={1.2}
-                          style={{ color: "#7A7570" }}
+                          style={{ color: "#6A655F" }}
                         />
                       </div>
                       <h2
@@ -186,7 +186,7 @@ const HandbagCare = () => {
                     </div>
                     <p
                       className="font-serif text-[14px] lg:text-[16px] font-light mb-6"
-                      style={{ color: "#7A7570" }}
+                      style={{ color: "#6A655F" }}
                     >
                       {section.intro}
                     </p>
@@ -236,7 +236,7 @@ const HandbagCare = () => {
                     className="w-12 h-12 rounded-full flex items-center justify-center border"
                     style={{ borderColor: "#D4CFC8" }}
                   >
-                    <Wrench size={20} strokeWidth={1.2} style={{ color: "#7A7570" }} />
+                    <Wrench size={20} strokeWidth={1.2} style={{ color: "#6A655F" }} />
                   </div>
                   <h2
                     className="font-serif text-[24px] lg:text-[30px] font-normal"
@@ -251,17 +251,17 @@ const HandbagCare = () => {
                 >
                   For deep cleaning or repairs, contact us at{" "}
                   <a
-                    href="mailto:love@ardorilabel.com"
+                    href="mailto:hello@ardori.in"
                     className="underline underline-offset-2 transition-opacity hover:opacity-70"
                     style={{ color: "#2C2824" }}
                   >
-                    love@ardorilabel.com
+                    hello@ardori.in
                   </a>
                   . Our artisan team can help restore your bag to its original glory.
                 </p>
                 <p
                   className="font-serif text-[14px] lg:text-[15px] font-light leading-[1.8] mt-4"
-                  style={{ color: "#7A7570" }}
+                  style={{ color: "#6A655F" }}
                 >
                   We offer professional services including deep conditioning, stain removal, 
                   hardware polishing, and structural repairs performed by our skilled craftspeople.
@@ -304,7 +304,7 @@ const HandbagCare = () => {
                     className="w-12 h-12 rounded-full flex items-center justify-center border"
                     style={{ borderColor: "#D4CFC8" }}
                   >
-                    <BookOpen size={20} strokeWidth={1.2} style={{ color: "#7A7570" }} />
+                    <BookOpen size={20} strokeWidth={1.2} style={{ color: "#6A655F" }} />
                   </div>
                   <h2
                     className="font-serif text-[24px] lg:text-[30px] font-normal"
@@ -315,7 +315,7 @@ const HandbagCare = () => {
                 </div>
                 <p
                   className="font-serif text-[14px] lg:text-[16px] font-light mb-6"
-                  style={{ color: "#7A7570" }}
+                  style={{ color: "#6A655F" }}
                 >
                   Explore our curated collection of guides and resources.
                 </p>
@@ -381,7 +381,7 @@ const HandbagCare = () => {
                 </div>
                 <p
                   className="font-serif text-[12px] lg:text-[13px] font-light italic mt-8 leading-[1.7]"
-                  style={{ color: "#9A958F" }}
+                  style={{ color: "#6A655F" }}
                 >
                   External resources and links are provided for educational purposes.
                   All trademarks, videos, and content belong to their respective owners.

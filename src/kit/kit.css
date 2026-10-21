@@ -1,0 +1,87 @@
+/*
+ * Manestream library kit: the craft floor (Build Library > Craft floor).
+ * Import once at the very top of src/index.css (before @tailwind):  @import "./kit/kit.css";
+ * Uses the site's shadcn tokens (--primary, --ring, --background, --foreground, --muted).
+ */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 5rem;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  p, li, blockquote {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.18);
+    color: hsl(var(--foreground));
+  }
+
+  input, textarea {
+    caret-color: hsl(var(--primary));
+  }
+
+  /* Keyboard focus is always visible and on-brand; mouse clicks stay clean. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+
+  /* Scrollbars follow the palette. */
+  html {
+    scrollbar-color: hsl(var(--foreground) / 0.28) hsl(var(--background));
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--background)); }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--foreground) / 0.22);
+    border-radius: 999px;
+    border: 2px solid hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--foreground) / 0.36); }
+
+  /* Inputs at 16px stop iOS zooming on focus. */
+  input, select, textarea { font-size: max(16px, 1em); }
+}
+
+@layer utilities {
+  .tabular { font-variant-numeric: tabular-nums; }
+  .min-h-screen-safe { min-height: 100vh; min-height: 100dvh; }
+  .pb-safe { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+}
+
+/* One quiet entrance (see Reveal.tsx). */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 600ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 700ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+[data-reveal="in"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+}

@@ -79,19 +79,19 @@ const shippingSections = [
         </p>
         <ul className="space-y-3 ml-4">
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               Tracking number
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               Courier partner details
             </span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#8B7355" }} />
+            <span className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: "#75603F" }} />
             <span style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.7" }}>
               Link to track your shipment
             </span>
@@ -133,8 +133,8 @@ const shippingSections = [
     content: (
       <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#4A4A4A", fontSize: "16px", lineHeight: "1.8" }}>
         If you experience any delivery issues, please contact us immediately at{" "}
-        <a href="mailto:love@ardorilabel.com" className="transition-opacity hover:opacity-70" style={{ color: "#8B7355" }}>
-          love@ardorilabel.com
+        <a href="mailto:hello@ardori.in" className="transition-opacity hover:opacity-70" style={{ color: "#75603F" }}>
+          hello@ardori.in
         </a>
         {" "}with your order number.
       </p>
@@ -219,7 +219,7 @@ const Shipping = () => {
                 <ChevronDown 
                   size={18} 
                   className={`transition-transform duration-300 ${mobileMenuOpen ? 'rotate-180' : ''}`}
-                  style={{ color: "#8B7355" }}
+                  style={{ color: "#75603F" }}
                 />
               </button>
               
@@ -236,7 +236,7 @@ const Shipping = () => {
                     <div key={section.category} className={idx > 0 ? "mt-6" : ""}>
                       <h4 
                         className="text-[11px] uppercase tracking-[0.2em] mb-3"
-                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
                       >
                         {section.category}
                       </h4>
@@ -283,7 +283,7 @@ const Shipping = () => {
                     <div key={section.category}>
                       <h4 
                         className="text-[11px] uppercase tracking-[0.2em] mb-4"
-                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
                       >
                         {section.category}
                       </h4>
@@ -401,11 +401,11 @@ const Shipping = () => {
                   >
                     Need help with your order? Contact us at{" "}
                     <a 
-                      href="mailto:love@ardorilabel.com" 
+                      href="mailto:hello@ardori.in" 
                       className="not-italic transition-opacity hover:opacity-70"
-                      style={{ color: "#8B7355" }}
+                      style={{ color: "#75603F" }}
                     >
-                      love@ardorilabel.com
+                      hello@ardori.in
                     </a>
                   </p>
                 </motion.div>

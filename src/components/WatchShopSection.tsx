@@ -89,7 +89,7 @@ const WatchShopSection = () => {
         </h2>
         <p
           className="font-serif text-[15px] lg:text-[17px] font-light max-w-[600px] mx-auto"
-          style={{ color: "#7A7570" }}
+          style={{ color: "#6A655F" }}
         >
           How Ardori complements your daily life
         </p>

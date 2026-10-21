@@ -231,7 +231,7 @@ const Checkout = () => {
                           className="text-xs uppercase tracking-[0.15em] mb-2 block"
                           style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                         >
-                          Full Name <span style={{ color: "#8B7355" }}>*</span>
+                          Full Name <span style={{ color: "#75603F" }}>*</span>
                         </Label>
                         <Input
                           id="fullName"
@@ -253,7 +253,7 @@ const Checkout = () => {
                           className="text-xs uppercase tracking-[0.15em] mb-2 block"
                           style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                         >
-                          Email <span style={{ color: "#8B7355" }}>*</span>
+                          Email <span style={{ color: "#75603F" }}>*</span>
                         </Label>
                         <Input
                           id="email"
@@ -276,7 +276,7 @@ const Checkout = () => {
                           className="text-xs uppercase tracking-[0.15em] mb-2 block"
                           style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                         >
-                          Phone Number <span style={{ color: "#8B7355" }}>*</span>
+                          Phone Number <span style={{ color: "#75603F" }}>*</span>
                         </Label>
                         <Input
                           id="phone"
@@ -299,7 +299,7 @@ const Checkout = () => {
                           className="text-xs uppercase tracking-[0.15em] mb-2 block"
                           style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                         >
-                          Address Line 1 <span style={{ color: "#8B7355" }}>*</span>
+                          Address Line 1 <span style={{ color: "#75603F" }}>*</span>
                         </Label>
                         <Input
                           id="address1"
@@ -343,7 +343,7 @@ const Checkout = () => {
                           className="text-xs uppercase tracking-[0.15em] mb-2 block"
                           style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                         >
-                          City <span style={{ color: "#8B7355" }}>*</span>
+                          City <span style={{ color: "#75603F" }}>*</span>
                         </Label>
                         <Input
                           id="city"
@@ -365,7 +365,7 @@ const Checkout = () => {
                           className="text-xs uppercase tracking-[0.15em] mb-2 block"
                           style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                         >
-                          State <span style={{ color: "#8B7355" }}>*</span>
+                          State <span style={{ color: "#75603F" }}>*</span>
                         </Label>
                         <Input
                           id="state"
@@ -387,7 +387,7 @@ const Checkout = () => {
                           className="text-xs uppercase tracking-[0.15em] mb-2 block"
                           style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                         >
-                          Pincode <span style={{ color: "#8B7355" }}>*</span>
+                          Pincode <span style={{ color: "#75603F" }}>*</span>
                         </Label>
                         <Input
                           id="pincode"
@@ -403,7 +403,7 @@ const Checkout = () => {
                           }}
                         />
                         {pincodeStatus === "checking" && (
-                          <p className="mt-2 text-sm" style={{ color: "#8B7355" }}>
+                          <p className="mt-2 text-sm" style={{ color: "#75603F" }}>
                             Checking availability...
                           </p>
                         )}
@@ -558,9 +558,9 @@ const Checkout = () => {
                       Order Summary ({items.length} items)
                     </span>
                     {mobileOrderSummaryOpen ? (
-                      <ChevronUp size={18} style={{ color: "#8B7355" }} />
+                      <ChevronUp size={18} style={{ color: "#75603F" }} />
                     ) : (
-                      <ChevronDown size={18} style={{ color: "#8B7355" }} />
+                      <ChevronDown size={18} style={{ color: "#75603F" }} />
                     )}
                   </button>
                 </div>
@@ -698,7 +698,7 @@ const Checkout = () => {
 
               <p
                 className="text-base mb-8"
-                style={{ fontFamily: "'Montserrat', sans-serif", color: "#8B7355" }}
+                style={{ fontFamily: "'Montserrat', sans-serif", color: "#75603F" }}
               >
                 Order Number: <strong>{orderData.orderNumber}</strong>
               </p>
@@ -738,7 +738,7 @@ const Checkout = () => {
                     style={{ fontFamily: "'Cormorant Garamond', serif", color: "#6B6B6B" }}
                   >
                     You will receive a confirmation email at{" "}
-                    <span style={{ color: "#8B7355" }}>{orderData.shippingAddress.email}</span> with tracking
+                    <span style={{ color: "#75603F" }}>{orderData.shippingAddress.email}</span> with tracking
                     information once your order ships.
                   </p>
                 </div>

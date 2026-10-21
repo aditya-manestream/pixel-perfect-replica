@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import CustomCursor from "./components/CustomCursor";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -22,7 +22,6 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const WarrantyPolicy = lazy(() => import("./pages/WarrantyPolicy"));
 const ShopifyCart = lazy(() => import("./pages/ShopifyCart"));
-const OrderConfirmation = lazy(() => import("./pages/OrderConfirmation"));
 const FAQs = lazy(() => import("./pages/FAQs"));
 const Journal = lazy(() => import("./pages/Journal"));
 const TrackOrder = lazy(() => import("./pages/TrackOrder"));
@@ -71,7 +70,7 @@ const App = () => (
             <Route path="/warranty-policy" element={<WarrantyPolicy />} />
             <Route path="/cart" element={<ShopifyCart />} />
             <Route path="/checkout" element={<ShopifyCart />} />
-            <Route path="/order-confirmation" element={<OrderConfirmation />} />
+            <Route path="/order-confirmation" element={<Navigate to="/shop" replace />} />
             <Route path="/faqs" element={<FAQs />} />
             <Route path="/journal" element={<Journal />} />
             <Route path="/track-order" element={<TrackOrder />} />

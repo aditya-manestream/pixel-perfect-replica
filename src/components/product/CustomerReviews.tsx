@@ -78,7 +78,7 @@ const CustomerReviews = () => {
           {/* Eyebrow */}
           <p 
             className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-3"
-            style={{ color: "#7A7570" }}
+            style={{ color: "#6A655F" }}
           >
             ✦ CUSTOMER REVIEWS ✦
           </p>
@@ -106,7 +106,7 @@ const CustomerReviews = () => {
               {renderStars(5, 16)}
               <p 
                 className="font-sans text-[13px] mt-2"
-                style={{ color: "#7A7570" }}
+                style={{ color: "#6A655F" }}
               >
                 {totalReviews} reviews
               </p>
@@ -136,7 +136,7 @@ const CustomerReviews = () => {
                   </div>
                   <span 
                     className="font-sans text-[12px] w-8"
-                    style={{ color: "#7A7570" }}
+                    style={{ color: "#6A655F" }}
                   >
                     {item.percentage}%
                   </span>
@@ -192,7 +192,7 @@ const CustomerReviews = () => {
                   {/* Helpful */}
                   <button 
                     className="flex items-center gap-2 font-sans text-[13px] transition-opacity hover:opacity-70"
-                    style={{ color: "#7A7570" }}
+                    style={{ color: "#6A655F" }}
                   >
                     <ThumbsUp size={14} strokeWidth={1.5} />
                     Helpful ({review.helpfulCount})
@@ -209,7 +209,7 @@ const CustomerReviews = () => {
                   </p>
                   <p 
                     className="font-sans text-[13px] mb-2"
-                    style={{ color: "#7A7570" }}
+                    style={{ color: "#6A655F" }}
                   >
                     {review.location} · {review.date}
                   </p>
