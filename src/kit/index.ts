@@ -10,3 +10,5 @@ export * from "./LegalPage";
 export type { SiteConfig } from "./types";
 export * from "./NotFoundPage";
 export * from "./share";
+export * from "./ScrollManager";
+export * from "./sendEnquiry";

@@ -226,7 +226,7 @@ const ValuesSection = () => {
                     <p
                       className="font-serif text-[15px] lg:text-[17px] transition-all duration-300"
                       style={{
-                        color: isActive ? "#2C2824" : "#8A857F",
+                        color: isActive ? "#2C2824" : "#6F675E",
                         fontWeight: isActive ? 500 : 400,
                       }}
                     >

@@ -17,6 +17,13 @@ site gets the Indian-market and craft-floor basics without rebuilding them.
 | `Reveal.tsx` + `kit.css` | One quiet scroll entrance; selection, focus, caret, scrollbar, reduced motion |
 | `motion.ts` | House easings and `usePrefersReducedMotion` |
 | `share.ts` | `shareOrCopy`: native share sheet on phones, copy link on desktop (needs sonner) |
+| `ScrollManager.tsx` | Scroll to top on route change, to `#id` for `/#section` links. Render once inside the router |
+| `sendEnquiry.ts` | `sendEnquiry(e, topic)`: hand a template's existing `<form>` to WhatsApp using its labels |
+| `re/` (`@/kit/re`) | Real estate: `EmiCalculator`, `ConfigurationTable`, `ReraBadge`, `SiteVisitForm`, `AmenitiesGrid`, `LocationAdvantages`, `BrochureButton`, area and EMI helpers |
+
+`site.config.ts` options added in 0.2: `noindex: true` (every page out of search; client library copies)
+and `rera` (shows `ReraBadge`; set only with a real number). `LegalPage` and `NotFoundPage` take
+`headingClassName`, e.g. `"font-serif font-normal"`, to match the site's headings.
 
 ## Install in a site
 
@@ -28,7 +35,7 @@ site gets the Indian-market and craft-floor basics without rebuilding them.
    export const site: SiteConfig = {
      name: "Brand", tagline: "What you do, where", description: "One line.", url: "https://example.vercel.app",
      ogImage: "/og.jpg", themeColor: "#1f3d2b",
-     contact: { phone: "9876543210", email: "hello@brand.in", city: "Nashik" },
+     contact: { phone: "9823012345", email: "hello@brand.in", city: "Nashik" },
    };
    ```
 

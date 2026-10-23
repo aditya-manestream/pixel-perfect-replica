@@ -353,7 +353,7 @@ const HandbagCare = () => {
                     <div key={group.label}>
                       <p
                         className="font-sans text-[11px] lg:text-[12px] tracking-[0.2em] uppercase mb-3"
-                        style={{ color: "#C9A86C" }}
+                        style={{ color: "#8A6D3B" }}
                       >
                         {group.label}
                       </p>
@@ -461,7 +461,7 @@ const HandbagCare = () => {
         >
           <p
             className="font-sans text-[11px] lg:text-[12px] tracking-[0.3em] uppercase mb-4"
-            style={{ color: "#C9A86C" }}
+            style={{ color: "#8A6D3B" }}
           >
             ✦ CUSTOMER CARE ✦
           </p>

@@ -148,7 +148,7 @@ const ShopifyCart = () => {
     return (
       <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
         <Seo title={"Your Cart | Ardori"} description={"Review your Ardori bag selection and order on WhatsApp."} path="/cart" />
-        <Navbar />
+        <Navbar forceScrolled />
         <div className="pt-24 lg:pt-32 pb-16 lg:pb-24">
           <div className="max-w-[600px] mx-auto px-6 text-center">
             <motion.div
@@ -196,7 +196,7 @@ const ShopifyCart = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
       <Seo title={"Your Cart | Ardori"} description={"Review your Ardori bag selection and order on WhatsApp."} path="/cart" />
-      <Navbar />
+      <Navbar forceScrolled />
 
       <div className="pt-20 lg:pt-24 pb-16 lg:pb-24">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">

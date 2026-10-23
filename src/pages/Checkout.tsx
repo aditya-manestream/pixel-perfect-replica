@@ -146,7 +146,7 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
-      <Navbar />
+      <Navbar forceScrolled />
 
       <section className="pt-28 pb-20 px-6">
         <div className="max-w-6xl mx-auto">

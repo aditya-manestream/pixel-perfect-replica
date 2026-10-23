@@ -8,6 +8,7 @@ interface PageMeta {
   title?: string;
   description?: string;
   image?: string;
+  /** Hide this page from search engines. site.noindex hides every page. */
   noindex?: boolean;
 }
 
@@ -37,7 +38,7 @@ export function usePageMeta({ title, description, image, noindex }: PageMeta = {
     setMeta("name", "twitter:title", fullTitle);
     setMeta("name", "twitter:description", desc);
     setMeta("name", "twitter:image", img);
-    setMeta("name", "robots", noindex ? "noindex, nofollow" : "index, follow");
+    setMeta("name", "robots", noindex || site.noindex ? "noindex, nofollow" : "index, follow");
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement("link");

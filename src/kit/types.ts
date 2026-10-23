@@ -35,4 +35,19 @@ export interface SiteConfig {
   legalName?: string;
   /** Marks a demo build: legal pages and forms say so. */
   demo?: boolean;
+  /** Keep the whole site out of search engines (library copies of client sites). */
+  noindex?: boolean;
+  /**
+   * Real-estate registration. Set only with a real, verified number: the RERA badge stays hidden
+   * until then. Never fill in a placeholder.
+   */
+  rera?: {
+    /** "MahaRERA", "K-RERA", "TNRERA"… */
+    authority: string;
+    number: string;
+    /** Link to the project's page on the authority's site. */
+    url?: string;
+    /** Path in /public to the authority's QR code image, if the site shows it. */
+    qr?: string;
+  };
 }

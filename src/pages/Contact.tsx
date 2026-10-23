@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { whatsappLink } from "@/kit";
+import { displayPhone, whatsappLink } from "@/kit";
 
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Instagram, Facebook, Send, Upload, X, Eye, ArrowRight } from "lucide-react";
@@ -210,13 +210,13 @@ const Contact = () => {
                         WhatsApp
                       </p>
                       <a
-                        href="https://wa.me/919876543210"
+                        href={whatsappLink()}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-base transition-opacity hover:opacity-70"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1A1A1A" }}
                       >
-                        +91 98765 43210
+                        {displayPhone()}
                       </a>
                     </div>
                   </div>
@@ -495,7 +495,7 @@ const Contact = () => {
                       className="text-xs uppercase tracking-[0.15em]"
                       style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                     >
-                      Order Number <span className="normal-case italic" style={{ color: "#999" }}>(if applicable)</span>
+                      Order Number <span className="normal-case italic" style={{ color: "#6B6B6B" }}>(if applicable)</span>
                     </Label>
                     <Input
                       id="orderNumber"

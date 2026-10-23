@@ -10,7 +10,7 @@ export const site: SiteConfig = {
   ogImage: "/og-image.jpg",
   themeColor: "#18243E",
   contact: {
-    phone: "9876543210",
+    phone: "9823012345",
     email: "hello@ardori.in",
     whatsappMessage: "Hi Ardori, I'd like to know more about your handbags.",
     city: "Mumbai",
@@ -18,4 +18,5 @@ export const site: SiteConfig = {
   social: { instagram: "https://www.instagram.com/ardoridesigns/" },
   legalName: "Ardori (demo)",
   demo: true,
+  noindex: true,
 };

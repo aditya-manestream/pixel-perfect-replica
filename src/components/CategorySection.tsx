@@ -59,7 +59,7 @@ const CategorySection = () => {
             </h2>
             <p 
               className="font-serif text-[15px] lg:text-[17px] font-light italic mt-1 mb-10 lg:mb-14"
-              style={{ color: "#A8A096" }}
+              style={{ color: "#6F675E" }}
             >
               Curated to move with you
             </p>
@@ -78,7 +78,7 @@ const CategorySection = () => {
                   style={{
                     fontFamily: '"Montserrat", sans-serif',
                     fontWeight: category.id === activeCategory ? 600 : 400,
-                    color: category.id === activeCategory ? "#2C2824" : "#B5AFA6",
+                    color: category.id === activeCategory ? "#2C2824" : "#6F675E",
                     letterSpacing: "0.06em",
                   }}
                 >
@@ -91,7 +91,7 @@ const CategorySection = () => {
                     className="block font-serif italic normal-case text-[12px] lg:text-[13px] mt-0.5"
                     style={{
                       letterSpacing: "0.02em",
-                      color: category.id === activeCategory ? "#8A8279" : "#C4BEB5",
+                      color: category.id === activeCategory ? "#5E574F" : "#6F675E",
                     }}
                   >
                     {category.products}

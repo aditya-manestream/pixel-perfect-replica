@@ -47,7 +47,7 @@ const Cart = () => {
   if (items.length === 0) {
     return (
       <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
-        <Navbar />
+        <Navbar forceScrolled />
         <div className="pt-32 pb-24 px-6">
           <div className="max-w-2xl mx-auto text-center">
             <motion.div
@@ -89,7 +89,7 @@ const Cart = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAF8F5" }}>
-      <Navbar />
+      <Navbar forceScrolled />
 
       <section className="pt-28 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
@@ -206,7 +206,7 @@ const Cart = () => {
                         <button
                           onClick={() => removeItem(item.product.id, item.selectedColor.hex)}
                           className="flex items-center gap-2 text-sm transition-opacity hover:opacity-70"
-                          style={{ fontFamily: "'Montserrat', sans-serif", color: "#999" }}
+                          style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                         >
                           <Trash2 size={16} />
                           <span className="hidden md:inline">Remove</span>
@@ -295,7 +295,7 @@ const Cart = () => {
                       <button
                         onClick={removePromoCode}
                         className="text-sm transition-opacity hover:opacity-70"
-                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#999" }}
+                        style={{ fontFamily: "'Montserrat', sans-serif", color: "#6B6B6B" }}
                       >
                         Remove
                       </button>

@@ -58,7 +58,7 @@ const OrderConfirmation = () => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FDFCFA" }}>
-      <Navbar />
+      <Navbar forceScrolled />
 
       <div className="pt-24 lg:pt-32 pb-16 lg:pb-24">
         <div className="max-w-[700px] mx-auto px-6 lg:px-8">
